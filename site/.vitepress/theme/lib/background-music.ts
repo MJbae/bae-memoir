@@ -77,8 +77,8 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
     if (enabled.value && track.value) void play()
   }
 
-  function toggle() {
-    if (enabled.value && (status.value === 'playing' || status.value === 'loading')) {
+  function setEnabled(value: boolean) {
+    if (!value) {
       enabled.value = false
       ++revision
       audio.value?.pause()
@@ -91,6 +91,7 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
     }
     persist()
   }
+  function retry() { enabled.value = true; void play(true); persist() }
 
   function onPause() {
     if (audio.value?.paused && status.value === 'playing') status.value = 'paused'
@@ -101,7 +102,7 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
   function onInteraction(event: Event) {
     if (!enabled.value || status.value !== 'blocked') return
     // The music button handles its own gesture; avoid starting and then toggling it off.
-    if (event.target instanceof Element && event.target.closest('.music-toggle')) return
+    if (event.target instanceof Element && event.target.closest('.music-toggle, .music-retry')) return
     void play(true)
   }
 
@@ -134,5 +135,5 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
     stop()
     void context?.close()
   })
-  return { audio, enabled, status, toggle }
+  return { audio, enabled, status, setEnabled, retry }
 }

@@ -85,7 +85,7 @@ test('home sharing uses the short life description while the visible synopsis st
   assert.equal(head.meta('og:url'), siteUrl)
   assertPreviewImage(head)
   const html = await readFile(new URL('index.html', dist), 'utf8')
-  const synopsis = html.match(/<div class="work-synopsis">([\s\S]*?)<\/div>/)?.[1]
+  const synopsis = html.match(/<div\b[^>]*class="work-synopsis"[^>]*>([\s\S]*?)<\/div>/)?.[1]
   assert.ok(synopsis, 'the home page must retain its visible synopsis')
   assert.deepEqual(
     [...synopsis.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/g)].map(([, paragraph]) => decodeHtml(paragraph)),

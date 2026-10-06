@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { withBase } from 'vitepress'
 import { catalog } from '../lib/catalog'
 import Icon from './Icon.vue'
+import ReadingLink from './ReadingLink.vue'
 
-const props = defineProps<{ lastId: string | null; completed: string[] }>()
+const props = defineProps<{ lastId: string | null; lastFinished: boolean; completed: string[] }>()
 const emit = defineEmits<{ resume: [] }>()
+const synopsisOpen = ref(false)
+watch(() => props.lastId, () => { synopsisOpen.value = false })
 const partDescriptions: Record<string, string> = {
   갯벌: '갯벌에서 자란 막내는 전쟁과 풍랑을 겪었다.',
   가마솥: '가정을 꾸리고 김과 멸치를 팔며 탈곡팀을 운영했다.',
@@ -36,13 +39,13 @@ const action = computed(() => {
     return { label: '처음부터 읽기', episode: catalog.readingOrder[0], resume: false }
   }
   const last = catalog.readingOrder[index]
-  if (!props.completed.includes(last.id)) {
+  if (!props.lastFinished) {
     return { label: '이어서 읽기', episode: last, resume: true }
   }
   const next = catalog.readingOrder[index + 1]
-  return next
-    ? { label: '다음 화 읽기', episode: next, resume: false }
-    : { label: '처음부터 다시 읽기', episode: catalog.readingOrder[0], resume: false }
+  if (next) return { label: '다음 화 읽기', episode: next, resume: false }
+  const unread = catalog.readingOrder.find(e => !props.completed.includes(e.id))
+  return { label: unread ? '아직 읽지 않은 이야기' : '처음부터 다시 읽기', episode: unread || catalog.readingOrder[0], resume: false }
 })
 
 </script>
@@ -51,31 +54,34 @@ const action = computed(() => {
   <main id="main" tabindex="-1" class="home-main">
     <section class="home-intro" aria-label="작품 소개">
       <header class="home-heading">
-        <div class="home-heading-title"><h1>{{ catalog.work.title }}</h1><slot name="music" /></div>
-        <p>{{ catalog.work.subtitle }} · {{ catalog.work.episodeCount }}화 완결</p>
+        <div class="home-heading-tools"><p class="home-subtitle">{{ catalog.work.subtitle }}</p><slot name="settings" /></div>
+        <div class="home-heading-title">
+          <h1>{{ catalog.work.title }}</h1>
+          <img class="home-portrait" :src="withBase('/images/bae-byunghee-portrait-512.jpg')" alt="배병희의 수채화 초상" width="512" height="288" />
+        </div>
         <p v-if="catalog.work.schedule" class="home-note">{{ catalog.work.schedule }}</p>
       </header>
 
-      <div class="work-synopsis">
-        <p v-for="paragraph in catalog.work.synopsis" :key="paragraph">{{ paragraph }}</p>
+      <div v-if="lastId" class="synopsis-disclosure">
+        <button type="button" class="synopsis-toggle" :aria-expanded="synopsisOpen" aria-controls="work-synopsis" @click="synopsisOpen = !synopsisOpen">
+          {{ synopsisOpen ? '작품 소개 접기' : '작품 소개 보기' }}<Icon name="chevron" :size="16" />
+        </button>
+      </div>
+      <div id="work-synopsis" class="work-synopsis" :hidden="Boolean(lastId) && !synopsisOpen">
+        <p v-for="(paragraph, index) in catalog.work.synopsis" :key="paragraph" :class="{ 'synopsis-quote': index === 0 }">{{ paragraph }}</p>
       </div>
 
-      <a
-        class="primary-link resume-link"
+      <ReadingLink
+        class="resume-link"
         :href="withBase(action.episode.url)"
+        :label="action.label"
+        :subtitle="lastId ? `${action.episode.label} ${action.episode.title}` : undefined"
         @click="action.resume && emit('resume')"
-      >
-        <span>
-          <span>{{ action.label }}</span>
-          <span v-if="lastId" class="resume-title">
-            {{ action.episode.label }} {{ action.episode.title }}
-          </span>
-        </span>
-        <Icon name="chevron" :size="18" />
-      </a>
+      />
     </section>
 
     <nav class="chapter-list" aria-label="회차 목록">
+      <div class="chapter-list-heading"><h2>목차</h2><span>전체 {{ catalog.readingOrder.length }}편</span></div>
       <section v-for="(group, index) in groups" :key="index">
         <div v-if="group.part" class="part-heading-block">
           <h2 :id="`part-${group.part.number}`" class="part-heading" tabindex="-1">
@@ -96,6 +102,7 @@ const action = computed(() => {
           }"
           :href="withBase(episode.url)"
           :aria-current="episode.id === lastId ? 'location' : undefined"
+          @click="episode.id === lastId && !lastFinished && emit('resume')"
         >
           <span class="chapter-copy">
             <span class="chapter-title">
@@ -104,7 +111,7 @@ const action = computed(() => {
             <span class="episode-time">{{ episode.time }}</span>
           </span>
           <span class="reading-status">
-            <span v-if="episode.id === lastId" class="current-label">읽던 화</span>
+            <span v-if="episode.id === lastId" class="current-label">{{ lastFinished ? '최근 본 화' : '읽는 중' }}</span>
             <span v-if="completed.includes(episode.id)" class="read-label" role="img" aria-label="읽은 회차">
               <span aria-hidden="true">✓</span>
             </span>

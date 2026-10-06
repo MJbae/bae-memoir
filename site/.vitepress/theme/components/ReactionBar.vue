@@ -48,8 +48,7 @@ onBeforeUnmount(() => { alive = false })
     <div class="reaction-options" role="group" aria-label="회차 반응">
       <button v-for="option in reactionOptions" :key="option.key" type="button" :aria-pressed="selected === option.key" :aria-label="`${option.label}${counts[option.key] ? ` ${counts[option.key]}` : ''}`" :disabled="loading" @click="choose(option.key)"><span class="reaction-emoji" aria-hidden="true">{{ option.emoji }}</span><span>{{ option.label }}</span><span class="reaction-count" aria-hidden="true">{{ counts[option.key] || '' }}</span></button>
     </div>
-    <p v-if="loading" class="reaction-status" role="status">반응을 불러오는 중…</p>
     <p v-if="error" class="reaction-error" role="alert">{{ error }} <button type="button" class="text-link" @click="load">다시 불러오기</button></p>
-    <p v-else class="sr-only" role="status">{{ status }}</p>
+    <p v-else class="reaction-status" role="status">{{ loading ? '반응을 불러오는 중…' : status }}</p>
   </div>
 </template>
