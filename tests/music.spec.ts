@@ -5,19 +5,33 @@ async function playing(page: Page, src: string) {
   await expect(page.locator('.background-audio')).toHaveAttribute('src', `/bae-memoir${src}`)
   await expect.poll(() => page.locator('.background-audio').evaluate((audio: HTMLAudioElement) =>
     !audio.paused && audio.readyState >= 2 && Number.isFinite(audio.duration) && audio.duration > 0)).toBe(true)
-  await expect(page.getByRole('button', { name: '음악 끄기', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.getByRole('button', { name: '음악 일시정지', exact: true })).toHaveAttribute('aria-pressed', 'true')
 }
 
 async function startMusic(page: Page, src: string) {
-  // A browser may allow initial autoplay or require a gesture first.
-  await expect.poll(() => page.locator('.background-audio').evaluate((audio: HTMLAudioElement) =>
-    !audio.paused || Boolean(document.querySelector('.music-message')))).toBe(true)
-  if (await page.getByRole('button', { name: '음악 켜기', exact: true }).isVisible())
-    await page.getByRole('button', { name: '음악 켜기', exact: true }).click()
+  await expect.poll(() => page.evaluate(() => {
+    const audio = document.querySelector<HTMLAudioElement>('.background-audio')
+    return Boolean(audio && !audio.paused && audio.readyState >= 2) ||
+      document.querySelector('.music-toggle')?.getAttribute('aria-label') === '음악 재생'
+  })).toBe(true)
+  if (await page.getByRole('button', { name: '음악 재생', exact: true }).isVisible())
+    await page.getByRole('button', { name: '음악 재생', exact: true }).click()
   await playing(page, src)
 }
 
-test('첫 방문부터 음악이 켜져 있고 자동재생이 차단되면 첫 읽기 조작으로 재생한다', async ({ page }) => {
+async function iconOnly(page: Page) {
+  await expect(page.locator('.music-toggle')).toHaveCount(1)
+  await expect(page.locator('.music-toggle')).toHaveText('')
+  await expect(page.locator('.music-toggle svg')).toHaveCount(1)
+  await expect(page.locator('.music-controls, .music-track, .music-volume, .music-message')).toHaveCount(0)
+  await expect(page.getByRole('slider')).toHaveCount(0)
+}
+
+async function fixedVolume(page: Page) {
+  expect(await page.locator('.background-audio').evaluate((audio: HTMLAudioElement) => audio.volume)).toBe(0.1)
+}
+
+test('음악은 기본 재생하고 아이콘 하나만 표시하며 첫 읽기 조작으로 자동재생 제한을 해제한다', async ({ page }, info) => {
   await page.addInitScript(() => {
     const originalPlay = HTMLMediaElement.prototype.play
     let first = true
@@ -27,59 +41,60 @@ test('첫 방문부터 음악이 켜져 있고 자동재생이 차단되면 첫 
     }
   })
   await page.goto('./')
+  await iconOnly(page)
+  await fixedVolume(page)
   await expect(page.locator('.background-audio')).toHaveAttribute('src', '/bae-memoir/music/home.mp3')
-  await expect(page.getByRole('slider', { name: '음악 음량' })).toHaveValue('0.3')
-  await expect(page.getByRole('status')).toHaveText('화면을 누르면 음악이 재생됩니다.')
+  await expect(page.getByRole('button', { name: '음악 재생', exact: true })).toBeVisible()
   await page.locator('.resume-link').click()
   await playing(page, '/music/prologue.mp3')
-  await expect(page.getByRole('status')).toHaveCount(0)
+  await iconOnly(page)
+  await fixedVolume(page)
+  await expect(page.locator('.reader-actions .music-toggle')).toHaveCount(1)
+  const icon = (await page.locator('.music-toggle').boundingBox())!
+  expect(icon.width).toBe(44)
+  expect(icon.height).toBe(44)
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  await page.locator('.reader-toolbar').screenshot({ path: `test-results/reading/${info.project.name}-music-icon.png` })
 })
 
-test('사용자가 끈 음악은 다시 방문해도 꺼져 있고 켜기·끄기·음량 설정을 기억한다', async ({ page }, info) => {
+test('일시정지한 위치를 이어 재생하고 이전 음량 설정을 무시하며 일시정지 선택을 기억한다', async ({ page }) => {
   await page.addInitScript(() => {
     if (!localStorage.getItem('family-library:music'))
-      localStorage.setItem('family-library:music', JSON.stringify({ enabled: false, volume: 0.3 }))
+      localStorage.setItem('family-library:music', JSON.stringify({ enabled: false, volume: 1 }))
   })
   const requests: string[] = []
   page.on('request', request => { if (request.url().includes('/music/')) requests.push(request.url()) })
   await page.goto('./')
-  await expect(page.locator('.music-track')).toHaveText('작품 소개 음악')
-  await expect(page.getByRole('button', { name: '음악 켜기', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: '음악 재생', exact: true })).toBeVisible()
   await expect(page.locator('.background-audio')).not.toHaveAttribute('src')
-  await page.locator('.resume-link').click()
-  await expect(page.locator('.music-track')).toHaveText('프롤로그 음악')
-  await expect(page.locator('.background-audio')).not.toHaveAttribute('src')
+  await fixedVolume(page)
   expect(requests).toEqual([])
-
-  await page.getByRole('button', { name: '음악 켜기', exact: true }).click()
-  await playing(page, '/music/prologue.mp3')
-  await expect(page.locator('.background-audio')).toHaveAttribute('loop', '')
-  await expect(page.locator('.background-audio')).toHaveAttribute('preload', 'none')
-  const volume = page.getByRole('slider', { name: '음악 음량' })
-  await volume.focus()
-  for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowRight')
-  await expect(volume).toHaveValue('0.55')
-  expect(await page.locator('.background-audio').evaluate((audio: HTMLAudioElement) => audio.volume)).toBe(0.55)
-  await page.locator('.music-controls').screenshot({ path: `test-results/reading/${info.project.name}-music-controls.png` })
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
-
-  await page.locator('.next-episode').click()
-  await playing(page, '/music/josae.mp3')
-  await expect(volume).toHaveValue('0.55')
-  await page.getByRole('button', { name: '음악 끄기', exact: true }).click()
-  await expect(page.locator('.background-audio')).not.toHaveAttribute('src')
+  await page.getByRole('button', { name: '음악 재생', exact: true }).click()
+  await playing(page, '/music/home.mp3')
+  await page.locator('.background-audio').evaluate((audio: HTMLAudioElement) => { audio.currentTime = 12 })
+  await page.getByRole('button', { name: '음악 일시정지', exact: true }).click()
+  const pausedAt = await page.locator('.background-audio').evaluate((audio: HTMLAudioElement) => audio.currentTime)
+  expect(pausedAt).toBeGreaterThanOrEqual(12)
   expect(await page.locator('.background-audio').evaluate((audio: HTMLAudioElement) => audio.paused)).toBe(true)
-  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('family-library:music') || '{}')))
-    .toEqual({ enabled: false, volume: 0.55 })
-  await page.reload()
-  await expect(page.getByRole('button', { name: '음악 켜기', exact: true })).toBeVisible()
+  await expect(page.locator('.background-audio')).toHaveAttribute('src', '/bae-memoir/music/home.mp3')
+  await page.getByRole('button', { name: '음악 재생', exact: true }).click()
+  await playing(page, '/music/home.mp3')
+  const resumedAt = await page.locator('.background-audio').evaluate((audio: HTMLAudioElement) => audio.currentTime)
+  expect(resumedAt).toBeGreaterThanOrEqual(pausedAt)
+  expect(resumedAt - pausedAt).toBeLessThan(1)
+  await fixedVolume(page)
+  await page.getByRole('button', { name: '음악 일시정지', exact: true }).click()
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('family-library:music') || '{}'))).toEqual({ enabled: false })
+  await page.locator('.resume-link').click()
   await expect(page.locator('.background-audio')).not.toHaveAttribute('src')
-  await page.getByRole('button', { name: '음악 켜기', exact: true }).click()
-  await playing(page, '/music/josae.mp3')
-  await expect(volume).toHaveValue('0.55')
+  await page.reload()
+  await expect(page.getByRole('button', { name: '음악 재생', exact: true })).toBeVisible()
+  await page.getByRole('button', { name: '음악 재생', exact: true }).click()
+  await playing(page, '/music/prologue.mp3')
+  await fixedVolume(page)
 })
 
-test('하나의 재생기로 홈과 모든 회차의 27곡을 실제 재생하며 이동한다', async ({ page }) => {
+test('하나의 재생기로 홈과 모든 회차의 27곡을 10% 음량으로 재생하며 이동한다', async ({ page }) => {
   test.setTimeout(90000)
   const errors: string[] = []
   page.on('pageerror', error => errors.push(error.message))
@@ -92,8 +107,9 @@ test('하나의 재생기로 홈과 모든 회차의 27곡을 실제 재생하�
   for (const episode of rawCatalog.readingOrder) {
     await expect(page).toHaveURL(new RegExp(`${episode.url}$`))
     const track = rawCatalog.music!.episodes[episode.episodeId as keyof typeof rawCatalog.music.episodes]
-    await expect(page.locator('.music-track')).toHaveText(track.label)
+    await iconOnly(page)
     await playing(page, track.src)
+    await fixedVolume(page)
     expect(await audio.evaluate(element => element === document.querySelector('.background-audio'))).toBe(true)
     await page.locator('.next-episode').click()
   }
@@ -102,9 +118,9 @@ test('하나의 재생기로 홈과 모든 회차의 27곡을 실제 재생하�
   expect(errors).toEqual([])
 })
 
-test('저장된 켜기 설정의 자동재생이 차단되면 클릭으로 재생을 시작한다', async ({ page }) => {
+test('재생 아이콘을 키보드로 조작하고 저장된 음량과 무관하게 10%로 시작한다', async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.setItem('family-library:music', JSON.stringify({ enabled: true, volume: 0.2 }))
+    localStorage.setItem('family-library:music', JSON.stringify({ enabled: true, volume: 0.8 }))
     const originalPlay = HTMLMediaElement.prototype.play
     let first = true
     HTMLMediaElement.prototype.play = function () {
@@ -113,31 +129,34 @@ test('저장된 켜기 설정의 자동재생이 차단되면 클릭으로 재�
     }
   })
   await page.goto('read/josae.html')
-  await expect(page.getByRole('status')).toHaveText('화면을 누르면 음악이 재생됩니다.')
-  await expect(page.getByRole('button', { name: '음악 켜기', exact: true })).toHaveAttribute('aria-pressed', 'false')
-  await page.getByRole('button', { name: '음악 켜기', exact: true }).click()
+  const play = page.getByRole('button', { name: '음악 재생', exact: true })
+  await expect(play).toHaveAttribute('aria-pressed', 'false')
+  await play.focus()
+  await page.keyboard.press('Enter')
   await playing(page, '/music/josae.mp3')
-  await expect(page.getByRole('slider', { name: '음악 음량' })).toHaveValue('0.2')
-  await expect(page.getByRole('status')).toHaveCount(0)
+  await fixedVolume(page)
+  await page.keyboard.press('Enter')
+  await expect(play).toHaveAttribute('aria-pressed', 'false')
+  expect(await page.locator('.background-audio').evaluate((audio: HTMLAudioElement) => audio.paused)).toBe(true)
 })
 
-test('음악 요청이 실패해도 읽기를 유지하고 다시 재생할 수 있다', async ({ page }) => {
+test('음악 요청이 실패해도 본문을 읽고 재생 아이콘으로 다시 시작할 수 있다', async ({ page }) => {
   await page.route('**/music/home.mp3', route => route.abort())
   await page.goto('./')
-  // Autoplay policy may stop the initial attempt before the network failure is reported.
-  await expect(page.getByRole('status')).toBeVisible()
-  if (await page.getByRole('status').innerText() === '화면을 누르면 음악이 재생됩니다.')
-    await page.getByRole('button', { name: '음악 켜기', exact: true }).click()
-  await expect(page.getByRole('status')).toContainText('음악을 불러오지 못했습니다.')
+  await expect(page.getByRole('button', { name: '음악 재생', exact: true })).toBeVisible()
+  if (!await page.locator('.background-audio').evaluate((audio: HTMLAudioElement) => Boolean(audio.error)))
+    await page.getByRole('button', { name: '음악 재생', exact: true }).click()
+  await expect.poll(() => page.locator('.background-audio').evaluate((audio: HTMLAudioElement) => Boolean(audio.error))).toBe(true)
   await expect(page.locator('.chapter-row')).toHaveCount(26)
+  await expect(page.getByRole('button', { name: '음악 재생', exact: true })).toBeVisible()
   await page.unroute('**/music/home.mp3')
-  await page.getByRole('button', { name: '음악 켜기', exact: true }).click()
+  await page.getByRole('button', { name: '음악 재생', exact: true }).click()
   await playing(page, '/music/home.mp3')
+  await fixedVolume(page)
 })
 
-test('기기의 기본 음량이 고정되어 있어도 음악의 음량과 음소거가 작동한다', async ({ page }) => {
+test('기기의 기본 음량이 고정되어 있어도 10%로 재생하고 일시정지한다', async ({ page }) => {
   await page.addInitScript(() => {
-    // Model mobile Safari's read-only media volume while using a real Web Audio graph.
     Object.defineProperty(HTMLMediaElement.prototype, 'volume', { get: () => 1, set() {}, configurable: true })
     const original = AudioContext.prototype.createGain
     AudioContext.prototype.createGain = function () {
@@ -149,18 +168,13 @@ test('기기의 기본 음량이 고정되어 있어도 음악의 음량과 음�
   const gainValue = () => page.evaluate(() => (window as typeof window & { musicGain: GainNode }).musicGain.gain.value)
   await page.goto('./')
   await startMusic(page, '/music/home.mp3')
-  await expect.poll(gainValue).toBeCloseTo(0.3, 3)
-  expect(await page.evaluate(() => (window as typeof window & { musicContext: AudioContext }).musicContext.state)).toBe('running')
-  await page.getByRole('slider', { name: '음악 음량' }).focus()
-  await page.keyboard.press('Home')
-  await expect.poll(gainValue).toBeCloseTo(0, 3)
-  await page.keyboard.press('End')
-  await expect.poll(gainValue).toBeCloseTo(1, 3)
+  await expect.poll(gainValue).toBeCloseTo(0.1, 3)
   await page.locator('.resume-link').click()
   await playing(page, '/music/prologue.mp3')
-  await expect.poll(gainValue).toBeCloseTo(1, 3)
-  await page.getByRole('button', { name: '음악 끄기', exact: true }).click()
+  await expect.poll(gainValue).toBeCloseTo(0.1, 3)
+  await page.getByRole('button', { name: '음악 일시정지', exact: true }).click()
   await expect.poll(() => page.evaluate(() => (window as typeof window & { musicContext: AudioContext }).musicContext.state)).toBe('suspended')
-  await page.getByRole('button', { name: '음악 켜기', exact: true }).click()
+  await page.getByRole('button', { name: '음악 재생', exact: true }).click()
   await playing(page, '/music/prologue.mp3')
+  await expect.poll(gainValue).toBeCloseTo(0.1, 3)
 })

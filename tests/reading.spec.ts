@@ -27,7 +27,7 @@ test('작품 홈의 26편 목록과 처음부터 읽기에서 원고를 읽는�
   await expect(page).toHaveURL(/read\/prologue\.html$/)
   await expect(page.locator('.article-header h1')).toHaveText('벼 한 톨의 무게')
   await expect(page.locator('.story-content')).toContainText('내 논을 파는 한이 있어도')
-  await expect(page.locator('.reader-toolbar a, .reader-toolbar button')).toHaveCount(2)
+  await expect(page.locator('.reader-toolbar a, .reader-toolbar button')).toHaveCount(3)
   await expect(page.locator('#comments, #reactions')).toHaveCount(0)
   await noOverflow(page)
   expect(errors).toEqual([])
@@ -94,7 +94,7 @@ test('읽던 위치와 네 단계 글자 크기를 기억한다', async ({ page 
   await page.reload()
   await expect(page.locator('.library')).toHaveClass(/font-3/)
   await expect(page.locator('.story-content p').first()).toHaveCSS('font-size', '26px')
-  await expect(page.locator('.reader-actions button')).toHaveCSS('font-size', '18px')
+  await expect(page.locator('.reader-actions .font-button')).toHaveCSS('font-size', '18px')
   await page.evaluate(() => window.scrollTo({ top: 260, behavior: 'instant' }))
   await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('family-library:reading') || '{}').scroll)).toBeGreaterThan(200)
   const back = await page.locator('.back-link').boundingBox()
@@ -176,7 +176,7 @@ test('모든 회차의 삽화를 불러오며 16:9 전체 그림을 화면 폭�
   test.setTimeout(90000)
   const images = rawCatalog.illustrations as Record<string, Illustration[]>
   expect(Object.keys(images)).toHaveLength(26)
-  expect(Object.values(images).flat()).toHaveLength(32)
+  expect(Object.values(images).flat()).toHaveLength(30)
   const broken: string[] = []
   page.on('response', response => {
     if (response.url().includes('/images/episodes/') && !response.ok()) broken.push(response.url())
@@ -188,6 +188,7 @@ test('모든 회차의 삽화를 불러오며 16:9 전체 그림을 화면 폭�
     if (episodeId === 'bearing') expect(body).toContain("'메다르(메탈 베어링)'가")
     const figures = page.locator('.episode-illustration')
     await expect(figures).toHaveCount(illustrations.length)
+    if (['josae', 'kalguksu'].includes(episodeId)) await expect(figures).toHaveCount(1)
     for (const illustration of illustrations) {
       const image = page.locator(`[data-illustration="${illustration.id}"] img`)
       await image.scrollIntoViewIfNeeded()
@@ -211,9 +212,11 @@ test('삽화는 자바스크립트 없이 회차에서 표시된다', async ({ b
   const page = await context.newPage()
   try {
     await page.goto('http://127.0.0.1:4183/bae-memoir/read/josae.html')
-    await expect(page.locator('.episode-illustration')).toHaveCount(2)
+    await expect(page.locator('.episode-illustration')).toHaveCount(1)
     const first = page.locator('.episode-illustration img').first()
     await expect.poll(() => first.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true)
+    await page.goto('http://127.0.0.1:4183/bae-memoir/read/kalguksu.html')
+    await expect(page.locator('.episode-illustration')).toHaveCount(1)
     await page.goto('http://127.0.0.1:4183/bae-memoir/read/life-story.html')
     await expect(page).toHaveURL('http://127.0.0.1:4183/bae-memoir/')
     await expect(page.locator('.work-synopsis')).toBeVisible()

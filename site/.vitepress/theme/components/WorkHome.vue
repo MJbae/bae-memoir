@@ -51,12 +51,10 @@ const action = computed(() => {
   <main id="main" tabindex="-1" class="home-main">
     <section class="home-intro" aria-label="작품 소개">
       <header class="home-heading">
-        <h1>{{ catalog.work.title }}</h1>
+        <div class="home-heading-title"><h1>{{ catalog.work.title }}</h1><slot name="music" /></div>
         <p>{{ catalog.work.subtitle }} · {{ catalog.work.episodeCount }}화 완결</p>
         <p v-if="catalog.work.schedule" class="home-note">{{ catalog.work.schedule }}</p>
       </header>
-
-      <slot name="music" />
 
       <div class="work-synopsis">
         <p v-for="paragraph in catalog.work.synopsis" :key="paragraph">{{ paragraph }}</p>

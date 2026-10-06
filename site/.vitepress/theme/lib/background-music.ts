@@ -4,11 +4,11 @@ import type { MusicTrack } from '../../shared/music.mjs'
 
 export type MusicStatus = 'paused' | 'loading' | 'playing' | 'blocked' | 'error'
 const storageKey = 'family-library:music'
+const musicVolume = 0.1
 
 export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
   const audio = ref<HTMLAudioElement>()
   const enabled = ref(true)
-  const volume = ref(0.3)
   const status = ref<MusicStatus>('loading')
   let mounted = false
   let revision = 0
@@ -17,8 +17,8 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
   let gain: GainNode | undefined
 
   function applyVolume() {
-    if (gain && context) gain.gain.setTargetAtTime(volume.value, context.currentTime, 0.015)
-    else if (audio.value && nativeVolume) audio.value.volume = volume.value
+    if (gain && context) gain.gain.value = musicVolume
+    else if (audio.value && nativeVolume) audio.value.volume = musicVolume
   }
 
   function prepareVolume(fromGesture: boolean) {
@@ -27,7 +27,7 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
     if (!context) {
       context = new AudioContext()
       gain = context.createGain()
-      gain.gain.value = volume.value
+      gain.gain.value = musicVolume
       context.createMediaElementSource(audio.value).connect(gain)
       gain.connect(context.destination)
     }
@@ -37,7 +37,7 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
   }
 
   function persist() {
-    try { localStorage.setItem(storageKey, JSON.stringify({ enabled: enabled.value, volume: volume.value })) }
+    try { localStorage.setItem(storageKey, JSON.stringify({ enabled: enabled.value })) }
     catch { /* Reading and music still work without browser storage. */ }
   }
 
@@ -80,20 +80,15 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
   function toggle() {
     if (enabled.value && (status.value === 'playing' || status.value === 'loading')) {
       enabled.value = false
-      stop()
+      ++revision
+      audio.value?.pause()
+      status.value = 'paused'
       void context?.suspend()
     } else {
       enabled.value = true
       // Call play directly from the button gesture, including after autoplay was blocked.
       void play(true)
     }
-    persist()
-  }
-
-  function setVolume(value: number) {
-    if (!Number.isFinite(value)) return
-    volume.value = Math.min(1, Math.max(0, value))
-    applyVolume()
     persist()
   }
 
@@ -115,19 +110,17 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
     try {
       const saved = JSON.parse(localStorage.getItem(storageKey) || 'null')
       if (typeof saved?.enabled === 'boolean') enabled.value = saved.enabled
-      if (typeof saved?.volume === 'number' && Number.isFinite(saved.volume))
-        volume.value = Math.min(1, Math.max(0, saved.volume))
     } catch { /* Use the default music settings if storage is unavailable. */ }
     if (audio.value) {
       try {
-        audio.value.volume = 0.3
-        nativeVolume = Math.abs(audio.value.volume - 0.3) < 0.001
+        audio.value.volume = musicVolume
+        nativeVolume = Math.abs(audio.value.volume - musicVolume) < 0.001
       } catch { nativeVolume = false }
       applyVolume()
       audio.value.addEventListener('pause', onPause)
       audio.value.addEventListener('error', onError)
     }
-    // Wait until the click target is resolved before removing the autoplay hint from layout.
+    // Retry blocked autoplay from the user's first completed click or keyboard gesture.
     window.addEventListener('click', onInteraction)
     window.addEventListener('keydown', onInteraction)
     changeTrack()
@@ -141,5 +134,5 @@ export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
     stop()
     void context?.close()
   })
-  return { audio, enabled, volume, status, toggle, setVolume }
+  return { audio, enabled, status, toggle }
 }

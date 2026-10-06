@@ -89,49 +89,6 @@
       ]
     },
     {
-      "id": "josae-field",
-      "episodeId": "josae",
-      "alt": "수채화로 그린 황토 비탈밭으로 지게를 지고 오르는 소년",
-      "width": 1280,
-      "height": 720,
-      "position": {
-        "beforeParagraph": "집안에 일손이 부족하자 배병희 역시 일찍부터 일을 거들었다. 부모의 거친 손을 보며 자란 소년은 시키지 않아도 쇠스랑을 챙겨 들고 밭으로 나갔다. 제 몸집만 한 지게를 지고 가파른 비탈길을 묵묵히 오르내렸다."
-      },
-      "sources": [
-        {
-          "src": "/images/episodes/josae-field-360.jpg",
-          "width": 360
-        },
-        {
-          "src": "/images/episodes/josae-field-720.jpg",
-          "width": 720
-        },
-        {
-          "src": "/images/episodes/josae-field-1280.jpg",
-          "width": 1280
-        }
-      ],
-      "webpSources": [
-        {
-          "src": "/images/episodes/josae-field-360.webp",
-          "width": 360
-        },
-        {
-          "src": "/images/episodes/josae-field-720.webp",
-          "width": 720
-        },
-        {
-          "src": "/images/episodes/josae-field-1280.webp",
-          "width": 1280
-        }
-      ],
-      "referenceIds": [
-        "local-09",
-        "sup-024",
-        "sup-022"
-      ]
-    },
-    {
       "id": "jige",
       "episodeId": "jige",
       "alt": "수채화로 그린 책보 대신 지게를 지고 밭으로 향하는 소년",
@@ -301,48 +258,6 @@
         "sup-009",
         "sup-010",
         "extra-02"
-      ]
-    },
-    {
-      "id": "kalguksu-winter",
-      "episodeId": "kalguksu",
-      "alt": "수채화로 그린 온돌방에서 구운 고구마를 나누는 가족",
-      "width": 1280,
-      "height": 720,
-      "position": {
-        "beforeParagraph": "가을걷이가 끝나면 배병희는 수확한 고구마와 감자를 온돌방 아랫목에 쌓고 짚을 두툼하게 덮어 겨울 동안 얼지 않게 보관했다. 밤이 되면 가족들이 둘러앉아 구운 고구마를 나누어 먹으며 담소를 나누었다. 소박한 살림이었지만 정성껏 차린 밥상과 온돌방의 따뜻함 속에서 가족들은 화목하게 겨울을 났다."
-      },
-      "sources": [
-        {
-          "src": "/images/episodes/kalguksu-winter-360.jpg",
-          "width": 360
-        },
-        {
-          "src": "/images/episodes/kalguksu-winter-720.jpg",
-          "width": 720
-        },
-        {
-          "src": "/images/episodes/kalguksu-winter-1280.jpg",
-          "width": 1280
-        }
-      ],
-      "webpSources": [
-        {
-          "src": "/images/episodes/kalguksu-winter-360.webp",
-          "width": 360
-        },
-        {
-          "src": "/images/episodes/kalguksu-winter-720.webp",
-          "width": 720
-        },
-        {
-          "src": "/images/episodes/kalguksu-winter-1280.webp",
-          "width": 1280
-        }
-      ],
-      "referenceIds": [
-        "sup-010",
-        "sup-007"
       ]
     },
     {
