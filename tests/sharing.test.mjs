@@ -6,7 +6,7 @@ import catalog from '../site/.vitepress/generated/catalog.json' with { type: 'js
 const dist = new URL('../site/.vitepress/dist/', import.meta.url)
 const siteUrl = 'https://mjbae.github.io/bae-memoir/'
 const title = catalog.work.title
-const description = '갯벌에서 들녘까지, 가족과 이웃을 위해 살아온 한평생.'
+const description = '배병희 자전소설 · 갯벌에서 들녘까지, 가족과 이웃을 위해 살아온 한평생.'
 const imagePath = 'images/bae-byunghee-hero-watercolor.png'
 const imageUrl = `${siteUrl}${imagePath}`
 const chapterTitles = catalog.readingOrder
