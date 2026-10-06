@@ -9,5 +9,4 @@ export const catalog = rawCatalog as {
   legacyIds: Record<string, string>
   parts: { number: number; title: string; label: string }[]
   documents: Reading[]
-  fullStory: Reading
 }

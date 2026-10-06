@@ -15,6 +15,7 @@ import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import matter from 'gray-matter'
 import { parseManuscript, legacyEpisodes } from '../site/.vitepress/shared/episode-heading.mjs'
+import { loadEpisodeIllustrations } from '../site/.vitepress/shared/episode-illustrations.mjs'
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const mainFilename = '배병희_자서전.md'
@@ -172,6 +173,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
 
   const main = loaded.find(({ source }) => source === mainFilename)
   const structure = parseManuscript(main.body, warn)
+  const illustrations = loadEpisodeIllustrations(root, structure.episodes)
   const work = {
     title: plainText(main.data.title || '내 논을 파는 한이 있어도'),
     subtitle: plainText(main.data.subtitle || '배병희 자전소설'),
@@ -223,9 +225,10 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
       description: `${target.label} ${target.title}`, kind: 'redirect', redirect: target.url, source: mainFilename })
   })
   const legacyIds = Object.fromEntries(redirects.map(p => [`life-${p.filename.replace('.md', '')}`, readingOrder.find(e => e.url === p.redirect).id]))
-  const fullStory = { id: 'life-story', title: '한 번에 읽기', url: '/read/life-story.html' }
-  register({ ...fullStory, filename: 'life-story.md', body: `# ${work.title}\n\n${main.body}`, kind: 'full', source: mainFilename, description: work.subtitle })
-  sourceUrls.set(mainFilename, fullStory.url)
+  register({ id: 'life-story', filename: 'life-story.md', title: work.title,
+    body: '[작품 소개와 회차 목록으로 이동하기](/)',
+    kind: 'redirect', redirect: '/', source: mainFilename, description: work.subtitle })
+  sourceUrls.set(mainFilename, '/')
 
   const documents = loaded
     .filter(({ source }) => source !== mainFilename)
@@ -329,7 +332,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
       const metadata = {
         title: page.title,
         description: page.description,
-        commentId: page.kind === 'redirect' || page.kind === 'full' ? '' : page.id,
+        pageId: page.kind === 'redirect' ? '' : page.id,
         episodeId: page.episodeId || '',
         kind: page.kind,
         label: page.label || '',
@@ -345,7 +348,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
       return [page.filename, frontmatter(metadata, rewriteLinks(page.body, page.source))]
     })
   )
-  const catalog = { title: work.title, work, parts: structure.parts, chapters, readingOrder, legacyIds, documents, fullStory }
+  const catalog = { title: work.title, work, parts: structure.parts, chapters, readingOrder, legacyIds, documents, illustrations }
 
   let previousFiles = []
   if (existsSync(manifestFile)) {
@@ -393,7 +396,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
     renameSync(`${target}.tmp`, target)
   }
   logger.log?.(
-    `[content] ${structure.parts.length}개 부 · ${chapters.length}개 본편 회차 · ${documents.length}개 자료 · 전체글 준비 완료`
+    `[content] ${structure.parts.length}개 부 · ${chapters.length}개 본편 회차 · ${documents.length}개 자료 준비 완료`
   )
   return { catalog, manifest, warnings }
 }

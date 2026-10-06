@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { loadEnv } from 'vite'
 import { fileURLToPath } from 'node:url'
-import { episodeComments } from './markdown/episode-comments'
+import { episodeIllustrations } from './markdown/episode-illustrations'
 import catalog from './generated/catalog.json'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
@@ -13,12 +13,6 @@ const siteDescription = '배병희 자전소설 · 갯벌에서 들녘까지, �
 const siteOrigin = 'https://mjbae.github.io'
 const shareImage = new URL(`${base}images/bae-byunghee-hero-watercolor.png`, siteOrigin).href
 const shareImageAlt = '가을 논을 배경으로 정장을 입은 배병희의 수채화 초상'
-const commentsConfigured = [
-  'VITE_FIREBASE_API_KEY',
-  'VITE_FIREBASE_AUTH_DOMAIN',
-  'VITE_FIREBASE_PROJECT_ID',
-  'VITE_FIREBASE_APP_ID',
-].every((key) => env[key]?.trim())
 
 export default defineConfig({
   lang: 'ko-KR',
@@ -61,7 +55,7 @@ export default defineConfig({
     // 원고의 일반 Markdown과 사진을 지원하며 임의 HTML 실행은 허용하지 않습니다.
     config(md) {
       md.set({ html: false })
-      md.use(episodeComments, { base, enabled: commentsConfigured })
+      md.use(episodeIllustrations, { base, images: catalog.illustrations })
     },
   },
   vite: {
@@ -74,7 +68,7 @@ export default defineConfig({
     const title = isHome ? workTitle : String(pageData.frontmatter.shareTitle || `${pageData.title} · ${workTitle}`)
     pageData.frontmatter.titleTemplate = false
     pageData.title = title
-    const description = isHome || pageData.frontmatter.kind === 'full'
+    const description = isHome
       ? siteDescription
       : String(pageData.frontmatter.description || siteDescription)
     const relative = pageData.relativePath

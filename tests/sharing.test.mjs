@@ -73,7 +73,7 @@ function assertPreviewImage(head) {
   assert.equal(head.meta('twitter:image:alt'), head.meta('og:image:alt'))
 }
 
-test('home and full-story pages share the short life description while the visible synopsis stays unchanged', async () => {
+test('home sharing uses the short life description while the visible synopsis stays unchanged', async () => {
   const head = await staticHead('index.html')
   assert.equal(head.title, title)
   assert.equal(head.meta('description'), description)
@@ -84,11 +84,6 @@ test('home and full-story pages share the short life description while the visib
   assert.equal(head.link('canonical').href, siteUrl)
   assert.equal(head.meta('og:url'), siteUrl)
   assertPreviewImage(head)
-  const fullHead = await staticHead('read/life-story.html')
-  for (const name of ['description', 'og:description', 'twitter:description']) {
-    assert.equal(fullHead.meta(name), description)
-  }
-  assertPreviewImage(fullHead)
   const html = await readFile(new URL('index.html', dist), 'utf8')
   const synopsis = html.match(/<div class="work-synopsis">([\s\S]*?)<\/div>/)?.[1]
   assert.ok(synopsis, 'the home page must retain its visible synopsis')
@@ -165,4 +160,13 @@ test('legacy decade addresses contain a static refresh and canonical link to the
   assert.equal(head.link('canonical').href, `${siteUrl}read/josae.html`)
   const html = await readFile(new URL('read/1930s.html', dist), 'utf8')
   assert.match(html, /http-equiv="refresh" content="0;url=\/bae-memoir\/read\/josae.html"/)
+})
+
+test('the retired full-story address statically redirects to the work home', async () => {
+  const head = await staticHead('read/life-story.html')
+  assert.equal(head.link('canonical').href, siteUrl)
+  const html = await readFile(new URL('read/life-story.html', dist), 'utf8')
+  assert.match(html, /http-equiv="refresh" content="0;url=\/bae-memoir\/"/)
+  assert.ok(!html.includes('episode-illustration'))
+  assert.ok(!html.includes('한 번에 읽기'))
 })

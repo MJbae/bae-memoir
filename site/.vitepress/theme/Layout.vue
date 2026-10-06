@@ -12,7 +12,7 @@ const router = useRouter()
 const previousBeforeLoad = router.onBeforePageLoad
 const isHome = computed(() => frontmatter.value.layout === 'home')
 const isMissing = computed(() => Boolean(page.value.isNotFound))
-const pageId = computed(() => String(frontmatter.value.commentId || ''))
+const pageId = computed(() => String(frontmatter.value.pageId || ''))
 const title = computed(() => String(frontmatter.value.title || '이야기'))
 const homeHref = computed(() => withBase('/') + (frontmatter.value.episodeId ? `#episode-${frontmatter.value.episodeId}` : ''))
 const fontSize = ref(1)
@@ -115,9 +115,9 @@ onBeforeUnmount(() => { router.onBeforePageLoad = previousBeforeLoad; ++version;
     <template v-else>
       <header class="reader-toolbar"><nav aria-label="읽기 도구"><a class="back-link" :href="homeHref"><Icon name="back" :size="18" /><span>목록</span></a><div class="reader-actions"><button class="font-button" aria-haspopup="dialog" @click="settingsDialog?.showModal()">보기 설정</button></div></nav></header>
       <main id="main" tabindex="-1" class="reader-main">
-        <header class="article-header"><p v-if="frontmatter.label || frontmatter.kind === 'full'" class="article-label">{{ frontmatter.partLabel ? `${frontmatter.partLabel} · ` : '' }}{{ frontmatter.label || '전체 이야기' }}</p><h1>{{ title }}</h1><p v-if="frontmatter.time" class="article-time">{{ frontmatter.time }}</p></header>
+        <header class="article-header"><p v-if="frontmatter.label" class="article-label">{{ frontmatter.partLabel ? `${frontmatter.partLabel} · ` : '' }}{{ frontmatter.label }}</p><h1>{{ title }}</h1><p v-if="frontmatter.time" class="article-time">{{ frontmatter.time }}</p></header>
         <article class="story-content"><Content /></article>
-        <EpisodeEnd v-if="pageId" :key="pageId" :page-id="pageId" :title="title" :episode="frontmatter.kind === 'episode'" :prev="frontmatter.prev" :next="frontmatter.next" :home-href="homeHref" @complete="complete" />
+        <EpisodeEnd v-if="frontmatter.kind === 'episode'" :key="pageId" :page-id="pageId" :episode="true" :prev="frontmatter.prev" :next="frontmatter.next" :home-href="homeHref" @complete="complete" />
       </main>
     </template>
     <dialog ref="settingsDialog" class="reading-settings" aria-labelledby="settings-title" @click="closeOnBackdrop">

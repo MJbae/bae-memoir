@@ -49,29 +49,31 @@ const action = computed(() => {
 
 <template>
   <main id="main" tabindex="-1" class="home-main">
-    <header class="home-heading">
-      <h1>{{ catalog.work.title }}</h1>
-      <p>{{ catalog.work.subtitle }} · {{ catalog.work.episodeCount }}화 완결</p>
-      <p v-if="catalog.work.schedule" class="home-note">{{ catalog.work.schedule }}</p>
-    </header>
+    <section class="home-intro" aria-label="작품 소개">
+      <header class="home-heading">
+        <h1>{{ catalog.work.title }}</h1>
+        <p>{{ catalog.work.subtitle }} · {{ catalog.work.episodeCount }}화 완결</p>
+        <p v-if="catalog.work.schedule" class="home-note">{{ catalog.work.schedule }}</p>
+      </header>
 
-    <a
-      class="primary-link resume-link"
-      :href="withBase(action.episode.url)"
-      @click="action.resume && emit('resume')"
-    >
-      <span>
-        <span>{{ action.label }}</span>
-        <span v-if="lastId" class="resume-title">
-          {{ action.episode.label }} {{ action.episode.title }}
+      <div class="work-synopsis">
+        <p v-for="paragraph in catalog.work.synopsis" :key="paragraph">{{ paragraph }}</p>
+      </div>
+
+      <a
+        class="primary-link resume-link"
+        :href="withBase(action.episode.url)"
+        @click="action.resume && emit('resume')"
+      >
+        <span>
+          <span>{{ action.label }}</span>
+          <span v-if="lastId" class="resume-title">
+            {{ action.episode.label }} {{ action.episode.title }}
+          </span>
         </span>
-      </span>
-      <Icon name="chevron" :size="18" />
-    </a>
-
-    <div class="work-synopsis">
-      <p v-for="paragraph in catalog.work.synopsis" :key="paragraph">{{ paragraph }}</p>
-    </div>
+        <Icon name="chevron" :size="18" />
+      </a>
+    </section>
 
     <nav class="chapter-list" aria-label="회차 목록">
       <section v-for="(group, index) in groups" :key="index">
@@ -103,8 +105,8 @@ const action = computed(() => {
           </span>
           <span class="reading-status">
             <span v-if="episode.id === lastId" class="current-label">읽던 화</span>
-            <span v-if="completed.includes(episode.id)" class="read-label">
-              <span aria-hidden="true">✓</span><span>읽음</span>
+            <span v-if="completed.includes(episode.id)" class="read-label" role="img" aria-label="읽은 회차">
+              <span aria-hidden="true">✓</span>
             </span>
             <Icon
               v-if="episode.id !== lastId && !completed.includes(episode.id)"
@@ -116,9 +118,6 @@ const action = computed(() => {
       </section>
     </nav>
 
-    <a class="whole-story-link" :href="withBase(catalog.fullStory.url)">
-      한 번에 읽기 <Icon name="chevron" :size="14" />
-    </a>
     <section
       v-if="catalog.documents.length"
       class="documents-section"

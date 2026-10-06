@@ -1,5 +1,5 @@
 import { collection, doc, getAggregateFromServer, getDocFromServer, serverTimestamp, setDoc, sum } from 'firebase/firestore'
-import { ensureAnonymousUser, getClients, storedPageId, validatePageId } from './comments'
+import { ensureAnonymousUser, getClients, storedPageId, validatePageId } from './firebase'
 export const reactionOptions = [
   { key: 'heart', emoji: '❤️', label: '응원해요' },
   { key: 'like', emoji: '👍', label: '좋아요' },

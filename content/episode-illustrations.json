@@ -1,0 +1,1377 @@
+{
+  "version": 1,
+  "styleReference": "site/public/images/bae-byunghee-hero-watercolor.png",
+  "aspectRatio": "16:9",
+  "images": [
+    {
+      "id": "prologue",
+      "episodeId": "prologue",
+      "alt": "수채화로 그린 농민의 손에 담긴 벼 한 줌",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/prologue-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/prologue-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/prologue-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/prologue-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/prologue-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/prologue-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "mon9955-26",
+        "nicearra-07"
+      ]
+    },
+    {
+      "id": "josae",
+      "episodeId": "josae",
+      "alt": "수채화로 그린 갯벌에서 조새로 굴을 까는 어머니",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/josae-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/josae-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/josae-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/josae-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/josae-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/josae-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-08",
+        "sup-037"
+      ]
+    },
+    {
+      "id": "josae-field",
+      "episodeId": "josae",
+      "alt": "수채화로 그린 황토 비탈밭으로 지게를 지고 오르는 소년",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "집안에 일손이 부족하자 배병희 역시 일찍부터 일을 거들었다. 부모의 거친 손을 보며 자란 소년은 시키지 않아도 쇠스랑을 챙겨 들고 밭으로 나갔다. 제 몸집만 한 지게를 지고 가파른 비탈길을 묵묵히 오르내렸다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/josae-field-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/josae-field-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/josae-field-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/josae-field-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/josae-field-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/josae-field-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-09",
+        "sup-024",
+        "sup-022"
+      ]
+    },
+    {
+      "id": "jige",
+      "episodeId": "jige",
+      "alt": "수채화로 그린 책보 대신 지게를 지고 밭으로 향하는 소년",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/jige-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/jige-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/jige-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/jige-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/jige-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/jige-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-024",
+        "sup-022",
+        "local-09"
+      ]
+    },
+    {
+      "id": "serial-number",
+      "episodeId": "serial-number",
+      "alt": "수채화로 그린 마당에서 홀로 도리깨로 보리를 타작하는 소년",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/serial-number-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/serial-number-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/serial-number-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/serial-number-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/serial-number-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/serial-number-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-025",
+        "sup-026",
+        "local-09"
+      ]
+    },
+    {
+      "id": "cheonsuman",
+      "episodeId": "cheonsuman",
+      "alt": "수채화로 그린 돌풍 속에서 땔나무를 실은 목선의 노를 젓는 청년",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/cheonsuman-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/cheonsuman-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/cheonsuman-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/cheonsuman-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/cheonsuman-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/cheonsuman-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-013",
+        "sup-014",
+        "sup-015"
+      ]
+    },
+    {
+      "id": "kalguksu",
+      "episodeId": "kalguksu",
+      "alt": "수채화로 그린 가마솥에 미꾸라지 칼국수를 끓이는 아내의 손",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/kalguksu-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/kalguksu-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/kalguksu-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/kalguksu-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/kalguksu-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/kalguksu-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-009",
+        "sup-010",
+        "extra-02"
+      ]
+    },
+    {
+      "id": "kalguksu-winter",
+      "episodeId": "kalguksu",
+      "alt": "수채화로 그린 온돌방에서 구운 고구마를 나누는 가족",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "가을걷이가 끝나면 배병희는 수확한 고구마와 감자를 온돌방 아랫목에 쌓고 짚을 두툼하게 덮어 겨울 동안 얼지 않게 보관했다. 밤이 되면 가족들이 둘러앉아 구운 고구마를 나누어 먹으며 담소를 나누었다. 소박한 살림이었지만 정성껏 차린 밥상과 온돌방의 따뜻함 속에서 가족들은 화목하게 겨울을 났다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/kalguksu-winter-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/kalguksu-winter-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/kalguksu-winter-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/kalguksu-winter-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/kalguksu-winter-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/kalguksu-winter-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-010",
+        "sup-007"
+      ]
+    },
+    {
+      "id": "laver",
+      "episodeId": "laver",
+      "alt": "수채화로 그린 겨울 마당에서 김발을 함께 널어 말리는 가족",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/laver-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/laver-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/laver-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/laver-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/laver-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/laver-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-002",
+        "sup-011",
+        "sup-012"
+      ]
+    },
+    {
+      "id": "anchovy",
+      "episodeId": "anchovy",
+      "alt": "수채화로 그린 갯가 자갈밭의 가마솥에서 멸치를 삶는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/anchovy-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/anchovy-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/anchovy-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/anchovy-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/anchovy-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/anchovy-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-004",
+        "sup-005",
+        "local-08"
+      ]
+    },
+    {
+      "id": "bearing",
+      "episodeId": "bearing",
+      "alt": "수채화로 그린 발동기 곁에서 숟가락의 납으로 베어링을 고치는 손",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/bearing-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/bearing-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/bearing-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/bearing-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/bearing-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/bearing-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-008",
+        "extra-04"
+      ]
+    },
+    {
+      "id": "leaving",
+      "episodeId": "leaving",
+      "alt": "수채화로 그린 안면도 논에서 보행형 바인더로 벼를 베어 묶는 모습",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/leaving-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/leaving-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/leaving-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/leaving-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/leaving-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/leaving-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-006",
+        "extra-03",
+        "local-09"
+      ]
+    },
+    {
+      "id": "leaving-road",
+      "episodeId": "leaving",
+      "alt": "수채화로 그린 이웃들과 짐을 싣고 남양만으로 향하는 이주 행렬",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "1970년대 중반 서해안 일대에는 큰 변화가 찾아왔다. 안면도 일대에 대규모 기업 목장이 들어서며 땅 매입이 본격화되었다. 설상가상으로 간척사업 탓에 갯벌이 줄어들며 김 양식의 미래마저 불투명해졌다. 배병희는 넓은 평야로 나가 본격적인 벼농사를 지어야겠다고 판단했다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/leaving-road-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/leaving-road-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/leaving-road-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/leaving-road-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/leaving-road-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/leaving-road-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-006",
+        "local-09",
+        "sup-027"
+      ]
+    },
+    {
+      "id": "reclaimed-land",
+      "episodeId": "reclaimed-land",
+      "alt": "수채화로 그린 간척지 물길을 돌보며 소금기를 빼는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/reclaimed-land-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/reclaimed-land-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/reclaimed-land-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/reclaimed-land-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/reclaimed-land-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/reclaimed-land-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-027",
+        "sup-007"
+      ]
+    },
+    {
+      "id": "bus-fare",
+      "episodeId": "bus-fare",
+      "alt": "수채화로 그린 새벽 통학길의 딸에게 차비를 건네는 아버지",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/bus-fare-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/bus-fare-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/bus-fare-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/bus-fare-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/bus-fare-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/bus-fare-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-007"
+      ]
+    },
+    {
+      "id": "rice-mill",
+      "episodeId": "rice-mill",
+      "alt": "수채화로 그린 낡은 정미소 앞에 선 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/rice-mill-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/rice-mill-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/rice-mill-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/rice-mill-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/rice-mill-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/rice-mill-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-032",
+        "sup-033"
+      ]
+    },
+    {
+      "id": "flashlight",
+      "episodeId": "flashlight",
+      "alt": "수채화로 그린 장대비 속에서 손전등으로 야적 가마니를 살피는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/flashlight-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/flashlight-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/flashlight-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/flashlight-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/flashlight-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/flashlight-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-018",
+        "sup-036"
+      ]
+    },
+    {
+      "id": "power-line",
+      "episodeId": "power-line",
+      "alt": "수채화로 그린 장축과 평벨트로 기계를 돌리던 정미소 내부",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/power-line-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/power-line-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/power-line-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/power-line-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/power-line-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/power-line-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-034",
+        "sup-035",
+        "sup-008"
+      ]
+    },
+    {
+      "id": "power-line-poles",
+      "episodeId": "power-line",
+      "alt": "수채화로 그린 들판을 가로질러 정미소로 이어지는 배전 전봇대",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "배병희는 안전하고 쾌적한 작업을 위해 전력 도입을 결심했다. 당시 독정리 들판에는 공장용 고압선이 들어오지 않아 380볼트 삼상 전력을 쓰려면 직접 선을 끌어와야 했다. 그는 다시 농지 일부를 처분해 자금을 마련했다. 이어 들판을 가로지르는 전봇대 수십 개를 직접 세우며 삼상 고압선을 정미소까지 끌어왔다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/power-line-poles-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/power-line-poles-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/power-line-poles-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/power-line-poles-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/power-line-poles-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/power-line-poles-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "nicearra-08",
+        "nicearra-09"
+      ]
+    },
+    {
+      "id": "seed-rice",
+      "episodeId": "seed-rice",
+      "alt": "수채화로 그린 볍씨를 가져가는 이웃을 보고 조용히 돌아서는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/seed-rice-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/seed-rice-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/seed-rice-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/seed-rice-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/seed-rice-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/seed-rice-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "inucom-07",
+        "sup-036"
+      ]
+    },
+    {
+      "id": "kitchen",
+      "episodeId": "kitchen",
+      "alt": "수채화로 그린 가마솥 밥을 떠서 일꾼들의 그릇에 담는 아내의 손",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/kitchen-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/kitchen-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/kitchen-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/kitchen-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/kitchen-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/kitchen-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-009",
+        "sup-010"
+      ]
+    },
+    {
+      "id": "bad-debt",
+      "episodeId": "bad-debt",
+      "alt": "수채화로 그린 텅 빈 창고와 부도 수표 앞에 앉은 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/bad-debt-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/bad-debt-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/bad-debt-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/bad-debt-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/bad-debt-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/bad-debt-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-036",
+        "extra-05"
+      ]
+    },
+    {
+      "id": "last-land",
+      "episodeId": "last-land",
+      "alt": "수채화로 그린 논을 팔아 마련한 볏값을 농민에게 건네는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/last-land-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/last-land-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/last-land-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/last-land-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/last-land-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/last-land-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "nicearra-07",
+        "nicearra-09"
+      ]
+    },
+    {
+      "id": "wet-rice",
+      "episodeId": "wet-rice",
+      "alt": "수채화로 그린 수확한 물벼가 반입구로 쏟아지는 정미소",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/wet-rice-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/wet-rice-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/wet-rice-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/wet-rice-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/wet-rice-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/wet-rice-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "janganrice-13",
+        "janganrice-14",
+        "janganrice-07"
+      ]
+    },
+    {
+      "id": "farewell",
+      "episodeId": "farewell",
+      "alt": "수채화로 그린 오랜 세월 밥을 짓던 부엌의 빈자리",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/farewell-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/farewell-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/farewell-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/farewell-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/farewell-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/farewell-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "sup-010",
+        "sup-009"
+      ]
+    },
+    {
+      "id": "four-sons",
+      "episodeId": "four-sons",
+      "alt": "수채화로 그린 공장 앞에서 아들들과 들녘을 바라보는 아버지",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/four-sons-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/four-sons-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/four-sons-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/four-sons-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/four-sons-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/four-sons-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-02",
+        "local-03",
+        "mon9955-27"
+      ]
+    },
+    {
+      "id": "four-sons-study",
+      "episodeId": "four-sons",
+      "alt": "수채화로 그린 공장 일을 마친 뒤 책을 펴고 공부하는 맏아들",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "정미소가 체계를 갖추어 가자 맏아들은 청년 시절 접어두었던 배움의 길을 다시 걸었다. 가족들의 격려 속에 마흔다섯의 나이로 한국농업대학(현 한국농수산대학교)에 입학했다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/four-sons-study-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/four-sons-study-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/four-sons-study-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/four-sons-study-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/four-sons-study-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/four-sons-study-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "mysaigon-09",
+        "inucom-01"
+      ]
+    },
+    {
+      "id": "promise",
+      "episodeId": "promise",
+      "alt": "수채화로 그린 계약재배 들판에서 익은 벼를 함께 살피는 농민들",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/promise-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/promise-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/promise-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/promise-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/promise-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/promise-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "inucom-11",
+        "nicearra-07",
+        "local-03"
+      ]
+    },
+    {
+      "id": "promise-export",
+      "episodeId": "promise",
+      "alt": "수채화로 그린 독정RPC에서 출하를 기다리는 포장 쌀과 팔레트",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "국내 쌀 소비 감소와 시장 개방에 대응하여 독정RPC는 해외 수출로 활로를 모색했다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/promise-export-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/promise-export-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/promise-export-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/promise-export-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/promise-export-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/promise-export-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "mon9955-19",
+        "mysaigon-13",
+        "mon9955-27"
+      ]
+    },
+    {
+      "id": "robot",
+      "episodeId": "robot",
+      "alt": "수채화로 그린 도정공장에서 쌀포대를 팔레트에 쌓는 적재 로봇",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/robot-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/robot-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/robot-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/robot-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/robot-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/robot-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "mysaigon-09",
+        "mysaigon-13",
+        "sup-019",
+        "sup-020"
+      ]
+    },
+    {
+      "id": "epilogue",
+      "episodeId": "epilogue",
+      "alt": "수채화로 그린 해 질 무렵 남양만 들녘을 바라보는 노년의 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/epilogue-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/epilogue-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/epilogue-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/epilogue-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/epilogue-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/epilogue-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-02",
+        "inucom-11",
+        "nicearra-09"
+      ]
+    },
+    {
+      "id": "side-table",
+      "episodeId": "side-table",
+      "alt": "수채화로 그린 늦게 돌아올 자식을 기다리며 수육 밥상을 차린 아버지",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "start": true
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/side-table-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/side-table-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/side-table-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/side-table-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/side-table-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/side-table-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-02",
+        "extra-06"
+      ]
+    }
+  ]
+}

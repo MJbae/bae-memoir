@@ -6,6 +6,6 @@ export const configuration = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID?.trim(),
 }
 
-export function isCommentsConfigured(): boolean {
+export function isFirebaseConfigured(): boolean {
   return Object.values(configuration).every(Boolean)
 }

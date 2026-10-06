@@ -16,7 +16,7 @@ import matter from 'gray-matter'
 import { createMarkdownRenderer, disposeMdItInstance } from 'vitepress'
 import { prepareContent, plainText } from '../scripts/prepare-content.mjs'
 import { parseManuscript, legacyEpisodes } from '../site/.vitepress/shared/episode-heading.mjs'
-import { episodeComments } from '../site/.vitepress/markdown/episode-comments.ts'
+import { episodeIllustrations } from '../site/.vitepress/markdown/episode-illustrations.ts'
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const mainFilename = '배병희_자서전.md'
@@ -45,7 +45,6 @@ test('6부 23화와 앞뒤 회차를 생성하고 정본의 모든 본문을 한
   assert.equal(catalog.chapters.length, 23)
   assert.equal(catalog.readingOrder.length, 26)
   assert.equal(readFileSync(path.join(root, mainFilename), 'utf8'), original)
-  assert.equal(readPage('life-story.md').content.trim(), `# ${catalog.work.title}\n\n${matter(original).content}`.trim())
   for (const [i, episode] of structure.episodes.entries()) {
     const page = readPage(`${episode.id}.md`)
     assert.equal(page.content.trim(), `# ${episode.title}\n\n${episode.body}`.trim())
@@ -54,12 +53,12 @@ test('6부 23화와 앞뒤 회차를 생성하고 정본의 모든 본문을 한
     assert.equal(page.data.prev?.url ?? null, catalog.readingOrder[i-1]?.url ?? null)
     assert.equal(page.data.next?.url ?? null, catalog.readingOrder[i+1]?.url ?? null)
   }
-  assert.equal(readPage('prologue.md').data.commentId, 'life-prologue')
-  assert.equal(readPage('epilogue.md').data.commentId, 'life-epilogue')
-  assert.equal(readPage('josae.md').data.commentId, 'ep-josae')
+  assert.equal(readPage('prologue.md').data.pageId, 'life-prologue')
+  assert.equal(readPage('epilogue.md').data.pageId, 'life-epilogue')
+  assert.equal(readPage('josae.md').data.pageId, 'ep-josae')
 })
 
-test('제목과 순서를 바꿔도 회차 주소와 댓글 ID는 그대로이고 번호는 원고 순서를 따른다', (t) => {
+test('제목과 순서를 바꿔도 회차 주소와 문서 ID는 그대로이고 번호는 원고 순서를 따른다', (t) => {
   const { write, run } = fixture(t)
   const before = run().catalog.readingOrder
   const body = matter(original).content
@@ -113,25 +112,24 @@ test('옛 주소 10개와 읽기 기록 ID를 새 회차로 대응한다', (t) =
   for (const [old, id] of Object.entries(legacyEpisodes)) {
     const page = readPage(`${old}.md`)
     assert.equal(page.data.redirect, `/read/${id}.html`)
-    assert.equal(page.data.commentId, '')
+    assert.equal(page.data.pageId, '')
     assert.ok(page.content.includes(`/read/${id}.html`))
     assert.equal(catalog.legacyIds[`life-${old}`], `ep-${id}`)
   }
 })
 
-test('전체 읽기의 반응·댓글 링크는 각 회차 끝과 부 경계에서 한 번씩 연결한다', async (t) => {
+test('한 번에 읽기 주소는 본문 없이 작품 홈으로 연결하고 목록에서 제거한다', t => {
   const { run, readPage } = fixture(t)
   const { catalog } = run()
-  const md = await createMarkdownRenderer(repo, { config(md) { md.use(episodeComments, { base: '/test/', enabled: true }) } })
-  const rendered = md.render(readPage('life-story.md').content, { frontmatter: { kind: 'full' } })
-  assert.equal((rendered.match(/class="episode-comments-link"/g) || []).length, 26)
-  for (const episode of catalog.readingOrder) assert.ok(rendered.includes(`/test/read/${episode.episodeId}.html#reactions`))
-  disposeMdItInstance()
-  const disabled = await createMarkdownRenderer(path.join(repo, 'disabled-renderer'), { config(md) { md.use(episodeComments, { base: '/', enabled: false }) } })
-  assert.ok(!disabled.render(readPage('life-story.md').content + '\n<!-- disabled renderer -->', { frontmatter: { kind: 'full' } }).includes('episode-comments-link'))
+  const retired = readPage('life-story.md')
+  assert.equal(retired.data.kind, 'redirect')
+  assert.equal(retired.data.redirect, '/')
+  assert.equal(retired.data.pageId, '')
+  assert.equal(retired.content.trim(), '[작품 소개와 회차 목록으로 이동하기](/)')
+  assert.ok(!Object.hasOwn(catalog, 'fullStory'))
 })
 
-test('루트와 content의 자료를 자동 발견하고 내용 수정에도 댓글 ID를 유지한다', (t) => {
+test('루트와 content의 자료를 자동 발견하고 내용 수정에도 문서 ID를 유지한다', (t) => {
   const { root, write, run, readPage } = fixture(t)
   write('할머니 이야기.md', '# 할머니 이야기\n\n어릴 적의 기억입니다.\n')
   write(
@@ -143,7 +141,7 @@ test('루트와 content의 자료를 자동 발견하고 내용 수정에도 댓
   const automatic = initial.find(({ title }) => title === '할머니 이야기')
   assert.match(automatic.id, /^doc-[a-f0-9]{12}$/)
   assert.equal(initial.find(({ id }) => id === 'moving-day').category, '사진과 기억')
-  assert.equal(readPage('moving-day.md').data.commentId, 'moving-day')
+  assert.equal(readPage('moving-day.md').data.pageId, 'moving-day')
   assert.equal(readPage('moving-day.md').data.date, '1977-04-01')
   write('할머니 이야기.md', '# 바뀐 제목\n\n기억을 더했습니다.\n')
   write('content/사진/이삿날.md', '---\nid: moving-day\n---\n# 고정 아이디\n\n내용도 바뀝니다.\n')
@@ -236,7 +234,7 @@ test('자료와 첨부파일의 상대 링크를 게시 경로로 바꾸고 코�
   const { manifest, warnings } = run()
   const content = readPage('one.md').content
   assert.ok(content.includes('[둘](/read/two.html#추억)'))
-  assert.ok(content.includes('[전체](/read/life-story.html)'))
+  assert.ok(content.includes('[전체](/)'))
   assert.ok(content.includes('[two]: /read/two.html "둘"'))
   assert.ok(content.includes('[예시](not-real.md)'))
   const attachment = manifest.files.find((filename) => filename.startsWith('assets/'))
@@ -269,4 +267,51 @@ test('목차용 소개와 제목에서 HTML 및 Markdown 문법을 제거한다'
   assert.equal(document.description, '우리의 추억입니다.')
   assert.equal(plainText('<!-- 비공개 --><style>body{}</style>**기억**'), '기억')
   assert.equal(plainText('1972~1973년, 5~6kg, ~~지난 표현~~'), '1972~1973년, 5~6kg, 지난 표현')
+})
+
+test('삽화는 원문·장면 구분을 보존하며 회차의 지정 문단 앞에 표시한다', async () => {
+  disposeMdItInstance()
+  const source = '# 회차\n\n첫 문단입니다.\n\n* * *\n\n다음 장면입니다.\n'
+  const image = { id: 'scene', episodeId: 'sample', alt: '손과 벼를 그린 수채화', width: 1280, height: 720,
+    sources: [360, 720, 1280].map(width => ({ src: `/images/episodes/scene-${width}.jpg`, width })) }
+  const images = { sample: [
+    { ...image, position: { start: true } },
+    { ...image, id: 'second', alt: '두 번째 장면', position: { beforeParagraph: '다음 장면입니다.' } },
+  ] }
+  const md = await createMarkdownRenderer(path.join(repo, 'illustrations-renderer'), {
+    config(md) { md.set({ html: false }); md.use(episodeIllustrations, { base: '/test/', images }) },
+  })
+  const render = (text, kind = 'episode') => md.render(text, { frontmatter: { kind, episodeId: 'sample' } })
+  const html = render(source)
+  assert.equal((html.match(/<figure /g) || []).length, 2)
+  assert.ok(html.indexOf('data-illustration="scene"') < html.indexOf('첫 문단입니다.'))
+  assert.ok(html.indexOf('<hr>') < html.indexOf('data-illustration="second"'))
+  assert.ok(html.indexOf('data-illustration="second"') < html.indexOf('다음 장면입니다.'))
+  assert.match(html, /:src="&quot;\/test\/images\/episodes\/scene-1280.jpg&quot;"/)
+  assert.match(html, /scene-360.jpg 360w, \/test\/images\/episodes\/scene-720.jpg 720w/)
+  assert.equal((html.match(/loading="eager"/g) || []).length, 1)
+  assert.equal((html.match(/loading="lazy"/g) || []).length, 1)
+  assert.equal(html.replace(/<figure\b[^>]*>[\s\S]*?<\/figure>\n/g, ''), render(source, 'document'))
+  assert.equal((render(source + '\n```md\n다음 장면입니다.\n```\n').match(/data-illustration="second"/g) || []).length, 1)
+  assert.ok(!render(source, 'document').includes('<figure'))
+  disposeMdItInstance()
+})
+
+test('삽화 문단이 바뀌거나 파일이 빠지면 조용히 누락하지 않고 준비 단계에서 알린다', t => {
+  const { write, run } = fixture(t)
+  const structure = parseManuscript(matter(original).content)
+  const images = structure.episodes.map(episode => ({ id: episode.id, episodeId: episode.id, alt: '원고 장면의 수채화', width: 1280, height: 720, position: { start: true },
+    sources: [360, 720, 1280].map(width => ({ src: `/images/episodes/${episode.id}-${width}.jpg`, width })) }))
+  for (const image of images) for (const source of image.sources) write(`site/public${source.src}`, 'fixture')
+  const manifest = () => write('content/episode-illustrations.json', JSON.stringify({ version: 1, images }))
+  manifest()
+  assert.equal(Object.keys(run().catalog.illustrations).length, 26)
+  images[0].position = { beforeParagraph: '없는 문단' }; manifest()
+  assert.throws(run, /원문 문단을 찾을 수 없습니다/)
+  images[0].position = { start: true }
+  images[0].sources[0].src = '/images/episodes/missing-360.jpg'; manifest()
+  assert.throws(run, /안전하지 않은 삽화 파일 경로/)
+  images[0].sources[0].src = '/images/episodes/prologue-360.jpg'; manifest()
+  images.pop(); manifest()
+  assert.throws(run, /대표 삽화가 없습니다/)
 })
