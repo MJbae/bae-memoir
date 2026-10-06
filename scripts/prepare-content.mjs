@@ -220,6 +220,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
     return chapter
   })
   const chapters = readingOrder.filter(e => e.number !== null)
+  const episodeUrls = new Map(readingOrder.map(episode => [episode.episodeId, episode.url]))
   const redirects = Object.entries(legacyEpisodes).filter(([, id]) => readingOrder.some(e => e.episodeId === id)).map(([old, id]) => {
     const target = readingOrder.find(e => e.episodeId === id)
     return register({ id: `legacy-${old}`, filename: `${old}.md`, title: '이 이야기의 주소가 바뀌었습니다',
@@ -261,6 +262,11 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
 
   const assets = new Map()
   function resolveDestination(destination, source) {
+    // Explicit manuscript heading IDs continue to refer to the same episode after a rename.
+    if (source === mainFilename && destination.startsWith('#')) {
+      const episodeUrl = episodeUrls.get(destination.slice(1))
+      if (episodeUrl) return episodeUrl
+    }
     if (/^(?:[a-z][a-z\d+.-]*:|\/\/|#)/i.test(destination)) return destination
     const parts = destination.match(/^([^?#]*)([?#].*)?$/)
     if (!parts?.[1]) return destination
@@ -280,6 +286,10 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
     }
     const relative = slash(path.relative(root, target))
     const suffix = parts[2] ?? ''
+    if (relative === mainFilename && suffix.startsWith('#')) {
+      const episodeUrl = episodeUrls.get(suffix.slice(1))
+      if (episodeUrl) return episodeUrl
+    }
     if (sourceUrls.has(relative)) return sourceUrls.get(relative) + suffix
     if (/\.md$/i.test(relative)) {
       warn(`공개 자료에서 찾을 수 없는 Markdown 링크: ${source} → ${destination}`)

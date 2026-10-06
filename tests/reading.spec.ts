@@ -11,7 +11,7 @@ test('작품 홈의 26편 목록과 처음부터 읽기에서 원고를 읽는�
   await expect(page.locator('.chapter-row')).toHaveCount(26)
   await expect(page.locator('.part-heading')).toHaveCount(6)
   await expect(page.getByRole('navigation', { name: '부별 바로가기' })).toHaveCount(0)
-  await expect(page.locator('.work-synopsis')).toContainText('3억 원')
+  expect(await page.locator('.work-synopsis p').allTextContents()).toEqual(rawCatalog.work.synopsis)
   await expect(page.locator('.resume-link')).toHaveText('처음부터 읽기')
   await expect(page.getByRole('link', { name: '한 번에 읽기', exact: true })).toHaveCount(0)
   const synopsis = (await page.locator('.work-synopsis').boundingBox())!
@@ -148,6 +148,35 @@ test('옛 연대 읽기 기록을 새 회차의 제목과 주소로 읽는다', 
   await page.locator('.resume-link').click()
   await expect(page.locator('.article-header h1')).toHaveText('가족은 반대했다')
 })
+
+for (const [episodeId, oldTitle] of [['kalguksu', '미꾸라지 칼국수'], ['bus-fare', '차비 잘 챙겨라']]) {
+  test(`살림 회차 ${episodeId}는 바뀐 제목으로 목차·본문·이어 읽기를 연결한다`, async ({ page }) => {
+    const episode = rawCatalog.readingOrder.find(episode => episode.episodeId === episodeId)!
+    await page.addInitScript(({ id, title, url }) => {
+      localStorage.setItem('family-library:reading', JSON.stringify({ id, title, url, scroll: 150, finished: false }))
+      localStorage.setItem('family-library:completed', JSON.stringify([id]))
+      localStorage.setItem('family-library:music', JSON.stringify({ enabled: false }))
+    }, { id: episode.id, title: oldTitle, url: `/bae-memoir${episode.url}` })
+    await page.goto('./')
+    await expect(page).toHaveTitle(rawCatalog.work.title)
+    const row = page.locator(`#episode-${episodeId}`)
+    await expect(row.locator('.chapter-title')).toHaveText(`${episode.label} ${episode.title}`)
+    await expect(row).toHaveAttribute('href', `/bae-memoir${episode.url}`)
+    await expect(row).toHaveAttribute('aria-current', 'location')
+    await expect(row.locator('.read-label')).toHaveText('✓')
+    await expect(page.locator('.resume-link .reading-link-subtitle')).toHaveText(`${episode.label} ${episode.title}`)
+    await expect(page.locator('.resume-link')).toHaveAttribute('href', `/bae-memoir${episode.url}`)
+    await page.locator('.resume-link').click()
+    await expect(page.locator('.article-header h1')).toHaveText(episode.title)
+    await expect(page.locator('.article-time')).toHaveText(episode.time)
+    await expect(page).toHaveTitle(`${episode.label} ${episode.title} · ${rawCatalog.work.title}`)
+    await expect(page.locator(`[data-illustration="${episodeId}"]`)).toBeVisible()
+    await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('family-library:reading') || '{}').title)).toBe(episode.title)
+    await noOverflow(page)
+    await page.locator('.back-link').click()
+    await expect(page).toHaveTitle(rawCatalog.work.title)
+  })
+}
 
 test('기기 화면 모드와 직접 고른 화면 모드를 적용하고 기억한다', async ({ page }, info) => {
   await page.emulateMedia({ colorScheme: 'dark' })

@@ -18,6 +18,7 @@ import { prepareContent, plainText } from '../scripts/prepare-content.mjs'
 import { parseManuscript, legacyEpisodes } from '../site/.vitepress/shared/episode-heading.mjs'
 import { episodeIllustrations } from '../site/.vitepress/markdown/episode-illustrations.ts'
 import { loadMusic } from '../site/.vitepress/shared/music.mjs'
+import { loadEpisodeIllustrations } from '../site/.vitepress/shared/episode-illustrations.mjs'
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const mainFilename = '배병희_자서전.md'
@@ -115,6 +116,83 @@ test('제목과 순서를 바꿔도 회차 주소와 문서 ID는 그대로이�
   }
   assert.equal(after.find(e => e.episodeId === 'jige').label, '1화')
   assert.equal(after.find(e => e.episodeId === 'josae').label, '2화')
+})
+
+test('두 살림 회차의 제목 변경을 목차·공유·이웃 회차에 반영하고 음악·삽화 연결을 유지한다', t => {
+  const { write, run, readPage } = fixture(t)
+  const before = run().catalog.readingOrder
+  const originalEpisodes = parseManuscript(matter(original).content).episodes
+  const originalMusic = loadMusic(repo, originalEpisodes)
+  const originalImages = loadEpisodeIllustrations(repo, originalEpisodes)
+  let revised = original
+  const titles = { kalguksu: '안면도 살림의 하루', 'bus-fare': '독정리 살림의 하루' }
+  for (const [id, title] of Object.entries(titles)) {
+    const current = before.find(episode => episode.episodeId === id)
+    revised = revised.replace(`## ${current.title} {#${id}}`, `## ${title} {#${id}}`)
+  }
+  write(mainFilename, revised)
+  const { catalog } = run()
+  const episodes = parseManuscript(matter(revised).content).episodes
+  const music = loadMusic(repo, episodes)
+  const images = loadEpisodeIllustrations(repo, episodes)
+  for (const [id, title] of Object.entries(titles)) {
+    const index = catalog.readingOrder.findIndex(episode => episode.episodeId === id)
+    const episode = catalog.readingOrder[index]
+    const previous = before.find(episode => episode.episodeId === id)
+    const page = readPage(`${id}.md`)
+    assert.equal(episode.title, title)
+    assert.equal(episode.id, previous.id)
+    assert.equal(episode.url, previous.url)
+    assert.equal(page.data.title, title)
+    assert.equal(page.data.pageId, previous.id)
+    assert.equal(page.data.shareTitle, `${episode.label} ${title} · ${catalog.work.title}`)
+    assert.ok(page.content.trimStart().startsWith(`# ${title}\n\n`))
+    assert.equal(readPage(`${catalog.readingOrder[index - 1].episodeId}.md`).data.next.title, title)
+    assert.equal(readPage(`${catalog.readingOrder[index + 1].episodeId}.md`).data.prev.title, title)
+    assert.deepEqual(music.episodes[id], originalMusic.episodes[id])
+    assert.deepEqual(images[id], originalImages[id])
+  }
+  assert.ok(readPage('1960s.md').content.includes('안면도 살림의 하루'))
+})
+
+test('정본의 살림 회차 ID를 가리키는 링크는 제목을 바꾸어도 해당 회차로 연결한다', t => {
+  const { write, run, readPage } = fixture(t)
+  write('content/family.md', `---
+id: family
+---
+# 가족의 생활
+
+[안면도의 살림](../배병희_자서전.md#kalguksu)
+
+[독정리의 살림](/배병희_자서전.md#bus-fare)
+
+[다시 읽기][family]
+
+[family]: ../배병희_자서전.md#bus-fare "독정리"
+
+[이 문서 안의 기억](#bus-fare)
+
+[작품 소개](../배병희_자서전.md)
+
+\`\`\`md
+[원본 예시](../배병희_자서전.md#kalguksu)
+\`\`\`
+`)
+  const manuscript = original.replace(/^## .+ \{#kalguksu\}$/m, '## 안면도에서 보낸 나날 {#kalguksu}')
+    .replace(/^## .+ \{#bus-fare\}$/m, '## 독정리에서 보낸 나날 {#bus-fare}')
+    .replace(/(?=^## .+ \{#laver\}$)/m, '[독정리의 살림](#bus-fare)\n\n[이 회차 안의 기억](#memory)\n\n')
+  write(mainFilename, manuscript)
+  const { warnings } = run()
+  const content = readPage('family.md').content
+  assert.ok(content.includes('[안면도의 살림](/read/kalguksu.html)'))
+  assert.ok(content.includes('[독정리의 살림](/read/bus-fare.html)'))
+  assert.ok(content.includes('[family]: /read/bus-fare.html "독정리"'))
+  assert.ok(content.includes('[이 문서 안의 기억](#bus-fare)'))
+  assert.ok(content.includes('[작품 소개](/)'))
+  assert.ok(content.includes('[원본 예시](../배병희_자서전.md#kalguksu)'))
+  assert.ok(readPage('kalguksu.md').content.includes('[독정리의 살림](/read/bus-fare.html)'))
+  assert.ok(readPage('kalguksu.md').content.includes('[이 회차 안의 기억](#memory)'))
+  assert.deepEqual(warnings, [])
 })
 
 test('누락·잘못된·중복 ID, 부 번호, 시점 줄, 예약 ID, 본문 누락을 거절한다', (t) => {

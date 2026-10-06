@@ -66,6 +66,8 @@ export default defineConfig({
   transformPageData(pageData) {
     const isHome = pageData.frontmatter.layout === 'home'
     const title = isHome ? workTitle : String(pageData.frontmatter.shareTitle || `${pageData.title} · ${workTitle}`)
+    // The client reads PageData.titleTemplate; the static head reads frontmatter.
+    pageData.titleTemplate = false
     pageData.frontmatter.titleTemplate = false
     pageData.title = title
     const description = isHome
