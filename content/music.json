@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "home": "/music/home.mp3",
+  "tracks": [
+    {
+      "episodeId": "prologue",
+      "src": "/music/prologue.mp3"
+    },
+    {
+      "episodeId": "josae",
+      "src": "/music/josae.mp3"
+    },
+    {
+      "episodeId": "jige",
+      "src": "/music/jige.mp3"
+    },
+    {
+      "episodeId": "serial-number",
+      "src": "/music/serial-number.mp3"
+    },
+    {
+      "episodeId": "cheonsuman",
+      "src": "/music/cheonsuman.mp3"
+    },
+    {
+      "episodeId": "kalguksu",
+      "src": "/music/kalguksu.mp3"
+    },
+    {
+      "episodeId": "laver",
+      "src": "/music/laver.mp3"
+    },
+    {
+      "episodeId": "anchovy",
+      "src": "/music/anchovy.mp3"
+    },
+    {
+      "episodeId": "bearing",
+      "src": "/music/bearing.mp3"
+    },
+    {
+      "episodeId": "leaving",
+      "src": "/music/leaving.mp3"
+    },
+    {
+      "episodeId": "reclaimed-land",
+      "src": "/music/reclaimed-land.mp3"
+    },
+    {
+      "episodeId": "bus-fare",
+      "src": "/music/bus-fare.mp3"
+    },
+    {
+      "episodeId": "rice-mill",
+      "src": "/music/rice-mill.mp3"
+    },
+    {
+      "episodeId": "flashlight",
+      "src": "/music/flashlight.mp3"
+    },
+    {
+      "episodeId": "power-line",
+      "src": "/music/power-line.mp3"
+    },
+    {
+      "episodeId": "seed-rice",
+      "src": "/music/seed-rice.mp3"
+    },
+    {
+      "episodeId": "kitchen",
+      "src": "/music/kitchen.mp3"
+    },
+    {
+      "episodeId": "bad-debt",
+      "src": "/music/bad-debt.mp3"
+    },
+    {
+      "episodeId": "last-land",
+      "src": "/music/last-land.mp3"
+    },
+    {
+      "episodeId": "wet-rice",
+      "src": "/music/wet-rice.mp3"
+    },
+    {
+      "episodeId": "farewell",
+      "src": "/music/farewell.mp3"
+    },
+    {
+      "episodeId": "four-sons",
+      "src": "/music/four-sons.mp3"
+    },
+    {
+      "episodeId": "promise",
+      "src": "/music/promise.mp3"
+    },
+    {
+      "episodeId": "robot",
+      "src": "/music/robot.mp3"
+    },
+    {
+      "episodeId": "epilogue",
+      "src": "/music/epilogue.mp3"
+    },
+    {
+      "episodeId": "side-table",
+      "src": "/music/side-table.mp3"
+    }
+  ]
+}

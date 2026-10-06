@@ -17,11 +17,54 @@ import { createMarkdownRenderer, disposeMdItInstance } from 'vitepress'
 import { prepareContent, plainText } from '../scripts/prepare-content.mjs'
 import { parseManuscript, legacyEpisodes } from '../site/.vitepress/shared/episode-heading.mjs'
 import { episodeIllustrations } from '../site/.vitepress/markdown/episode-illustrations.ts'
+import { loadMusic } from '../site/.vitepress/shared/music.mjs'
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const mainFilename = '배병희_자서전.md'
 const original = readFileSync(path.join(repo, mainFilename), 'utf8')
 const silent = { log() {}, warn() {} }
+
+test('27개 음악 파일을 작품 홈과 26개 회차에 빠짐없이 연결한다', () => {
+  const episodes = parseManuscript(matter(original).content).episodes
+  const music = loadMusic(repo, episodes)
+  assert.equal(music.home.src, '/music/home.mp3')
+  assert.equal(Object.keys(music.episodes).length, 26)
+  const allSources = [music.home.src, ...Object.values(music.episodes).map(track => track.src)]
+  assert.equal(new Set(allSources).size, 27)
+  for (const episode of episodes) {
+    assert.equal(music.episodes[episode.id].label, `${episode.label} 음악`)
+    assert.ok(existsSync(path.join(repo, 'site/public', music.episodes[episode.id].src)))
+  }
+  const reordered = loadMusic(repo, episodes.map(episode => ({ ...episode, label: `새 순서 ${episode.label}` })).reverse())
+  assert.equal(reordered.episodes.josae.src, music.episodes.josae.src)
+  assert.equal(reordered.episodes.josae.label, '새 순서 1화 음악')
+})
+
+test('누락·중복·잘못된 회차·미등록 음악 파일을 준비 단계에서 거절한다', t => {
+  const { root, write } = fixture(t)
+  const episodes = [{ id: 'prologue', label: '프롤로그' }]
+  const base = { version: 1, home: '/music/home.mp3', tracks: [{ episodeId: 'prologue', src: '/music/prologue.mp3' }] }
+  const manifest = value => write('content/music.json', JSON.stringify(value))
+  write('site/public/music/home.mp3', 'test-home')
+  write('site/public/music/prologue.mp3', 'test-prologue')
+  manifest(base)
+  assert.ok(loadMusic(root, episodes))
+  manifest({ ...base, home: '/music/missing.mp3' })
+  assert.throws(() => loadMusic(root, episodes), /파일이 없습니다/)
+  manifest({ ...base, home: '/music/../home.mp3' })
+  assert.throws(() => loadMusic(root, episodes), /경로/)
+  manifest({ ...base, tracks: [] })
+  assert.throws(() => loadMusic(root, episodes), /회차의 배경 음악이 없습니다/)
+  manifest({ ...base, tracks: [...base.tracks, ...base.tracks] })
+  assert.throws(() => loadMusic(root, episodes), /회차.*중복/)
+  manifest({ ...base, tracks: [{ episodeId: 'unknown', src: '/music/prologue.mp3' }] })
+  assert.throws(() => loadMusic(root, episodes), /회차.*잘못/)
+  manifest({ ...base, tracks: [{ episodeId: 'prologue', src: base.home }] })
+  assert.throws(() => loadMusic(root, episodes), /파일 경로.*중복/)
+  manifest(base)
+  write('site/public/music/extra.mp3', 'unassigned')
+  assert.throws(() => loadMusic(root, episodes), /연결하지 않은 음악/)
+})
 
 function fixture(t) {
   const root = mkdtempSync(path.join(os.tmpdir(), 'family-content-'))

@@ -4,6 +4,8 @@ import { Content, useData, useRoute, useRouter, withBase } from 'vitepress'
 import Icon from './components/Icon.vue'
 import WorkHome from './components/WorkHome.vue'
 import EpisodeEnd from './components/EpisodeEnd.vue'
+import MusicControls from './components/MusicControls.vue'
+import { useBackgroundMusic } from './lib/background-music'
 import { catalog, type Episode } from './lib/catalog'
 type SavedReading = { id: string; scroll: number; title: string; url: string }
 const { frontmatter, page } = useData()
@@ -12,6 +14,11 @@ const router = useRouter()
 const previousBeforeLoad = router.onBeforePageLoad
 const isHome = computed(() => frontmatter.value.layout === 'home')
 const isMissing = computed(() => Boolean(page.value.isNotFound))
+const musicTrack = computed(() => {
+  if (isMissing.value || frontmatter.value.kind === 'redirect') return undefined
+  return isHome.value ? catalog.music?.home : catalog.music?.episodes[String(frontmatter.value.episodeId || '')]
+})
+const { audio: musicAudio, enabled: musicEnabled, volume: musicVolume, status: musicStatus, toggle: toggleMusic, setVolume: setMusicVolume } = useBackgroundMusic(musicTrack)
 const pageId = computed(() => String(frontmatter.value.pageId || ''))
 const title = computed(() => String(frontmatter.value.title || '이야기'))
 const homeHref = computed(() => withBase('/') + (frontmatter.value.episodeId ? `#episode-${frontmatter.value.episodeId}` : ''))
@@ -109,13 +116,17 @@ onBeforeUnmount(() => { router.onBeforePageLoad = previousBeforeLoad; ++version;
 <template>
   <div class="library" :class="`font-${fontSize}`">
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
-    <WorkHome v-if="isHome" :last-id="lastRead?.id || null" :completed="completed" @resume="resumeReading" />
+    <audio ref="musicAudio" class="background-audio" loop preload="none" aria-hidden="true" />
+    <WorkHome v-if="isHome" :last-id="lastRead?.id || null" :completed="completed" @resume="resumeReading">
+      <template #music><MusicControls v-if="musicTrack" :track="musicTrack" :enabled="musicEnabled" :volume="musicVolume" :status="musicStatus" @toggle="toggleMusic" @volume="setMusicVolume" /></template>
+    </WorkHome>
     <main v-else-if="isMissing" id="main" tabindex="-1" class="not-found"><h1>이야기를 찾지 못했습니다.</h1><a class="text-link" :href="withBase('/')">목록으로 돌아가기</a></main>
     <main v-else-if="frontmatter.kind === 'redirect'" id="main" class="not-found"><h1>이 이야기의 주소가 바뀌었습니다.</h1><Content /><a class="text-link" :href="withBase(frontmatter.redirect)">이 이야기 읽기</a></main>
     <template v-else>
       <header class="reader-toolbar"><nav aria-label="읽기 도구"><a class="back-link" :href="homeHref"><Icon name="back" :size="18" /><span>목록</span></a><div class="reader-actions"><button class="font-button" aria-haspopup="dialog" @click="settingsDialog?.showModal()">보기 설정</button></div></nav></header>
       <main id="main" tabindex="-1" class="reader-main">
         <header class="article-header"><p v-if="frontmatter.label" class="article-label">{{ frontmatter.partLabel ? `${frontmatter.partLabel} · ` : '' }}{{ frontmatter.label }}</p><h1>{{ title }}</h1><p v-if="frontmatter.time" class="article-time">{{ frontmatter.time }}</p></header>
+        <MusicControls v-if="musicTrack" :track="musicTrack" :enabled="musicEnabled" :volume="musicVolume" :status="musicStatus" @toggle="toggleMusic" @volume="setMusicVolume" />
         <article class="story-content"><Content /></article>
         <EpisodeEnd v-if="frontmatter.kind === 'episode'" :key="pageId" :page-id="pageId" :episode="true" :prev="frontmatter.prev" :next="frontmatter.next" :home-href="homeHref" @complete="complete" />
       </main>

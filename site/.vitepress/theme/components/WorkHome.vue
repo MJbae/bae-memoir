@@ -56,6 +56,8 @@ const action = computed(() => {
         <p v-if="catalog.work.schedule" class="home-note">{{ catalog.work.schedule }}</p>
       </header>
 
+      <slot name="music" />
+
       <div class="work-synopsis">
         <p v-for="paragraph in catalog.work.synopsis" :key="paragraph">{{ paragraph }}</p>
       </div>

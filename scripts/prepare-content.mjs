@@ -16,6 +16,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 import matter from 'gray-matter'
 import { parseManuscript, legacyEpisodes } from '../site/.vitepress/shared/episode-heading.mjs'
 import { loadEpisodeIllustrations } from '../site/.vitepress/shared/episode-illustrations.mjs'
+import { loadMusic } from '../site/.vitepress/shared/music.mjs'
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const mainFilename = '배병희_자서전.md'
@@ -174,6 +175,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
   const main = loaded.find(({ source }) => source === mainFilename)
   const structure = parseManuscript(main.body, warn)
   const illustrations = loadEpisodeIllustrations(root, structure.episodes)
+  const music = loadMusic(root, structure.episodes)
   const work = {
     title: plainText(main.data.title || '내 논을 파는 한이 있어도'),
     subtitle: plainText(main.data.subtitle || '배병희 자전소설'),
@@ -348,7 +350,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
       return [page.filename, frontmatter(metadata, rewriteLinks(page.body, page.source))]
     })
   )
-  const catalog = { title: work.title, work, parts: structure.parts, chapters, readingOrder, legacyIds, documents, illustrations }
+  const catalog = { title: work.title, work, parts: structure.parts, chapters, readingOrder, legacyIds, documents, illustrations, music }
 
   let previousFiles = []
   if (existsSync(manifestFile)) {

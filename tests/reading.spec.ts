@@ -183,6 +183,9 @@ test('모든 회차의 삽화를 불러오며 16:9 전체 그림을 화면 폭�
   })
   for (const [episodeId, illustrations] of Object.entries(images)) {
     await page.goto(`read/${episodeId}.html`)
+    const body = await page.locator('.story-content').innerText()
+    expect(body, `${episodeId} 본문에 마크다운 기호가 노출되지 않아야 합니다.`).not.toMatch(/\*\*|__|~~|`|\[[^\]]+\]\(/)
+    if (episodeId === 'bearing') expect(body).toContain("'메다르(메탈 베어링)'가")
     const figures = page.locator('.episode-illustration')
     await expect(figures).toHaveCount(illustrations.length)
     for (const illustration of illustrations) {
