@@ -5,9 +5,9 @@ import { decadeComments } from './markdown/decade-comments'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
 const env = loadEnv(process.env.NODE_ENV || 'production', root, '')
-const base = process.env.SITE_BASE || env.SITE_BASE || '/autobio-bae/'
+const base = process.env.SITE_BASE || env.SITE_BASE || '/bae-memoir/'
 const siteName = '아버지의 기록'
-const siteDescription = '자서전을 준비하며, 연대별 기억과 소재를 모읍니다.'
+const siteDescription = '연대별로 엮은 배병희의 자서전입니다.'
 const siteOrigin = 'https://mjbae.github.io'
 const shareImage = new URL(`${base}og-image.png`, siteOrigin).href
 const commentsConfigured = [

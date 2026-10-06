@@ -17,7 +17,7 @@ import matter from 'gray-matter'
 import { parseDecadeHeading } from '../site/.vitepress/shared/decade-heading.mjs'
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const mainFilename = '연대별_서사_소재_정리.md'
+const mainFilename = '배병희_자서전.md'
 const excludedRootFiles =
   /^(?:readme(?:[._-].*)?|agents|setup(?:[._-].*)?|deployment|deploy|contributing|changelog|license|security|code_of_conduct|운영안내|설치안내)\.md$/i
 // Exact editorial filenames only: other family manuscripts may contain “제안서”.
@@ -273,7 +273,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
 
   const fullStory = {
     id: 'life-story',
-    title: '연대별 소재 전체 보기',
+    title: '자서전 전체 보기',
     url: '/read/life-story.html',
     minutes: readingMinutes(main.body),
   }

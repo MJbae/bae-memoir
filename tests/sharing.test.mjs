@@ -3,11 +3,11 @@ import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
 const dist = new URL('../site/.vitepress/dist/', import.meta.url)
-const siteUrl = 'https://mjbae.github.io/autobio-bae/'
+const siteUrl = 'https://mjbae.github.io/bae-memoir/'
 const title = '아버지의 기록'
-const description = '자서전을 준비하며, 연대별 기억과 소재를 모읍니다.'
+const description = '연대별로 엮은 배병희의 자서전입니다.'
 const imageUrl = `${siteUrl}og-image.png`
-const manuscript = await readFile(new URL('../연대별_서사_소재_정리.md', import.meta.url), 'utf8')
+const manuscript = await readFile(new URL('../배병희_자서전.md', import.meta.url), 'utf8')
 const chapterTitles = [...manuscript.matchAll(/^## ((\d{4})년대[^\n]*)$/gm)].map((match) => ({
   title: match[1],
   year: match[2],
@@ -104,12 +104,12 @@ test('each decade link uses its current manuscript title and stable canonical UR
 test('home and decade pages expose browser and mobile icons from the deployed base path', async () => {
   for (const page of ['index.html', `read/${chapterTitles[0].year}s.html`]) {
     const head = await staticHead(page)
-    assert.equal(head.link('icon', '/autobio-bae/favicon.svg').type, 'image/svg+xml')
-    const favicon = head.link('icon', '/autobio-bae/favicon-32.png')
+    assert.equal(head.link('icon', '/bae-memoir/favicon.svg').type, 'image/svg+xml')
+    const favicon = head.link('icon', '/bae-memoir/favicon-32.png')
     assert.equal(favicon.type, 'image/png')
     assert.equal(favicon.sizes, '32x32')
-    head.link('apple-touch-icon', '/autobio-bae/apple-touch-icon.png')
-    head.link('manifest', '/autobio-bae/site.webmanifest')
+    head.link('apple-touch-icon', '/bae-memoir/apple-touch-icon.png')
+    head.link('manifest', '/bae-memoir/site.webmanifest')
   }
 })
 

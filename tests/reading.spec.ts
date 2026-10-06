@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { parseDecadeHeading } from '../site/.vitepress/shared/decade-heading.mjs'
 
-const manuscript = readFileSync(new URL('../연대별_서사_소재_정리.md', import.meta.url), 'utf8')
+const manuscript = readFileSync(new URL('../배병희_자서전.md', import.meta.url), 'utf8')
 const sourceHeadings = [...manuscript.matchAll(/^## (.+)$/gm)].map((match) => match[1])
 const chapters = sourceHeadings.map(parseDecadeHeading).filter((heading) => heading !== null)
 const first = chapters[0]
@@ -21,7 +21,7 @@ test('간결한 이야기 목록에서 연대를 골라 원문을 읽는다', as
   page.on('pageerror', (error) => errors.push(error.message))
   await page.goto('./')
   await expect(page.getByRole('heading', { name: '아버지의 기록', exact: true })).toBeVisible()
-  const chapterList = page.getByRole('navigation', { name: '연대별 소재', exact: true })
+  const chapterList = page.getByRole('navigation', { name: '연대별 이야기', exact: true })
   await expect(chapterList.locator('a.chapter-row')).toHaveCount(chapters.length + 2)
   await expect(page.locator('.resume-link')).toHaveCount(0)
   await expect(page.getByRole('searchbox')).toHaveCount(0)
@@ -63,7 +63,7 @@ test('목록에서 프롤로그와 에필로그를 읽고 연대 본문으로 �
   await expect(page).toHaveURL(/read\/epilogue\.html$/)
   await expect(page.locator('.article-header h1')).toContainText('에필로그')
   await expect(page.locator('.story-content')).toContainText(
-    '누군가 다시 젊은 날로 돌아갈 수 있다면'
+    '다시 태어나도 나는 흙을 일구고 정미소 일을 하겠다'
   )
   await expectNoHorizontalOverflow(page)
 })
@@ -84,7 +84,7 @@ test('이어서 읽기에 저장된 옛 제목도 현재 원고의 제목으로 
   await page.goto('./')
   const resume = page.locator('.resume-link')
   await expect(resume.locator('.resume-title')).toHaveText(first.subtitle || first.label)
-  await expect(resume).toHaveAttribute('href', `/autobio-bae/read/${first.year}s.html`)
+  await expect(resume).toHaveAttribute('href', `/bae-memoir/read/${first.year}s.html`)
   await resume.click()
   await expect(page.locator('.article-header h1')).toHaveText(first.subtitle || first.label)
 })
@@ -148,7 +148,7 @@ test('키보드로 글자 크기를 조절하고 설정을 닫을 수 있다', a
 
 test('전체 글을 한 번에 읽고 잘못된 주소에서 목록으로 돌아온다', async ({ page }) => {
   await page.goto('./')
-  await page.getByRole('link', { name: '전체 소재 보기', exact: true }).click()
+  await page.getByRole('link', { name: '전체 이야기 보기', exact: true }).click()
   await expect(page).toHaveURL(/\/read\/life-story\.html$/)
   await expect(page.locator('.story-content h2')).toHaveCount(sourceHeadings.length)
   await expect(page.locator('.story-content h2').last()).toContainText(sourceHeadings.at(-1)!)

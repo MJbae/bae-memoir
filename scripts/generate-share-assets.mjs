@@ -47,7 +47,7 @@ try {
   </style></head><body><main>
     <div class="icon">${icon}</div>
     <h1>아버지의 기록</h1>
-    <p>자서전을 준비하며,<br>연대별 기억과 소재를 모읍니다.</p>
+    <p>연대별로 엮은<br>배병희의 자서전입니다.</p>
     <footer>1930 — 2020</footer>
   </main></body></html>`)
   await page.evaluate(() => document.fonts.ready)
@@ -57,7 +57,7 @@ try {
   await writeFile(`${publicDirectory}/site.webmanifest`, JSON.stringify({
     name: '아버지의 기록',
     short_name: '아버지의 기록',
-    description: '자서전을 준비하며, 연대별 기억과 소재를 모읍니다.',
+    description: '연대별로 엮은 배병희의 자서전입니다.',
     lang: 'ko',
     id: './',
     start_url: './',

@@ -123,6 +123,12 @@ html:has(dialog[open]) {
   line-height: 1.8;
   word-break: keep-all;
 }
+.home-heading .home-note {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
 .chapter-row {
   display: flex;
   align-items: center;

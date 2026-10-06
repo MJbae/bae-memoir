@@ -1,7 +1,7 @@
 import { expect, test, type APIRequestContext, type Browser, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 
-const manuscript = readFileSync(new URL('../연대별_서사_소재_정리.md', import.meta.url), 'utf8')
+const manuscript = readFileSync(new URL('../배병희_자서전.md', import.meta.url), 'utf8')
 const sourceDecades = [...manuscript.matchAll(/^## (\d{4})년대(?=$|[\s:：—–-])/gm)].map(
   (match) => match[1]
 )

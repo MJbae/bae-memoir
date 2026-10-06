@@ -215,7 +215,11 @@ onBeforeUnmount(() => {
     <main v-if="isHome" id="main" tabindex="-1" class="home-main">
       <header class="home-heading">
         <h1>아버지의 기록</h1>
-        <p>자서전을 준비하며, 연대별 기억과 소재를 모읍니다.</p>
+        <p>연대별로 엮은 배병희의 자서전입니다.</p>
+        <p class="home-note">
+          앞으로 등장인물 설계를 더해 배병희의 삶을 더욱 풍성하게 담은 대화 중심의 자전적 소설로
+          다시 엮을 예정입니다.
+        </p>
       </header>
       <a v-if="lastRead" class="resume-link" :href="lastRead.url" @click="resumeReading">
         <span
@@ -223,7 +227,7 @@ onBeforeUnmount(() => {
         >
         <Icon name="chevron" :size="16" />
       </a>
-      <nav class="chapter-list" aria-label="연대별 소재">
+      <nav class="chapter-list" aria-label="연대별 이야기">
         <a
           v-for="chapter in catalog.readingOrder"
           :key="chapter.id"
@@ -238,7 +242,7 @@ onBeforeUnmount(() => {
         </a>
       </nav>
       <a class="whole-story-link" :href="withBase(catalog.fullStory.url)"
-        >전체 소재 보기 <Icon name="chevron" :size="14"
+        >전체 이야기 보기 <Icon name="chevron" :size="14"
       /></a>
       <section
         v-if="catalog.documents.length"

@@ -19,7 +19,7 @@ import { parseDecadeHeading } from '../site/.vitepress/shared/decade-heading.mjs
 import { decadeComments } from '../site/.vitepress/markdown/decade-comments.ts'
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const mainFilename = '연대별_서사_소재_정리.md'
+const mainFilename = '배병희_자서전.md'
 const original = readFileSync(path.join(repo, mainFilename), 'utf8')
 const sourceHeadings = [...original.matchAll(/^#{1,2} (.+)$/gm)].map((match) => ({
   title: match[1],
@@ -187,7 +187,7 @@ test('연대 제목의 구분자를 바꿔도 표시 이름에서 연도가 중�
 test('전체글의 댓글 링크는 새 연대와 바뀐 제목에서도 같은 연대별 댓글 주소를 사용한다', async () => {
   const md = await createMarkdownRenderer(repo, {
     config(markdown) {
-      decadeComments(markdown, { base: '/autobio-bae/', enabled: true })
+      decadeComments(markdown, { base: '/bae-memoir/', enabled: true })
     },
   })
   const source =
@@ -197,8 +197,8 @@ test('전체글의 댓글 링크는 새 연대와 바뀐 제목에서도 같은 
     (match) => match[1]
   )
   assert.deepEqual(links, [
-    '/autobio-bae/read/2030s.html#comments',
-    '/autobio-bae/read/1930s.html#comments',
+    '/bae-memoir/read/2030s.html#comments',
+    '/bae-memoir/read/1930s.html#comments',
   ])
   assert.ok(rendered.indexOf('2030s.html#comments') < rendered.indexOf('정리 제목 변경'))
   assert.ok(
@@ -304,7 +304,7 @@ test('자료와 첨부파일의 상대 링크를 게시 경로로 바꾸고 코�
   const { root, write, run, readPage } = fixture(t)
   write(
     'content/one.md',
-    '---\nid: one\n---\n# 하나\n\n[둘](two.md#추억)\n\n![사진](사진/a.png)\n\n[전체](../연대별_서사_소재_정리.md)\n\n[참고][two]\n\n[two]: two.md "둘"\n\n```md\n[예시](not-real.md)\n```\n'
+    '---\nid: one\n---\n# 하나\n\n[둘](two.md#추억)\n\n![사진](사진/a.png)\n\n[전체](../배병희_자서전.md)\n\n[참고][two]\n\n[two]: two.md "둘"\n\n```md\n[예시](not-real.md)\n```\n'
   )
   write('content/two.md', '---\nid: two\n---\n# 둘\n\n## 추억\n')
   write('content/사진/a.png', Buffer.from([137, 80, 78, 71]))
