@@ -1,4 +1,31 @@
 {
-  "indexes": [],
+  "indexes": [
+    {
+      "collectionGroup": "reactions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "heart",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "like",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "moved",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "remember",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "wow",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
   "fieldOverrides": []
 }
