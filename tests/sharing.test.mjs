@@ -6,7 +6,7 @@ import catalog from '../site/.vitepress/generated/catalog.json' with { type: 'js
 const dist = new URL('../site/.vitepress/dist/', import.meta.url)
 const siteUrl = 'https://mjbae.github.io/bae-memoir/'
 const title = catalog.work.title
-const description = catalog.work.synopsis[0]
+const description = catalog.work.subtitle
 const imagePath = 'images/bae-byunghee-hero-watercolor.png'
 const imageUrl = `${siteUrl}${imagePath}`
 const chapterTitles = catalog.readingOrder
@@ -84,6 +84,14 @@ test('the home page provides its sharing title and description without JavaScrip
   assert.equal(head.link('canonical').href, siteUrl)
   assert.equal(head.meta('og:url'), siteUrl)
   assertPreviewImage(head)
+  const html = await readFile(new URL('index.html', dist), 'utf8')
+  const synopsis = html.match(/<div class="work-synopsis">([\s\S]*?)<\/div>/)?.[1]
+  assert.ok(synopsis, 'the home page must retain its visible synopsis')
+  assert.deepEqual(
+    [...synopsis.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/g)].map(([, paragraph]) => decodeHtml(paragraph)),
+    catalog.work.synopsis,
+    'the visible synopsis must remain unchanged when the sharing description changes'
+  )
 })
 
 test('each episode link uses its current manuscript title and stable canonical URL', async () => {
