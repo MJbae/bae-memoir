@@ -3,7 +3,8 @@ import { fileURLToPath } from 'node:url'
 import { chromium } from '@playwright/test'
 
 // Regenerate with: node scripts/generate-share-assets.mjs
-// Uses a local Korean system font; Apple SD Gothic Neo on macOS or Noto Sans KR.
+// Generates mobile icons and the manifest. Sharing uses the approved watercolor
+// image in site/public/images/ directly, without regenerating the illustration.
 // No external image or font request is made.
 const publicDirectory = fileURLToPath(new URL('../site/public/', import.meta.url))
 const icon = await readFile(`${publicDirectory}/favicon.svg`, 'utf8')
@@ -32,26 +33,6 @@ try {
     await page.screenshot({ path: `${publicDirectory}/${filename}`, omitBackground: true })
   }
 
-  await page.setViewportSize({ width: 1200, height: 630 })
-  await page.setContent(`<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
-    * { box-sizing: border-box; }
-    html, body { width: 1200px; height: 630px; margin: 0; }
-    body { background: #f5f5f7; color: #1d1d1f;
-      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; }
-    main { height: 100%; padding: 76px 96px; }
-    .icon { width: 54px; height: 54px; margin-bottom: 52px; }
-    .icon svg { display: block; width: 100%; height: 100%; }
-    h1 { margin: 0 0 26px; font-size: 68px; font-weight: 700; line-height: 1.12; letter-spacing: -3.2px; }
-    p { margin: 0; color: #6e6e73; font-size: 35px; font-weight: 400; line-height: 1.5; letter-spacing: -0.8px; }
-    footer { margin-top: 48px; color: #86868b; font-size: 22px; font-weight: 500; letter-spacing: 1px; }
-  </style></head><body><main>
-    <div class="icon">${icon}</div>
-    <h1>내 논을 파는 한이 있어도</h1>
-    <p>안면도 갯벌에서 남양만 들녘으로 삶의 터전을 옮겼다.<br>땅을 팔아서라도 농민들의 볏값을 치른 배병희의 삶을 담았다.</p>
-    <footer>배병희 자전소설 · 6부 23화</footer>
-  </main></body></html>`)
-  await page.evaluate(() => document.fonts.ready)
-  await page.screenshot({ path: `${publicDirectory}/og-image.png` })
   await page.close()
 
   await writeFile(`${publicDirectory}/site.webmanifest`, JSON.stringify({
@@ -74,4 +55,4 @@ try {
   await browser.close()
 }
 
-console.log('Generated the sharing image, mobile icons, and web manifest.')
+console.log('Generated mobile icons and the web manifest. Sharing uses the existing watercolor image.')

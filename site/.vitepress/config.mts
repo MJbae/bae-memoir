@@ -11,7 +11,8 @@ const workTitle = catalog.work.title
 const siteName = workTitle
 const siteDescription = catalog.work.synopsis[0]
 const siteOrigin = 'https://mjbae.github.io'
-const shareImage = new URL(`${base}og-image.png`, siteOrigin).href
+const shareImage = new URL(`${base}images/bae-byunghee-hero-watercolor.png`, siteOrigin).href
+const shareImageAlt = '가을 논을 배경으로 정장을 입은 배병희의 수채화 초상'
 const commentsConfigured = [
   'VITE_FIREBASE_API_KEY',
   'VITE_FIREBASE_AUTH_DOMAIN',
@@ -48,12 +49,12 @@ export default defineConfig({
     ['meta', { property: 'og:image', content: shareImage }],
     ['meta', { property: 'og:image:secure_url', content: shareImage }],
     ['meta', { property: 'og:image:type', content: 'image/png' }],
-    ['meta', { property: 'og:image:width', content: '1200' }],
-    ['meta', { property: 'og:image:height', content: '630' }],
-    ['meta', { property: 'og:image:alt', content: `${siteName}. ${siteDescription}` }],
+    ['meta', { property: 'og:image:width', content: '1672' }],
+    ['meta', { property: 'og:image:height', content: '941' }],
+    ['meta', { property: 'og:image:alt', content: shareImageAlt }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:image', content: shareImage }],
-    ['meta', { name: 'twitter:image:alt', content: `${siteName}. ${siteDescription}` }],
+    ['meta', { name: 'twitter:image:alt', content: shareImageAlt }],
   ],
   markdown: {
     headers: { level: [2, 3] },

@@ -8,6 +8,7 @@ test('작품 홈의 26편 목록과 처음부터 읽기에서 원고를 읽는�
   await expect(page.getByRole('heading', { name: '내 논을 파는 한이 있어도', exact: true })).toBeVisible()
   await expect(page.locator('.chapter-row')).toHaveCount(26)
   await expect(page.locator('.part-heading')).toHaveCount(6)
+  await expect(page.getByRole('navigation', { name: '부별 바로가기' })).toHaveCount(0)
   await expect(page.locator('.work-synopsis')).toContainText('3억 원')
   await expect(page.locator('.resume-link')).toHaveText('처음부터 읽기')
   await noOverflow(page)

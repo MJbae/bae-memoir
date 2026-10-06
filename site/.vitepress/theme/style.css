@@ -627,33 +627,6 @@ dialog::backdrop {
 .next-episode-copy { min-width: 0; }
 .next-episode-action, .next-episode-title, .previous-episode-action, .previous-episode-title { display: block; }
 .next-episode-title, .previous-episode-title { margin-top: 4px; font-size: var(--font-meta); font-weight: 400; }
-.part-shortcuts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  margin: 28px 0 24px;
-}
-.part-shortcuts a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px;
-  min-height: 48px;
-  padding: 10px 4px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--soft);
-  font-size: var(--font-ui);
-  line-height: 1.6;
-  overflow-wrap: anywhere;
-}
-.part-shortcuts a:hover,
-.part-shortcuts a:active {
-  color: var(--link);
-  border-color: var(--link);
-}
-.shortcut-number { color: var(--muted); font-size: var(--font-meta); }
 .part-heading-block { margin: 32px 0 10px; }
 .part-heading {
   margin: 0 0 5px;

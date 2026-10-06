@@ -7,7 +7,8 @@ const dist = new URL('../site/.vitepress/dist/', import.meta.url)
 const siteUrl = 'https://mjbae.github.io/bae-memoir/'
 const title = catalog.work.title
 const description = catalog.work.synopsis[0]
-const imageUrl = `${siteUrl}og-image.png`
+const imagePath = 'images/bae-byunghee-hero-watercolor.png'
+const imageUrl = `${siteUrl}${imagePath}`
 const chapterTitles = catalog.readingOrder
 
 function decodeHtml(value) {
@@ -62,12 +63,14 @@ async function staticHead(path) {
 
 function assertPreviewImage(head) {
   assert.equal(head.meta('og:image'), imageUrl)
-  assert.equal(head.meta('og:image:width'), '1200')
-  assert.equal(head.meta('og:image:height'), '630')
+  assert.equal(head.meta('og:image:secure_url'), imageUrl)
+  assert.equal(head.meta('og:image:width'), '1672')
+  assert.equal(head.meta('og:image:height'), '941')
   assert.equal(head.meta('og:image:type'), 'image/png')
   assert.ok(head.meta('og:image:alt').trim())
   assert.equal(head.meta('twitter:card'), 'summary_large_image')
   assert.equal(head.meta('twitter:image'), imageUrl)
+  assert.equal(head.meta('twitter:image:alt'), head.meta('og:image:alt'))
 }
 
 test('the home page provides its sharing title and description without JavaScript', async () => {
@@ -122,7 +125,7 @@ async function assertPngDimensions(path, width, height) {
 test('published image files and the mobile manifest use their declared sizes and relative paths', async () => {
   await assertPngDimensions('favicon-32.png', 32, 32)
   await assertPngDimensions('apple-touch-icon.png', 180, 180)
-  await assertPngDimensions('og-image.png', 1200, 630)
+  await assertPngDimensions(imagePath, 1672, 941)
   const svg = await readFile(new URL('favicon.svg', dist), 'utf8')
   assert.match(svg, /<svg\b/)
 

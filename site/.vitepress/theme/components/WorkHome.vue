@@ -45,9 +45,6 @@ const action = computed(() => {
     : { label: '처음부터 다시 읽기', episode: catalog.readingOrder[0], resume: false }
 })
 
-function focusPart(number: number) {
-  document.getElementById(`part-${number}`)?.focus({ preventScroll: true })
-}
 </script>
 
 <template>
@@ -75,18 +72,6 @@ function focusPart(number: number) {
     <div class="work-synopsis">
       <p v-for="paragraph in catalog.work.synopsis" :key="paragraph">{{ paragraph }}</p>
     </div>
-
-    <nav class="part-shortcuts" aria-label="부별 바로가기">
-      <a
-        v-for="part in catalog.parts"
-        :key="part.number"
-        :href="`#part-${part.number}`"
-        @click="focusPart(part.number)"
-      >
-        <span class="shortcut-number">{{ part.number }}부</span>
-        <span>{{ part.title }}</span>
-      </a>
-    </nav>
 
     <nav class="chapter-list" aria-label="회차 목록">
       <section v-for="(group, index) in groups" :key="index">
