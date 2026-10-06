@@ -6,7 +6,7 @@ import catalog from '../site/.vitepress/generated/catalog.json' with { type: 'js
 const dist = new URL('../site/.vitepress/dist/', import.meta.url)
 const siteUrl = 'https://mjbae.github.io/bae-memoir/'
 const title = catalog.work.title
-const description = catalog.work.subtitle
+const description = '갯벌에서 들녘까지, 가족과 이웃을 위해 살아온 한평생.'
 const imagePath = 'images/bae-byunghee-hero-watercolor.png'
 const imageUrl = `${siteUrl}${imagePath}`
 const chapterTitles = catalog.readingOrder
@@ -73,7 +73,7 @@ function assertPreviewImage(head) {
   assert.equal(head.meta('twitter:image:alt'), head.meta('og:image:alt'))
 }
 
-test('home and full-story pages share the work subtitle while the visible synopsis stays unchanged', async () => {
+test('home and full-story pages share the short life description while the visible synopsis stays unchanged', async () => {
   const head = await staticHead('index.html')
   assert.equal(head.title, title)
   assert.equal(head.meta('description'), description)

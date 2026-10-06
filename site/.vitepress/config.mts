@@ -9,7 +9,7 @@ const env = loadEnv(process.env.NODE_ENV || 'production', root, '')
 const base = process.env.SITE_BASE || env.SITE_BASE || '/bae-memoir/'
 const workTitle = catalog.work.title
 const siteName = workTitle
-const siteDescription = catalog.work.subtitle
+const siteDescription = '갯벌에서 들녘까지, 가족과 이웃을 위해 살아온 한평생.'
 const siteOrigin = 'https://mjbae.github.io'
 const shareImage = new URL(`${base}images/bae-byunghee-hero-watercolor.png`, siteOrigin).href
 const shareImageAlt = '가을 논을 배경으로 정장을 입은 배병희의 수채화 초상'
@@ -74,7 +74,9 @@ export default defineConfig({
     const title = isHome ? workTitle : String(pageData.frontmatter.shareTitle || `${pageData.title} · ${workTitle}`)
     pageData.frontmatter.titleTemplate = false
     pageData.title = title
-    const description = isHome ? siteDescription : String(pageData.frontmatter.description || siteDescription)
+    const description = isHome || pageData.frontmatter.kind === 'full'
+      ? siteDescription
+      : String(pageData.frontmatter.description || siteDescription)
     const relative = pageData.relativePath
       .replace(/(^|\/)index\.md$/, '$1')
       .replace(/\.md$/, '.html')
