@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import { defineAsyncComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
 import { isCommentsConfigured } from '../lib/firebase-config'
 import type { Neighbor } from '../lib/catalog'
@@ -11,9 +11,7 @@ const ReactionBar = defineAsyncComponent(() => import('./ReactionBar.vue'))
 const enabled = isCommentsConfigured()
 const ready = ref(false)
 const end = ref<HTMLElement>()
-const comments = ref<{ focusComposer: () => Promise<void> }>()
 let loadObserver: IntersectionObserver | undefined, readObserver: IntersectionObserver | undefined
-async function remember() { await nextTick(); await comments.value?.focusComposer() }
 onMounted(() => {
   if (!end.value) return
   if (enabled) {
@@ -35,17 +33,22 @@ onBeforeUnmount(() => { loadObserver?.disconnect(); readObserver?.disconnect() }
   <div class="episode-end">
     <div ref="end" class="story-end" aria-label="회차 끝">⁂</div>
     <section v-if="enabled && episode" id="reactions" class="reactions-anchor" aria-label="이 회차에 반응 남기기">
-      <ClientOnly><ReactionBar v-if="ready" :page-id="pageId" @remember="remember" /></ClientOnly>
+      <ClientOnly><ReactionBar v-if="ready" :page-id="pageId" /></ClientOnly>
     </section>
     <template v-if="episode">
-      <a class="primary-link next-episode" :href="next ? withBase(next.url) : homeHref"><span>{{ next ? `다음 화 · ${next.label} ${next.title}` : '목록으로 돌아가기' }}</span><Icon name="chevron" :size="18" /></a>
-      <nav class="episode-navigation" aria-label="앞뒤 회차">
-        <a v-if="prev" :href="withBase(prev.url)"><Icon name="back" :size="15" /><span>{{ prev.label }} {{ prev.title }}</span></a><span v-else />
-        <a :href="homeHref">목록</a>
+      <a class="primary-link next-episode" :href="next ? withBase(next.url) : homeHref">
+        <span class="next-episode-copy">
+          <span class="next-episode-action">{{ next ? '다음 화 읽기' : '전체 회차 보기' }}</span>
+          <span v-if="next" class="next-episode-title">{{ next.label }} · {{ next.title }}</span>
+        </span>
+        <Icon name="chevron" :size="18" />
+      </a>
+      <nav v-if="prev" class="episode-navigation" aria-label="이전 회차">
+        <a :href="withBase(prev.url)"><Icon name="back" :size="18" /><span><span class="previous-episode-action">이전 화</span><span class="previous-episode-title">{{ prev.label }} · {{ prev.title }}</span></span></a>
       </nav>
     </template>
     <section v-if="enabled" id="comments" class="comments-anchor" aria-label="댓글">
-      <ClientOnly><CommentsSection v-if="ready" ref="comments" :page-id="pageId" :page-title="title" /></ClientOnly>
+      <ClientOnly><CommentsSection v-if="ready" :page-id="pageId" :page-title="title" /></ClientOnly>
     </section>
   </div>
 </template>

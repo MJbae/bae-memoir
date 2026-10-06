@@ -476,9 +476,9 @@ async function heart(comment: FamilyComment) {
     const updated = { ...comment, heartCount: result.count }
     localComments.set(comment.id, updated)
     comments.value = comments.value.map(item => item.id === comment.id ? updated : item)
-    announcement.value = result.selected ? '하트를 남겼어요.' : '하트를 취소했어요.'
+    announcement.value = result.selected ? '공감을 남겼어요.' : '공감을 취소했어요.'
   } catch (error) {
-    if (mounted && version === requestVersion) heartError.value = friendlyError(error, '하트를 저장하지 못했어요. 다시 시도해 주세요.')
+    if (mounted && version === requestVersion) heartError.value = friendlyError(error, '공감을 저장하지 못했어요. 다시 시도해 주세요.')
   } finally { if (mounted && version === requestVersion) heartBusy.value = null }
 }
 
@@ -494,7 +494,7 @@ defineExpose({ focusComposer })
     tabindex="-1"
   >
     <h2 id="comments-heading">{{ heading }}<span v-if="!loading && !loadError"> {{ hasMore || comments.length > 30 ? '30+' : comments.length }}</span></h2>
-    <button v-if="!composerOpen" type="button" class="composer-prompt" @click="focusComposer">읽고 느낀 점이나 기억나는 이야기를 적어 주세요.</button>
+    <button v-if="!composerOpen" type="button" class="composer-prompt" @click="focusComposer">이 회차에 대한 생각을 남겨 주세요.</button>
 
     <form
       ref="composer"
@@ -665,8 +665,8 @@ defineExpose({ focusComposer })
           <template v-else>
             <p class="comment-body">{{ comment.body }}</p>
             <div class="comment-actions">
-              <span v-if="ownsComment(comment)" class="own-heart">♡ 하트<span v-if="comment.heartCount"> {{ comment.heartCount }}</span></span>
-              <button v-else class="text-button heart-button" type="button" :aria-label="`${comment.author} 님의 댓글에 하트`" :aria-pressed="selectedHearts.includes(comment.id)" :disabled="Boolean(heartBusy)" @click="heart(comment)">{{ selectedHearts.includes(comment.id) ? '♥' : '♡' }} 하트<span v-if="comment.heartCount"> {{ comment.heartCount }}</span></button>
+              <span v-if="ownsComment(comment)" class="own-heart"><span aria-hidden="true">♡</span> 공감해요<span v-if="comment.heartCount"> {{ comment.heartCount }}</span></span>
+              <button v-else class="text-button heart-button" type="button" :aria-label="`${comment.author} 님의 댓글에 공감해요`" :aria-pressed="selectedHearts.includes(comment.id)" :disabled="Boolean(heartBusy)" @click="heart(comment)"><span aria-hidden="true">{{ selectedHearts.includes(comment.id) ? '♥' : '♡' }}</span> 공감해요<span v-if="comment.heartCount"> {{ comment.heartCount }}</span></button>
               <button
                 v-if="!comment.parentId"
                 class="text-button reply-button"
@@ -731,8 +731,8 @@ defineExpose({ focusComposer })
 </template>
 
 <style scoped>
-.composer-prompt { width: 100%; min-height: 52px; text-align: left; padding: 12px; border: 1px solid var(--field-border); border-radius: 8px; color: var(--muted); background: var(--surface); font-size: 16px; line-height: 1.6; }
-.own-heart { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 10px; color: var(--muted); font-size: 16px; }
+.composer-prompt { width: 100%; min-height: 52px; text-align: left; padding: 12px; border: 1px solid var(--field-border); border-radius: 8px; color: var(--muted); background: var(--surface); font-size: var(--font-ui); line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; }
+.own-heart { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px; min-height: 44px; padding: 8px 10px; color: var(--muted); font-size: var(--font-ui); }
 .heart-button[aria-pressed='true'] { font-weight: 600; }
 .family-comments {
   --comment-ink: var(--ink);
@@ -740,21 +740,26 @@ defineExpose({ focusComposer })
   --comment-line: var(--line);
   --comment-action: var(--link);
   margin: 0;
-  padding-top: 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--comment-line);
   scroll-margin-top: 80px;
   color: var(--comment-ink);
   outline: none;
 }
 .family-comments > h2 {
-  margin: 0 0 28px;
+  margin: 0 0 20px;
   padding: 0;
   border: 0;
   color: var(--comment-ink);
-  font-size: 22px;
+  font-size: var(--font-section);
   line-height: 1.4;
   font-weight: 600;
   letter-spacing: -0.03em;
+}
+.family-comments > h2 > span {
+  color: var(--comment-muted);
+  font-size: var(--font-ui);
+  font-weight: 400;
 }
 .field + .field {
   margin-top: 24px;
@@ -762,7 +767,7 @@ defineExpose({ focusComposer })
 .field label {
   display: block;
   margin-bottom: 8px;
-  font-size: 16px;
+  font-size: var(--font-ui);
   font-weight: 500;
   line-height: 1.5;
 }
@@ -776,7 +781,7 @@ defineExpose({ focusComposer })
   color: var(--comment-ink);
   background: var(--surface);
   font: inherit;
-  font-size: 18px;
+  font-size: var(--comment-size);
   line-height: 1.6;
   box-sizing: border-box;
 }
@@ -809,7 +814,7 @@ defineExpose({ focusComposer })
 .character-count {
   margin: 8px 0 0;
   color: var(--comment-muted);
-  font-size: 13px;
+  font-size: var(--font-meta);
   font-variant-numeric: tabular-nums;
   text-align: right;
 }
@@ -818,20 +823,20 @@ defineExpose({ focusComposer })
 .load-error {
   margin: 8px 0 0;
   color: var(--error);
-  font-size: 15px;
+  font-size: var(--font-ui);
   line-height: 1.7;
 }
 .public-note,
 .cooldown-note {
   margin: 12px 0 0;
   color: var(--comment-muted);
-  font-size: 14px;
+  font-size: var(--font-meta);
   line-height: 1.6;
   word-break: keep-all;
 }
 .announcement {
   margin: 12px 0 0;
-  font-size: 15px;
+  font-size: var(--font-ui);
   line-height: 1.7;
 }
 .sr-only {
@@ -863,7 +868,7 @@ defineExpose({ focusComposer })
   color: var(--button-ink);
   background: var(--comment-action);
   font: inherit;
-  font-size: 17px;
+  font-size: var(--font-ui);
   font-weight: 500;
   line-height: 1.5;
   cursor: pointer;
@@ -895,7 +900,7 @@ button:focus-visible {
   min-width: 0;
 }
 .reply-caption {
-  font-size: 15px;
+  font-size: var(--font-ui);
   font-weight: 500;
   overflow-wrap: anywhere;
 }
@@ -903,7 +908,7 @@ button:focus-visible {
 .parent-context {
   margin: 4px 0 0;
   color: var(--comment-muted);
-  font-size: 14px;
+  font-size: var(--font-meta);
   line-height: 1.65;
   overflow-wrap: anywhere;
 }
@@ -911,6 +916,7 @@ button:focus-visible {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  gap: 4px;
   min-width: 44px;
   min-height: 44px;
   padding: 8px 10px;
@@ -918,7 +924,7 @@ button:focus-visible {
   background: transparent;
   color: var(--comment-action);
   font: inherit;
-  font-size: 16px;
+  font-size: var(--font-ui);
   line-height: 1.6;
   cursor: pointer;
   text-decoration: none;
@@ -934,7 +940,7 @@ button:focus-visible {
 .comments-status {
   margin: 32px 0 0;
   color: var(--comment-muted);
-  font-size: 15px;
+  font-size: var(--font-meta);
   line-height: 1.7;
 }
 .comment-list {
@@ -957,7 +963,7 @@ button:focus-visible {
 }
 .comment-meta strong {
   color: var(--comment-ink);
-  font-size: 16px;
+  font-size: var(--font-ui);
   font-weight: 600;
   overflow-wrap: anywhere;
 }
@@ -966,13 +972,13 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 4px;
   color: var(--comment-muted);
-  font-size: 13px;
+  font-size: var(--font-meta);
   line-height: 1.6;
 }
 .comment-body {
   margin: 12px 0 0;
   color: var(--comment-ink);
-  font-size: 18px;
+  font-size: var(--comment-size);
   line-height: 1.8;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -990,7 +996,7 @@ button:focus-visible {
 }
 .owner-actions .text-button {
   color: var(--comment-muted);
-  font-size: 14px;
+  font-size: var(--font-ui);
 }
 .comment-editor {
   margin-top: 12px;

@@ -180,8 +180,8 @@ test('names survive reloads, drafts stay with their article, and posted comments
   await expect(page.locator('.comment-body')).toHaveText(published)
 
   await page
-    .getByRole('navigation', { name: '앞뒤 회차' })
-    .getByRole('link', { name: /1화 어머니의 조새/ })
+    .getByRole('navigation', { name: '이전 회차' })
+    .getByRole('link', { name: /1화.*어머니의 조새/ })
     .click()
   await expect(page).toHaveURL(/\/read\/josae\.html$/)
   await showComments(page)
@@ -571,7 +571,9 @@ test('a rejected edit keeps the edited text and leaves the stored body unchanged
 async function openReactions(page: Page) {
   await page.goto('/read/josae.html#reactions')
   await page.locator('#reactions').scrollIntoViewIfNeeded()
-  await expect(page.getByRole('button', { name: '하트', exact: true })).toBeEnabled()
+  await expect(page.getByRole('button', { name: '응원해요', exact: true })).toBeEnabled()
+  await expect(page.locator('.reaction-options button')).toHaveCount(4)
+  await expect(page.getByRole('button', { name: '기억나요', exact: true })).toHaveCount(0)
   await expect(page.locator('.reaction-error')).toHaveCount(0)
 }
 async function storedReactions(request: APIRequestContext) {
@@ -584,10 +586,12 @@ test('episode reactions coalesce clicks, persist across browsers, switch, cancel
   await page.setViewportSize({ width: 320, height: 740 })
   await openReactions(page)
   expect(await storedReactions(request)).toHaveLength(0)
-  await page.getByRole('button', { name: '하트', exact: true }).click()
+  const optionsBefore = await page.locator('.reaction-options').boundingBox()
+  await page.getByRole('button', { name: '응원해요', exact: true }).click()
   await page.getByRole('button', { name: '좋아요', exact: true }).click()
   await expect.poll(async () => (await storedReactions(request))[0]?.fields.like.integerValue).toBe('1')
   expect((await storedReactions(request))[0].fields.heart.integerValue).toBe('0')
+  expect((await page.locator('.reaction-options').boundingBox())!.height).toBe(optionsBefore!.height)
   const context = await mobileFamilyContext(browser)
   try {
     const other = await context.newPage()
@@ -597,15 +601,23 @@ test('episode reactions coalesce clicks, persist across browsers, switch, cancel
     await expect(page.getByRole('button', { name: '좋아요 1', exact: true })).toHaveAttribute('aria-pressed', 'true')
     await page.getByRole('button', { name: '좋아요 1', exact: true }).click()
     await expect.poll(async () => (await storedReactions(request))[0]?.fields.like.integerValue).toBe('0')
-    await page.getByRole('button', { name: '기억나요', exact: true }).click()
-    await page.getByRole('button', { name: /그때의 이야기를 댓글로 들려주세요/ }).click()
-    await expect(page.locator('.comment-composer')).toBeVisible()
-    await expect(page.getByLabel(/^이름/)).toBeFocused()
+    // An old selection remains valid data but must not surface as a fifth option.
+    const stored = (await storedReactions(request))[0]
+    const seeded = await request.patch(`${FIRESTORE}/v1/${stored.name}`, {
+      headers: { Authorization: 'Bearer owner' },
+      data: { fields: { heart: { integerValue: '0' }, like: { integerValue: '0' }, moved: { integerValue: '0' }, wow: { integerValue: '0' }, remember: { integerValue: '1' }, updatedAt: { timestampValue: new Date(Date.now() - 2000).toISOString() } } },
+    })
+    expect(seeded.ok()).toBeTruthy()
+    await page.reload(); await page.locator('#reactions').scrollIntoViewIfNeeded()
+    await expect(page.locator('.reaction-options button[aria-pressed="true"]')).toHaveCount(0)
+    await expect(page.locator('.remember-hint')).toHaveCount(0)
+    await page.getByRole('button', { name: '대단해요', exact: true }).click()
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     await page.screenshot({ path: 'test-results/comments/reactions-320.png', fullPage: true })
     await page.locator('.next-episode').click()
     await expect(page).toHaveURL(/jige\.html$/)
-    await expect.poll(async () => (await storedReactions(request))[0]?.fields.remember.integerValue).toBe('1')
+    await expect.poll(async () => (await storedReactions(request))[0]?.fields.wow.integerValue).toBe('1')
+    expect((await storedReactions(request))[0].fields.remember.integerValue).toBe('0')
   } finally { await context.close() }
 })
 
@@ -618,7 +630,7 @@ test('comment and reply hearts cannot target your own comment, and another brows
     const other = await context.newPage()
     await openComments(other)
     const comment = other.getByRole('article', { name: '큰딸 님의 댓글', exact: true })
-    const heart = comment.getByRole('button', { name: '큰딸 님의 댓글에 하트', exact: true })
+    const heart = comment.getByRole('button', { name: '큰딸 님의 댓글에 공감해요', exact: true })
     await heart.click()
     await expect(heart).toHaveAttribute('aria-pressed', 'true')
     await expect(heart).toContainText('1')
@@ -633,9 +645,41 @@ test('comment and reply hearts cannot target your own comment, and another brows
     await other.getByRole('button', { name: '남기기', exact: true }).click()
     await page.reload(); await showComments(page)
     const reply = page.getByRole('article', { name: '막내 님의 답글', exact: true })
-    await reply.getByRole('button', { name: '막내 님의 댓글에 하트', exact: true }).click()
+    await reply.getByRole('button', { name: '막내 님의 댓글에 공감해요', exact: true }).click()
     await expect(reply.locator('.heart-button')).toHaveAttribute('aria-pressed', 'true')
   } finally { await context.close() }
+})
+
+test('large text reaches comments and controls, and the reader reflows at narrow widths and double text size', async ({ page }) => {
+  await openComments(page)
+  const comment = await postMemory(page, '큰글씨 독자', '어머니와 함께 읽으며 그날의 장면을 떠올렸습니다.')
+  await expect(comment.locator('.comment-body')).toHaveCSS('font-size', '18px')
+  await page.getByRole('button', { name: '보기 설정', exact: true }).click()
+  await page.getByRole('button', { name: '가장 크게', exact: true }).click()
+  await page.keyboard.press('Escape')
+  await expect(comment.locator('.comment-body')).toHaveCSS('font-size', '26px')
+  await expect(page.locator('#comment-body')).toHaveCSS('font-size', '26px')
+  await expect(page.locator('.reader-actions button')).toHaveCSS('font-size', '18px')
+  await expect(page.locator('.reaction-options button').first()).toHaveCSS('font-size', '18px')
+  for (const width of [320, 390, 1280]) {
+    await page.setViewportSize({ width, height: 844 })
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+    const boxes = await page.locator('.reaction-options button').evaluateAll(buttons => buttons.map(button => {
+      const rect = button.getBoundingClientRect()
+      return { top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height }
+    }))
+    expect(boxes.every(box => box.width >= 44 && box.height >= 44)).toBe(true)
+    if (width === 320) {
+      expect(boxes[0].top).toBe(boxes[1].top)
+      expect(boxes[2].top).toBeGreaterThanOrEqual(boxes[0].bottom)
+    }
+    await page.evaluate(() => { document.documentElement.style.fontSize = '32px' })
+    await expect(comment.locator('.comment-body')).toHaveCSS('font-size', '52px')
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+    await page.evaluate(() => { document.documentElement.style.fontSize = '' })
+  }
+  await page.setViewportSize({ width: 320, height: 844 })
+  await page.locator('.episode-end').screenshot({ path: 'test-results/comments/large-text-320.png' })
 })
 
 test('the reader defers reactions and comments until the end is near and leaves the composer collapsed', async ({ page }) => {

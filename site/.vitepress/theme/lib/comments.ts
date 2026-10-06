@@ -355,7 +355,7 @@ export async function toggleCommentHeart(pageId: string, commentId: string): Pro
     const heart = doc(comment, 'hearts', user.uid)
     const [original, existing] = await Promise.all([getDocFromServer(comment), getDocFromServer(heart)])
     if (!original.exists()) throw new Error('댓글이 없어요. 목록을 새로고침해 주세요.')
-    if (original.data().uid === user.uid) throw new Error('내 댓글에는 하트를 누를 수 없어요.')
+    if (original.data().uid === user.uid) throw new Error('내 댓글에는 공감을 남길 수 없어요.')
     const selected = !existing.exists()
     const batch = writeBatch(db)
     if (selected) batch.set(heart, { createdAt: serverTimestamp() })
@@ -367,6 +367,6 @@ export async function toggleCommentHeart(pageId: string, commentId: string): Pro
     return { selected, count: saved?.data()?.heartCount ?? Math.max(0, (original.data().heartCount || 0) + (selected ? 1 : -1)) }
   } catch (error) {
     if (error instanceof Error && !('code' in error)) throw error
-    throw new Error('하트를 저장하지 못했어요. 페이지를 새로고침한 뒤 다시 눌러 주세요.')
+    throw new Error('공감을 저장하지 못했어요. 페이지를 새로고침한 뒤 다시 눌러 주세요.')
   }
 }
