@@ -4,7 +4,7 @@ import type { MusicTrack } from '../../shared/music.mjs'
 
 export type MusicStatus = 'paused' | 'loading' | 'playing' | 'blocked' | 'error'
 const storageKey = 'family-library:music'
-const musicVolume = 0.1
+const musicVolume = 0.03
 
 export function useBackgroundMusic(track: ComputedRef<MusicTrack | undefined>) {
   const audio = ref<HTMLAudioElement>()
