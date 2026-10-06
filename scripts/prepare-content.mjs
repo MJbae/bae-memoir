@@ -224,7 +224,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
   })
   const legacyIds = Object.fromEntries(redirects.map(p => [`life-${p.filename.replace('.md', '')}`, readingOrder.find(e => e.url === p.redirect).id]))
   const fullStory = { id: 'life-story', title: '한 번에 읽기', url: '/read/life-story.html' }
-  register({ ...fullStory, filename: 'life-story.md', body: `# ${work.title}\n\n${main.body}`, kind: 'full', source: mainFilename, description: work.synopsis[0] || work.subtitle })
+  register({ ...fullStory, filename: 'life-story.md', body: `# ${work.title}\n\n${main.body}`, kind: 'full', source: mainFilename, description: work.subtitle })
   sourceUrls.set(mainFilename, fullStory.url)
 
   const documents = loaded

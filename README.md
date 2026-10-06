@@ -167,7 +167,7 @@ GitHub 저장소의 Settings → Secrets and variables → Actions → Variables
 
 ## 공유 이미지
 
-공유 제목에는 작품명과 회차 번호·제목이 들어갑니다. 홈의 공유 설명은 작품 부제인 ‘배병희 자전소설’을 사용하고, 회차의 공유 설명에는 시점 줄이 들어갑니다. 첫 화면의 소개글은 정본의 `synopsis` 문단을 그대로 표시합니다. canonical·Open Graph·Twitter 정보는 자바스크립트 없이 HTML에 있습니다. 홈과 모든 회차의 공유 이미지는 `site/public/images/bae-byunghee-hero-watercolor.png`에 있는 배병희의 수채화 초상 원본(1672×941)을 사용합니다. 이미지 주소는 사이트 경로를 포함한 HTTPS 절대 주소이며, 실제 크기와 대체 설명을 메타데이터에 함께 제공합니다. 아이콘과 모바일 manifest는 `site/public/`에 있습니다.
+공유 제목에는 작품명과 회차 번호·제목이 들어갑니다. 홈과 ‘한 번에 읽기’ 주소의 공유 설명은 작품 부제인 ‘배병희 자전소설’을 사용하고, 회차의 공유 설명에는 시점 줄이 들어갑니다. 첫 화면의 소개글은 정본의 `synopsis` 문단을 그대로 표시합니다. canonical·Open Graph·Twitter 정보는 자바스크립트 없이 HTML에 있습니다. 홈과 모든 회차의 공유 이미지는 `site/public/images/bae-byunghee-hero-watercolor.png`에 있는 배병희의 수채화 초상 원본(1672×941)을 사용합니다. 이미지 주소는 사이트 경로를 포함한 HTTPS 절대 주소이며, 실제 크기와 대체 설명을 메타데이터에 함께 제공합니다. 아이콘과 모바일 manifest는 `site/public/`에 있습니다.
 
 ```sh
 npm run assets:share

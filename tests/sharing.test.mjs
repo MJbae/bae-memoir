@@ -73,7 +73,7 @@ function assertPreviewImage(head) {
   assert.equal(head.meta('twitter:image:alt'), head.meta('og:image:alt'))
 }
 
-test('the home page provides its sharing title and description without JavaScript', async () => {
+test('home and full-story pages share the work subtitle while the visible synopsis stays unchanged', async () => {
   const head = await staticHead('index.html')
   assert.equal(head.title, title)
   assert.equal(head.meta('description'), description)
@@ -84,6 +84,11 @@ test('the home page provides its sharing title and description without JavaScrip
   assert.equal(head.link('canonical').href, siteUrl)
   assert.equal(head.meta('og:url'), siteUrl)
   assertPreviewImage(head)
+  const fullHead = await staticHead('read/life-story.html')
+  for (const name of ['description', 'og:description', 'twitter:description']) {
+    assert.equal(fullHead.meta(name), description)
+  }
+  assertPreviewImage(fullHead)
   const html = await readFile(new URL('index.html', dist), 'utf8')
   const synopsis = html.match(/<div class="work-synopsis">([\s\S]*?)<\/div>/)?.[1]
   assert.ok(synopsis, 'the home page must retain its visible synopsis')
