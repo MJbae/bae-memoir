@@ -598,7 +598,7 @@ test('episode reactions coalesce clicks, persist across browsers, switch, cancel
     await page.getByRole('button', { name: '좋아요 1', exact: true }).click()
     await expect.poll(async () => (await storedReactions(request))[0]?.fields.like.integerValue).toBe('0')
     await page.getByRole('button', { name: '기억나요', exact: true }).click()
-    await page.getByRole('button', { name: /그때의 이야기를 댓글로 들려주세요/ }).click()
+    await page.getByRole('button', { name: /그 기억을 댓글로 보태 주세요/ }).click()
     await expect(page.locator('.comment-composer')).toBeVisible()
     await expect(page.getByLabel(/^이름/)).toBeFocused()
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)

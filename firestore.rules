@@ -38,6 +38,65 @@ service cloud.firestore {
         && rate.lastPageId == pageId;
     }
 
+    function ownerEdit() {
+      return anonymous() && resource.data.uid == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['body', 'updatedAt'])
+        && validBody(request.resource.data.body)
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    function heartToggle(pageId, commentId) {
+      let heart = /databases/$(database)/documents/pages/$(pageId)/comments/$(commentId)/hearts/$(request.auth.uid);
+      let before = resource.data.get('heartCount', 0);
+      let after = request.resource.data.get('heartCount', 0);
+      return anonymous() && resource.data.uid != request.auth.uid
+        && after is int && after >= 0
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['heartCount'])
+        && ((after == before + 1 && !exists(heart) && existsAfter(heart))
+          || (after == before - 1 && exists(heart) && !existsAfter(heart)));
+    }
+
+    function heartPair(pageId, commentId, delta) {
+      let comment = /databases/$(database)/documents/pages/$(pageId)/comments/$(commentId);
+      let before = get(comment).data;
+      let after = getAfter(comment).data;
+      return before.uid != request.auth.uid
+        && after.get('heartCount', 0) == before.get('heartCount', 0) + delta;
+    }
+
+    match /pages/{pageId}/comments/{commentId}/hearts/{uid} {
+      allow get: if anonymous() && request.auth.uid == uid;
+      allow list, update: if false;
+      allow create: if anonymous() && request.auth.uid == uid && validId(pageId) && validId(commentId)
+        && request.resource.data.keys().hasAll(['createdAt'])
+        && request.resource.data.keys().hasOnly(['createdAt'])
+        && request.resource.data.createdAt == request.time
+        && heartPair(pageId, commentId, 1);
+      allow delete: if anonymous() && request.auth.uid == uid && heartPair(pageId, commentId, -1);
+    }
+
+    function validReaction(data) {
+      return data.keys().hasOnly(['heart', 'like', 'moved', 'wow', 'remember', 'updatedAt'])
+        && data.keys().hasAll(['heart', 'like', 'moved', 'wow', 'remember', 'updatedAt'])
+        && data.heart is int && data.heart in [0, 1]
+        && data.like is int && data.like in [0, 1]
+        && data.moved is int && data.moved in [0, 1]
+        && data.wow is int && data.wow in [0, 1]
+        && data.remember is int && data.remember in [0, 1]
+        && data.heart + data.like + data.moved + data.wow + data.remember <= 1
+        && data.updatedAt == request.time;
+    }
+
+    match /pages/{pageId}/reactions/{uid} {
+      allow get, list: if true;
+      allow create: if anonymous() && request.auth.uid == uid && validId(pageId)
+        && validReaction(request.resource.data);
+      allow update: if anonymous() && request.auth.uid == uid && validId(pageId)
+        && validReaction(request.resource.data)
+        && request.time >= resource.data.updatedAt + duration.value(1, 's');
+      allow delete: if false;
+    }
+
     match /pages/{pageId}/comments/{commentId} {
       // The stories and their comments are public. Listing must be paginated.
       allow get: if true;
@@ -46,10 +105,7 @@ service cloud.firestore {
         && pairedRateLimit(pageId, commentId);
       // A visitor's existing anonymous UID owns their comments, regardless of
       // display name. Keep identity, creation time and reply relationships fixed.
-      allow update: if anonymous() && resource.data.uid == request.auth.uid
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['body', 'updatedAt'])
-        && validBody(request.resource.data.body)
-        && request.resource.data.updatedAt == request.time;
+      allow update: if ownerEdit() || heartToggle(pageId, commentId);
       // Deleting a parent never deletes another visitor's reply documents.
       allow delete: if anonymous() && resource.data.uid == request.auth.uid;
     }

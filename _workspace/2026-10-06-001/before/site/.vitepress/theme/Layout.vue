@@ -111,7 +111,7 @@ onBeforeUnmount(() => { router.onBeforePageLoad = previousBeforeLoad; ++version;
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
     <WorkHome v-if="isHome" :last-id="lastRead?.id || null" :completed="completed" @resume="resumeReading" />
     <main v-else-if="isMissing" id="main" tabindex="-1" class="not-found"><h1>이야기를 찾지 못했습니다.</h1><a class="text-link" :href="withBase('/')">목록으로 돌아가기</a></main>
-    <main v-else-if="frontmatter.kind === 'redirect'" id="main" class="not-found"><h1>이 이야기의 주소가 바뀌었습니다.</h1><Content /><a class="text-link" :href="withBase(frontmatter.redirect)">이 이야기 읽기</a></main>
+    <main v-else-if="frontmatter.kind === 'redirect'" id="main" class="not-found"><h1>이야기가 옮겨졌습니다.</h1><Content /><a class="text-link" :href="withBase(frontmatter.redirect)">옮겨진 회차 보기</a></main>
     <template v-else>
       <header class="reader-toolbar"><nav aria-label="읽기 도구"><a class="back-link" :href="homeHref"><Icon name="back" :size="18" /><span>목록</span></a><div class="reader-actions"><button class="font-button" aria-haspopup="dialog" @click="settingsDialog?.showModal()">보기 설정</button></div></nav></header>
       <main id="main" tabindex="-1" class="reader-main">

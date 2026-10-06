@@ -13,6 +13,9 @@ import {
   doc,
   getDoc,
   getDocs,
+  getAggregateFromServer,
+  sum,
+  increment,
   limit,
   orderBy,
   query,
@@ -368,4 +371,87 @@ test('comment ownership does not authorize writes to unrelated documents', async
   const db = anonymousDb()
   await assertFails(setDoc(doc(db, 'pages', PAGE), { published: true }))
   await assertFails(setDoc(doc(db, 'private', 'settings'), { admin: true }))
+})
+
+const reactionData = (overrides = {}) => ({ heart: 1, like: 0, moved: 0, wow: 0, remember: 0, updatedAt: serverTimestamp(), ...overrides })
+const reactionRef = (db, uid = UID) => doc(db, 'pages', 'memoir-ep-josae', 'reactions', uid)
+
+test('one anonymous visitor owns one reaction and public readers can aggregate all five counts', async () => {
+  const db = anonymousDb()
+  await assertSucceeds(setDoc(reactionRef(db), reactionData()))
+  const publicDb = environment.unauthenticatedContext().firestore()
+  const aggregate = await assertSucceeds(getAggregateFromServer(collection(publicDb, 'pages', 'memoir-ep-josae', 'reactions'), { heart: sum('heart'), like: sum('like'), moved: sum('moved'), wow: sum('wow'), remember: sum('remember') }))
+  assert.deepEqual(aggregate.data(), { heart: 1, like: 0, moved: 0, wow: 0, remember: 0 })
+  await assertFails(setDoc(reactionRef(anonymousDb('another')), reactionData({ heart: 0, like: 1 })))
+  await assertFails(deleteDoc(reactionRef(db)))
+})
+
+test('reaction values must be a complete one-hot integer record with a server timestamp', async () => {
+  const db = anonymousDb()
+  for (const overrides of [{ heart: 2 }, { heart: -1 }, { heart: 0.5 }, { heart: true }, { like: 1 }, { extra: 1 }, { updatedAt: Timestamp.fromMillis(1000) }]) await assertFails(setDoc(reactionRef(db), reactionData(overrides)))
+  const missing = reactionData(); delete missing.remember
+  await assertFails(setDoc(reactionRef(db), missing))
+  await assertFails(setDoc(reactionRef(environment.unauthenticatedContext().firestore()), reactionData()))
+  const passwordDb = environment.authenticatedContext(UID, { firebase: { sign_in_provider: 'password' } }).firestore()
+  await assertFails(setDoc(reactionRef(passwordDb), reactionData()))
+})
+
+test('reactions enforce a one-second update interval and can be changed or cancelled', async () => {
+  const db = anonymousDb()
+  await assertSucceeds(setDoc(reactionRef(db), reactionData()))
+  await assertFails(setDoc(reactionRef(db), reactionData({ heart: 0, like: 1 })))
+  await environment.withSecurityRulesDisabled(async context => updateDoc(reactionRef(context.firestore()), { updatedAt: Timestamp.fromMillis(Date.now() - 2000) }))
+  await assertSucceeds(setDoc(reactionRef(db), reactionData({ heart: 0, remember: 1 })))
+  await environment.withSecurityRulesDisabled(async context => updateDoc(reactionRef(context.firestore()), { updatedAt: Timestamp.fromMillis(Date.now() - 2000) }))
+  await assertSucceeds(setDoc(reactionRef(db), reactionData({ heart: 0 })))
+})
+
+function heartBatch(db, selected, { delta = selected ? 1 : -1, extra = {} } = {}) {
+  const heart = doc(commentRef(db, PAGE, 'parent'), 'hearts', 'heart-reader')
+  const batch = writeBatch(db)
+  if (selected) batch.set(heart, { createdAt: serverTimestamp() })
+  else batch.delete(heart)
+  batch.update(commentRef(db, PAGE, 'parent'), { heartCount: increment(delta), ...extra })
+  return batch
+}
+
+test('comment hearts atomically add and remove exactly one count, including increment transforms', async () => {
+  await seedComments()
+  const db = anonymousDb('heart-reader')
+  await assertSucceeds(heartBatch(db, true).commit())
+  assert.equal((await getDoc(commentRef(db, PAGE, 'parent'))).data().heartCount, 1)
+  await assertFails(heartBatch(db, true).commit())
+  await assertSucceeds(heartBatch(db, false).commit())
+  assert.equal((await getDoc(commentRef(db, PAGE, 'parent'))).data().heartCount, 0)
+  await assertFails(heartBatch(db, false).commit())
+})
+
+test('hearts deny unpaired writes, forged counts, changed comment fields, self hearts, and other UIDs', async () => {
+  await seedComments()
+  const db = anonymousDb('heart-reader')
+  const parent = commentRef(db, PAGE, 'parent'), heart = doc(parent, 'hearts', 'heart-reader')
+  await assertFails(setDoc(heart, { createdAt: serverTimestamp() }))
+  await assertFails(updateDoc(parent, { heartCount: increment(1) }))
+  await assertFails(heartBatch(db, true, { delta: 2 }).commit())
+  await assertFails(heartBatch(db, true, { extra: { body: '위조한 본문' } }).commit())
+  const selfDb = anonymousDb()
+  const selfBatch = writeBatch(selfDb)
+  selfBatch.set(doc(commentRef(selfDb, PAGE, 'parent'), 'hearts', UID), { createdAt: serverTimestamp() })
+  selfBatch.update(commentRef(selfDb, PAGE, 'parent'), { heartCount: increment(1) })
+  await assertFails(selfBatch.commit())
+  await assertSucceeds(heartBatch(db, true).commit())
+  await assertFails(getDoc(doc(commentRef(anonymousDb('stranger'), PAGE, 'parent'), 'hearts', 'heart-reader')))
+  await assertFails(getDocs(collection(parent, 'hearts')))
+  await assertFails(updateDoc(heart, { createdAt: serverTimestamp() }))
+  await assertSucceeds(updateDoc(commentRef(selfDb, PAGE, 'parent'), { body: '하트가 있어도 작성자는 수정한다.', updatedAt: serverTimestamp() }))
+  assert.equal((await getDoc(parent)).data().heartCount, 1)
+})
+
+test('deleted comments cannot accept or cancel hearts and legacy comment namespaces still work', async () => {
+  await seedComments()
+  const db = anonymousDb('heart-reader')
+  await assertSucceeds(heartBatch(db, true).commit())
+  await assertSucceeds(deleteDoc(commentRef(anonymousDb(), PAGE, 'parent')))
+  await assertFails(heartBatch(db, false).commit())
+  await assertSucceeds(submission(anonymousDb(), { page: 'life-prologue', id: 'original-site' }).commit())
 })

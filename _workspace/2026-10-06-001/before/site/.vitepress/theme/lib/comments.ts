@@ -339,7 +339,7 @@ export async function ensureAnonymousUser() {
   const { auth } = getClients()
   await auth.authStateReady()
   if (auth.currentUser) {
-    if (!auth.currentUser.isAnonymous) throw new Error('접속 정보에 문제가 생겼어요. 페이지를 새로고침한 뒤 다시 시도해 주세요.')
+    if (!auth.currentUser.isAnonymous) throw new Error('익명 방문자 세션을 확인해 주세요.')
     return auth.currentUser
   }
   signingIn ??= signInAnonymously(auth).finally(() => { signingIn = undefined })
@@ -367,6 +367,6 @@ export async function toggleCommentHeart(pageId: string, commentId: string): Pro
     return { selected, count: saved?.data()?.heartCount ?? Math.max(0, (original.data().heartCount || 0) + (selected ? 1 : -1)) }
   } catch (error) {
     if (error instanceof Error && !('code' in error)) throw error
-    throw new Error('하트를 저장하지 못했어요. 페이지를 새로고침한 뒤 다시 눌러 주세요.')
+    throw new Error('하트를 저장하지 못했어요. 목록을 새로고침하고 다시 시도해 주세요.')
   }
 }

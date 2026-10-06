@@ -6,6 +6,7 @@ export default defineConfig({
   fullyParallel: true,
   retries: 0,
   reporter: 'list',
+  outputDir: 'test-results/reading',
   use: { baseURL: 'http://127.0.0.1:4183/bae-memoir/', trace: 'retain-on-failure' },
   projects: [
     { name: 'phone', use: { ...devices['iPhone 13'], defaultBrowserType: 'chromium' } },

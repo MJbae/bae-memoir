@@ -84,8 +84,8 @@ test('누락·잘못된·중복 ID, 부 번호, 시점 줄, 예약 ID, 본문 �
     ['{#josae}', '{#1930s}', /예약된/],
     ['{#josae}', '{#prologue}', /예약 ID|ID 중복/],
     ['# 2부. 가마솥', '# 3부. 가마솥', /부 번호/],
-    ['*1940년대 · 안면도 중장리*', '시점 없음', /시점 줄/],
-    ['*1940년대 · 안면도 중장리*', `*${'가'.repeat(41)}*`, /시점 줄/],
+    ['*1940년대, 안면도 중장리*', '시점 없음', /시점 줄/],
+    ['*1940년대, 안면도 중장리*', `*${'가'.repeat(41)}*`, /시점 줄/],
   ]) { write(mainFilename, original.replace(from, to)); assert.throws(run, error) }
   write(mainFilename, '# 1부. 갯벌\n\n## 제목 {#one}\n\n*1940년*\n')
   assert.throws(run, /본문이 비어/)

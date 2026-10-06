@@ -218,8 +218,8 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
   const chapters = readingOrder.filter(e => e.number !== null)
   const redirects = Object.entries(legacyEpisodes).filter(([, id]) => readingOrder.some(e => e.episodeId === id)).map(([old, id]) => {
     const target = readingOrder.find(e => e.episodeId === id)
-    return register({ id: `legacy-${old}`, filename: `${old}.md`, title: '이 이야기의 주소가 바뀌었습니다',
-      body: `이 이야기는 [${target.label} ${target.title}](${target.url})에서 읽으실 수 있습니다.`,
+    return register({ id: `legacy-${old}`, filename: `${old}.md`, title: '이야기가 옮겨졌습니다',
+      body: `이 이야기는 [${target.label} ${target.title}](${target.url})로 옮겼습니다.`,
       description: `${target.label} ${target.title}`, kind: 'redirect', redirect: target.url, source: mainFilename })
   })
   const legacyIds = Object.fromEntries(redirects.map(p => [`life-${p.filename.replace('.md', '')}`, readingOrder.find(e => e.url === p.redirect).id]))
@@ -345,7 +345,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
       return [page.filename, frontmatter(metadata, rewriteLinks(page.body, page.source))]
     })
   )
-  const catalog = { title: work.title, work, parts: structure.parts, chapters, readingOrder, legacyIds, documents, fullStory }
+  const catalog = { title: '아버지의 기록', work, parts: structure.parts, chapters, readingOrder, legacyIds, documents, fullStory }
 
   let previousFiles = []
   if (existsSync(manifestFile)) {

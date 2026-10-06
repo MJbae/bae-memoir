@@ -1,0 +1,70 @@
+{
+  "originalLength": 2966,
+  "rewrittenLength": 3218,
+  "changeRatePercent": 11.45,
+  "reviewedCopyUnitsBefore": 191,
+  "reviewedCopyUnitsAfter": 190,
+  "categoryCounts": {
+    "K-TIME-PLACE": {
+      "before": 7,
+      "after": 0
+    },
+    "K-SENTENCE": {
+      "before": 5,
+      "after": 0
+    },
+    "K-UI": {
+      "before": 6,
+      "after": 0
+    },
+    "A-18": {
+      "before": 1,
+      "after": 0
+    }
+  },
+  "findingNote": "K는 사용자 요청에 따라 따로 검토한 한국어 문법·안내 표현이며 AI 문체 분류와 구분한다.",
+  "selfChecks": {
+    "namesNumbersDatesAndQuotes": true,
+    "changeRateUnder30Percent": true,
+    "genrePreserved": true,
+    "registerPreserved": true,
+    "noResidualHighSeverityAiPatternsInTargetCopy": true,
+    "noAddedMetaphorsOrRhetoric": true
+  },
+  "selfCheckPassCount": 6,
+  "grade": "A",
+  "gradeReason": "사실과 원고 구조를 유지하며 안내 문구의 모호한 주어·시간 범위·명사 나열을 정리했다.",
+  "metricsNote": "AI 확률 점수는 산정하지 않았다. 변경률은 실제 검토한 서비스 문구 전체를 문자 단위로 대조했다.",
+  "highlights": [
+    {
+      "before": "1936년부터 어린 시절, 안면도 중장리",
+      "after": "어린 시절(1936년 출생) · 안면도 중장리"
+    },
+    {
+      "before": "독정리 시절, 지난날의 기억",
+      "after": "자녀들을 키우던 시절 · 안면도와 독정리"
+    },
+    {
+      "before": "감상이나 이 장면의 기억을 남겨 주세요.",
+      "after": "읽고 느낀 점이나 기억나는 이야기를 적어 주세요."
+    },
+    {
+      "before": "그 기억을 댓글로 보태 주세요",
+      "after": "그때의 이야기를 댓글로 들려주세요."
+    }
+  ],
+  "residualFindings": [],
+  "serviceChecks": {
+    "content": 14,
+    "reading": 24,
+    "commentsAndReactions": 14,
+    "sharing": 5,
+    "total": 57,
+    "build": "passed through reading suite",
+    "typecheck": "passed",
+    "diffCheck": "passed",
+    "mobile320px": "passed",
+    "protectedManuscriptNumbersDatesAndDirectQuotes": "passed",
+    "episodeIdsAndOrder": "unchanged"
+  }
+}

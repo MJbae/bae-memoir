@@ -1,13 +1,15 @@
 import { defineConfig } from 'vitepress'
 import { loadEnv } from 'vite'
 import { fileURLToPath } from 'node:url'
-import { decadeComments } from './markdown/decade-comments'
+import { episodeComments } from './markdown/episode-comments'
+import catalog from './generated/catalog.json'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
 const env = loadEnv(process.env.NODE_ENV || 'production', root, '')
 const base = process.env.SITE_BASE || env.SITE_BASE || '/bae-memoir/'
-const siteName = '아버지의 기록'
-const siteDescription = '연대별로 엮은 배병희의 자서전입니다.'
+const workTitle = catalog.work.title
+const siteName = workTitle
+const siteDescription = catalog.work.synopsis[0]
 const siteOrigin = 'https://mjbae.github.io'
 const shareImage = new URL(`${base}og-image.png`, siteOrigin).href
 const commentsConfigured = [
@@ -19,16 +21,17 @@ const commentsConfigured = [
 
 export default defineConfig({
   lang: 'ko-KR',
-  title: siteName,
-  titleTemplate: `:title · ${siteName}`,
+  title: workTitle,
+  titleTemplate: `:title · ${workTitle}`,
   description: siteDescription,
   base,
   lastUpdated: false,
   cleanUrls: false,
   appearance: false,
   head: [
+    ['script', {}, "try{const m=localStorage.getItem('family-library:theme');if(['auto','light','dark'].includes(m))document.documentElement.dataset.theme=m}catch(e){}"],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
-    ['meta', { name: 'color-scheme', content: 'light' }],
+    ['meta', { name: 'color-scheme', content: 'light dark' }],
     [
       'meta',
       { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
@@ -57,7 +60,7 @@ export default defineConfig({
     // 원고의 일반 Markdown과 사진을 지원하며 임의 HTML 실행은 허용하지 않습니다.
     config(md) {
       md.set({ html: false })
-      md.use(decadeComments, { base, enabled: commentsConfigured })
+      md.use(episodeComments, { base, enabled: commentsConfigured })
     },
   },
   vite: {
@@ -67,17 +70,18 @@ export default defineConfig({
   },
   transformPageData(pageData) {
     const isHome = pageData.frontmatter.layout === 'home'
-    const title = isHome ? siteName : `${pageData.title} · ${siteName}`
-    const description = pageData.frontmatter.decade
-      ? `${siteDescription} ${pageData.frontmatter.decade}의 기록입니다.`
-      : siteDescription
+    const title = isHome ? workTitle : String(pageData.frontmatter.shareTitle || `${pageData.title} · ${workTitle}`)
+    pageData.frontmatter.titleTemplate = false
+    pageData.title = title
+    const description = isHome ? siteDescription : String(pageData.frontmatter.description || siteDescription)
     const relative = pageData.relativePath
       .replace(/(^|\/)index\.md$/, '$1')
       .replace(/\.md$/, '.html')
-    const url = new URL(`${base}${relative}`, siteOrigin).href
+    const url = new URL(`${base}${pageData.frontmatter.redirect ? String(pageData.frontmatter.redirect).replace(/^\//, '') : relative}`, siteOrigin).href
     pageData.description = description
     pageData.frontmatter.description = description
     pageData.frontmatter.head ??= []
+    if (pageData.frontmatter.redirect) pageData.frontmatter.head.push(['meta', { 'http-equiv': 'refresh', content: `0;url=${base}${String(pageData.frontmatter.redirect).replace(/^\//, '')}` }])
     pageData.frontmatter.head.push(
       ['link', { rel: 'canonical', href: url }],
       ['meta', { property: 'og:title', content: title }],

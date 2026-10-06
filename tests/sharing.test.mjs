@@ -1,17 +1,14 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
+import catalog from '../site/.vitepress/generated/catalog.json' with { type: 'json' }
 
 const dist = new URL('../site/.vitepress/dist/', import.meta.url)
 const siteUrl = 'https://mjbae.github.io/bae-memoir/'
-const title = '아버지의 기록'
-const description = '연대별로 엮은 배병희의 자서전입니다.'
+const title = catalog.work.title
+const description = catalog.work.synopsis[0]
 const imageUrl = `${siteUrl}og-image.png`
-const manuscript = await readFile(new URL('../배병희_자서전.md', import.meta.url), 'utf8')
-const chapterTitles = [...manuscript.matchAll(/^## ((\d{4})년대[^\n]*)$/gm)].map((match) => ({
-  title: match[1],
-  year: match[2],
-}))
+const chapterTitles = catalog.readingOrder
 
 function decodeHtml(value) {
   const named = { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>' }
@@ -86,23 +83,23 @@ test('the home page provides its sharing title and description without JavaScrip
   assertPreviewImage(head)
 })
 
-test('each decade link uses its current manuscript title and stable canonical URL', async () => {
+test('each episode link uses its current manuscript title and stable canonical URL', async () => {
   for (const chapter of chapterTitles) {
-    const head = await staticHead(`read/${chapter.year}s.html`)
-    const decadeTitle = head.meta('og:title')
-    assert.ok(decadeTitle.includes(chapter.title))
-    assert.ok(decadeTitle.includes(title))
-    assert.ok(head.meta('og:description').includes(description))
-    assert.equal(head.meta('twitter:title'), decadeTitle)
+    const head = await staticHead(`read/${chapter.episodeId}.html`)
+    const episodeTitle = head.meta('og:title')
+    assert.ok(episodeTitle.includes(chapter.title))
+    assert.ok(episodeTitle.includes(title))
+    assert.ok(head.meta('og:description').includes(chapter.time))
+    assert.equal(head.meta('twitter:title'), episodeTitle)
     assert.equal(head.meta('twitter:description'), head.meta('og:description'))
-    assert.equal(head.link('canonical').href, `${siteUrl}read/${chapter.year}s.html`)
-    assert.equal(head.meta('og:url'), `${siteUrl}read/${chapter.year}s.html`)
+    assert.equal(head.link('canonical').href, `${siteUrl}read/${chapter.episodeId}.html`)
+    assert.equal(head.meta('og:url'), `${siteUrl}read/${chapter.episodeId}.html`)
     assertPreviewImage(head)
   }
 })
 
-test('home and decade pages expose browser and mobile icons from the deployed base path', async () => {
-  for (const page of ['index.html', `read/${chapterTitles[0].year}s.html`]) {
+test('home and episode pages expose browser and mobile icons from the deployed base path', async () => {
+  for (const page of ['index.html', `read/${chapterTitles[0].episodeId}.html`]) {
     const head = await staticHead(page)
     assert.equal(head.link('icon', '/bae-memoir/favicon.svg').type, 'image/svg+xml')
     const favicon = head.link('icon', '/bae-memoir/favicon-32.png')
@@ -145,4 +142,11 @@ test('published image files and the mobile manifest use their declared sizes and
     assert.ok(new URL(icon.src, siteUrl).href.startsWith(siteUrl))
     await assertPngDimensions(icon.src, size, size)
   }
+})
+
+test('legacy decade addresses contain a static refresh and canonical link to the moved episode', async () => {
+  const head = await staticHead('read/1930s.html')
+  assert.equal(head.link('canonical').href, `${siteUrl}read/josae.html`)
+  const html = await readFile(new URL('read/1930s.html', dist), 'utf8')
+  assert.match(html, /http-equiv="refresh" content="0;url=\/bae-memoir\/read\/josae.html"/)
 })

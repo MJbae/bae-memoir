@@ -1,0 +1,7 @@
+{
+  "runId": "2026-10-06-001",
+  "genre": "웹소설 읽기 서비스의 소개·안내 문구",
+  "scope": "소개글, 26편의 시간·장소 안내, 6부 설명, 읽기·댓글·반응 안내, 공유 이미지, 개편 때 작성한 연결 문장",
+  "skill": "humanize-korean/SKILL.md",
+  "rulesFallback": "/Users/baemanjin/.codex/plugins/cache/im-not-ai-codex-marketplace/im-not-ai-codex/2.0.0/skills/humanize-korean/references/quick-rules.md"
+}

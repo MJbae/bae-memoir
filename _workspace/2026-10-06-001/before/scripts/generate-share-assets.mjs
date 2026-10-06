@@ -47,16 +47,16 @@ try {
   </style></head><body><main>
     <div class="icon">${icon}</div>
     <h1>내 논을 파는 한이 있어도</h1>
-    <p>안면도 갯벌에서 남양만 들녘으로 삶의 터전을 옮겼다.<br>땅을 팔아서라도 농민들의 볏값을 치른 배병희의 삶을 담았다.</p>
-    <footer>배병희 자전소설 · 6부 23화</footer>
+    <p>안면도 갯벌에서 남양만 들녘까지.<br>농민들의 볏값을 지켜낸 한 사람의 기록.</p>
+    <footer>아버지의 기록 · 배병희 자전소설 · 6부 23화</footer>
   </main></body></html>`)
   await page.evaluate(() => document.fonts.ready)
   await page.screenshot({ path: `${publicDirectory}/og-image.png` })
   await page.close()
 
   await writeFile(`${publicDirectory}/site.webmanifest`, JSON.stringify({
-    name: '내 논을 파는 한이 있어도',
-    short_name: '내 논을 파는 한이 있어도',
+    name: '아버지의 기록',
+    short_name: '아버지의 기록',
     description: '내 논을 파는 한이 있어도 — 배병희 자전소설',
     lang: 'ko',
     id: './',

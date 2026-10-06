@@ -494,7 +494,7 @@ defineExpose({ focusComposer })
     tabindex="-1"
   >
     <h2 id="comments-heading">{{ heading }}<span v-if="!loading && !loadError"> {{ hasMore || comments.length > 30 ? '30+' : comments.length }}</span></h2>
-    <button v-if="!composerOpen" type="button" class="composer-prompt" @click="focusComposer">읽고 느낀 점이나 기억나는 이야기를 적어 주세요.</button>
+    <button v-if="!composerOpen" type="button" class="composer-prompt" @click="focusComposer">감상이나 이 장면의 기억을 남겨 주세요.</button>
 
     <form
       ref="composer"
@@ -527,7 +527,7 @@ defineExpose({ focusComposer })
           v-model="author"
           name="author"
           type="text"
-          placeholder="이름이나 호칭을 적어 주세요."
+          placeholder="이름 또는 호칭"
           autocomplete="nickname"
           maxlength="24"
           required
@@ -548,7 +548,7 @@ defineExpose({ focusComposer })
           v-model="body"
           name="comment"
           :placeholder="
-            replyTo ? '답글을 적어 주세요.' : '읽고 느낀 점이나 기억나는 이야기를 적어 주세요.'
+            replyTo ? '덧붙일 기억을 적어 주세요.' : '감상이나 이 장면의 기억을 남겨 주세요.'
           "
           maxlength="2000"
           rows="4"

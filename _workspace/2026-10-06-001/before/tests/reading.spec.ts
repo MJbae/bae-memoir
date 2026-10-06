@@ -2,14 +2,14 @@ import { expect, test, type Page } from '@playwright/test'
 import { legacyEpisodes } from '../site/.vitepress/shared/episode-heading.mjs'
 async function noOverflow(page: Page) { expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true) }
 
-test('작품 홈의 26편 목록과 처음부터 읽기에서 원고를 읽는다', async ({ page }, info) => {
+test('작품 홈의 26편 목록과 첫 화 보기에서 원고를 읽는다', async ({ page }, info) => {
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message))
   await page.goto('./')
   await expect(page.getByRole('heading', { name: '내 논을 파는 한이 있어도', exact: true })).toBeVisible()
   await expect(page.locator('.chapter-row')).toHaveCount(26)
   await expect(page.locator('.part-heading')).toHaveCount(6)
   await expect(page.locator('.work-synopsis')).toContainText('3억 원')
-  await expect(page.locator('.resume-link')).toHaveText('처음부터 읽기')
+  await expect(page.locator('.resume-link')).toHaveText('첫 화 보기')
   await noOverflow(page)
   await page.screenshot({ path: `test-results/reading/${info.project.name}-home.png`, fullPage: true })
   await page.locator('.resume-link').click()
@@ -22,7 +22,7 @@ test('작품 홈의 26편 목록과 처음부터 읽기에서 원고를 읽는�
   expect(errors).toEqual([])
 })
 
-test('다음 화·읽음·읽던 화를 연결하고 목록의 해당 줄로 돌아간다', async ({ page }) => {
+test('다음 화·읽음·보던 화를 연결하고 목록의 해당 줄로 돌아간다', async ({ page }) => {
   await page.goto('read/prologue.html')
   await page.locator('.next-episode').scrollIntoViewIfNeeded()
   await page.locator('.next-episode').click()
@@ -33,9 +33,9 @@ test('다음 화·읽음·읽던 화를 연결하고 목록의 해당 줄로 돌
   await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('family-library:completed') || '[]'))).toContain('ep-josae')
   await page.locator('.back-link').click()
   await expect(page).toHaveURL(/#episode-josae$/)
-  await expect(page.locator('#episode-josae')).toContainText('읽던 화')
+  await expect(page.locator('#episode-josae')).toContainText('보던 화')
   await expect(page.locator('#episode-josae')).toContainText('읽음')
-  await expect(page.locator('.resume-link')).toContainText('다음 화 읽기')
+  await expect(page.locator('.resume-link')).toContainText('다음 화 보기')
   await expect(page.locator('.resume-link')).toContainText('2화 책보 대신 지게')
   await page.locator('.resume-link').click()
   await expect(page).toHaveURL(/read\/jige\.html$/)
@@ -54,7 +54,7 @@ test('읽던 위치와 네 단계 글자 크기를 기억한다', async ({ page 
   const back = await page.locator('.back-link').boundingBox()
   // Click the visible sticky toolbar: Playwright's automatic scrollIntoView can move it to document top.
   await page.mouse.click(back!.x + back!.width / 2, back!.y + back!.height / 2)
-  await expect(page.locator('.resume-link')).toContainText('이어서 읽기')
+  await expect(page.locator('.resume-link')).toContainText('이어보기')
   await page.locator('.resume-link').click()
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(200)
   await noOverflow(page)
@@ -106,7 +106,7 @@ test('23화에서 에필로그·외전·목록까지 이어지고 전체 읽기�
   await page.locator('.next-episode').click()
   await expect(page).toHaveURL(/read\/side-table\.html$/)
   await page.locator('.next-episode').click()
-  await expect(page.locator('.resume-link')).toContainText('처음부터 다시 읽기')
+  await expect(page.locator('.resume-link')).toContainText('다시 보기')
   await page.getByRole('link', { name: '한 번에 읽기', exact: true }).click()
   await expect(page.locator('.story-content h2')).toHaveCount(26)
   await expect(page.locator('.story-content h3')).toHaveCount(0)
