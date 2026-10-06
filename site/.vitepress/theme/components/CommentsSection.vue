@@ -17,7 +17,7 @@ type ReplyContext = Pick<FamilyComment, 'id' | 'author' | 'body'>
 type Draft = { body: string; replyTo: ReplyContext | null }
 
 const NAME_KEY = 'family-library:comment-name'
-const draftKey = (pageId: string) => `family-library:comment-draft:${pageId}`
+const draftKey = (pageId: string) => `family-library:comment-draft:memoir-${pageId}`
 const author = ref('')
 const body = ref('')
 const replyTo = ref<ReplyContext | null>(null)

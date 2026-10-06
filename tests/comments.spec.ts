@@ -10,7 +10,7 @@ const PROJECT = 'demo-family-library'
 const FIRESTORE = 'http://127.0.0.1:8080'
 const AUTH = 'http://127.0.0.1:9099'
 const documentsBase = `${FIRESTORE}/v1/projects/${PROJECT}/databases/(default)/documents`
-const commentsFor = (pageId: string) => `${documentsBase}/pages/${pageId}/comments`
+const commentsFor = (pageId: string) => `${documentsBase}/pages/memoir-${pageId}/comments`
 
 async function openComments(page: Page, decade = '1930') {
   await page.goto(`/read/${decade}s.html#comments`)

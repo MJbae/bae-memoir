@@ -49,6 +49,10 @@ type CommentCursor = {
 const PAGE_SIZE = 30
 const COOLDOWN_MS = 15_000
 const VALID_ID = /^[A-Za-z0-9_-]{1,120}$/
+// The original autobio-bae site shares this Firebase project and stores comments
+// under the bare page ID. Prefix ours so the two sites keep separate threads.
+const COMMENT_NAMESPACE = 'memoir-'
+const storedPageId = (pageId: string) => `${COMMENT_NAMESPACE}${pageId}`
 
 let clients: { auth: Auth; db: Firestore } | undefined
 let signingIn: ReturnType<typeof signInAnonymously> | undefined
@@ -197,7 +201,7 @@ export async function fetchComments(
     }
     // One bounded read per request, rather than a permanent realtime listener.
     const result = await getDocsFromServer(
-      query(collection(db, 'pages', pageId, 'comments'), ...constraints)
+      query(collection(db, 'pages', storedPageId(pageId), 'comments'), ...constraints)
     )
     return {
       comments: result.docs.map(toComment),
@@ -224,7 +228,9 @@ export async function postComment(pageId: string, input: CommentInput): Promise<
   try {
     const { auth, db } = getClients()
     if (parentId) {
-      const parent = await getDocFromServer(doc(db, 'pages', pageId, 'comments', parentId))
+      const parent = await getDocFromServer(
+        doc(db, 'pages', storedPageId(pageId), 'comments', parentId)
+      )
       if (!parent.exists() || parent.data().parentId !== null) {
         throw new Error('원댓글이 없어요. 답글을 취소하고 새로 남겨 주세요.')
       }
@@ -251,13 +257,13 @@ export async function postComment(pageId: string, input: CommentInput): Promise<
       throw new Error(`${waitSeconds}초 후에 다시 남겨 주세요.`)
     }
 
-    const commentRef = doc(collection(db, 'pages', pageId, 'comments'))
+    const commentRef = doc(collection(db, 'pages', storedPageId(pageId), 'comments'))
     const batch = writeBatch(db)
     batch.set(commentRef, { author, body, parentId, uid: user.uid, createdAt: serverTimestamp() })
     batch.set(rateRef, {
       lastCommentAt: serverTimestamp(),
       lastCommentId: commentRef.id,
-      lastPageId: pageId,
+      lastPageId: storedPageId(pageId),
     })
     // Rules require this pair of writes and enforce the cooldown atomically.
     await batch.commit()
@@ -288,7 +294,7 @@ export async function updateComment(
   try {
     const { auth, db } = getClients()
     const user = await existingCommentUser(auth)
-    const commentRef = doc(db, 'pages', pageId, 'comments', commentId)
+    const commentRef = doc(db, 'pages', storedPageId(pageId), 'comments', commentId)
     const original = await getDocFromServer(commentRef)
     if (!original.exists()) {
       throw new Error('삭제된 댓글이에요. 목록을 새로고침해 주세요.')
@@ -318,7 +324,7 @@ export async function deleteComment(pageId: string, commentId: string): Promise<
   try {
     const { auth, db } = getClients()
     const user = await existingCommentUser(auth)
-    const commentRef = doc(db, 'pages', pageId, 'comments', commentId)
+    const commentRef = doc(db, 'pages', storedPageId(pageId), 'comments', commentId)
     const original = await getDocFromServer(commentRef)
     // A retry after successful deletion has already achieved the desired state.
     if (!original.exists()) return
