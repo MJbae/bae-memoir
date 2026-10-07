@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript_sha256": "67fb662993f5091798519aa056e851850b7455b819fe8bea8f82356e345a5825",
+  "manuscript_sha256": "cf8727edced99075688d192fc11722574b5d6dcb11b2c30bc338b5a011b637c5",
   "episode_count": 26,
   "episodes": [
     {
@@ -8,7 +8,7 @@
       "number": null,
       "type": "프롤로그",
       "title": "프롤로그. 벼 한 톨의 무게",
-      "setting": "1990년대 초 · 화성 독정리",
+      "setting": "1990년대 초 · 독정 정미소",
       "suggested_representative_scene": "볏값을 지키려 논을 내놓는 중년 배병희와 독정리 들판",
       "reference_ids": [
         "local-01",
@@ -29,7 +29,7 @@
       "number": 1,
       "type": "본편",
       "title": "어머니의 조새",
-      "setting": "어린 시절(1936년 출생) · 안면도 중장리",
+      "setting": "1930년대 · 안면도 중장리",
       "suggested_representative_scene": "찬 갯벌에서 조새로 굴을 채취하는 어머니",
       "reference_ids": [
         "local-08",
@@ -69,7 +69,7 @@
       "number": 3,
       "type": "본편",
       "title": "열두 자리 숫자",
-      "setting": "6·25 전쟁 무렵 · 안면도",
+      "setting": "1950년대 · 안면도 중장리",
       "suggested_representative_scene": "보리 타작 마당에서 도리깨를 든 소년",
       "reference_ids": [
         "local-01",
@@ -111,7 +111,7 @@
       "number": 5,
       "type": "본편",
       "title": "미꾸라지 칼국수",
-      "setting": "스물다섯 살에 가정을 꾸린 뒤 · 안면도",
+      "setting": "1960년대 · 안면도 중장리",
       "suggested_representative_scene": "아궁이 앞 가마솥에서 일꾼과 가족의 칼국수를 끓이는 아내",
       "reference_ids": [
         "sup-009",
@@ -130,7 +130,7 @@
       "number": 6,
       "type": "본편",
       "title": "한겨울의 김발",
-      "setting": "1960년대 겨울 · 중장리 앞바다",
+      "setting": "1960년대 · 중장리 앞바다",
       "suggested_representative_scene": "겨울 갯벌의 김 말뚝과 마당에서 김발을 말리는 가족",
       "reference_ids": [
         "local-08",
@@ -153,7 +153,7 @@
       "number": 7,
       "type": "본편",
       "title": "바닷물로 삶은 멸치",
-      "setting": "1972년 무렵 · 서해 갯가",
+      "setting": "1970년대 초 · 서해 갯가",
       "suggested_representative_scene": "자갈밭의 가마솥에서 바닷물로 멸치를 삶는 배병희",
       "reference_ids": [
         "local-01",
@@ -174,7 +174,7 @@
       "number": 8,
       "type": "본편",
       "title": "숟가락 위의 납",
-      "setting": "1970년대 초 · 안면도",
+      "setting": "1970년대 초 · 안면도 중장리",
       "suggested_representative_scene": "탈곡기 곁에서 숟가락 위 납으로 부품을 고치는 손",
       "reference_ids": [
         "local-01",
@@ -193,7 +193,7 @@
       "number": 9,
       "type": "본편",
       "title": "이웃들이 따라나선 이유",
-      "setting": "1977년 무렵 · 안면도에서 남양만으로",
+      "setting": "1977년 · 안면도에서 남양만으로",
       "suggested_representative_scene": "경운기와 바인더를 챙겨 새 터전으로 향하는 이주",
       "reference_ids": [
         "local-01",
@@ -216,7 +216,7 @@
       "number": 10,
       "type": "본편",
       "title": "소금기 밴 6만 평",
-      "setting": "1977년 무렵 · 화성군 장안면 독정리",
+      "setting": "1977년 · 화성 독정리",
       "suggested_representative_scene": "짠물을 빼고 민물을 대며 간척지 물길을 돌보는 배병희",
       "reference_ids": [
         "local-01",
@@ -237,7 +237,7 @@
       "number": 11,
       "type": "본편",
       "title": "차비 잘 챙겨라",
-      "setting": "자녀들을 키우던 시절 · 안면도와 독정리",
+      "setting": "1980년대 초 · 화성 독정리",
       "suggested_representative_scene": "반찬통을 든 딸에게 새벽 길에서 차비를 당부하는 아버지",
       "reference_ids": [
         "local-01",
@@ -258,7 +258,7 @@
       "number": 12,
       "type": "본편",
       "title": "가족은 반대했다",
-      "setting": "1983년 10월 · 독정리 78-4번지",
+      "setting": "1983년 · 독정 정미소",
       "suggested_representative_scene": "낡은 새마을정미소 앞에서 인수를 결심하는 배병희",
       "reference_ids": [
         "local-01",
@@ -279,7 +279,7 @@
       "number": 13,
       "type": "본편",
       "title": "장대비와 손전등",
-      "setting": "1980년대 · 새마을정미소",
+      "setting": "1980년대 · 독정 정미소",
       "suggested_representative_scene": "장대비 속 손전등으로 야적 가마니의 방수포를 지키는 배병희",
       "reference_ids": [
         "local-01",
@@ -300,7 +300,7 @@
       "number": 14,
       "type": "본편",
       "title": "들판을 가로지른 전봇대",
-      "setting": "1980년대 · 독정리 들판",
+      "setting": "1980년대 · 독정 정미소",
       "suggested_representative_scene": "들판을 가로질러 정미소로 이어지는 전봇대",
       "reference_ids": [
         "local-01",
@@ -321,7 +321,7 @@
       "number": 15,
       "type": "본편",
       "title": "못 본 척한 봄밤",
-      "setting": "어느 봄날 밤 · 정미소 헛간",
+      "setting": "1980년대 · 독정 정미소",
       "suggested_representative_scene": "헛간의 볍씨를 가져가는 이웃을 보고 조용히 돌아서는 배병희",
       "reference_ids": [
         "local-01",
@@ -342,7 +342,7 @@
       "number": 16,
       "type": "본편",
       "title": "부엌을 지킨 사람",
-      "setting": "1980년대 · 정미소 부엌",
+      "setting": "1980년대 · 독정 정미소",
       "suggested_representative_scene": "수많은 식구와 일꾼의 밥을 짓는 아내의 손과 가마솥",
       "reference_ids": [
         "sup-009",
@@ -361,7 +361,7 @@
       "number": 17,
       "type": "본편",
       "title": "떼인 3억",
-      "setting": "1990년대 초 · 독정리 정미소",
+      "setting": "1990년대 초 · 독정 정미소",
       "suggested_representative_scene": "텅 빈 창고와 부도 수표 앞의 중년 배병희",
       "reference_ids": [
         "local-01",
@@ -382,7 +382,7 @@
       "number": 18,
       "type": "본편",
       "title": "마지막 1만 2천 평",
-      "setting": "1990년대 초 · 독정리",
+      "setting": "1990년대 초 · 독정 정미소",
       "suggested_representative_scene": "마지막 논을 남겨두고 농민에게 볏값을 치르는 배병희",
       "reference_ids": [
         "local-01",
@@ -403,7 +403,7 @@
       "number": 19,
       "type": "본편",
       "title": "물벼가 쏟아진다",
-      "setting": "1990년대 중후반 · 독정리 정미소",
+      "setting": "1990년대 중후반 · 독정 정미소",
       "suggested_representative_scene": "수확기 물벼가 몰려드는 정미소와 건조·저장 시설",
       "reference_ids": [
         "janganrice-13",
@@ -426,7 +426,7 @@
       "number": 20,
       "type": "본편",
       "title": "빈자리",
-      "setting": "1990년대 후반",
+      "setting": "1990년대 후반 · 독정 정미소",
       "suggested_representative_scene": "부엌의 빈자리와 배우자를 그리워하는 배병희",
       "reference_ids": [
         "local-01",
@@ -468,7 +468,7 @@
       "number": 22,
       "type": "본편",
       "title": "300만 평의 약속",
-      "setting": "2003년 이후 · 독정RPC",
+      "setting": "2000년대 · 독정 RPC",
       "suggested_representative_scene": "계약재배 논에서 수확물을 함께 살피는 농민과 가족",
       "reference_ids": [
         "inucom-11",
@@ -491,7 +491,7 @@
       "number": 23,
       "type": "본편",
       "title": "지게 대신 로봇",
-      "setting": "2010년대 · 독정RPC",
+      "setting": "2010년대 · 독정 RPC",
       "suggested_representative_scene": "현대 도정공장 안에서 쌀포대를 쌓는 적재 로봇",
       "reference_ids": [
         "mysaigon-09",
@@ -516,7 +516,7 @@
       "number": null,
       "type": "에필로그",
       "title": "에필로그. 다시 태어나도",
-      "setting": "팔순 이후, 해 질 무렵 · 남양만 들녘",
+      "setting": "2010년대 · 남양만 들녘",
       "suggested_representative_scene": "해 질 무렵 독정RPC 마당에서 남양만 들녘을 바라보는 노년 배병희",
       "reference_ids": [
         "local-02",
@@ -537,7 +537,7 @@
       "number": null,
       "type": "외전",
       "title": "외전. 아버지의 밥상",
-      "setting": "가족들이 기억하는 아버지",
+      "setting": "가족의 기억 · 독정 RPC",
       "suggested_representative_scene": "밤늦게 돌아온 자식을 기다리며 수육 상을 차린 아버지",
       "reference_ids": [
         "local-02",
