@@ -62,7 +62,7 @@
       "previousMasterSha256": "72e869c6f552805783d2313c7444b5a411a0e5905f32d019f34f0684b794b6eb"
     },
     {
-      "id": "ep09-01",
+      "id": "ep09-02",
       "episodeId": "ep09",
       "master": "content/illustration-sources/ep09-01.png",
       "sceneHeading": "일곱 가구가 따라나선 길 {#ep09}",
@@ -103,10 +103,13 @@
       ],
       "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor episode illustration for Bae Byung-hee's autobiography. This is a FACE IDENTITY correction and a WATERCOLOR STYLE correction of input image 5. Keep its good composition and all the already-corrected farming actions.\nReference priority: image 1 is the actual person and is the mandatory face identity source: use the adult man's face in the center of the photograph, never the child. Image 2 is the existing approved watercolor portrait of that SAME man. Image 3 is an existing series scene of him with his daughter; study his familiar facial proportions and hand-painted style. Image 4 is another existing series painting, the style source for the rural environment, clothing, and paper texture. Image 5 is the EDIT TARGET, used only for scene layout, body pose, binder geometry, and object positions. Its current generic man's face must be replaced, not preserved.\nIdentity: repaint the farmer so that he is unmistakably the adult man in image 1 and the portrait in image 2. Retain the actual width-to-height of his face, broad midface and full cheeks, softly hooded narrow eyes, familiar brow shape, broad rounded nose, characteristic lips, jaw and chin, ear shape, and forehead-to-hairline relationship. Do not substitute another smiling farmer or idealize his features. For the mid-1970s scene, depict the same man at about 40-45: modestly reduce age lines and retain black hair, but do not redesign the bone structure, nose, eye spacing, or mouth. Keep an understated closed-mouth expression. Keep the cap, ordinary work clothes, gloves and boots of image 5. The face must remain recognizably his even at this small scene scale.\nWatercolor: paint the ENTIRE scene in the established watercolor language of images 2, 3 and 4, with stronger visible transparent washes than the edit target. Hand-painted watercolor on warm cold-pressed paper, broad wet-on-wet color transitions, pigment blooms and granulation, visible brush-shaped marks, softly lost edges alternating with a few crisp defining strokes, and light paper showing through highlights. Group rice, foliage and clothing into painterly color masses; retain readable face, hands and machine using selective strokes. The texture must come from paint and paper, not a uniformly speckled photo filter. Aim for the same watercolor family as the reference illustrations, with ochre rice, restrained grey-blue clothes and hazy blue hills. Avoid photographic microdetail, glossy rendered skin, a sharp digital painting covered with noise, oil impasto, cartoon abstraction and hard outlines.\nInvariants: keep the image-5 frontal walk-behind reaper-binder, crop dividers pointing toward the viewer, operator behind it with both hands on rear handle grips, coherent wheels and chassis, cut strip, tied sheaves and golden rice field. Preserve framing, scale, rural era, 16:9 landscape, and anatomical connections. Do not move objects, add people, revert to a side view, or change the machinery. No text, logos, watermark, or pasted photographic face: integrate his likeness fully into the watercolor.",
       "previousIllustrationSha256": "8221330c290806eb49e01f9c594ca5effdc29ad9bac7bf5314fc4584c509977a",
-      "previousMasterSha256": "0199475e9471b99d3d5369ca74178d74561e681cc1e6e5e21849892ade89571a"
+      "previousMasterSha256": "0199475e9471b99d3d5369ca74178d74561e681cc1e6e5e21849892ade89571a",
+      "previousIllustrationId": "ep09-01",
+      "placementRole": "body",
+      "placementReason": "이주 행렬을 제목 아래로 올리고 바인더 장면은 해당 작업 문단으로 이동"
     },
     {
-      "id": "ep09-02",
+      "id": "ep09-01",
       "episodeId": "ep09",
       "master": "content/illustration-sources/ep09-02.png",
       "sceneHeading": "일곱 가구가 따라나선 길 {#ep09}",
@@ -147,7 +150,10 @@
       ],
       "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor autobiography illustration. Correct FACE IDENTITY and WATERCOLOR STYLE in input image 5. Preserve its successfully corrected 1977 migration composition and vehicle connections. Reference roles: image 1 is the actual protagonist's face, the adult man in the center, mandatory identity reference. Image 2 is the existing approved watercolor portrait of the SAME man. Image 3 is another existing series painting of him with his daughter, an identity and watercolor reference. Image 4 is the newly corrected front-view binder scene, fixing how the same 1970s man is rendered in this replacement set. Image 5 is the EDIT TARGET, its scene and vehicle geometry only, not its generic driver face.\nThe protagonist MUST be unmistakably the actual adult man in image 1 and the SAME person as the existing portrait in image 2 and father in image 3. Preserve his face width-to-height, broad midface and full cheeks, softly hooded narrow eyes and familiar brows, broad rounded nose, characteristic lip shape, rounded jaw and chin, ears and forehead-to-hairline relationship. Use age adjustments only for wrinkles and hair; do not redesign facial structure or substitute a generic rural man. No pasted photographic face: paint his real likeness coherently in watercolor. Only the main father's identity is corrected; do not give his face to other family members or neighbors.\nThe seated driver is Bae Byung-hee at about 45: use the same face as the photograph and corrected binder, slightly fewer age lines, black hair and the existing cap. In his existing three-quarter head angle, preserve the recognizable nose profile, eye position, cheek volume, mouth and chin. Keep natural scale and ordinary calm expression. Keep him securely seated at the front of the wooden load trailer with both hands on the rear-facing tractor grips and both feet on the footboard. Retain the visible coherent drawbar, wheels, load chassis, tied bedding bundles and compact threshing machine. Keep his elderly mother, wife and children walking clear of the wheels at the roadside, and neighbors farther along the road, all with their own distinct faces. Retain the low coastal landscape and dirt-road grade.\nPaint the ENTIRE scene as hand-painted watercolor in the same series as the existing painted references: warm cold-pressed paper, clearly visible translucent washes, soft wet-on-wet transitions, pigment blooms and granulation, broken brush-shaped marks, light paper left in highlights, and lost edges with selective crisp strokes for essential faces, hands and objects. Use broader painted color masses in clothing and background instead of photographic microdetail. The visible texture should come from watercolor pigment and paper, not a uniform noisy filter on a photograph. Keep the series' muted ochre, straw and grey-blue palette and legible realistic anatomy. Avoid glossy rendered skin, sharp photorealism, uniformly stippled digital texture, oil impasto, flat cartoons and hard outlines.\nInvariants: same 16:9 landscape composition, vehicle proportions and safe driver placement, same body/hand relationships and pedestrians, same load and scene. Change only the main driver's identity and global paint treatment. Do not copy portrait suits, introduce modern vehicles or machinery, disconnect the tractor and trailer, put people in wheel paths, change the driver to walking, or add text, logo or watermark.",
       "previousIllustrationSha256": "6f238659f840b2a745b6ed9990a351420533125888e74807243dc3bb58a86efc",
-      "previousMasterSha256": "60f5d828d3cf24999630736153c9599fe456dca1f5eef0245be6a26d5cbd2722"
+      "previousMasterSha256": "60f5d828d3cf24999630736153c9599fe456dca1f5eef0245be6a26d5cbd2722",
+      "previousIllustrationId": "ep09-02",
+      "placementRole": "representative",
+      "placementReason": "이주 행렬을 제목 아래로 올리고 바인더 장면은 해당 작업 문단으로 이동"
     },
     {
       "id": "side-01",
@@ -192,8 +198,314 @@
       "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor family-autobiography illustration. Correct the elderly father's FACIAL IDENTITY and strengthen the WATERCOLOR STYLE of input image 5, keeping its good scene, action and anatomy. Reference roles: image 1 is the actual elderly Bae Byung-hee and is the mandatory highest-priority face source. Image 2 is his EXISTING epilogue watercolor, showing the same familiar elderly face and style. Image 3 is the existing approved watercolor portrait of the same person at a younger age, used for identity continuity and watercolor brushwork only, not its age or suit. Image 4 is the same person's actual younger photograph, underlying facial geometry only. Image 5 is the EDIT TARGET: layout, two-chopstick handoff, son, food and clothing; its present generic elderly face must be replaced.\nIdentity: make the father recognizably the EXACT elderly man in image 1 and the established elder in image 2. Preserve his actual eye/brow spacing and hooded eyelids, forehead shape, white hairline, cheek and jaw volume, broad nose with the actual tip and nostril proportions, characteristic restrained lip shape, chin and ears. Keep the same understated glasses shape and temple placement as the portrait. Keep an ordinary reserved expression; do not invent a smiling stock grandfather, beautify him, narrow his face, enlarge his eyes, or redesign the nose. Match the elderly age of image 1; do not borrow the younger age from images 3 or 4. Paint the likeness as watercolor, with no pasted photographic cutout. Only the father gets this identity; his adult son remains a different person.\nWatercolor: repaint the ENTIRE image in the existing series' hand-painted watercolor language, taking clear translucent washes and layered brush marks from images 2 and 3. Warm cold-pressed paper showing through light passages, softly bleeding amber lamplight and cool window blue, controlled pigment blooms and granulation, broad brush-shaped marks in clothes and walls, softened and lost edges alternating with a few crisp defining strokes. Keep the face recognizable with selective painted landmarks and hands legible; do not cover photographic skin with a noisy paint filter. Reduce excessive tiny surface detail in the room, cardigan and food. Avoid glossy skin, photorealistic sharpness, oil texture, cartoon simplification and uniform stippling.\nInvariants: keep the current medium two-person 16:9 layout, father seated across a modest wooden table, son in dusty work clothes at the near side, warm night lighting, father gently giving exactly TWO closed parallel equal-length chopsticks, son's palm-up receiving hand, natural connected shoulders/elbows/wrists and the father's other hand beside his bowl. Preserve all finger connections and separation, the modest steaming sliced-pork supper, rice bowls and dish positions. Change only the father's likeness and the paint treatment across the scene. Do not alter poses, multiply or cross sticks, hide hands, add people, copy portrait suits, add writing, logo or watermark.",
       "previousIllustrationSha256": "216ca82bfcb7af98e9963610ed2f2ec400efc3ed35bd56aa44a1b51521a79242",
       "previousMasterSha256": "f47d06d6741e9ebeea6f4bd457273949b1428dd55bafcc4e455e7645b6525565"
+    },
+    {
+      "id": "ep03-01",
+      "episodeId": "ep03",
+      "master": "content/illustration-sources/ep03-01.png",
+      "sceneHeading": "열두 자리 숫자 {#ep03}",
+      "sceneExcerpt": "형들이 입대하던 날, 바로 위 형은 막내의 손을 꼭 쥐며 자신의 군번을 일러주었다. 열두 자리에 이르는 긴 숫자였다. 소년은 뙤약볕 아래서 도리깨를 내리칠 때마다, 밤마다 욱신거리는 손을 모아 쥐고 형들의 무사 귀환을 빌 때마다 그 열두 자리 숫자를 입속으로 외우고 또 외웠다.",
+      "placementRole": "representative",
+      "scene": "형이 막내의 손을 쥐고 군번을 일러주는 순간",
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "실제 배병희의 얼굴 골격; 소년으로 연령 재구성",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "기존 초상과 수채화 화풍",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/ep02-01-1280.jpg",
+          "role": "소년의 복장과 안면도 환경",
+          "sha256": "381e413ba2acde6422e0c0f1514585cf57d5d2378f989cc12d1bbe98db1220d4"
+        },
+        {
+          "path": "site/public/images/episodes/ep03-02-1280.jpg",
+          "role": "기존 타작 그림의 소년과 종이·붓질",
+          "sha256": "c85df5ecab97d710b974bc03741c77246e971d0628d1b858fcd15b25de61a649",
+          "originalPathAtGeneration": "site/public/images/episodes/ep03-01-1280.jpg"
+        }
+      ],
+      "prompt": "Use case: historical-scene.\nAsset type: one landscape 16:9 watercolor title illustration for Korean autobiography episode 3, \"열두 자리 숫자\" (the twelve-digit military service number).\nPrimary request: Paint the manuscript's quiet farewell: before departing for conscription in 1950, an older brother clasps his fifteen-year-old youngest brother Bae Byung-hee's hand and softly tells him his service number. Make the relationship, listening and remembered number the emotional center, not farm labor.\nReference roles: image 1 is the actual adult Bae Byung-hee in the CENTER of the photograph, use his underlying facial geometry only for an adolescent reconstruction; do not include the photographed child or suit. Image 2 is the established portrait and watercolor style. Image 3 is the existing childhood rural scene, for age, clothes, setting and paint. Image 4 is the existing episode 3 painting, for the boy's continuity, 1950s Anmyeondo courtyard and watercolor handling; create a DIFFERENT scene, do not show threshing as the main subject.\nScene: modest Korean island farmhouse doorway and earth courtyard, 1950, soft morning light. Two brothers in worn plain cotton civilian work clothes face each other in a medium two-person composition. The older brother leans close with lips slightly parted as if speaking a number; the boy listens intently, mouth gently repeating it, eyes raised toward his brother. Their naturally clasped hands are clearly readable near the center. Understated worry and affection, no grinning.\nIdentity: preserve the boy's broad midface, familiar softly hooded eyes, broad rounded nose and rounded jaw relationship from the references while giving him a natural fifteen-year-old body and face. His adult brother is a distinct, older family member, not a duplicate of the boy or of the fifty-year-old portrait.\nStyle: match the existing series' hand-painted watercolor on warm cold-pressed paper, translucent ochre and grey-blue washes, selective brush-shaped detail, pigment blooms, broken and lost edges, paper showing through highlights. Coherent painterly faces and hands, never a photographic face pasted onto a painting.\nConstraints: wide 16:9 single complete scene, no panels, keep both heads and hands well inside the central frame for responsive display. No visible military number because the actual digits are not in the manuscript. No text, caption, lettering, documents, dog tags, weapons, battle, military uniforms, modern items, watermark, glossy skin or photorealistic rendering.",
+      "masterSha256": "f38d3b6d136c665e23e216fd7d0c579de137d6a74feb393cfb7a7672dc59c6be",
+      "previousIllustrationSha256": "c85df5ecab97d710b974bc03741c77246e971d0628d1b858fcd15b25de61a649"
+    },
+    {
+      "id": "ep07-01",
+      "episodeId": "ep07",
+      "master": "content/illustration-sources/ep07-01.png",
+      "sceneHeading": "멸치 떼를 쫓는 청년 {#ep07}",
+      "sceneExcerpt": "낭장망은 조류가 드나드는 길목의 얕은 바다에 참나무 말뚝을 단단히 박고, 조류의 방향을 따라 긴 자루그물을 쳐서 물고기를 잡는 어구였다. 밀물을 타고 들어온 물고기들이 썰물 때 빠른 여울에 휩쓸려 그물 끝자루로 자연스럽게 모여들도록 한 원리였다. 바닷일은 물때가 곧 시계였다. 밤낮을 가리지 않고 썰물이 끝날 무렵이 되면 배병희와 동료들은 물길을 건너가 묵직하게 가라앉은 그물을 걷어 올렸다. 그물을 들어 올리면 퍼덕이는 멸치 떼가 은빛을 뿜으며 쏟아져 나왔고, 맑고 투명한 실치와 꼴뚜기, 갖가지 바닷물고기가 그물 가득 묵직하게 걸려들었다.",
+      "placementRole": "representative",
+      "scene": "낭장망을 걷어 올리며 은빛 멸치를 거두는 배병희와 동료들",
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "실제 배병희의 얼굴",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "기존 초상과 수채화 화풍",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/ep07-02-1280.jpg",
+          "role": "기존 멸치 작업 장면의 인물과 해안",
+          "sha256": "925b826bb9d3bf6c0499783f453db283ee61d36b7756a8e8e1a5943c30fd4985",
+          "originalPathAtGeneration": "site/public/images/episodes/ep07-01-1280.jpg"
+        },
+        {
+          "path": "content/ref_images/시대_참고/안면도_어업/sup-016_낭장망_어구_구조도.jpg",
+          "role": "낭장망 구조 참고",
+          "sha256": "40f07d31953ff38fbe223d2160e87e5fa9313352a35b83929558fdb31b855acf"
+        }
+      ],
+      "prompt": "Use case: historical-scene. Asset type: one complete landscape 16:9 watercolor illustration for the existing Korean autobiography website.\nReference identity: image 1 is the actual Bae Byung-hee, the adult man in the CENTER of the photograph. Use this exact person's facial geometry: broad midface and full cheeks, softly hooded narrow eyes, familiar brows, broad rounded nose, characteristic lips, rounded jaw and chin, ears and hairline. Never use the photographed child's face or clothing. Image 2 is the existing approved watercolor portrait of the SAME man and the paint-style anchor. Later references are explicitly specified below. Age him appropriately while preserving his recognizability; only the protagonist has this face, other people have distinct faces.\nStyle: match the series' hand-painted watercolor on warm cold-pressed paper, translucent ochre and grey-blue washes, visible broad brush-shaped strokes, pigment blooms and granulation, softly lost edges with selective crisp strokes for faces, hands and essential objects. Paper shows through highlights. Make the entire scene painterly, with the same readable faces and countryside treatment as the existing images. No pasted photographic faces, glossy skin, photorealistic microdetail, oil texture, cartoon, uniform artificial noise or a photo covered by a filter.\nOutput: one wide 16:9 scene, no collage or panels, no captions, lettering, legible text, logo or watermark. All essential faces, hands and actions remain well inside the frame so the full composition works on a phone. Realistic anatomy, connected arms and hands, clear physical support for objects.\nEpisode title: \"멸치 떼를 쫓는 청년\". Primary request: show catching the anchovy shoal, not cooking it.\nImage 3 is the existing anchovy-cooking painting: take the protagonist's familiar likeness, modest grey-blue work clothes, Anmyeondo coast and paint treatment, but create a new fishing scene. Image 4 is the nangjangmang bag-net structure reference only; do not copy diagram colors, floating orange buoys, modern materials, or labels.\nScene: early 1970s, shallow tidal coastal water near Anmyeondo, at the end of ebb tide. Bae in his mid-thirties and TWO distinct fellow fishermen stand grounded in knee-deep water and lift the end pouch of a long fixed bag-shaped current net. Clearly show the mouth connected to a long tapering net supported by rough oak stakes farther in the tidal channel. The heavy lifted pouch reveals many SMALL silver anchovies about finger-length glinting as they are gathered into a woven basket. Their hands grip net edges or supporting rope and form physically plausible coordinated lifting positions. The fixed net remains visibly connected to its stake structure; it is not a floating hand-cast seine, trawler, bamboo fish weir or a disconnected fishing sack. Keep the lifted catch near the foreground center, an understated focused protagonist in three-quarter view, salty sea-blue washes and silver flashes. No large fish replacing anchovies, no cooking pot, no modern boat, engines, plastic boxes or fishing industry machinery.",
+      "masterSha256": "3090df090dfd52208fdf2b0fa15e3026eaf9cd321cd8ce7564afcda7e0f056c2",
+      "previousIllustrationSha256": "925b826bb9d3bf6c0499783f453db283ee61d36b7756a8e8e1a5943c30fd4985"
+    },
+    {
+      "id": "ep15-01",
+      "episodeId": "ep15",
+      "master": "content/illustration-sources/ep15-01.png",
+      "sceneHeading": "품삯으로 건넨 볍씨 {#ep15}",
+      "sceneExcerpt": "이튿날에도 배병희는 아무 일 없었다는 듯 그 이웃을 살갑게 대했다. 그러고는 며칠 지나 그가 무안하지 않도록 슬며시 말을 건넸다.\n“정미소에 잔손 가는 일이 영 밀렸는데, 며칠 와서 일손 좀 보태주시오.”\n공짜로 건네는 적선이 아니라 떳떳한 품삯으로 쥐여주어 이웃의 자존심을 지켜준 속 깊은 배려였다.",
+      "placementRole": "representative",
+      "scene": "며칠 뒤 이웃에게 정미소 일손을 청하며 품삯으로 배려하는 배병희",
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "실제 배병희의 얼굴",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "기존 초상과 수채화 화풍",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/ep15-02-1280.jpg",
+          "role": "같은 헛간과 이웃의 복장",
+          "sha256": "0cb818ca057c52f0967b21028bfe38c9b95a43454783a8ae4ce967f2d37a3b83",
+          "originalPathAtGeneration": "site/public/images/episodes/ep15-01-1280.jpg"
+        },
+        {
+          "path": "site/public/images/episodes/ep11-01-1280.jpg",
+          "role": "인물 외형과 농촌 장면의 수채화",
+          "sha256": "eb0117a9d77c06085d4e8a96be6c77c955590e5913b77428eb12215b7166d693"
+        }
+      ],
+      "prompt": "Use case: historical-scene. Asset type: one complete landscape 16:9 watercolor illustration for the existing Korean autobiography website.\nReference identity: image 1 is the actual Bae Byung-hee, the adult man in the CENTER of the photograph. Use this exact person's facial geometry: broad midface and full cheeks, softly hooded narrow eyes, familiar brows, broad rounded nose, characteristic lips, rounded jaw and chin, ears and hairline. Never use the photographed child's face or clothing. Image 2 is the existing approved watercolor portrait of the SAME man and the paint-style anchor. Later references are explicitly specified below. Age him appropriately while preserving his recognizability; only the protagonist has this face, other people have distinct faces.\nStyle: match the series' hand-painted watercolor on warm cold-pressed paper, translucent ochre and grey-blue washes, visible broad brush-shaped strokes, pigment blooms and granulation, softly lost edges with selective crisp strokes for faces, hands and essential objects. Paper shows through highlights. Make the entire scene painterly, with the same readable faces and countryside treatment as the existing images. No pasted photographic faces, glossy skin, photorealistic microdetail, oil texture, cartoon, uniform artificial noise or a photo covered by a filter.\nOutput: one wide 16:9 scene, no collage or panels, no captions, lettering, legible text, logo or watermark. All essential faces, hands and actions remain well inside the frame so the full composition works on a phone. Realistic anatomy, connected arms and hands, clear physical support for objects.\nEpisode title: \"품삯으로 건넨 볍씨\". Primary request: paint the manuscript's daytime invitation to work, showing dignity through paid work rather than theft or charity.\nImage 3 is the earlier night scene in the same shed: preserve the setting's straw grain sacks and old wooden structure, Bae's dark blue work jacket, and the neighbor's ordinary brown work clothes; change time and action. Image 4 is another established scene of Bae, for his face and painterly rural style, not the daughter or money handoff.\nScene: 1980s Dokjeong's modest rice mill in spring daylight. Bae, around fifty, stands on equal footing with the same poor adult male neighbor beside an open grain shed. Bae calmly asks him to help with mill work, gently gesturing toward ordinary work awaiting inside: a few straw sacks, a small basket of unhulled seed rice and simple hand tools. The neighbor listens and subtly straightens his posture, with an ordinary reserved expression and modest relief. Medium two-person composition, faces and open work-invitation gesture readable, rice seeds in contextual foreground; surrounding wood and cotton clothing painted in warm earthy washes. This manuscript scene is an invitation that reframes the seed rice as earned wages. Do NOT invent a ceremonial seed gift, cash handoff, sack handoff, begging pose, pat on the head, humiliation or smiling commercial handshake. No modern automatic mill equipment, plastic grain silo or printed packaging.",
+      "masterSha256": "36e2d8a0b5155d402ba7beaeccf247133ad9bac09e68da8d8bc47b26af7eda28",
+      "previousIllustrationSha256": "0cb818ca057c52f0967b21028bfe38c9b95a43454783a8ae4ce967f2d37a3b83"
+    },
+    {
+      "id": "ep18-01",
+      "episodeId": "ep18",
+      "master": "content/illustration-sources/ep18-01.png",
+      "sceneHeading": "마지막 1만 2천 평 {#ep18}",
+      "sceneExcerpt": "하지만 배병희는 조금도 주저하지 않고 안방 장롱 깊숙한 곳에서 손때 묻은 누런 땅문서 봉투를 꺼냈다. 식구들이 입에 풀칠하며 버틸 최소한의 농토인 4정보, 즉 마지막 1만 2천 평만 남겨두고 남아 있던 논을 남김없이 팔기로 결단을 내렸다. 날짜를 맞추어 급전을 마련해야 했기에 제값을 따질 겨를도 없이 헐값에라도 논을 넘겼다.",
+      "placementRole": "representative",
+      "scene": "마지막 1만 2천 평만 남기기로 결단하며 장롱에서 땅문서 봉투를 꺼내는 배병희",
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "실제 배병희의 얼굴",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "기존 초상과 수채화 화풍",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/ep17-01-1280.jpg",
+          "role": "1990년대 위기 속 인물의 나이와 작업복",
+          "sha256": "6cc7954ae51b3b306a40444c219572f80c006df168396ea00c4a380c60d6cdbe"
+        },
+        {
+          "path": "site/public/images/episodes/ep11-01-1280.jpg",
+          "role": "시골집 공간과 화풍",
+          "sha256": "eb0117a9d77c06085d4e8a96be6c77c955590e5913b77428eb12215b7166d693"
+        }
+      ],
+      "prompt": "Use case: historical-scene. Asset type: one complete landscape 16:9 watercolor illustration for the existing Korean autobiography website.\nReference identity: image 1 is the actual Bae Byung-hee, the adult man in the CENTER of the photograph. Use this exact person's facial geometry: broad midface and full cheeks, softly hooded narrow eyes, familiar brows, broad rounded nose, characteristic lips, rounded jaw and chin, ears and hairline. Never use the photographed child's face or clothing. Image 2 is the existing approved watercolor portrait of the SAME man and the paint-style anchor. Later references are explicitly specified below. Age him appropriately while preserving his recognizability; only the protagonist has this face, other people have distinct faces.\nStyle: match the series' hand-painted watercolor on warm cold-pressed paper, translucent ochre and grey-blue washes, visible broad brush-shaped strokes, pigment blooms and granulation, softly lost edges with selective crisp strokes for faces, hands and essential objects. Paper shows through highlights. Make the entire scene painterly, with the same readable faces and countryside treatment as the existing images. No pasted photographic faces, glossy skin, photorealistic microdetail, oil texture, cartoon, uniform artificial noise or a photo covered by a filter.\nOutput: one wide 16:9 scene, no collage or panels, no captions, lettering, legible text, logo or watermark. All essential faces, hands and actions remain well inside the frame so the full composition works on a phone. Realistic anatomy, connected arms and hands, clear physical support for objects.\nEpisode title: \"마지막 1만 2천 평\". Primary request: show the costly decision to sell the other farmland while preserving the family's last 12,000 pyeong, not routine payment or a happy transaction.\nImage 3 is the existing early-1990s crisis painting: preserve the same Bae's roughly fifty-five-year-old face, dark blue work jacket and restrained sober tone. Image 4 is a rural-house paint and identity reference only.\nScene: early 1990s, modest old Korean farmhouse bedroom. Bae stands beside an open worn dark-brown wooden wardrobe, drawing a plain age-yellowed land-deed envelope from a deep shelf with one hand while the other steadies it naturally. His downward gaze, tightly closed mouth and quiet heavy expression convey resolve and the personal cost of selling land. A small open window shows rice fields outside in muted daylight, connecting the document to the land; the fields remain secondary to the hands, face and wardrobe. Keep this a clear single action. No other person, smiling, cash, check, contract-signing ceremony, luxurious interior or modern automation. No printed acreage, invented map boundaries or readable legal wording. The image must not suggest he is selling the last retained 12,000 pyeong; it depicts withdrawing the documents for selling the other plots.",
+      "masterSha256": "2535a4b12afd8eecefee603b0f5852b28c6dd762d2b381caed2478c487549422",
+      "previousIllustrationSha256": "522275c1b045063344fa7163d0d6bea4a346b5b1c6d4f38f56ea6b9c608e47fc"
+    },
+    {
+      "id": "ep18-02",
+      "episodeId": "ep18",
+      "master": "content/illustration-sources/ep18-02.png",
+      "sceneHeading": "마지막 1만 2천 평 {#ep18}",
+      "sceneExcerpt": "어음이나 외상 전표가 아니었다. 배병희는 수매 장부를 펼쳐놓고 농민들의 이름을 하나하나 호명하며, 빳빳한 현금으로 볏값 전액을 단 한 푼도 에누리 없이 손에 쥐여주었다. 볏값을 떼일까 봐 밤잠을 설치며 가슴을 졸이던 농민들은 눈앞에 놓인 돈다발을 보고 말을 잇지 못했다.\n“배 사장, 정말 이 돈을 다 준단 말이오? 정미소 논까지 다 팔아서 마련했다던데….”\n거친 손으로 지폐를 건네받은 한 늙은 농부의 눈시울이 붉어졌다. 어떤 농민은 떨리는 손으로 돈을 쥔 채 한참 동안 고개를 들지 못했다. 남들은 부도가 나면 슬그머니 자취를 감추기 바쁘던 시절이었다. 제 논을 팔아가면서까지 약속했던 볏값을 온전히 치러낸 배병희의 결단은 농민들의 가슴을 먹먹하게 울렸다. 배병희는 농민들의 거친 손을 꼭 쥐며 나직이 말했다.\n“약속한 돈인데 당연히 드려야지요. 믿고 기다려주셔서 참말로 고맙습니다.”",
+      "placementRole": "body",
+      "scene": "수매 장부를 펼쳐 농민에게 현금으로 볏값 전액을 지급하는 배병희",
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "실제 배병희의 얼굴",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "기존 초상과 수채화 화풍",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/ep17-01-1280.jpg",
+          "role": "같은 시기 인물과 정미소 사무실",
+          "sha256": "6cc7954ae51b3b306a40444c219572f80c006df168396ea00c4a380c60d6cdbe"
+        },
+        {
+          "path": "content/illustration-sources/archive/ep18-payment-before-refresh.jpg",
+          "role": "기존 농민과 정미소 공간; 모호한 봉투 대신 현금 지급으로 재구성",
+          "sha256": "522275c1b045063344fa7163d0d6bea4a346b5b1c6d4f38f56ea6b9c608e47fc",
+          "originalPathAtGeneration": "site/public/images/episodes/ep18-01-1280.jpg"
+        }
+      ],
+      "prompt": "Use case: historical-scene. Asset type: one complete landscape 16:9 watercolor illustration for the existing Korean autobiography website.\nReference identity: image 1 is the actual Bae Byung-hee, the adult man in the CENTER of the photograph. Use this exact person's facial geometry: broad midface and full cheeks, softly hooded narrow eyes, familiar brows, broad rounded nose, characteristic lips, rounded jaw and chin, ears and hairline. Never use the photographed child's face or clothing. Image 2 is the existing approved watercolor portrait of the SAME man and the paint-style anchor. Later references are explicitly specified below. Age him appropriately while preserving his recognizability; only the protagonist has this face, other people have distinct faces.\nStyle: match the series' hand-painted watercolor on warm cold-pressed paper, translucent ochre and grey-blue washes, visible broad brush-shaped strokes, pigment blooms and granulation, softly lost edges with selective crisp strokes for faces, hands and essential objects. Paper shows through highlights. Make the entire scene painterly, with the same readable faces and countryside treatment as the existing images. No pasted photographic faces, glossy skin, photorealistic microdetail, oil texture, cartoon, uniform artificial noise or a photo covered by a filter.\nOutput: one wide 16:9 scene, no collage or panels, no captions, lettering, legible text, logo or watermark. All essential faces, hands and actions remain well inside the frame so the full composition works on a phone. Realistic anatomy, connected arms and hands, clear physical support for objects.\nManuscript scene: after selling land, Bae calls farmers to the office and pays the full promised rice price IN CASH, not checks or credit.\nImage 3 is the early-1990s crisis painting for the same man's age, blue work jacket, mill office and watercolor. Image 4 is an earlier payment illustration: take the rural mill setting and distinct elderly farmer, but replace its ambiguous envelope-like object with clearly layered CASH and move the action to the office desk.\nScene: early 1990s, plain rice mill office, medium two-person composition. Bae, around fifty-five, is behind a worn wooden desk with an open handwritten purchase ledger represented by indistinct brush marks. He extends a visibly thick bundle of several separate green-toned Korean banknotes to an elderly farmer across the desk; their side-profile arms connect naturally, and the farmer receives the cash with both rough hands. Paper edges and a few fanned notes make it unmistakably money rather than a single flat document, envelope, check or certificate. More modest cash bundles rest beside the ledger. The farmer has restrained relief and moist eyes, Bae is composed and quietly grateful, no business-advertisement grin. A softly painted grain shed is glimpsed through a doorway. Keep faces, cash and ledger within the central frame. No envelope, cheque, yellow modern 50,000-won note, printed account number, legible denomination, readable forgery detail, computer or modern office furniture.",
+      "masterSha256": "c269bb66563fce1ac282ca4416167f103b808eeb2a40b5d95aa52820f67f7f2f"
+    },
+    {
+      "id": "ep06-02",
+      "episodeId": "ep06",
+      "master": "content/illustration-sources/ep06-02.png",
+      "sceneHeading": "겨울 갯벌의 김 양식 {#ep06}",
+      "sceneExcerpt": "동지섣달 살을 에는 추위가 닥치면 김 채취가 본격적으로 시작되었다. 바다의 물때는 밤낮을 가리지 않았기에, 배병희는 칠흑 같은 새벽이나 달빛만 희미한 한밤중에도 물이 빠지기 무섭게 갯벌로 나섰다. 갯벌 위로 살얼음이 버석거리고 칼바람이 얼굴을 후려치는 엄동설한이었다. 얼음장 같은 뻘물에 손을 담그고, 대나무 발에 까맣게 엉겨 붙은 생김을 손끝으로 일일이 뜯어냈다. 장갑을 껴도 얼음물이 스며들면 손가락이 마비되어 감각이 사라졌고, 손마디는 부르트고 갈라져 피가 배어 나왔다. 하지만 그는 추위를 느낄 겨를도 없이 밀물이 차오르기 전에 부지런히 광주리를 채워 지게로 져 날랐다.",
+      "placementRole": "body",
+      "scene": "겨울 새벽 갯벌의 지주식 김발에서 생김을 채취하는 배병희",
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "실제 배병희의 얼굴",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "기존 초상과 수채화 화풍",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/ep06-01-1280.jpg",
+          "role": "1960년대의 같은 인물과 겨울 작업복",
+          "sha256": "8e04a6c4000050735bdeafc9d569afe9ec08a6ffbae06c0e39bbf87e87c801d6"
+        },
+        {
+          "path": "content/ref_images/시대_참고/안면도_어업/sup-003_지주식_김양식_말뚝.jpg",
+          "role": "지주식 김 양식 말뚝 배열",
+          "sha256": "fc4978bb0ac160d44bcdee874f8b5537d0f49e3e6da2daefb3fc817ef7c7297b"
+        },
+        {
+          "path": "content/ref_images/시대_참고/안면도_어업/sup-002_천수만_지주식_김양식.jpg",
+          "role": "수평 김 양식 구조; 현대 소재는 제외",
+          "sha256": "7666c339726877923ab0a7c27accb0014b8c185809dca9ed53811fbffc6fffb1"
+        }
+      ],
+      "prompt": "Use case: historical-scene. Asset type: one complete landscape 16:9 watercolor illustration for the existing Korean autobiography website.\nReference identity: image 1 is the actual Bae Byung-hee, the adult man in the CENTER of the photograph. Use this exact person's facial geometry: broad midface and full cheeks, softly hooded narrow eyes, familiar brows, broad rounded nose, characteristic lips, rounded jaw and chin, ears and hairline. Never use the photographed child's face or clothing. Image 2 is the existing approved watercolor portrait of the SAME man and the paint-style anchor. Later references are explicitly specified below. Age him appropriately while preserving his recognizability; only the protagonist has this face, other people have distinct faces.\nStyle: match the series' hand-painted watercolor on warm cold-pressed paper, translucent ochre and grey-blue washes, visible broad brush-shaped strokes, pigment blooms and granulation, softly lost edges with selective crisp strokes for faces, hands and essential objects. Paper shows through highlights. Make the entire scene painterly, with the same readable faces and countryside treatment as the existing images. No pasted photographic faces, glossy skin, photorealistic microdetail, oil texture, cartoon, uniform artificial noise or a photo covered by a filter.\nOutput: one wide 16:9 scene, no collage or panels, no captions, lettering, legible text, logo or watermark. All essential faces, hands and actions remain well inside the frame so the full composition works on a phone. Realistic anatomy, connected arms and hands, clear physical support for objects.\nManuscript scene: during freezing winter at low tide, Bae plucks fresh seaweed from bamboo cultivation screens on the mudflat before the tide returns.\nImage 3 is the existing family drying painting: match the SAME protagonist in his thirties, recognizability, padded grey-blue cotton winter work clothes and watercolor style, but paint the sea cultivation scene instead of a courtyard. Images 4 and 5 are stake-based seaweed cultivation structure references only. Reconstruct 1960s oak stakes and woven bamboo screens according to the manuscript; omit modern green metal/plastic poles and nylon infrastructure.\nScene: winter dawn in the 1960s, exposed Anmyeondo mudflat, thin ice at tidal pool edges, cold blue-grey sea haze. Bae bends beside a horizontal woven BAMBOO cultivation screen held by rough wooden oak stakes a little above the exposed mud, grasping and pulling a small clump of dark wet living seaweed with naturally connected hands. A woven basket is supported on the mud near his feet, partly filled with freshly picked seaweed. The bent posture, hands, wet dark seaweed on horizontal screen and solid stakes are clear. Rows of similar cultivation screens recede through shallow pools, distant low island shoreline. Ground both feet plausibly in mud. No vertical drying rack, square dried nori sheets, processing courtyard, floating raft aquaculture, modern boats, rubber industrial bins or polished tourist facilities. This is HARVESTING seaweed, not planting stakes or drying processed sheets.",
+      "masterSha256": "0fa9a9b749d41efe5f10fcf21b0997d42c42060abf5f1fef349af1295d7c7548"
+    },
+    {
+      "id": "ep08-02",
+      "episodeId": "ep08",
+      "master": "content/illustration-sources/ep08-02.png",
+      "sceneHeading": "멈춰 선 탈곡기를 돌려라 {#ep08}",
+      "sceneExcerpt": "발동기 평벨트가 탈곡기를 돌리면 일꾼들이 손발을 맞춰 볏단을 날라 넣었다. 낟알이 순식간에 쏟아져 내리며, 며칠이 걸리던 타작을 반나절 만에 끝내자 농민들의 호응이 대단했다.",
+      "placementRole": "body",
+      "scene": "소형 발동기와 평벨트로 별도 탈곡기를 돌리는 여섯 명의 이동식 탈곡팀",
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "실제 배병희의 얼굴",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "기존 초상과 수채화 화풍",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/ep08-01-1280.jpg",
+          "role": "1970년대의 같은 인물과 발동기",
+          "sha256": "c65c7dd869ae95d5c4783b2de2ef0f19ce027259e8c20583d116b093e1786b2d"
+        },
+        {
+          "path": "content/ref_images/시대_참고/옛_정미소/sup-008_재래식_발동기_플라이휠.jpg",
+          "role": "발동기 플라이휠 형태",
+          "sha256": "51a35a4e78078dc22573384d2b86d47f848a1dac2ca137d22104cb5a90d23bdc"
+        },
+        {
+          "path": "content/ref_images/시대_참고/농기구_생활/extra-04_전통_탈곡기_구조.jpg",
+          "role": "별도 탈곡기 드럼과 틀 구조",
+          "sha256": "b67419bf420c597890a754e3494a8c1dfda05a93da06d5802e1d3b3d2b7af715"
+        }
+      ],
+      "prompt": "Use case: historical-scene. Asset type: one complete landscape 16:9 watercolor illustration for the existing Korean autobiography website.\nReference identity: image 1 is the actual Bae Byung-hee, the adult man in the CENTER of the photograph. Use this exact person's facial geometry: broad midface and full cheeks, softly hooded narrow eyes, familiar brows, broad rounded nose, characteristic lips, rounded jaw and chin, ears and hairline. Never use the photographed child's face or clothing. Image 2 is the existing approved watercolor portrait of the SAME man and the paint-style anchor. Later references are explicitly specified below. Age him appropriately while preserving his recognizability; only the protagonist has this face, other people have distinct faces.\nStyle: match the series' hand-painted watercolor on warm cold-pressed paper, translucent ochre and grey-blue washes, visible broad brush-shaped strokes, pigment blooms and granulation, softly lost edges with selective crisp strokes for faces, hands and essential objects. Paper shows through highlights. Make the entire scene painterly, with the same readable faces and countryside treatment as the existing images. No pasted photographic faces, glossy skin, photorealistic microdetail, oil texture, cartoon, uniform artificial noise or a photo covered by a filter.\nOutput: one wide 16:9 scene, no collage or panels, no captions, lettering, legible text, logo or watermark. All essential faces, hands and actions remain well inside the frame so the full composition works on a phone. Realistic anatomy, connected arms and hands, clear physical support for objects.\nManuscript scene: early 1970s Anmyeondo, a six-person traveling threshing crew works with a SMALL DIESEL ENGINE and a SEPARATE THRESHER connected by a flat belt. This complements the existing close-up repair title image.\nImage 3 is the current repair painting: same Bae in his thirties, familiar face, brown or grey-blue workwear, period mechanical vocabulary and watercolor. Image 4 is the old diesel flywheel reference, use only mechanical form and weathered metal, no brand lettering. Image 5 is the traditional threshing drum mechanism reference, take the cylindrical slatted drum and frame, not museum displays or labels.\nScene: autumn earth farm courtyard, harvested rice sheaves and distant fields. Exactly SIX distinct Korean adult male workers form a coherent small team. The recognizable Bae is in the foreground managing sheaves beside the thresher; one man feeds sheaves to the threshing drum while keeping hands clear of the moving mechanism; one carries the next sheaf; one gathers stalks; one fills a straw grain sack; one arranges the collected grain sacks. Use sensible separate positions, clear connected limbs and grounded feet, ordinary cotton clothes and dark hair, not matching cloned faces.\nThe small dark-green stationary diesel engine sits on the ground visibly SEPARATE from the waist-high wooden/metal framed threshing drum. Show ONE continuous tensioned flat belt linking the engine pulley to the thresher pulley, with correct shared belt plane. Rice grains collect onto a mat or sack below; loose straw and soft dusty light convey teamwork. Simple readable wide view, not an exploded machinery diagram. No modern combine, tractor, automatic enclosed industrial thresher, large factory motor, electric extension cable, plastic sacks, inaccurate giant engine, people stepping through the belt or overlapping impossible hands.",
+      "masterSha256": "25a5829c5b69538301400da526e3cc760e2847773cec06850ee308b71915a741"
     }
   ],
-  "revision": 2,
-  "revisionReason": "사용자 피드백에 따라 배병희의 실제 얼굴과 기존 다른 삽화의 수채화 화풍을 우선하여 재보정. 장면 구도와 동작은 유지."
+  "revision": 3,
+  "revisionReason": "제목과 대표 이미지의 일치, 본문 문단과 삽화의 일치를 기준으로 재배치. 대표 4장과 본문 3장을 built-in image_gen으로 제작.",
+  "placementRefresh": {
+    "date": "2026-10-07",
+    "representativeCount": 26,
+    "bodyCount": 11,
+    "generatedIds": [
+      "ep03-01",
+      "ep07-01",
+      "ep15-01",
+      "ep18-01",
+      "ep18-02",
+      "ep06-02",
+      "ep08-02"
+    ],
+    "reusedImages": [
+      {
+        "previousId": "ep03-01",
+        "currentId": "ep03-02",
+        "sha256": "c85df5ecab97d710b974bc03741c77246e971d0628d1b858fcd15b25de61a649"
+      },
+      {
+        "previousId": "ep07-01",
+        "currentId": "ep07-02",
+        "sha256": "925b826bb9d3bf6c0499783f453db283ee61d36b7756a8e8e1a5943c30fd4985"
+      },
+      {
+        "previousId": "ep15-01",
+        "currentId": "ep15-02",
+        "sha256": "0cb818ca057c52f0967b21028bfe38c9b95a43454783a8ae4ce967f2d37a3b83"
+      },
+      {
+        "previousId": "ep09-02",
+        "currentId": "ep09-01",
+        "sha256": "c2067eba0a9dec96530ce5ad2f9e635ce851214ded64adc8e1c1c985a6d09d20"
+      },
+      {
+        "previousId": "ep09-01",
+        "currentId": "ep09-02",
+        "sha256": "24b68e3e1ecbf0f754fdfc141e0f16db1234a30c6cabd6fd0b806841a1ce9ea3"
+      },
+      {
+        "previousId": "ep14-02",
+        "currentId": "ep14-01",
+        "sha256": "aea56c69cb752bb813912447c1126c129562fe520ceecb3216dd3ba41eafb39a"
+      },
+      {
+        "previousId": "ep14-01",
+        "currentId": "ep14-02",
+        "sha256": "2fff7dce4a4d6a8273d2aecb26368b1643bcddb8841df6eab9b51074fdc93f01"
+      },
+      {
+        "previousId": "kalguksu-winter",
+        "currentId": "ep05-02",
+        "sha256": "290211192ab7af9ddeb7829208a257591121e39357c677766d6b14202fe95984"
+      }
+    ],
+    "retiredPaymentCandidate": "content/illustration-sources/archive/ep18-payment-before-refresh.jpg"
+  }
 }

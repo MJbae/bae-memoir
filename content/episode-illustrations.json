@@ -132,11 +132,11 @@
       ]
     },
     {
-      "id": "ep03-01",
-      "episodeId": "ep03",
-      "alt": "수채화로 그린 마당에서 홀로 도리깨로 보리를 타작하는 소년",
       "width": 1280,
       "height": 720,
+      "id": "ep03-01",
+      "episodeId": "ep03",
+      "alt": "수채화로 그린 형이 막내 배병희의 손을 쥐고 군번을 일러주는 순간",
       "position": {
         "start": true
       },
@@ -165,6 +165,47 @@
         },
         {
           "src": "/images/episodes/ep03-01-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01"
+      ]
+    },
+    {
+      "id": "ep03-02",
+      "episodeId": "ep03",
+      "alt": "수채화로 그린 마당에서 홀로 도리깨로 보리를 타작하는 소년",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "새벽이슬이 걷히기 무섭게 보릿단을 지게로 져 날라 마당에 널어놓고 홀로 도리깨를 쥐었다. 무더운 뙤약볕 아래서 도리깨가 허공을 가르며 마당을 세차게 내리쳤다. 둔탁한 타작 소리가 적막한 마당에 쉼 없이 울려 퍼질 때마다 누런 흙먼지와 억센 보리 까끄라기가 사방으로 흩날렸다. 땀에 젖은 얼굴과 목덜미, 등줄기로 날카로운 까끄라기가 파고들어 살갗이 벌겋게 짓무르고 불에 덴 듯 쓰라렸다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep03-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep03-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep03-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep03-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep03-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep03-02-1280.webp",
           "width": 1280
         }
       ],
@@ -261,6 +302,45 @@
       ]
     },
     {
+      "width": 1280,
+      "height": 720,
+      "id": "ep05-02",
+      "episodeId": "ep05",
+      "alt": "수채화로 그린 겨울밤 고구마를 나누어 먹는 가족",
+      "position": {
+        "beforeParagraph": "가을걷이가 모두 끝나면 배병희는 수확한 감자와 고구마를 안방 온돌 아랫목에 차곡차곡 쌓고 두툼하게 볏짚을 덮어두었다. 매서운 겨울 추위에 얼지 않도록 하기 위함이었다. 긴긴 겨울밤이면 식구들이 둘러앉아 아랫목에서 꺼내온 고구마를 화롯불에 노릇하게 구워 먹으며 정담을 나누었다. 넉넉하지 못한 살림이었지만, 정성 가득한 가마솥 밥상과 온돌방 아랫목의 온기 속에서 가족들은 혹한의 계절을 따뜻하게 건너갔다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep05-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep05-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep05-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep05-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep05-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep05-02-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": []
+    },
+    {
       "id": "ep06-01",
       "episodeId": "ep06",
       "alt": "수채화로 그린 겨울 마당에서 김발을 함께 널어 말리는 가족",
@@ -305,11 +385,54 @@
       ]
     },
     {
-      "id": "ep07-01",
-      "episodeId": "ep07",
-      "alt": "수채화로 그린 갯가 자갈밭의 가마솥에서 멸치를 삶는 배병희",
       "width": 1280,
       "height": 720,
+      "id": "ep06-02",
+      "episodeId": "ep06",
+      "alt": "수채화로 그린 겨울 새벽 갯벌의 지주식 김발에서 생김을 채취하는 배병희",
+      "position": {
+        "beforeParagraph": "동지섣달 살을 에는 추위가 닥치면 김 채취가 본격적으로 시작되었다. 바다의 물때는 밤낮을 가리지 않았기에, 배병희는 칠흑 같은 새벽이나 달빛만 희미한 한밤중에도 물이 빠지기 무섭게 갯벌로 나섰다. 갯벌 위로 살얼음이 버석거리고 칼바람이 얼굴을 후려치는 엄동설한이었다. 얼음장 같은 뻘물에 손을 담그고, 대나무 발에 까맣게 엉겨 붙은 생김을 손끝으로 일일이 뜯어냈다. 장갑을 껴도 얼음물이 스며들면 손가락이 마비되어 감각이 사라졌고, 손마디는 부르트고 갈라져 피가 배어 나왔다. 하지만 그는 추위를 느낄 겨를도 없이 밀물이 차오르기 전에 부지런히 광주리를 채워 지게로 져 날랐다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep06-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep06-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep06-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep06-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep06-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep06-02-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-003",
+        "sup-002"
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "id": "ep07-01",
+      "episodeId": "ep07",
+      "alt": "수채화로 그린 낭장망을 걷어 올려 은빛 멸치를 거두는 배병희와 동료들",
       "position": {
         "start": true
       },
@@ -338,6 +461,48 @@
         },
         {
           "src": "/images/episodes/ep07-01-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-016"
+      ]
+    },
+    {
+      "id": "ep07-02",
+      "episodeId": "ep07",
+      "alt": "수채화로 그린 갯가 자갈밭의 가마솥에서 멸치를 삶는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "멸치는 성질이 급해 물 밖으로 나오면 금세 숨이 끊어지고 살이 물러지기 쉬워 신선도를 지키는 일이 생명이었다. 배병희는 지체 없이 바닷바람이 들이치는 자갈밭에 커다란 무쇠 가마솥을 걸었다. 장작불을 지피고 갓 길어 올린 청정한 바닷물을 가마솥 가득 부어 펄펄 끓였다. 갓 잡은 싱싱한 멸치는 숨 돌릴 틈도 없이 소쿠리에 담겨 끓는 바닷물 속으로 곧장 들어갔다. 바닷물의 짭조름한 간이 멸치 살에 알맞게 배어들어, 따로 소금을 치지 않아도 비리지 않고 달착지근한 감칠맛이 돌았다. 살이 무르지 않도록 한소끔 알맞게 데쳐 건져내는 것은 손끝과 눈썰미로 익힌 그만의 요령이었다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep07-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep07-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep07-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep07-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep07-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep07-02-1280.webp",
           "width": 1280
         }
       ],
@@ -392,9 +557,52 @@
       ]
     },
     {
+      "width": 1280,
+      "height": 720,
+      "id": "ep08-02",
+      "episodeId": "ep08",
+      "alt": "수채화로 그린 소형 발동기와 평벨트로 별도 탈곡기를 돌리는 여섯 명의 이동식 탈곡팀",
+      "position": {
+        "beforeParagraph": "발동기 평벨트가 탈곡기를 돌리면 일꾼들이 손발을 맞춰 볏단을 날라 넣었다. 낟알이 순식간에 쏟아져 내리며, 며칠이 걸리던 타작을 반나절 만에 끝내자 농민들의 호응이 대단했다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep08-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep08-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep08-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep08-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep08-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep08-02-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-008",
+        "extra-04"
+      ]
+    },
+    {
       "id": "ep09-01",
       "episodeId": "ep09",
-      "alt": "수채화로 그린 안면도 논에서 정면을 향한 보행형 바인더로 벼를 베어 묶는 배병희",
+      "alt": "수채화로 그린 이웃들과 짐을 싣고 남양만으로 향하는 이주 행렬",
       "width": 1280,
       "height": 720,
       "position": {
@@ -430,19 +638,19 @@
       ],
       "referenceIds": [
         "sup-006",
-        "extra-03",
         "local-09",
+        "sup-027",
         "local-01"
       ]
     },
     {
       "id": "ep09-02",
       "episodeId": "ep09",
-      "alt": "수채화로 그린 이웃들과 짐을 싣고 남양만으로 향하는 이주 행렬",
+      "alt": "수채화로 그린 안면도 논에서 정면을 향한 보행형 바인더로 벼를 베어 묶는 배병희",
       "width": 1280,
       "height": 720,
       "position": {
-        "beforeParagraph": "1970년대 중반 서해안 일대에는 큰 변화가 찾아왔다. 안면도 일대에 대규모 기업 목장이 들어서며 땅 매입이 본격화되었다. 설상가상으로 간척사업 탓에 갯벌이 줄어들며 김 양식의 미래마저 불투명해졌다. 배병희는 넓은 평야로 나가 본격적인 벼농사를 지어야겠다고 판단했다."
+        "beforeParagraph": "사람 여럿이 하루 종일 매달려야 할 작업을 불과 한두 시간 만에 해치우는 기계의 놀라운 효율에 마을 사람들은 혀를 내둘렀다. 배병희는 바인더로 벼를 베어 묶고 탈곡기로 타작하는 공정을 안면도 들판에 안착시켰다. 이 바인더는 훗날 화성 독정리로 이주할 때도 가져가 새 터전을 일구는 중요한 밑천이 되었다."
       },
       "sources": [
         {
@@ -474,8 +682,8 @@
       ],
       "referenceIds": [
         "sup-006",
+        "extra-03",
         "local-09",
-        "sup-027",
         "local-01"
       ]
     },
@@ -653,7 +861,7 @@
     {
       "id": "ep14-01",
       "episodeId": "ep14",
-      "alt": "수채화로 그린 장축과 평벨트로 기계를 돌리던 정미소 내부",
+      "alt": "수채화로 그린 들판을 가로질러 정미소로 이어지는 배전 전봇대",
       "width": 1280,
       "height": 720,
       "position": {
@@ -688,19 +896,18 @@
         }
       ],
       "referenceIds": [
-        "sup-034",
-        "sup-035",
-        "sup-008"
+        "nicearra-08",
+        "nicearra-09"
       ]
     },
     {
       "id": "ep14-02",
       "episodeId": "ep14",
-      "alt": "수채화로 그린 들판을 가로질러 정미소로 이어지는 배전 전봇대",
+      "alt": "수채화로 그린 장축과 평벨트로 기계를 돌리던 정미소 내부",
       "width": 1280,
       "height": 720,
       "position": {
-        "beforeParagraph": "배병희는 안전하고 쾌적한 작업을 위해 전력 도입을 결심했다. 당시 독정리 들판에는 공장용 고압선이 들어오지 않아 380볼트 삼상 전력을 쓰려면 직접 선을 끌어와야 했다. 그는 다시 농지 일부를 처분해 자금을 마련했다. 이어 들판을 가로지르는 전봇대 수십 개를 직접 세우며 삼상 고압선을 정미소까지 끌어왔다."
+        "beforeParagraph": "이 재래식 구조는 소음과 매연이 극심했고, 고속 회전하는 벨트에 옷이나 몸이 끼이는 안전사고 위험이 컸다. 또한 기계 하나만 고장 나도 공정 전체가 멈춰 서는 치명적인 약점이 있었다."
       },
       "sources": [
         {
@@ -731,16 +938,17 @@
         }
       ],
       "referenceIds": [
-        "nicearra-08",
-        "nicearra-09"
+        "sup-034",
+        "sup-035",
+        "sup-008"
       ]
     },
     {
-      "id": "ep15-01",
-      "episodeId": "ep15",
-      "alt": "수채화로 그린 볍씨를 가져가는 이웃을 보고 조용히 돌아서는 배병희",
       "width": 1280,
       "height": 720,
+      "id": "ep15-01",
+      "episodeId": "ep15",
+      "alt": "수채화로 그린 볍씨를 가져간 이웃에게 정미소 일손을 청하며 품삯으로 배려하는 배병희",
       "position": {
         "start": true
       },
@@ -769,6 +977,49 @@
         },
         {
           "src": "/images/episodes/ep15-01-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-036",
+        "nicearra-28"
+      ]
+    },
+    {
+      "id": "ep15-02",
+      "episodeId": "ep15",
+      "alt": "수채화로 그린 볍씨를 가져가는 이웃을 보고 조용히 돌아서는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "헛간을 지나다 우연히 그 모습을 본 배병희는 걸음을 멈췄다. 하지만 소리를 치지도, 도둑이라 다그치지도 않았다. 시골 동네에서 도둑으로 몰리면 본인은 물론 식구들까지 평생 낯을 들지 못하고 야반도주라도 해야 할 처지였다. 그는 헛기침 한번 내지 않고 가만히 발길을 돌려 어둠 속으로 물러섰다. 가난에 몰린 이웃의 딱한 사정을 헤아려 못 본 척 눈감아준 것이다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep15-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep15-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep15-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep15-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep15-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep15-02-1280.webp",
           "width": 1280
         }
       ],
@@ -864,11 +1115,11 @@
       ]
     },
     {
-      "id": "ep18-01",
-      "episodeId": "ep18",
-      "alt": "수채화로 그린 논을 팔아 마련한 볏값을 농민에게 건네는 배병희",
       "width": 1280,
       "height": 720,
+      "id": "ep18-01",
+      "episodeId": "ep18",
+      "alt": "수채화로 그린 마지막 1만 2천 평만 남기기로 결단하며 장롱에서 땅문서 봉투를 꺼내는 배병희",
       "position": {
         "start": true
       },
@@ -902,8 +1153,49 @@
       ],
       "referenceIds": [
         "local-01",
-        "nicearra-07",
-        "nicearra-09"
+        "nicearra-07"
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "id": "ep18-02",
+      "episodeId": "ep18",
+      "alt": "수채화로 그린 수매 장부를 펼쳐 농민에게 현금으로 볏값 전액을 지급하는 배병희",
+      "position": {
+        "beforeParagraph": "어음이나 외상 전표가 아니었다. 배병희는 수매 장부를 펼쳐놓고 농민들의 이름을 하나하나 호명하며, 빳빳한 현금으로 볏값 전액을 단 한 푼도 에누리 없이 손에 쥐여주었다. 볏값을 떼일까 봐 밤잠을 설치며 가슴을 졸이던 농민들은 눈앞에 놓인 돈다발을 보고 말을 잇지 못했다.\n“배 사장, 정말 이 돈을 다 준단 말이오? 정미소 논까지 다 팔아서 마련했다던데….”\n거친 손으로 지폐를 건네받은 한 늙은 농부의 눈시울이 붉어졌다. 어떤 농민은 떨리는 손으로 돈을 쥔 채 한참 동안 고개를 들지 못했다. 남들은 부도가 나면 슬그머니 자취를 감추기 바쁘던 시절이었다. 제 논을 팔아가면서까지 약속했던 볏값을 온전히 치러낸 배병희의 결단은 농민들의 가슴을 먹먹하게 울렸다. 배병희는 농민들의 거친 손을 꼭 쥐며 나직이 말했다.\n“약속한 돈인데 당연히 드려야지요. 믿고 기다려주셔서 참말로 고맙습니다.”"
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep18-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep18-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep18-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep18-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep18-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep18-02-1280.webp",
+          "width": 1280
+        }
+      ],
+      "referenceIds": [
+        "local-01",
+        "sup-036"
       ]
     },
     {
