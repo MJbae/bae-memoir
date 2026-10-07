@@ -140,7 +140,7 @@ onBeforeUnmount(() => { router.onBeforePageLoad = previousBeforeLoad; ++version;
       <div class="dialog-body"><div class="dialog-handle" aria-hidden="true" /><header class="dialog-heading"><h2 id="settings-title">설정</h2><button class="close-button" aria-label="설정 닫기" @click="closeDialogs"><Icon name="close" :size="21" /></button></header>
         <MusicToggle v-if="musicTrack" :enabled="musicEnabled" :status="musicStatus" @change="setMusicEnabled" @retry="retryMusic" />
         <p class="settings-label">글자 크기</p><div class="size-options" role="group" aria-label="글자 크기 선택"><button v-for="(label, size) in sizeLabels" :key="size" :class="{ selected: fontSize === size }" :aria-pressed="fontSize === size" @click="setFont(size)">{{ label }}</button></div>
-        <p class="reading-preview">농사지은 사람 볏값은<br />밀리지 말아야지.</p>
+        <p class="reading-preview">농사지은 사람 볏값은<br />밀려선 안 된다.</p>
         <p class="settings-label">화면</p><div class="screen-options" role="group" aria-label="화면 모드 선택"><button v-for="mode in modes" :key="mode.value" :class="{ selected: screenMode === mode.value }" :aria-pressed="screenMode === mode.value" @click="setMode(mode.value)">{{ mode.label }}</button></div>
         <p class="settings-note">선택한 설정은 바로 적용돼요.</p>
         <button type="button" class="settings-done" @click="closeDialogs">설정 마치기</button>
