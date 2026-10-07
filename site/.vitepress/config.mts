@@ -2,6 +2,8 @@ import { defineConfig } from 'vitepress'
 import { loadEnv } from 'vite'
 import { fileURLToPath } from 'node:url'
 import { episodeIllustrations } from './markdown/episode-illustrations'
+import type { Illustration } from './markdown/episode-illustrations'
+import { coverImageSizes, coverImageSources, episodeImageSizes, imagePreload } from './shared/image-sources.mjs'
 import { portraitAlt } from './shared/portrait.mjs'
 import catalog from './generated/catalog.json'
 
@@ -81,6 +83,16 @@ export default defineConfig({
     pageData.description = description
     pageData.frontmatter.description = description
     pageData.frontmatter.head ??= []
+    if (isHome) {
+      pageData.frontmatter.head.push(imagePreload(coverImageSources('webp'), base, coverImageSizes, 'image/webp'))
+    } else if (pageData.frontmatter.kind === 'episode') {
+      const images = catalog.illustrations as Record<string, Illustration[]>
+      const first = images[String(pageData.frontmatter.episodeId)]?.find(image => image.position.start)
+      if (first) {
+        pageData.frontmatter.head.push(imagePreload(first.webpSources?.length ? first.webpSources : first.sources,
+          base, episodeImageSizes, first.webpSources?.length ? 'image/webp' : 'image/jpeg'))
+      }
+    }
     if (pageData.frontmatter.redirect) {
       const destination = `${base}${String(pageData.frontmatter.redirect).replace(/^\//, '')}`
       pageData.frontmatter.head.push(

@@ -319,9 +319,6 @@ test('모든 회차의 삽화를 불러오며 16:9 전체 그림을 화면 폭�
       await expect(image).toHaveAttribute('height', '720')
       if (!illustration.position.start) {
         const figure = page.locator(`[data-illustration="${illustration.id}"]`)
-        const sceneBreak = figure.locator('xpath=preceding-sibling::*[1]')
-        await expect(sceneBreak).toHaveJSProperty('tagName', 'HR')
-        expect(await sceneBreak.evaluate(element => getComputedStyle(element, '::after').content)).toBe('"⁂"')
         const paragraph = figure.locator('xpath=following-sibling::p[1]')
         await expect(paragraph).toHaveText(illustration.position.beforeParagraph!)
       }
@@ -350,6 +347,52 @@ test('삽화는 자바스크립트 없이 회차에서 표시된다', async ({ b
     await expect(page.locator('.work-synopsis')).toBeVisible()
     await expect(page.locator('.chapter-row')).toHaveCount(26)
   } finally { await context.close() }
+})
+
+test('첫 삽화는 화면에 맞는 파일 하나를 사전 로딩하고 기다리는 동안 본문을 읽는다', async ({ page }) => {
+  let release!: () => void
+  const pending = new Promise<void>(resolve => { release = resolve })
+  const requests: string[] = []
+  page.on('request', request => {
+    if (/ep01-01-\d+\.(webp|jpg)/.test(request.url())) requests.push(request.url())
+  })
+  await page.route('**/images/episodes/*', async route => { await pending; await route.continue() })
+  try {
+    await page.goto('read/ep01.html', { waitUntil: 'domcontentloaded' })
+    const figure = page.locator('[data-illustration="ep01-01"]')
+    const preload = page.locator('head link[rel="preload"][as="image"]')
+    await expect(preload).toHaveCount(1)
+    await expect(preload).toHaveAttribute('type', 'image/webp')
+    expect(await preload.getAttribute('imagesrcset')).toBe(await figure.locator('source').getAttribute('srcset'))
+    expect(await preload.getAttribute('imagesizes')).toBe(await figure.locator('img').getAttribute('sizes'))
+    await expect(figure.locator('.image-placeholder')).toBeVisible()
+    await expect(page.locator('.story-content p').first()).toBeVisible()
+    release()
+    await expect.poll(() => figure.locator('img').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
+    await expect(figure.locator('.image-placeholder')).toHaveCount(0)
+    const current = await figure.locator('img').evaluate((img: HTMLImageElement) => img.currentSrc)
+    expect(requests).toEqual([current])
+  } finally { release() }
+})
+
+test('WebP 전송이 실패하면 JPG로 복구하고 모두 실패하면 다시 불러올 수 있다', async ({ page }) => {
+  await page.route('**/images/episodes/ep01-01-*.webp', route => route.abort())
+  await page.goto('read/ep01.html')
+  const figure = page.locator('[data-illustration="ep01-01"]')
+  await expect.poll(() => figure.locator('img').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
+  expect(await figure.locator('img').evaluate((img: HTMLImageElement) => img.currentSrc)).toMatch(/-720\.jpg$/)
+  await expect(figure.locator('.image-error')).toHaveCount(0)
+
+  await page.route('**/images/episodes/ep01-01-*.jpg', route => route.abort())
+  await page.reload()
+  await expect(figure.locator('.image-error')).toBeVisible()
+  await expect(page.locator('.story-content p').filter({ hasText: '배병희' }).first()).toBeVisible()
+  await page.unroute('**/images/episodes/ep01-01-*.webp')
+  await page.unroute('**/images/episodes/ep01-01-*.jpg')
+  await figure.getByRole('button', { name: '그림 다시 불러오기' }).click()
+  await expect(figure.locator('.image-error')).toHaveCount(0)
+  await expect.poll(() => figure.locator('img').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
+  expect(await figure.locator('img').evaluate((img: HTMLImageElement) => img.currentSrc)).toMatch(/\.webp\?retry=1$/)
 })
 
 test('표지형 홈의 표지와 설정을 표시하고 재방문 소개는 전체 단위로 펼치고 접는다', async ({ page }, info) => {

@@ -21,7 +21,7 @@ export function parseManuscript(markdown, warn = () => {}) {
     } else if (!fence) {
       const heading = line.match(/^(#{1,2})\s+([^\r\n]+)/)
       if (heading) boundaries.push({ level: heading[1].length, text: heading[2].trim(), start: offset, bodyStart: offset + line.length })
-      if (/^###\s/.test(line)) warn(`회차 안의 소제목은 장면 전환으로 바꾸세요: ${line.trim()}`)
+      if (/^###\s/.test(line)) warn(`회차 안의 소제목은 본문에 통합하고, 시간·장소·사건이 크게 달라질 때만 장면 전환을 사용하세요: ${line.trim()}`)
     }
     offset += line.length
   }

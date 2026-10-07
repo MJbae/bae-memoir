@@ -436,6 +436,47 @@ html:has(dialog[open]) {
   margin: 0;
   border-radius: 3px;
 }
+.responsive-image {
+  position: relative;
+  background: var(--soft);
+  border-radius: 3px;
+}
+.responsive-image picture,
+.responsive-image img {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.image-placeholder,
+.image-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: var(--muted);
+  font-size: var(--font-meta);
+  text-align: center;
+}
+.image-failed img {
+  visibility: hidden;
+}
+.image-error p,
+.story-content .image-error p {
+  margin: 0 0 8px;
+  font-size: var(--font-meta);
+  line-height: 1.5;
+}
+.image-error button {
+  min-height: 44px;
+  padding: 8px 12px;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 .story-content hr {
   border: 0;
   border-top: 1px solid var(--line);

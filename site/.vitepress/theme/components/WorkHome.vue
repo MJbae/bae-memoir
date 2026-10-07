@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { withBase } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { catalog, type Episode } from '../lib/catalog'
 import { portraitAlt } from '../../shared/portrait.mjs'
 import Icon from './Icon.vue'
 import ReadingLink from './ReadingLink.vue'
+import ResponsiveImage from './ResponsiveImage.vue'
+import { coverImageSizes, coverImageSources, imageSrcset } from '../../shared/image-sources.mjs'
 
 type NodeState = 'read' | 'current' | 'unread'
 const props = defineProps<{ lastId: string | null; lastFinished: boolean; completed: string[] }>()
@@ -20,9 +22,9 @@ const partDescriptions: Record<string, string> = {
   들녘: '네 아들이 힘을 보태며 정미소와 쌀농사를 키워 갔다.',
 }
 // The cover reuses the shared watercolor, so the link preview and the home open on the same painting.
-const coverSizes = '(min-width: 700px) 632px, 100vw'
+const { site } = useData()
 const coverSrcset = (format: 'webp' | 'jpg') =>
-  [360, 720, 1280].map(width => `${withBase(`/images/home-cover-${width}.${format}`)} ${width}w`).join(', ')
+  imageSrcset(coverImageSources(format), site.value.base)
 
 const groups = computed(() => {
   const rows: {
@@ -81,19 +83,9 @@ const partRead = (episodes: Episode[]) => episodes.every(episode => props.comple
 <template>
   <main id="main" tabindex="-1" class="home-main">
     <section class="home-intro" aria-label="작품 소개">
-      <picture class="home-cover">
-        <source type="image/webp" :srcset="coverSrcset('webp')" :sizes="coverSizes" />
-        <img
-          :src="withBase('/images/home-cover-1280.jpg')"
-          :srcset="coverSrcset('jpg')"
-          :sizes="coverSizes"
-          width="1280"
-          height="720"
-          :alt="portraitAlt"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </picture>
+      <ResponsiveImage class="home-cover" :src="withBase('/images/home-cover-720.jpg')"
+        :srcset="coverSrcset('jpg')" :webp-srcset="coverSrcset('webp')" :sizes="coverImageSizes"
+        :width="1280" :height="720" :alt="portraitAlt" loading="eager" fetchpriority="high" />
       <header class="home-heading">
         <div class="home-heading-tools"><p class="home-subtitle">{{ catalog.work.subtitle }}</p><slot name="settings" /></div>
         <h1>{{ catalog.work.title }}</h1>

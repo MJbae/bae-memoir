@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript_sha256": "9457b8b59ad0283db721eb1a64db15aa564fd8263d20f06fa94358968cce4c7f",
+  "manuscript_sha256": "f115e2d621abf04d70e18727e913e24a0bfb962dd2f54aa59e6bd924f2b3d655",
   "episode_count": 26,
   "episodes": [
     {
@@ -192,21 +192,28 @@
       "number": 8,
       "type": "본편",
       "title": "멈춰 선 탈곡기를 돌려라",
-      "setting": "1970년대 초 · 안면도 중장리",
+      "setting": "1970년대 초·중반 · 안면도 중장리",
       "suggested_representative_scene": "탈곡기 곁에서 숟가락 위 납으로 부품을 고치는 손",
       "reference_ids": [
         "local-01",
         "sup-008",
-        "extra-04"
+        "extra-04",
+        "sup-006",
+        "extra-03",
+        "local-09"
       ],
       "reference_paths": [
         "배병희_본인/50대의_배병희_정장.png",
         "시대_참고/옛_정미소/sup-008_재래식_발동기_플라이휠.jpg",
-        "시대_참고/농기구_생활/extra-04_전통_탈곡기_구조.jpg"
+        "시대_참고/농기구_생활/extra-04_전통_탈곡기_구조.jpg",
+        "시대_참고/농기구_생활/sup-006_1973_경운기_영농.jpg",
+        "시대_참고/농기구_생활/extra-03_보행형_바인더_구조.jpg",
+        "안면도/IMG_3327.JPG"
       ],
       "historical_notes": "납 주조 베어링 실물 자료 미확보. 원고의 소형 발동기·별도 탈곡기 관계를 유지.",
       "suggested_body_scenes": [
-        "소형 발동기와 평벨트로 별도 탈곡기를 돌리는 여섯 명의 이동식 탈곡팀"
+        "소형 발동기와 평벨트로 별도 탈곡기를 돌리는 여섯 명의 이동식 탈곡팀",
+        "안면도 논에서 정면을 향한 보행형 바인더로 벼를 베어 묶는 배병희"
       ]
     },
     {
@@ -215,25 +222,21 @@
       "type": "본편",
       "title": "일곱 가구가 따라나선 길",
       "setting": "1977년 · 안면도에서 남양만으로",
-      "suggested_representative_scene": "경운기와 바인더를 챙겨 새 터전으로 향하는 이주",
+      "suggested_representative_scene": "이웃 일곱 가구와 짐을 싣고 남양만으로 향하는 이주 행렬",
       "reference_ids": [
         "local-01",
         "sup-006",
-        "extra-03",
         "local-09",
         "sup-027"
       ],
       "reference_paths": [
         "배병희_본인/50대의_배병희_정장.png",
         "시대_참고/농기구_생활/sup-006_1973_경운기_영농.jpg",
-        "시대_참고/농기구_생활/extra-03_보행형_바인더_구조.jpg",
         "안면도/IMG_3327.JPG",
         "시대_참고/남양만_지형/sup-027_남양호와_방조제.webp"
       ],
       "historical_notes": "1970년대 기종과 실제 이주행렬 사진 없음. 현대 콤바인·트랙터로 대체하지 않음.",
-      "suggested_body_scenes": [
-        "안면도 논에서 정면을 향한 보행형 바인더로 벼를 베어 묶는 배병희"
-      ]
+      "suggested_body_scenes": []
     },
     {
       "id": "ep10",

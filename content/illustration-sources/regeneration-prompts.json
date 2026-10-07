@@ -62,10 +62,10 @@
       "previousMasterSha256": "72e869c6f552805783d2313c7444b5a411a0e5905f32d019f34f0684b794b6eb"
     },
     {
-      "id": "ep09-02",
-      "episodeId": "ep09",
+      "id": "ep08-03",
+      "episodeId": "ep08",
       "master": "content/illustration-sources/ep09-01.png",
-      "sceneHeading": "일곱 가구가 따라나선 길 {#ep09}",
+      "sceneHeading": "멈춰 선 탈곡기를 돌려라 {#ep08}",
       "sceneExcerpt": "이어 1970년대 중반에는 충남 광천 시장에서 벼를 베어 묶는 보행형 수확기인 ‘바인더(Binder)’를 보고 과감히 구입했다. 당시 안면도에서는 낯선 기계였다. 낫으로 며칠씩 베어야 할 논을 바인더로 밀고 나가면 밑동을 벤 벼를 노끈으로 묶어 논둑에 가지런히 내려놓았다.",
       "corrections": [
         "Show the binder from the front, with the operator standing behind it.",
@@ -106,7 +106,7 @@
       "previousMasterSha256": "0199475e9471b99d3d5369ca74178d74561e681cc1e6e5e21849892ade89571a",
       "previousIllustrationId": "ep09-01",
       "placementRole": "body",
-      "placementReason": "이주 행렬을 제목 아래로 올리고 바인더 장면은 해당 작업 문단으로 이동"
+      "placementReason": "경운기·바인더 도입을 농기계 회차로 옮겨 9화를 일곱 가구의 이주 이야기로 집중"
     },
     {
       "id": "ep09-01",
@@ -739,6 +739,61 @@
       "prompt": "Use case: historical-scene. Asset type: one new complete landscape 16:9 BODY illustration for the existing Korean autobiography website. These inputs are REFERENCES, not edit targets. Illustrate only the specified manuscript scene, as a new composition.\nStyle: match the existing series' hand-painted watercolor on warm cold-pressed paper: translucent ochre and restrained grey-blue washes, broad brush-shaped marks, visible watercolor blooms and granulation, softly lost edges alternating with selective crisp strokes for hands, faces and essential objects, light paper left in highlights. Paint every surface coherently. No photo with a paint filter, pasted photographic face, glossy skin, uniform artificial speckling, oil impasto, cartoon or hyper-detailed digital rendering.\nComposition: single wide 16:9 scene, no panels or collage. Make the action instantly readable on a phone; keep essential people, hands and objects inside the central framing. Natural anatomy, continuous connected limbs, believable grounded feet and object support. Use period-appropriate modest clothes, buildings and hand tools. No captions, text, legible lettering, logos, watermark or decorative border.\nManuscript scene: when a grandchild is born, Bae takes an early bus to a Seoul hospital and cradles the newborn, silently moved. This is an undated family memory; do not add a year or claim this is his first grandchild.\nReference roles: image 1 is the ACTUAL elderly Bae Byung-hee, the highest identity priority: same eyes, brows, cheeks, broad nose, lips, jaw, white hairline and familiar glasses. Image 2 is the existing painting of that SAME elderly man, for his familiar identity and watercolor. Image 3 is shared paint and underlying same-person facial geometry only, not a suit or younger age. Image 4 is underlying same-person identity only; DO NOT copy the photographed child or make a fifty-year-old face pasted onto an older body.\nScene: simple quiet hospital room in a family memory. The recognizable older Bae sits on a plain chair beside a softly indicated hospital bed, cradling ONE fully swaddled newborn in both arms with the head and neck safely supported. The infant is a small soft new face, no reference child portrait. Bae wears modest dark-blue everyday outerwear, not a formal suit; he looks down through his familiar glasses with a restrained tender expression and slightly moist eyes. Close two-subject composition, shoulders, connected hands, supported bundled baby and face all within the frame. Soft early-morning window light, minimal neutral hospital background. No medical emergency, crying crowd, tubes, exposed newborn body, mother portrait, modern high-tech monitor, readable signs, religious symbols or cheerful advertising smile.",
       "manuscriptSha256AtGeneration": "240f9943e3f536b600224b3efa89c0280fd08f880dc494327b482339da929b74",
       "sceneExcerptAtGeneration": "손주들을 향한 내리사랑 또한 각별했다. 손주가 태어났다는 소식에 수화기 너머로는 담담했다. 안부만 물었을 뿐이었다. 그러나 이튿날 날이 밝기도 전에 새벽 첫차를 타고 서울 병원으로 한달음에 달려왔다. 갓 태어난 핏줄을 조심스레 품에 안고는 말없이 눈시울을 붉혔다. 손주가 아파 입원했다는 소식이 들리면 하던 일도 팽개쳤다. 곧장 병원으로 달려가 제 눈으로 확인하고서야 비로소 가슴을 쓸어내렸다."
+    },
+    {
+      "id": "ep19-01",
+      "episodeId": "ep19",
+      "master": "content/illustration-sources/ep19-01.png",
+      "masterSha256": "59583e95421bb562cc8cb5ad3b32aa345b56c3284cd66a3b2080baad2fa16458",
+      "sceneHeading": "밀려드는 벼, 커지는 정미소 {#ep19}",
+      "sceneExcerpt": "농민들의 두터운 신뢰가 쌓이면서 1990년대 중후반 독정 정미소에는 장안면과 우정면, 남양만 일대 들녘에서 수확한 벼가 물밀듯이 쏟아져 들어왔다. 창고가 턱없이 부족해 넓은 마당과 인근 밭자락까지 볏가마니를 산더미처럼 쌓아두어야 할 지경이었다.\n\n이 시기 농촌에는 벼를 베면서 탈곡까지 한 번에 끝내는 ‘콤바인’이 널리 보급되었다. 수확 기간이 크게 단축되면서 가을 한철에 채 마르지 않은 ‘물벼(생벼)’가 대량으로 쏟아져 들어왔다. 물벼는 거두자마자 곧바로 말리지 않으면 자체 열과 습기 때문에 벼가 뜨고 변질되기 일쑤였다.\n\n배병희와 자녀들은 발 빠르게 설비 현대화에 나섰다. 대용량 연속식 곡물 건조기를 전격 도입하고, 건조된 곡식을 신선하게 보관할 저온·상온 사일로와 저장 창고를 대대적으로 늘렸다.",
+      "placementRole": "representative",
+      "corrections": [
+        "실제 참조 사진의 배병희 얼굴 골격과 눈·코·입·턱의 관계를 반영",
+        "주인공을 전경으로 키우고 정면에 가까운 3/4 얼굴로 양쪽 눈과 입을 명확히 표시",
+        "1990년대의 나이·작업복, 물벼 반입구와 건조·저장 시설 및 수채화 화풍 유지"
+      ],
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "실제 50대 배병희의 얼굴; 사진 가운데 성인 남성만 기준",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "같은 인물의 기존 수채화 초상과 화풍",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/ep18-02-1280.jpg",
+          "role": "1990년대의 인물 얼굴과 작업복 및 수채화 처리",
+          "sha256": "00aff7cd3783de1e92dfbc7e1a476e13f0a817498cc3a38fb601eb3cbfc2562b"
+        },
+        {
+          "path": "content/ref_images/독정RPC/수매_물류/janganrice-13_벼_반입_호퍼.jpg",
+          "role": "벼 반입 호퍼의 공정·구조 참고; 촬영 연대를 1990년대로 소급하지 않음",
+          "sha256": "4b9007441acc3abda74d3a573bf95cd9186227815ed77e0a95ae938f75166de6"
+        },
+        {
+          "path": "content/illustration-sources/archive/ep19-before-face-refresh.jpg",
+          "role": "수정 전 삽화; 벼 반입·사일로·농민 구도 유지, 오른쪽 주인공의 얼굴과 가시성 개선",
+          "sha256": "553141e979dd8ae4f5152b18c9afe0522004fab829b955287823dad31caf8d8d"
+        }
+      ],
+      "prompt": "Use case: identity-preserve.\nAsset type: corrected landscape 16:9 watercolor TITLE illustration for Korean autobiography episode ep19, \"밀려드는 벼, 커지는 정미소\".\nPrimary request: the protagonist's actual face is missing from the existing illustration. Repaint and reframe the BLUE-WORK-JACKET MAN on the right so he is unmistakably Bae Byung-hee and his face is clearly readable on a phone, while keeping the grain receiving and mill expansion scene.\n\nReference roles, in priority order:\nImage 1 is the ACTUAL Bae Byung-hee at about fifty: use the ADULT MAN IN THE CENTER of the photograph as the mandatory facial identity. Do not use the child, suit, pose or background.\nImage 2 is the approved watercolor portrait of the SAME man, for the familiar face and series paint treatment.\nImage 3 is the existing early-1990s cash-payment painting: take the same protagonist's recognizable face, ordinary dark-blue work jacket and hand-painted treatment, not its payment action or office.\nImage 4 is the real grain-receiving hopper photograph, for coherent grain flow and hopper structure only. It is a later reference photograph, not evidence for exact 1990s facility layout; do not copy its people, labels or modern details.\nImage 5 is the EDIT TARGET. Keep its successful grain stream at the left, open receiving hopper and grating in the foreground, background drying/storage silos, modest truck, rural harvest-season light, and the separate cap-wearing farmer. Its present blue-jacketed younger generic man's face must be replaced, not preserved.\n\nScene and age: 1990s mid-to-late Dokjeong rice mill. The manuscript describes harvested wet unhulled paddy rice arriving in great volumes, the father and sons expanding drying and storage, and farmers trusting the mill. Depict Bae at around sixty, with mostly dark hair and only modest grey at the temples; do not turn him into an eighty-year-old white-haired man or add elderly glasses. He calmly oversees the paddy intake beside a distinct older farmer in a cap.\n\nIdentity and visibility: preserve Bae's actual face width-to-height, broad midface and full cheeks, softly hooded narrow eyes, familiar brows, broad rounded nose with its true nostril/tip shape, characteristic lips, rounded jaw and chin, ears and forehead-to-hairline. Make the blue-jacketed protagonist the clearest person in the composition. Raise his chin, rotate his head to a nearly frontal three-quarter view with BOTH eyes, nose and mouth visible, and bring his upper body somewhat closer/larger on the camera-side portion of the hopper. His face should occupy roughly one fifth of the image height rather than a tiny head hidden behind the equipment. Keep his whole head and essential hands safely inside the frame. His gaze may be slightly toward the arriving grain or the farmer; he is attentively working, not posing for a formal portrait. Understated composed expression, no advertising grin. Naturally connect head, neck, shoulders and arms. One hand may rest on the fixed outer frame, outside the moving grain stream, the other rests naturally; never put hands into moving machinery. The cap-wearing farmer keeps a DISTINCT identity and remains a smaller supporting person; do not apply Bae's face to both men.\n\nStyle and invariants: paint the entire correction in the existing series' watercolor on warm cold-pressed paper, translucent ochre and grey-blue washes, visible brush-shaped marks, pigment blooms/granulation, softened/lost edges with selective clear defining strokes for faces, hands and grain. Preserve the current broad grain-flow scene and grounded machinery perspective. Let the protagonist's face be clear through natural light and readable scale, not a photographic pasted face or sharpened cutout. Keep the background and grain as contextual watercolor forms. No oil paint, glossy photorealistic skin, cartoon, uniformly noisy photo filter, floating limbs, duplicated people or extreme close-up that removes the hopper and silos. No extra characters, new camera pose props, robots, drones, luxury factory, signage, readable text, numeric label, caption, logo, watermark, panel, collage or border. One complete opaque wide 16:9 painting.",
+      "previousIllustrationSha256": "553141e979dd8ae4f5152b18c9afe0522004fab829b955287823dad31caf8d8d",
+      "export": {
+        "widths": [
+          360,
+          720,
+          1280
+        ],
+        "formats": [
+          "jpg",
+          "webp"
+        ],
+        "method": "Pillow Lanczos export of built-in image_gen result"
+      }
     }
   ],
   "revision": 3,
@@ -779,7 +834,7 @@
       },
       {
         "previousId": "ep09-01",
-        "currentId": "ep09-02",
+        "currentId": "ep08-03",
         "sha256": "24b68e3e1ecbf0f754fdfc141e0f16db1234a30c6cabd6fd0b806841a1ce9ea3"
       },
       {
@@ -819,5 +874,13 @@
     "representativeCount": 26,
     "bodyCount": 20,
     "manuscriptSha256": "9457b8b59ad0283db721eb1a64db15aa564fd8263d20f06fa94358968cce4c7f"
-  }
+  },
+  "faceCorrections": [
+    {
+      "date": "2026-10-08",
+      "id": "ep19-01",
+      "mode": "built-in image_gen",
+      "reason": "본문과 참조 사진을 재검토하여 주인공 얼굴 식별성과 모바일 가시성 개선"
+    }
+  ]
 }
