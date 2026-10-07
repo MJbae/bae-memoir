@@ -147,7 +147,7 @@ test('읽던 위치와 네 단계 글자 크기를 기억한다', async ({ page 
   // Click the visible sticky toolbar: Playwright's automatic scrollIntoView can move it to document top.
   await page.mouse.click(back!.x + back!.width / 2, back!.y + back!.height / 2)
   await expect(page.locator('.resume-link')).toContainText('이어서 읽기')
-  await expect(page.locator('.resume-link .reading-link-subtitle')).toHaveText('1화 어머니의 조새')
+  await expect(page.locator('.resume-link .reading-link-subtitle')).toHaveText('1화 어머니의 쇠갈고리')
   await expect(page.locator('.resume-link .reading-link-subtitle')).toHaveCSS('font-size', '16px')
   await page.locator('.resume-link').click()
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(200)
@@ -158,11 +158,11 @@ test('옛 연대 읽기 기록을 새 회차의 제목과 주소로 읽는다', 
   await page.addInitScript(() => localStorage.setItem('family-library:reading', JSON.stringify({ id: 'life-1980s', title: '옛 제목', url: '/read/1980s.html', scroll: 1800 })))
   await page.goto('./')
   await expect(page.locator('.resume-link .reading-link-label')).toHaveText('이어서 읽기')
-  await expect(page.locator('.resume-link .reading-link-subtitle')).toHaveText('12화 가족은 반대했다')
+  await expect(page.locator('.resume-link .reading-link-subtitle')).toHaveText('12화 망해가는 정미소를 사다')
   await expect(page.locator('#episode-rice-mill')).toHaveAttribute('aria-current', 'location')
   await expect(page.locator('.resume-link')).toHaveAttribute('href', '/bae-memoir/read/rice-mill.html')
   await page.locator('.resume-link').click()
-  await expect(page.locator('.article-header h1')).toHaveText('가족은 반대했다')
+  await expect(page.locator('.article-header h1')).toHaveText('망해가는 정미소를 사다')
 })
 
 test('끝까지 읽은 옛 연대 기록은 목차에서도 읽은 회차로 표시한다', async ({ page }) => {
@@ -368,7 +368,7 @@ test('목차 왼쪽 줄은 읽음·읽는 중·안 읽음을 모양으로 구분
   const read = rawCatalog.readingOrder.slice(0, 12).map(episode => episode.id)
   await page.addInitScript(({ read }) => {
     localStorage.setItem('family-library:completed', JSON.stringify(read))
-    localStorage.setItem('family-library:reading', JSON.stringify({ id: 'ep-rice-mill', title: '가족은 반대했다', url: '/bae-memoir/read/rice-mill.html', scroll: 300, finished: false }))
+    localStorage.setItem('family-library:reading', JSON.stringify({ id: 'ep-rice-mill', title: '망해가는 정미소를 사다', url: '/bae-memoir/read/rice-mill.html', scroll: 300, finished: false }))
     localStorage.setItem('family-library:music', JSON.stringify({ enabled: false }))
   }, { read })
   await page.goto('./')
@@ -379,7 +379,7 @@ test('목차 왼쪽 줄은 읽음·읽는 중·안 읽음을 모양으로 구분
   await expect(page.locator('#episode-rice-mill')).toContainText('읽는 중')
   await expect(page.getByRole('img', { name: '읽은 회차' })).toHaveCount(12)
   // Screen readers hear the title first and the reading state last, as before the rail.
-  await expect(page.locator('#episode-josae')).toHaveAccessibleName(/^1화 어머니의 조새.*읽은 회차$/)
+  await expect(page.locator('#episode-josae')).toHaveAccessibleName(/^1화 어머니의 쇠갈고리.*읽은 회차$/)
   // Every row keeps the same tap cue, whatever its reading state.
   await expect(page.locator('.chapter-row .chapter-chevron')).toHaveCount(26)
   await expect(page.locator('.part-done')).toHaveCount(3)

@@ -106,8 +106,8 @@ test('제목과 순서를 바꿔도 회차 주소와 문서 ID는 그대로이�
   const { write, run } = fixture(t)
   const before = run().catalog.readingOrder
   const body = matter(original).content
-  const first = body.indexOf('## 어머니의 조새'), second = body.indexOf('## 책보 대신 지게'), third = body.indexOf('## 열두 자리 숫자')
-  write(mainFilename, original.slice(0, original.indexOf(body)) + body.slice(0, first) + body.slice(second, third) + body.slice(first, second).replace('어머니의 조새', '갯벌의 어머니') + body.slice(third))
+  const first = body.indexOf('## 어머니의 쇠갈고리'), second = body.indexOf('## 책보 대신 지게'), third = body.indexOf('## 열두 자리 숫자')
+  write(mainFilename, original.slice(0, original.indexOf(body)) + body.slice(0, first) + body.slice(second, third) + body.slice(first, second).replace('어머니의 쇠갈고리', '갯벌의 어머니') + body.slice(third))
   const after = run().catalog.readingOrder
   for (const episode of before) {
     const updated = after.find(e => e.episodeId === episode.episodeId)
