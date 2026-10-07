@@ -249,7 +249,7 @@
         "배병희_본인/50대의_배병희_정장.png",
         "시대_참고/농기구_생활/sup-007_1972_농촌_주택개량.jpg",
         "시대_참고/농기구_생활/sup-006_1973_경운기_영농.jpg",
-        "배병희_자녀들/자녀들과_배우자들.jpeg"
+        "배병희_자녀들/자녀들과_배우자들.jpeg"
       ],
       "historical_notes": "가족 사진의 개별 얼굴 대응 미확인. 원고에 없는 학교·교복 표지를 추가하지 않음."
     },
@@ -346,13 +346,11 @@
       "suggested_representative_scene": "수많은 식구와 일꾼의 밥을 짓는 아내의 손과 가마솥",
       "reference_ids": [
         "sup-009",
-        "sup-010",
-        "mysaigon-20"
+        "sup-010"
       ],
       "reference_paths": [
         "시대_참고/농기구_생활/sup-009_아궁이와_가마솥.jpg",
-        "시대_참고/농기구_생활/sup-010_시골집_가마솥_부엌.jpg",
-        "독정RPC/제품_곡물/mysaigon-20_흰밥과_김치.jpg"
+        "시대_참고/농기구_생활/sup-010_시골집_가마솥_부엌.jpg"
       ],
       "historical_notes": "배선빈의 아내 김미혜나 배병희의 누이를 원고의 아내로 쓰지 않음."
     },
@@ -450,16 +448,12 @@
       "reference_ids": [
         "local-02",
         "local-03",
-        "mysaigon-17",
-        "inucom-01",
-        "janganrice-05"
+        "inucom-01"
       ],
       "reference_paths": [
-        "배병희_본인/80대의_백발의_배병희_정장_옆면.png",
-        "배병희_자녀들/자녀들과_배우자들.jpeg",
-        "독정RPC/인물_가족/mysaigon-17_배병희와_가족_홍보사진.jpg",
-        "독정RPC/인물_가족/inucom-01_배선빈_김미혜_현장.jpg",
-        "독정RPC/외관_공간/janganrice-05_과거_공장_측면.jpg"
+        "배병희_본인/80대의_백발의_배병희_정장_옆면.png",
+        "배병희_자녀들/자녀들과_배우자들.jpeg",
+        "독정RPC/인물_가족/inucom-01_배선빈_김미혜_현장.jpg"
       ],
       "historical_notes": "네 아들 얼굴의 개별 대응표 미확인. 홍보물 속 네 사람을 네 형제 전원으로 오인하지 않음."
     },
@@ -473,14 +467,12 @@
       "reference_ids": [
         "inucom-11",
         "nicearra-07",
-        "janganrice-11",
         "janganrice-07",
         "mon9955-22"
       ],
       "reference_paths": [
         "독정RPC/외관_공간/inucom-11_독정RPC_전경_들녘.jpg",
         "독정RPC/들녘_재배/nicearra-07_누렇게_익은_벼.jpg",
-        "독정RPC/들녘_재배/janganrice-11_들판_현장_사람들.jpg",
         "독정RPC/건조_저장/janganrice-07_과거_사일로_지게차.jpg",
         "독정RPC/수매_물류/mon9955-22_계근_중량_표시기.jpg"
       ],
@@ -521,14 +513,12 @@
       "reference_ids": [
         "local-02",
         "inucom-11",
-        "nicearra-09",
-        "mysaigon-08"
+        "nicearra-09"
       ],
       "reference_paths": [
-        "배병희_본인/80대의_백발의_배병희_정장_옆면.png",
+        "배병희_본인/80대의_백발의_배병희_정장_옆면.png",
         "독정RPC/외관_공간/inucom-11_독정RPC_전경_들녘.jpg",
-        "독정RPC/외관_공간/nicearra-09_논길에서_본_공장.jpg",
-        "독정RPC/건조_저장/mysaigon-08_사일로_상부_이송부.jpg"
+        "독정RPC/외관_공간/nicearra-09_논길에서_본_공장.jpg"
       ],
       "historical_notes": "노년 얼굴은 기존 80대 사진 우선. 동일 시점의 실제 마당·사일로 공간을 사용."
     },
@@ -542,13 +532,11 @@
       "reference_ids": [
         "local-02",
         "extra-06",
-        "mysaigon-20",
         "sup-010"
       ],
       "reference_paths": [
-        "배병희_본인/80대의_백발의_배병희_정장_옆면.png",
+        "배병희_본인/80대의_백발의_배병희_정장_옆면.png",
         "시대_참고/농기구_생활/extra-06_수육_상차림_형태.jpg",
-        "독정RPC/제품_곡물/mysaigon-20_흰밥과_김치.jpg",
         "시대_참고/농기구_생활/sup-010_시골집_가마솥_부엌.jpg"
       ],
       "historical_notes": "실제 가족 밥상 사진 아님. 현대 요리 사진은 음식 형태만 참고하며 소박한 실내로 재구성."

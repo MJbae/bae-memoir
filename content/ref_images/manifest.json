@@ -5,10 +5,10 @@
   "manuscript": "../../배병희_자서전.md",
   "scope": "현재 정본 26개 회차의 대표 이미지 제작을 위한 인물·공간·장비·생활 자료",
   "counts": {
-    "total": 105,
-    "downloaded": 94,
+    "total": 90,
+    "downloaded": 79,
     "existing": 11,
-    "actual_rpc": 55
+    "actual_rpc": 40
   },
   "usage_rules": [
     "사진은 외형·공간·공정 참고 자료이며 회차 대표 이미지 자체가 아님.",
@@ -50,7 +50,7 @@
     {
       "id": "local-02",
       "title": "80대의_백발의_배병희_정장_옆면",
-      "path": "배병희_본인/80대의_백발의_배병희_정장_옆면.png",
+      "path": "배병희_본인/80대의_백발의_배병희_정장_옆면.png",
       "category": "배병희_본인",
       "role": "identity",
       "subject": "배병희",
@@ -79,7 +79,7 @@
     {
       "id": "local-03",
       "title": "자녀들과_배우자들",
-      "path": "배병희_자녀들/자녀들과_배우자들.jpeg",
+      "path": "배병희_자녀들/자녀들과_배우자들.jpeg",
       "category": "배병희_자녀들",
       "role": "identity_group",
       "subject": "배병희의 자녀와 배우자들",
@@ -108,7 +108,7 @@
     {
       "id": "local-04",
       "title": "스크린샷 2026-01-25 오후 2.05.27",
-      "path": "배병희_형제자매/스크린샷 2026-01-25 오후 2.05.27.png",
+      "path": "배병희_형제자매/스크린샷 2026-01-25 오후 2.05.27.png",
       "category": "배병희_형제자매",
       "role": "identity",
       "subject": "배병희의 형제자매",
@@ -137,7 +137,7 @@
     {
       "id": "local-05",
       "title": "스크린샷 2026-01-25 오후 2.05.35",
-      "path": "배병희_형제자매/스크린샷 2026-01-25 오후 2.05.35.png",
+      "path": "배병희_형제자매/스크린샷 2026-01-25 오후 2.05.35.png",
       "category": "배병희_형제자매",
       "role": "identity",
       "subject": "배병희의 형제자매",
@@ -166,7 +166,7 @@
     {
       "id": "local-06",
       "title": "스크린샷 2026-01-25 오후 2.05.43",
-      "path": "배병희_형제자매/스크린샷 2026-01-25 오후 2.05.43.png",
+      "path": "배병희_형제자매/스크린샷 2026-01-25 오후 2.05.43.png",
       "category": "배병희_형제자매",
       "role": "identity",
       "subject": "배병희의 형제자매",
@@ -195,7 +195,7 @@
     {
       "id": "local-07",
       "title": "스크린샷 2026-01-25 오후 2.05.50",
-      "path": "배병희_형제자매/스크린샷 2026-01-25 오후 2.05.50.png",
+      "path": "배병희_형제자매/스크린샷 2026-01-25 오후 2.05.50.png",
       "category": "배병희_형제자매",
       "role": "identity",
       "subject": "배병희의 형제자매",
@@ -311,7 +311,7 @@
     {
       "id": "local-11",
       "title": "스크린샷 2026-01-25 오후 1.14.35",
-      "path": "현댸_독정리_수확/스크린샷 2026-01-25 오후 1.14.35.png",
+      "path": "현댸_독정리_수확/스크린샷 2026-01-25 오후 1.14.35.png",
       "category": "현댸_독정리_수확",
       "role": "location_equipment",
       "subject": "독정리 수확 또는 RPC 시설",
@@ -364,37 +364,6 @@
       "height": 213,
       "bytes": 86818,
       "sha256": "642f814eebad86ff1d16b6d5bd745337c2da1c8fc298a6aa61d4e30d357459f1",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "보조 (저해상도)"
-    },
-    {
-      "id": "janganrice-05",
-      "title": "과거 공장 측면",
-      "path": "독정RPC/외관_공간/janganrice-05_과거_공장_측면.jpg",
-      "category": "독정RPC/외관_공간",
-      "role": "appearance",
-      "subject": "과거 공장 측면",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/janganrice/20044999877",
-        "image_url": "https://blogfiles.pstatic.net/data32/2008/3/1/191/_mg_8076_janganrice.jpg",
-        "publisher": "독정RPC 운영 가족 블로그 (janganrice)",
-        "published_at": "2007-12-18",
-        "accessed_at": "2026-10-06",
-        "page_title": "[경기도 화성 독정RPC]프로농민의 우리쌀 만들기 프로젝트 \"경기미!!!\"",
-        "image_upload_year": 2008
-      },
-      "era": "2007년 게시 / 2008년 이미지 업로드; 촬영연도 미상",
-      "notes": "2007년 게시물·2008년 업로드에 보이는 시설. 1983년 새마을정미소의 원형 아님.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 320,
-      "height": 213,
-      "bytes": 91760,
-      "sha256": "f303b028a0a0503736e4ad2c4e52ec5292640a6ac1cf488286068173afb391bf",
       "visual_reviewed": true,
       "captured_at": null,
       "recommended_priority": "보조 (저해상도)"
@@ -457,37 +426,6 @@
       "height": 213,
       "bytes": 81883,
       "sha256": "f2e684b9b3ccff10628bc84c2de4394bb5adc13af47a70dc316c02804faf4f9c",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "보조 (저해상도)"
-    },
-    {
-      "id": "janganrice-11",
-      "title": "들판 현장 사람들",
-      "path": "독정RPC/들녘_재배/janganrice-11_들판_현장_사람들.jpg",
-      "category": "독정RPC/들녘_재배",
-      "role": "appearance",
-      "subject": "들판 현장 사람들",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/janganrice/20044999877",
-        "image_url": "https://blogfiles.pstatic.net/data32/2008/3/1/280/dscn6962_janganrice.jpg",
-        "publisher": "독정RPC 운영 가족 블로그 (janganrice)",
-        "published_at": "2007-12-18",
-        "accessed_at": "2026-10-06",
-        "page_title": "[경기도 화성 독정RPC]프로농민의 우리쌀 만들기 프로젝트 \"경기미!!!\"",
-        "image_upload_year": 2008
-      },
-      "era": "2007년 게시 / 2008년 이미지 업로드; 촬영연도 미상",
-      "notes": "현장 설명과 사람 배치 참고. 개별 인물 식별 미확인.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 320,
-      "height": 240,
-      "bytes": 159899,
-      "sha256": "de74f9bb5f2cf22e7d989b677e2bff42bc5a6296667c0c87bd3d6c8414311712",
       "visual_reviewed": true,
       "captured_at": null,
       "recommended_priority": "보조 (저해상도)"
@@ -586,68 +524,6 @@
       "recommended_priority": "보조 (저해상도)"
     },
     {
-      "id": "janganrice-16",
-      "title": "소포장 출고 상자",
-      "path": "독정RPC/수매_물류/janganrice-16_소포장_출고_상자.jpg",
-      "category": "독정RPC/수매_물류",
-      "role": "appearance",
-      "subject": "소포장 출고 상자",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/janganrice/20044999877",
-        "image_url": "https://blogfiles.pstatic.net/data32/2008/3/1/146/p2110037_janganrice.jpg",
-        "publisher": "독정RPC 운영 가족 블로그 (janganrice)",
-        "published_at": "2007-12-18",
-        "accessed_at": "2026-10-06",
-        "page_title": "[경기도 화성 독정RPC]프로농민의 우리쌀 만들기 프로젝트 \"경기미!!!\"",
-        "image_upload_year": 2008
-      },
-      "era": "2007년 게시 / 2008년 이미지 업로드; 촬영연도 미상",
-      "notes": "2000년대 배송 준비 장면. 인물 신원 미확인.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 320,
-      "height": 240,
-      "bytes": 105043,
-      "sha256": "b729c83ba19ff9538bb0cc26309800b9e5c67423b57e341e51ed1c28bddbff44",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "보조 (저해상도)"
-    },
-    {
-      "id": "janganrice-17",
-      "title": "소형트럭 출고",
-      "path": "독정RPC/수매_물류/janganrice-17_소형트럭_출고.jpg",
-      "category": "독정RPC/수매_물류",
-      "role": "appearance",
-      "subject": "소형트럭 출고",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/janganrice/20044999877",
-        "image_url": "https://blogfiles.pstatic.net/data32/2008/3/1/138/_mg_7932_janganrice.jpg",
-        "publisher": "독정RPC 운영 가족 블로그 (janganrice)",
-        "published_at": "2007-12-18",
-        "accessed_at": "2026-10-06",
-        "page_title": "[경기도 화성 독정RPC]프로농민의 우리쌀 만들기 프로젝트 \"경기미!!!\"",
-        "image_upload_year": 2008
-      },
-      "era": "2007년 게시 / 2008년 이미지 업로드; 촬영연도 미상",
-      "notes": "2000년대 물류 동선. 도난 트럭의 실제 차종 확인 자료 아님.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 320,
-      "height": 181,
-      "bytes": 63233,
-      "sha256": "9c7af8d53cd698b8e76fb56eff870fd03b749f4655ce2cfaf6a5833fef127482",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "보조 (저해상도)"
-    },
-    {
       "id": "nicearra-07",
       "title": "누렇게 익은 벼",
       "path": "독정RPC/들녘_재배/nicearra-07_누렇게_익은_벼.jpg",
@@ -733,66 +609,6 @@
       "height": 599,
       "bytes": 216827,
       "sha256": "1578231a6ded97cb93f502478d7befbebc70e634e66b4006b069c8b2f7aa3e0c",
-      "visual_reviewed": true,
-      "captured_at": "2016-09-22 (사진 파일명의 날짜; 별도 EXIF 확인 없음)",
-      "recommended_priority": "주 참고"
-    },
-    {
-      "id": "nicearra-10",
-      "title": "사무동 외부계단",
-      "path": "독정RPC/외관_공간/nicearra-10_사무동_외부계단.jpg",
-      "category": "독정RPC/외관_공간",
-      "role": "appearance",
-      "subject": "사무동 외부계단",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/nicearra/220829118539",
-        "image_url": "https://blogfiles.pstatic.net/20160928_200/nicearra_1474988726365I3R9N_JPEG/160922_0958__DSC6260.jpg",
-        "publisher": "앨리의 느낌표 (nicearra)",
-        "published_at": "2016-10-06",
-        "accessed_at": "2026-10-06",
-        "page_title": "경기미 햇살드리 백진주쌀 독정미곡종합처리장 독정알피시"
-      },
-      "era": "2016년 9월 현장 방문",
-      "notes": "독정RPC 간판과 사무동 외관.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 900,
-      "height": 599,
-      "bytes": 129060,
-      "sha256": "03fc74a0aefbaebb5ece279a5c697162842b7bbab44e25740fc7a7ac8940a7c4",
-      "visual_reviewed": true,
-      "captured_at": "2016-09-22 (사진 파일명의 날짜; 별도 EXIF 확인 없음)",
-      "recommended_priority": "주 참고"
-    },
-    {
-      "id": "nicearra-12",
-      "title": "마당 톤백",
-      "path": "독정RPC/수매_물류/nicearra-12_마당_톤백.jpg",
-      "category": "독정RPC/수매_물류",
-      "role": "appearance",
-      "subject": "마당 톤백",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/nicearra/220829118539",
-        "image_url": "https://blogfiles.pstatic.net/20161006_138/nicearra_1475684567492sCrgg_JPEG/160922_1104__DSC6461.jpg",
-        "publisher": "앨리의 느낌표 (nicearra)",
-        "published_at": "2016-10-06",
-        "accessed_at": "2026-10-06",
-        "page_title": "경기미 햇살드리 백진주쌀 독정미곡종합처리장 독정알피시"
-      },
-      "era": "2016년 9월 현장 방문",
-      "notes": "현대 톤백의 규모·매듭·배치. 짚가마니와 구분.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 900,
-      "height": 599,
-      "bytes": 169631,
-      "sha256": "aee7fe7e39a6a220e74186c6df37ea083c99f14f8f6a3786c4423f405f4c1626",
       "visual_reviewed": true,
       "captured_at": "2016-09-22 (사진 파일명의 날짜; 별도 EXIF 확인 없음)",
       "recommended_priority": "주 참고"
@@ -1098,36 +914,6 @@
       "recommended_priority": "주 참고"
     },
     {
-      "id": "mon9955-18",
-      "title": "출하 쌀포대 팔레트",
-      "path": "독정RPC/수매_물류/mon9955-18_출하_쌀포대_팔레트.jpg",
-      "category": "독정RPC/수매_물류",
-      "role": "appearance",
-      "subject": "출하 쌀포대 팔레트",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/mon9955/220834973935",
-        "image_url": "https://blogfiles.pstatic.net/20161010_217/mon9955_14761065465002BQRd_JPEG/IMG_1896.JPG",
-        "publisher": "블루의 포토 스토리 (mon9955)",
-        "published_at": "2016-10",
-        "accessed_at": "2026-10-06",
-        "page_title": "맛있는쌀 품종 햇살드리 쌀택배 독정 RPC"
-      },
-      "era": "2016년 현장 방문",
-      "notes": "출고 포대 적재 형태.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 900,
-      "height": 600,
-      "bytes": 238205,
-      "sha256": "2ae27069a8b856591ddf15b9bcbe84b85f013490df9d19dda89ce67469c90d75",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "주 참고"
-    },
-    {
       "id": "mon9955-19",
       "title": "창고의 제품 포대",
       "path": "독정RPC/제품_곡물/mon9955-19_창고의_제품_포대.jpg",
@@ -1308,96 +1094,6 @@
       "recommended_priority": "주 참고"
     },
     {
-      "id": "mon9955-31",
-      "title": "반입된 원료곡 톤백",
-      "path": "독정RPC/수매_물류/mon9955-31_반입된_원료곡_톤백.jpg",
-      "category": "독정RPC/수매_물류",
-      "role": "appearance",
-      "subject": "반입된 원료곡 톤백",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/mon9955/220834973935",
-        "image_url": "https://blogfiles.pstatic.net/20161010_280/mon9955_1476106994054HWjy5_JPEG/IMG_1982.JPG",
-        "publisher": "블루의 포토 스토리 (mon9955)",
-        "published_at": "2016-10",
-        "accessed_at": "2026-10-06",
-        "page_title": "맛있는쌀 품종 햇살드리 쌀택배 독정 RPC"
-      },
-      "era": "2016년 현장 방문",
-      "notes": "원료곡 포장과 적재 모습. 타 기관 로고는 참고에서 제외.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 900,
-      "height": 600,
-      "bytes": 180811,
-      "sha256": "bb8bf72d0dc28c9bce2e88ccc7af45eb234b14466aca7b6e7698510aa0a837c0",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "주 참고"
-    },
-    {
-      "id": "mon9955-32",
-      "title": "검사실 외부",
-      "path": "독정RPC/외관_공간/mon9955-32_검사실_외부.jpg",
-      "category": "독정RPC/외관_공간",
-      "role": "appearance",
-      "subject": "검사실 외부",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/mon9955/220834973935",
-        "image_url": "https://blogfiles.pstatic.net/20161010_17/mon9955_1476106948986Rb0Vu_JPEG/IMG_1968.JPG",
-        "publisher": "블루의 포토 스토리 (mon9955)",
-        "published_at": "2016-10",
-        "accessed_at": "2026-10-06",
-        "page_title": "맛있는쌀 품종 햇살드리 쌀택배 독정 RPC"
-      },
-      "era": "2016년 현장 방문",
-      "notes": "실제 검사실·창고 동의 외부 공간.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 900,
-      "height": 600,
-      "bytes": 190210,
-      "sha256": "105964b54805758ed2f8ae49295a6391895604b1a1af74387bf499fa4c008ecf",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "주 참고"
-    },
-    {
-      "id": "mon9955-33",
-      "title": "곡물 품질 검사실",
-      "path": "독정RPC/검사_관리/mon9955-33_곡물_품질_검사실.jpg",
-      "category": "독정RPC/검사_관리",
-      "role": "appearance",
-      "subject": "곡물 품질 검사실",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/mon9955/220834973935",
-        "image_url": "https://blogfiles.pstatic.net/20161010_161/mon9955_1476104357091yAtVj_JPEG/IMG_1976.JPG",
-        "publisher": "블루의 포토 스토리 (mon9955)",
-        "published_at": "2016-10",
-        "accessed_at": "2026-10-06",
-        "page_title": "맛있는쌀 품종 햇살드리 쌀택배 독정 RPC"
-      },
-      "era": "2016년 현장 방문",
-      "notes": "실제 곡물 검사 장비와 실내 배치.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 900,
-      "height": 600,
-      "bytes": 132267,
-      "sha256": "d83a2868d4412753e91b984c1c215a415fabf5f0ae48f6f7c5938d63b0bd9a5b",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "주 참고"
-    },
-    {
       "id": "mysaigon-02",
       "title": "독정RPC 홍보물 표지",
       "path": "독정RPC/자료_연혁/mysaigon-02_독정RPC_홍보물_표지.jpg",
@@ -1423,36 +1119,6 @@
       "height": 1624,
       "bytes": 2259113,
       "sha256": "e02ed62241e36c6530590a5082145c0057b4de45dcce89a038c4a6a35e8e6ba3",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "주 참고"
-    },
-    {
-      "id": "mysaigon-03",
-      "title": "사무동 측면 2018",
-      "path": "독정RPC/외관_공간/mysaigon-03_사무동_측면_2018.jpg",
-      "category": "독정RPC/외관_공간",
-      "role": "appearance",
-      "subject": "사무동 측면 2018",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/mysaigon/221430467149",
-        "image_url": "https://blogfiles.pstatic.net/MjAxODEyMzBfMTcg/MDAxNTQ2MTM0ODQwMzkz._FitIAOHneyK2ADDYNAyXK8PUAWfrf8pzNFU6K3wqKUg.z7uHQgKt2Ug4RH9OXukZ3Pi4xpZV4lH-0cN8NL2eaLcg.JPEG.mysaigon/SE-4c5354b5-5371-41b7-b6f2-769d3ab3b29d.jpg",
-        "publisher": "발안벌꿀 블로그 (mysaigon)",
-        "published_at": "2018-12",
-        "accessed_at": "2026-10-06",
-        "page_title": "일진월보 (日進月步) 사훈의                                       독정 RPC"
-      },
-      "era": "2018년 12월 현장 방문",
-      "notes": "2018년 사무동 간판·외부계단.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 2588,
-      "height": 1026,
-      "bytes": 1661037,
-      "sha256": "146953b425fb4c18380a2e366e9b70c26bcaa19cc5129550d05b7bcbecfd6e98",
       "visual_reviewed": true,
       "captured_at": null,
       "recommended_priority": "주 참고"
@@ -1518,36 +1184,6 @@
       "recommended_priority": "주 참고"
     },
     {
-      "id": "mysaigon-08",
-      "title": "사일로 상부 이송부",
-      "path": "독정RPC/건조_저장/mysaigon-08_사일로_상부_이송부.jpg",
-      "category": "독정RPC/건조_저장",
-      "role": "appearance",
-      "subject": "사일로 상부 이송부",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/mysaigon/221430467149",
-        "image_url": "https://blogfiles.pstatic.net/MjAxODEyMzBfMTE5/MDAxNTQ2MTM2MjczODEy.QR7uLRZmemNXXt5or7WW1uL3nGkMao1rmcVjxTt4gAIg.EtAruW87TRHlXPFNxPAx_Ji44I-JYiWZg66vM4q3GZkg.JPEG.mysaigon/SE-3101c367-c246-4bfb-a89c-a4422f3f0ba8.jpg",
-        "publisher": "발안벌꿀 블로그 (mysaigon)",
-        "published_at": "2018-12",
-        "accessed_at": "2026-10-06",
-        "page_title": "일진월보 (日進月步) 사훈의                                       독정 RPC"
-      },
-      "era": "2018년 12월 현장 방문",
-      "notes": "사일로 지붕·컨베이어 상세.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 2759,
-      "height": 1245,
-      "bytes": 2144412,
-      "sha256": "41789559cabdcf6425ebbf8854960b1f9d2b23e6492f7879d3b0fdf3adfda986",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "주 참고"
-    },
-    {
       "id": "mysaigon-09",
       "title": "가공라인 전체 2018",
       "path": "독정RPC/가공_포장/mysaigon-09_가공라인_전체_2018.jpg",
@@ -1608,36 +1244,6 @@
       "recommended_priority": "주 참고"
     },
     {
-      "id": "mysaigon-17",
-      "title": "배병희와 가족 홍보사진",
-      "path": "독정RPC/인물_가족/mysaigon-17_배병희와_가족_홍보사진.jpg",
-      "category": "독정RPC/인물_가족",
-      "role": "appearance",
-      "subject": "배병희와 가족 홍보사진",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/mysaigon/221430467149",
-        "image_url": "https://blogfiles.pstatic.net/MjAxODEyMzBfMjE4/MDAxNTQ2MTM4NzA3NTQy.8-ZcoEbRnnjjKyZ4xGiP9lIYlmr5_xjxs7O9m-4ECqwg.3OfMbeG5gmrXQfwmrbL1C-ZK1aaY8pq4hVCY_AV5mcAg.JPEG.mysaigon/SE-f237b878-24fa-45f9-aa99-b64cd9612510.jpg",
-        "publisher": "발안벌꿀 블로그 (mysaigon)",
-        "published_at": "2018-12",
-        "accessed_at": "2026-10-06",
-        "page_title": "일진월보 (日進月步) 사훈의                                       독정 RPC"
-      },
-      "era": "2018년 12월 현장 방문",
-      "notes": "회사 홍보물에 실린 가족 사진. 네 사람 중 배병희 외 개별 이름 대응 미확인; 네 아들 전원의 단체사진으로 단정하지 않음.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 2799,
-      "height": 1291,
-      "bytes": 1953103,
-      "sha256": "8a224664b0a088fad6c6e1ae82151d0f46c2baaf259a93f1230e1c834abb9800",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "주 참고"
-    },
-    {
       "id": "mysaigon-18",
       "title": "독정RPC 연혁 홍보물",
       "path": "독정RPC/자료_연혁/mysaigon-18_독정RPC_연혁_홍보물.jpg",
@@ -1693,36 +1299,6 @@
       "height": 1404,
       "bytes": 2741692,
       "sha256": "f1e04c723d69385cb329d47049c4bd5a3d2eb76ca636571214ba72c59ea71211",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "주 참고"
-    },
-    {
-      "id": "mysaigon-20",
-      "title": "흰밥과 김치",
-      "path": "독정RPC/제품_곡물/mysaigon-20_흰밥과_김치.jpg",
-      "category": "독정RPC/제품_곡물",
-      "role": "appearance",
-      "subject": "흰밥과 김치",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/mysaigon/221430467149",
-        "image_url": "https://blogfiles.pstatic.net/MjAxODEyMzBfOTAg/MDAxNTQ2MTQxNDQxMzU1.u_HR44k8HGByWFeu0_7srPdmKs15cmI9SiLFwUIVjakg.YS-X5pHoXPbjKOskO-rlWFOUrvjU019ZheW1w1Y2rp8g.JPEG.mysaigon/SE-90c7d9fb-206b-45af-bac8-ee70b61fa3d3.jpg",
-        "publisher": "발안벌꿀 블로그 (mysaigon)",
-        "published_at": "2018-12",
-        "accessed_at": "2026-10-06",
-        "page_title": "일진월보 (日進月步) 사훈의                                       독정 RPC"
-      },
-      "era": "2018년 12월 현장 방문",
-      "notes": "쌀밥의 윤기·소박한 상차림 참고. 실제 배병희 가족의 밥상 사진 아님.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 3000,
-      "height": 1133,
-      "bytes": 1528790,
-      "sha256": "30c2c8eae025ef3d139fcd4f8164215fc9dfc037bf0a399a474de7f774f1c739",
       "visual_reviewed": true,
       "captured_at": null,
       "recommended_priority": "주 참고"
@@ -1933,36 +1509,6 @@
       "height": 428,
       "bytes": 423222,
       "sha256": "011b486481f1585ad9b884d35af711d2879ea7c3402eb3100d8ce4742186f0ec",
-      "visual_reviewed": true,
-      "captured_at": null,
-      "recommended_priority": "주 참고"
-    },
-    {
-      "id": "inucom-15",
-      "title": "배병희 작업복 현장",
-      "path": "독정RPC/인물_가족/inucom-15_배병희_작업복_현장.jpg",
-      "category": "독정RPC/인물_가족",
-      "role": "appearance",
-      "subject": "배병희 작업복 현장",
-      "reference_type": "dokjeongrpc_documented",
-      "source": {
-        "page_url": "https://m.blog.naver.com/inucom/220829158840",
-        "image_url": "https://blogfiles.pstatic.net/20161005_134/inucom_1475623027899kXhQJ_JPEG/1029.JPG",
-        "publisher": "방문 블로그 (inucom)",
-        "published_at": "2016-10",
-        "accessed_at": "2026-10-06",
-        "page_title": "[독정RPC] 황라벌에 뜬 맛있는 쌀, 백진주쌀이 떴어요."
-      },
-      "era": "2016년 현장 방문",
-      "notes": "배병희의 노년 작업복 외형 보조. 함께 선 두 사람의 신원 미확인.",
-      "rights": {
-        "status": "사진의 재사용 허가·라이선스 미확인; 외형 참고용",
-        "owner": null
-      },
-      "width": 1000,
-      "height": 667,
-      "bytes": 566919,
-      "sha256": "c74f2d585bd664c7f578f254e2af1f3251a177f35bf50ea1f089b73236039153",
       "visual_reviewed": true,
       "captured_at": null,
       "recommended_priority": "주 참고"

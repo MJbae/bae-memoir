@@ -38,7 +38,6 @@
   "identity": {
     "bae_50s": "local-01",
     "bae_80s": "local-02",
-    "bae_workwear": "inucom-15",
     "family_group": "local-03",
     "rules": [
       "배병희 얼굴은 기존 50대·80대 원본을 기준으로 이마·눈·코·입·턱의 관계를 유지한다.",
@@ -51,8 +50,7 @@
     "dokjeongrpc_exterior": [
       "inucom-11",
       "nicearra-09",
-      "mon9955-27",
-      "mysaigon-03"
+      "mon9955-27"
     ],
     "dokjeongrpc_processing": [
       "mysaigon-09",
@@ -61,7 +59,6 @@
       "mon9955-30"
     ],
     "dokjeongrpc_storage": [
-      "mysaigon-08",
       "nicearra-19",
       "janganrice-07"
     ],

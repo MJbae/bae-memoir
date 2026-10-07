@@ -306,13 +306,23 @@ test('원고·음악·삽화·참고 이미지 인덱스가 같은 회차 ID와 
   const illustrations = loadEpisodeIllustrations(repo, episodes)
   const refs = JSON.parse(readFileSync(path.join(repo, 'content/ref_images/episode-map.json'), 'utf8'))
   const embedded = JSON.parse(readFileSync(path.join(repo, 'content/ref_images/catalog.html'), 'utf8').match(/<script[^>]*id="data"[^>]*>([\s\S]*?)<\/script>/)[1])
+  const manifest = JSON.parse(readFileSync(path.join(repo, 'content/ref_images/manifest.json'), 'utf8'))
+  const assets = new Map(manifest.assets.map(asset => [asset.id, asset]))
+  assert.deepEqual(embedded.manifest, manifest)
   assert.deepEqual(embedded.episodeMap, refs)
+  assert.equal(manifest.counts.total, manifest.assets.length)
+  for (const asset of manifest.assets) {
+    // Git stores these Korean filenames in NFC; macOS alone hides NFD mistakes.
+    assert.equal(asset.path, asset.path.normalize('NFC'))
+    assert.ok(existsSync(path.join(repo, 'content/ref_images', asset.path)), asset.path)
+  }
   assert.equal(refs.manuscript_sha256, createHash('sha256').update(source).digest('hex'))
   assert.deepEqual(refs.episodes.map(e => e.id), episodes.map(e => e.id))
   for (const episode of episodes) {
     const ref = refs.episodes.find(e => e.id === episode.id)
     assert.equal(ref.title.replace(/^(프롤로그|에필로그|외전)\. /, ''), episode.title)
     assert.equal(ref.number, episode.number)
+    assert.deepEqual(ref.reference_paths, ref.reference_ids.map(id => assets.get(id)?.path))
     assert.equal(music.episodes[episode.id].id, episode.id)
     assert.ok(illustrations[episode.id].every(image => image.episodeId === episode.id))
   }
@@ -320,7 +330,10 @@ test('원고·음악·삽화·참고 이미지 인덱스가 같은 회차 ID와 
   for (const image of registry.images) {
     assert.ok(illustrations[image.episodeId].some(row => row.id === image.id))
     assert.ok(existsSync(path.join(repo, image.master)))
-    for (const ref of image.references) assert.ok(existsSync(path.join(repo, ref.path)), ref.path)
+    for (const ref of image.references) {
+      assert.equal(ref.path, ref.path.normalize('NFC'))
+      assert.ok(existsSync(path.join(repo, ref.path)), ref.path)
+    }
   }
 })
 
