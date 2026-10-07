@@ -318,7 +318,11 @@ test('모든 회차의 삽화를 불러오며 16:9 전체 그림을 화면 폭�
       await expect(image).toHaveAttribute('width', '1280')
       await expect(image).toHaveAttribute('height', '720')
       if (!illustration.position.start) {
-        const paragraph = page.locator(`[data-illustration="${illustration.id}"]`).locator('xpath=following-sibling::p[1]')
+        const figure = page.locator(`[data-illustration="${illustration.id}"]`)
+        const sceneBreak = figure.locator('xpath=preceding-sibling::*[1]')
+        await expect(sceneBreak).toHaveJSProperty('tagName', 'HR')
+        expect(await sceneBreak.evaluate(element => getComputedStyle(element, '::after').content)).toBe('"⁂"')
+        const paragraph = figure.locator('xpath=following-sibling::p[1]')
         await expect(paragraph).toHaveText(illustration.position.beforeParagraph!)
       }
       const box = (await image.boundingBox())!

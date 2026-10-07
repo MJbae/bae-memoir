@@ -21,6 +21,12 @@ export function episodeIllustrations(md: Markdown, options: { base: string; imag
     let inserted = 0
     const tokens: typeof state.tokens = []
     const append = (illustration: Illustration) => {
+      if (!illustration.position.start && tokens.at(-1)?.type !== 'hr') {
+        const sceneBreak = new state.Token('hr', 'hr', 0)
+        sceneBreak.block = true
+        sceneBreak.markup = '* * *'
+        tokens.push(sceneBreak)
+      }
       const token = new state.Token('episode_illustration', '', 0)
       token.block = true
       token.meta = { illustration, first: inserted++ === 0 }
