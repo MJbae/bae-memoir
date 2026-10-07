@@ -374,13 +374,13 @@ test('comment ownership does not authorize writes to unrelated documents', async
 })
 
 const reactionData = (overrides = {}) => ({ heart: 1, like: 0, moved: 0, wow: 0, remember: 0, updatedAt: serverTimestamp(), ...overrides })
-const reactionRef = (db, uid = UID) => doc(db, 'pages', 'memoir-ep-josae', 'reactions', uid)
+const reactionRef = (db, uid = UID) => doc(db, 'pages', 'memoir-ep01', 'reactions', uid)
 
 test('one anonymous visitor owns one reaction and public readers can aggregate all five counts', async () => {
   const db = anonymousDb()
   await assertSucceeds(setDoc(reactionRef(db), reactionData()))
   const publicDb = environment.unauthenticatedContext().firestore()
-  const aggregate = await assertSucceeds(getAggregateFromServer(collection(publicDb, 'pages', 'memoir-ep-josae', 'reactions'), { heart: sum('heart'), like: sum('like'), moved: sum('moved'), wow: sum('wow'), remember: sum('remember') }))
+  const aggregate = await assertSucceeds(getAggregateFromServer(collection(publicDb, 'pages', 'memoir-ep01', 'reactions'), { heart: sum('heart'), like: sum('like'), moved: sum('moved'), wow: sum('wow'), remember: sum('remember') }))
   assert.deepEqual(aggregate.data(), { heart: 1, like: 0, moved: 0, wow: 0, remember: 0 })
   await assertFails(setDoc(reactionRef(anonymousDb('another')), reactionData({ heart: 0, like: 1 })))
   await assertFails(deleteDoc(reactionRef(db)))

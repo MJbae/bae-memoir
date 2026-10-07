@@ -8,6 +8,7 @@ export const catalog = rawCatalog as {
   work: { title: string; subtitle: string; synopsis: string[]; episodeCount: number; schedule: string }
   readingOrder: Episode[]
   legacyIds: Record<string, string>
+  legacyScrollResetIds: string[]
   parts: { number: number; title: string; label: string }[]
   documents: Reading[]
   music: MusicCatalog | null

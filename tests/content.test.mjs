@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import {
   mkdtempSync,
   mkdirSync,
@@ -19,19 +20,21 @@ import { parseManuscript, legacyEpisodes } from '../site/.vitepress/shared/episo
 import { episodeIllustrations } from '../site/.vitepress/markdown/episode-illustrations.ts'
 import { loadMusic } from '../site/.vitepress/shared/music.mjs'
 import { loadEpisodeIllustrations } from '../site/.vitepress/shared/episode-illustrations.mjs'
+import { legacyPageIds } from '../site/.vitepress/shared/episode-ids.mjs'
+import { migrateReading, migrateCompleted } from '../site/.vitepress/shared/reading-history.mjs'
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const mainFilename = '배병희_자서전.md'
 const original = readFileSync(path.join(repo, mainFilename), 'utf8')
 const silent = { log() {}, warn() {} }
 
-test('27개 음악 파일을 소개·특별 회차·본편 번호로 빠짐없이 연결한다', () => {
+test('27개 음악 파일을 원고·회차·음원 파일명과 같은 ID로 빠짐없이 연결한다', () => {
   const episodes = parseManuscript(matter(original).content).episodes
   const music = loadMusic(repo, episodes)
   assert.equal(music.home.src, '/music/intro.mp3')
-  assert.equal(music.episodes.prologue.src, '/music/prolog.mp3')
-  assert.equal(music.episodes.epilogue.src, '/music/epilog.mp3')
-  assert.equal(music.episodes['side-table'].src, '/music/side.mp3')
+  assert.equal(music.episodes.prolog.src, '/music/prolog.mp3')
+  assert.equal(music.episodes.epilog.src, '/music/epilog.mp3')
+  assert.equal(music.episodes['side'].src, '/music/side.mp3')
   assert.equal(Object.keys(music.episodes).length, 26)
   const allSources = [music.home.src, ...Object.values(music.episodes).map(track => track.src)]
   assert.equal(new Set(allSources).size, 27)
@@ -41,48 +44,51 @@ test('27개 음악 파일을 소개·특별 회차·본편 번호로 빠짐없�
     if (episode.kind === 'episode')
       assert.equal(music.episodes[episode.id].src, `/music/ep${String(episode.number).padStart(2, '0')}.mp3`)
   }
-  const reordered = loadMusic(repo, episodes.map(episode => episode.number === 1
-    ? { ...episode, number: 2, label: '2화' } : episode.number === 2
-      ? { ...episode, number: 1, label: '1화' } : episode).reverse())
-  assert.equal(reordered.episodes.josae.src, '/music/ep02.mp3')
-  assert.equal(reordered.episodes.josae.label, '2화 음악')
-  assert.equal(reordered.episodes.jige.src, '/music/ep01.mp3')
-  for (const id of ['prologue', 'epilogue', 'side-table'])
-    assert.deepEqual(reordered.episodes[id], music.episodes[id])
+  assert.equal(music.home.id, 'intro')
+  for (const episode of episodes) {
+    assert.equal(music.episodes[episode.id].id, episode.id)
+    assert.equal(music.episodes[episode.id].src, `/music/${episode.id}.mp3`)
+  }
+  assert.deepEqual(loadMusic(repo, [...episodes].reverse()), music)
 })
 
 test('누락·중복·잘못된 회차·미등록 음악 파일을 준비 단계에서 거절한다', t => {
   const { root, write } = fixture(t)
   const episodes = [
-    { id: 'prologue', label: '프롤로그', kind: 'prologue', number: null },
-    { id: 'first', label: '1화', kind: 'episode', number: 1 },
+    { id: 'prolog', label: '프롤로그', kind: 'prologue', number: null },
+    { id: 'ep01', label: '1화', kind: 'episode', number: 1 },
   ]
-  const base = { version: 2, intro: '/music/intro.mp3', tracks: [
-    { episode: 'prologue', src: '/music/prolog.mp3' },
-    { episode: 1, src: '/music/ep01.mp3' },
+  const base = { version: 3, tracks: [
+    { id: 'intro', src: '/music/intro.mp3' },
+    { id: 'prolog', src: '/music/prolog.mp3' },
+    { id: 'ep01', src: '/music/ep01.mp3' },
   ] }
   const manifest = value => write('content/music.json', JSON.stringify(value))
   write('site/public/music/intro.mp3', 'test-intro')
-  write('site/public/music/prolog.mp3', 'test-prologue')
+  write('site/public/music/prolog.mp3', 'test-prolog')
   write('site/public/music/ep01.mp3', 'test-episode')
   manifest(base)
   assert.ok(loadMusic(root, episodes))
   manifest({ ...base, version: 1 })
   assert.throws(() => loadMusic(root, episodes), /형식/)
-  manifest({ ...base, intro: '/music/missing.mp3' })
+  manifest(base)
+  rmSync(path.join(root, 'site/public/music/intro.mp3'))
   assert.throws(() => loadMusic(root, episodes), /파일이 없습니다/)
-  manifest({ ...base, intro: '/music/../intro.mp3' })
-  assert.throws(() => loadMusic(root, episodes), /경로/)
+  write('site/public/music/intro.mp3', 'test-intro')
+  manifest({ ...base, tracks: [{ id: 'intro', src: '/music/../intro.mp3' }] })
+  assert.throws(() => loadMusic(root, episodes), /ID와 파일명/)
   manifest({ ...base, tracks: [] })
+  assert.throws(() => loadMusic(root, episodes), /소개의 배경 음악이 없습니다/)
+  manifest({ ...base, tracks: base.tracks.slice(0, 2) })
   assert.throws(() => loadMusic(root, episodes), /회차의 배경 음악이 없습니다/)
   manifest({ ...base, tracks: [...base.tracks, ...base.tracks] })
   assert.throws(() => loadMusic(root, episodes), /회차.*중복/)
-  manifest({ ...base, tracks: [{ episode: 'unknown', src: '/music/prolog.mp3' }] })
+  manifest({ ...base, tracks: [{ id: 'unknown', src: '/music/prolog.mp3' }] })
   assert.throws(() => loadMusic(root, episodes), /회차.*잘못/)
-  manifest({ ...base, tracks: [{ episode: '1', src: '/music/ep01.mp3' }] })
-  assert.throws(() => loadMusic(root, episodes), /회차.*잘못/)
-  manifest({ ...base, tracks: [{ episode: 'prologue', src: base.intro }] })
-  assert.throws(() => loadMusic(root, episodes), /파일 경로.*중복/)
+  manifest({ ...base, tracks: [{ id: 1, src: '/music/ep01.mp3' }] })
+  assert.throws(() => loadMusic(root, episodes), /회차 ID/)
+  manifest({ ...base, tracks: [{ id: 'ep01', src: '/music/ep02.mp3' }] })
+  assert.throws(() => loadMusic(root, episodes), /ID와 파일명/)
   manifest(base)
   write('site/public/music/extra.mp3', 'unassigned')
   assert.throws(() => loadMusic(root, episodes), /연결하지 않은 음악/)
@@ -118,25 +124,30 @@ test('6부 23화와 앞뒤 회차를 생성하고 정본의 모든 본문을 한
     assert.equal(page.data.prev?.url ?? null, catalog.readingOrder[i-1]?.url ?? null)
     assert.equal(page.data.next?.url ?? null, catalog.readingOrder[i+1]?.url ?? null)
   }
-  assert.equal(readPage('prologue.md').data.pageId, 'life-prologue')
-  assert.equal(readPage('epilogue.md').data.pageId, 'life-epilogue')
-  assert.equal(readPage('josae.md').data.pageId, 'ep-josae')
+  assert.equal(readPage('prolog.md').data.pageId, 'prolog')
+  assert.equal(readPage('epilog.md').data.pageId, 'epilog')
+  assert.equal(readPage('ep01.md').data.pageId, 'ep01')
 })
 
-test('제목과 순서를 바꿔도 회차 주소와 문서 ID는 그대로이고 번호는 원고 순서를 따른다', (t) => {
+test('제목을 바꾸어도 ID를 유지하고 원고 순서와 번호가 어긋나면 생성을 거절한다', (t) => {
   const { write, run } = fixture(t)
   const before = run().catalog.readingOrder
   const body = matter(original).content
   const first = body.indexOf('## 어머니의 쇠갈고리'), second = body.indexOf('## 책보 대신 지게'), third = body.indexOf('## 열두 자리 숫자')
-  write(mainFilename, original.slice(0, original.indexOf(body)) + body.slice(0, first) + body.slice(second, third) + body.slice(first, second).replace('어머니의 쇠갈고리', '갯벌의 어머니') + body.slice(third))
+  write(mainFilename, original.replace('어머니의 쇠갈고리', '갯벌의 어머니'))
   const after = run().catalog.readingOrder
   for (const episode of before) {
     const updated = after.find(e => e.episodeId === episode.episodeId)
     assert.equal(updated.url, episode.url)
     assert.equal(updated.id, episode.id)
   }
-  assert.equal(after.find(e => e.episodeId === 'jige').label, '1화')
-  assert.equal(after.find(e => e.episodeId === 'josae').label, '2화')
+  const swapped = original.slice(0, original.indexOf(body)) + body.slice(0, first) + body.slice(second, third) + body.slice(first, second) + body.slice(third)
+  write(mainFilename, swapped)
+  assert.throws(run, /회차 번호와 ID가 맞지 않습니다.*ep01/)
+  write(mainFilename, swapped.replace('{#ep02}', '{#pending}').replace('{#ep01}', '{#ep02}').replace('{#pending}', '{#ep01}'))
+  const reordered = run().catalog.readingOrder
+  assert.equal(reordered.find(e => e.id === 'ep01').title, '책보 대신 지게')
+  assert.equal(reordered.find(e => e.id === 'ep02').title, '어머니의 쇠갈고리')
 })
 
 test('두 살림 회차의 제목 변경을 목차·공유·이웃 회차에 반영하고 음악·삽화 연결을 유지한다', t => {
@@ -146,7 +157,7 @@ test('두 살림 회차의 제목 변경을 목차·공유·이웃 회차에 반
   const originalMusic = loadMusic(repo, originalEpisodes)
   const originalImages = loadEpisodeIllustrations(repo, originalEpisodes)
   let revised = original
-  const titles = { kalguksu: '안면도 살림의 하루', 'bus-fare': '독정리 살림의 하루' }
+  const titles = { ep05: '안면도 살림의 하루', 'ep11': '독정리 살림의 하루' }
   for (const [id, title] of Object.entries(titles)) {
     const current = before.find(episode => episode.episodeId === id)
     revised = revised.replace(`## ${current.title} {#${id}}`, `## ${title} {#${id}}`)
@@ -183,62 +194,65 @@ id: family
 ---
 # 가족의 생활
 
-[안면도의 살림](../배병희_자서전.md#kalguksu)
+[안면도의 살림](../배병희_자서전.md#ep05)
 
-[독정리의 살림](/배병희_자서전.md#bus-fare)
+[독정리의 살림](/배병희_자서전.md#ep11)
 
 [다시 읽기][family]
 
-[family]: ../배병희_자서전.md#bus-fare "독정리"
+[family]: ../배병희_자서전.md#ep11 "독정리"
 
-[이 문서 안의 기억](#bus-fare)
+[이 문서 안의 기억](#ep11)
 
 [작품 소개](../배병희_자서전.md)
 
 \`\`\`md
-[원본 예시](../배병희_자서전.md#kalguksu)
+[원본 예시](../배병희_자서전.md#ep05)
 \`\`\`
 `)
-  const manuscript = original.replace(/^## .+ \{#kalguksu\}$/m, '## 안면도에서 보낸 나날 {#kalguksu}')
-    .replace(/^## .+ \{#bus-fare\}$/m, '## 독정리에서 보낸 나날 {#bus-fare}')
-    .replace(/(?=^## .+ \{#laver\}$)/m, '[독정리의 살림](#bus-fare)\n\n[이 회차 안의 기억](#memory)\n\n')
+  const manuscript = original.replace(/^## .+ \{#ep05\}$/m, '## 안면도에서 보낸 나날 {#ep05}')
+    .replace(/^## .+ \{#ep11\}$/m, '## 독정리에서 보낸 나날 {#ep11}')
+    .replace(/(?=^## .+ \{#ep06\}$)/m, '[독정리의 살림](#ep11)\n\n[이 회차 안의 기억](#memory)\n\n')
   write(mainFilename, manuscript)
   const { warnings } = run()
   const content = readPage('family.md').content
-  assert.ok(content.includes('[안면도의 살림](/read/kalguksu.html)'))
-  assert.ok(content.includes('[독정리의 살림](/read/bus-fare.html)'))
-  assert.ok(content.includes('[family]: /read/bus-fare.html "독정리"'))
-  assert.ok(content.includes('[이 문서 안의 기억](#bus-fare)'))
+  assert.ok(content.includes('[안면도의 살림](/read/ep05.html)'))
+  assert.ok(content.includes('[독정리의 살림](/read/ep11.html)'))
+  assert.ok(content.includes('[family]: /read/ep11.html "독정리"'))
+  assert.ok(content.includes('[이 문서 안의 기억](#ep11)'))
   assert.ok(content.includes('[작품 소개](/)'))
-  assert.ok(content.includes('[원본 예시](../배병희_자서전.md#kalguksu)'))
-  assert.ok(readPage('kalguksu.md').content.includes('[독정리의 살림](/read/bus-fare.html)'))
-  assert.ok(readPage('kalguksu.md').content.includes('[이 회차 안의 기억](#memory)'))
+  assert.ok(content.includes('[원본 예시](../배병희_자서전.md#ep05)'))
+  assert.ok(readPage('ep05.md').content.includes('[독정리의 살림](/read/ep11.html)'))
+  assert.ok(readPage('ep05.md').content.includes('[이 회차 안의 기억](#memory)'))
   assert.deepEqual(warnings, [])
 })
 
 test('누락·잘못된·중복 ID, 부 번호, 시점 줄, 예약 ID, 본문 누락을 거절한다', (t) => {
   const { write, run } = fixture(t)
   for (const [from, to, error] of [
-    [' {#josae}', '', /회차 ID/],
-    ['{#josae}', '{#bad_id}', /회차 ID/],
-    ['{#jige}', '{#josae}', /ID 중복/],
-    ['{#josae}', '{#1930s}', /예약된/],
-    ['{#josae}', '{#prologue}', /예약 ID|ID 중복/],
+    [' {#ep01}', '', /회차 ID/],
+    ['{#ep01}', '{#bad_id}', /회차 ID/],
+    ['{#ep02}', '{#ep01}', /ID 중복/],
+    ['{#ep01}', '{#1930s}', /예약된/],
+    ['{#ep01}', '{#prolog}', /회차 번호|ID 중복/],
+    ['{#ep01}', '{#ep99}', /회차 번호와 ID/],
+    ['{#prolog}', '{#intro}', /예약된/],
+    ['{#side}', '{#side-02}', /회차 번호와 ID/],
     ['# 2부. 가마솥', '# 3부. 가마솥', /부 번호/],
     ['*1940년대 · 안면도 중장리*', '시점 없음', /시점 줄/],
     ['*1940년대 · 안면도 중장리*', `*${'가'.repeat(41)}*`, /시점 줄/],
   ]) { write(mainFilename, original.replace(from, to)); assert.throws(run, error) }
-  write(mainFilename, '# 1부. 갯벌\n\n## 제목 {#one}\n\n*1940년*\n')
+  write(mainFilename, '# 1부. 갯벌\n\n## 제목 {#ep01}\n\n*1940년*\n')
   assert.throws(run, /본문이 비어/)
 })
 
-test('새 회차와 외전은 자동 번호를 받으며 코드 예시는 구조로 해석하지 않는다', (t) => {
+test('새 회차와 외전은 음악 파일 번호를 쓰며 코드 예시는 구조로 해석하지 않는다', (t) => {
   const { write, run } = fixture(t)
-  write(mainFilename, original.replace('## 에필로그.', '## 새 장면 {#new-scene}\n\n*2010년대*\n\n새 본문입니다.\n\n```md\n## 예시 {#example}\n```\n\n## 에필로그.') + '\n## 외전. 두 번째 밥상 {#side-two}\n\n*가족의 기억*\n\n새 기억입니다.\n')
+  write(mainFilename, original.replace('## 에필로그.', '## 새 장면 {#ep24}\n\n*2010년대*\n\n새 본문입니다.\n\n```md\n## 예시 {#example}\n```\n\n## 에필로그.') + '\n## 외전. 두 번째 밥상 {#side-02}\n\n*가족의 기억*\n\n새 기억입니다.\n')
   const order = run().catalog.readingOrder
-  assert.equal(order.find(e => e.episodeId === 'new-scene').number, 24)
+  assert.equal(order.find(e => e.episodeId === 'ep24').number, 24)
   assert.equal(order.some(e => e.episodeId === 'example'), false)
-  assert.equal(order.find(e => e.episodeId === 'side-table').label, '외전 1화')
+  assert.equal(order.find(e => e.episodeId === 'side').label, '외전 1화')
   assert.equal(order.at(-1).label, '외전 2화')
 })
 
@@ -248,7 +262,7 @@ test('회차 안의 소제목은 본문을 보존하고 경고한다', (t) => {
   assert.match(run().warnings.join('\n'), /소제목/)
 })
 
-test('옛 주소 10개와 읽기 기록 ID를 새 회차로 대응한다', (t) => {
+test('옛 주소 36개와 읽기 기록 ID를 번호 회차로 대응한다', (t) => {
   const { run, readPage } = fixture(t)
   const { catalog } = run()
   for (const [old, id] of Object.entries(legacyEpisodes)) {
@@ -256,8 +270,73 @@ test('옛 주소 10개와 읽기 기록 ID를 새 회차로 대응한다', (t) =
     assert.equal(page.data.redirect, `/read/${id}.html`)
     assert.equal(page.data.pageId, '')
     assert.ok(page.content.includes(`/read/${id}.html`))
-    assert.equal(catalog.legacyIds[`life-${old}`], `ep-${id}`)
+    assert.equal(catalog.legacyIds[old], id)
   }
+  assert.equal(Object.keys(legacyEpisodes).length, 36)
+  for (const [old, id] of Object.entries(legacyPageIds)) assert.equal(catalog.legacyIds[old], id)
+})
+
+test('옛 제목 ID로 쓴 정본 링크도 번호 주소로 직접 연결한다', t => {
+  const { write, run, readPage } = fixture(t)
+  write('content/legacy.md', '---\nid: family\n---\n# 가족\n\n[어머니](../배병희_자서전.md#josae)\n\n[에필로그](../배병희_자서전.md#epilogue)')
+  run()
+  assert.ok(readPage('family.md').content.includes('[어머니](/read/ep01.html)'))
+  assert.ok(readPage('family.md').content.includes('[에필로그](/read/epilog.html)'))
+})
+
+test('번호로 바꾼 읽기·완독·이어 읽기 기록은 위치를 보존하고 연대 기록만 처음부터 읽는다', t => {
+  const { catalog } = fixture(t).run()
+  for (const [old, id] of Object.entries(legacyPageIds)) {
+    const entry = catalog.readingOrder.find(e => e.id === id)
+    const saved = { id: old, title: '옛 제목', url: '/옛주소', scroll: 480, finished: true }
+    assert.deepEqual(migrateReading(catalog, saved), { id, title: entry.title, url: entry.url, scroll: 480, finished: true })
+    assert.deepEqual(migrateCompleted(catalog, [old, id, old, 'unknown', null]), [id])
+  }
+  assert.equal(migrateReading(catalog, { id: 'life-1980s', scroll: 1800 }).scroll, 0)
+  assert.equal(migrateReading(catalog, { id: 'ep01', scroll: -2 }).scroll, 0)
+  for (const saved of [null, {}, { id: 'unknown', scroll: 2 }, { id: 'ep01', scroll: Infinity }, { id: 'ep01', scroll: '2' }])
+    assert.equal(migrateReading(catalog, saved), null)
+  assert.deepEqual(migrateCompleted(catalog, {}), [])
+})
+
+test('원고·음악·삽화·참고 이미지 인덱스가 같은 회차 ID와 최신 제목을 쓴다', () => {
+  const source = readFileSync(path.join(repo, mainFilename), 'utf8')
+  const episodes = parseManuscript(matter(source).content).episodes
+  const music = loadMusic(repo, episodes)
+  const illustrations = loadEpisodeIllustrations(repo, episodes)
+  const refs = JSON.parse(readFileSync(path.join(repo, 'content/ref_images/episode-map.json'), 'utf8'))
+  const embedded = JSON.parse(readFileSync(path.join(repo, 'content/ref_images/catalog.html'), 'utf8').match(/<script[^>]*id="data"[^>]*>([\s\S]*?)<\/script>/)[1])
+  assert.deepEqual(embedded.episodeMap, refs)
+  assert.equal(refs.manuscript_sha256, createHash('sha256').update(source).digest('hex'))
+  assert.deepEqual(refs.episodes.map(e => e.id), episodes.map(e => e.id))
+  for (const episode of episodes) {
+    const ref = refs.episodes.find(e => e.id === episode.id)
+    assert.equal(ref.title.replace(/^(프롤로그|에필로그|외전)\. /, ''), episode.title)
+    assert.equal(ref.number, episode.number)
+    assert.equal(music.episodes[episode.id].id, episode.id)
+    assert.ok(illustrations[episode.id].every(image => image.episodeId === episode.id))
+  }
+  const registry = JSON.parse(readFileSync(path.join(repo, 'content/illustration-sources/regeneration-prompts.json'), 'utf8'))
+  for (const image of registry.images) {
+    assert.ok(illustrations[image.episodeId].some(row => row.id === image.id))
+    assert.ok(existsSync(path.join(repo, image.master)))
+    for (const ref of image.references) assert.ok(existsSync(path.join(repo, ref.path)), ref.path)
+  }
+})
+
+test('콘텐츠를 준비할 때 참고 인덱스와 목록 화면도 원고의 최신 제목·해시로 갱신한다', t => {
+  const { root, write, run } = fixture(t)
+  const index = JSON.parse(readFileSync(path.join(repo, 'content/ref_images/episode-map.json'), 'utf8'))
+  write('content/ref_images/episode-map.json', JSON.stringify(index))
+  write('content/ref_images/catalog.html', `<script type="application/json" id="data">${JSON.stringify({ episodeMap: index })}</script>`)
+  const revised = original.replace('어머니의 쇠갈고리', '어머니의 손')
+  write(mainFilename, revised)
+  run()
+  const updated = JSON.parse(readFileSync(path.join(root, 'content/ref_images/episode-map.json'), 'utf8'))
+  assert.equal(updated.episodes.find(e => e.id === 'ep01').title, '어머니의 손')
+  assert.equal(updated.manuscript_sha256, createHash('sha256').update(revised).digest('hex'))
+  const embedded = JSON.parse(readFileSync(path.join(root, 'content/ref_images/catalog.html'), 'utf8').match(/id="data">([\s\S]*?)<\/script>/)[1])
+  assert.deepEqual(embedded.episodeMap, updated)
 })
 
 test('한 번에 읽기 주소는 본문 없이 작품 홈으로 연결하고 목록에서 제거한다', t => {
@@ -355,8 +434,8 @@ test('중복 ID, 예약된 회차 ID와 충돌, 안전하지 않은 경로를 �
   write('content/a.md', '---\nid: repeated\n---\n# 하나')
   write('content/b.md', '---\nid: repeated\n---\n# 둘')
   assert.throws(run, /문서 id 중복: repeated/)
-  write('content/b.md', '---\nid: ep-josae\n---\n# 둘')
-  assert.throws(run, /문서 id 중복: ep-josae/)
+  write('content/b.md', '---\nid: ep01\n---\n# 둘')
+  assert.throws(run, /문서 id 중복: ep01/)
   write('content/b.md', '---\nid: 1930s\n---\n# 둘')
   assert.throws(run, /생성 경로 중복: 1930s.md/)
   for (const id of ['../escape', '/absolute', 'has space', '<script>', '한글', 'a'.repeat(81)]) {
@@ -442,8 +521,8 @@ test('삽화는 원문·장면 구분을 보존하며 회차의 지정 문단 �
 test('삽화 문단이 바뀌거나 파일이 빠지면 조용히 누락하지 않고 준비 단계에서 알린다', t => {
   const { write, run } = fixture(t)
   const structure = parseManuscript(matter(original).content)
-  const images = structure.episodes.map(episode => ({ id: episode.id, episodeId: episode.id, alt: '원고 장면의 수채화', width: 1280, height: 720, position: { start: true },
-    sources: [360, 720, 1280].map(width => ({ src: `/images/episodes/${episode.id}-${width}.jpg`, width })) }))
+  const images = structure.episodes.map(episode => ({ id: `${episode.id}-01`, episodeId: episode.id, alt: '원고 장면의 수채화', width: 1280, height: 720, position: { start: true },
+    sources: [360, 720, 1280].map(width => ({ src: `/images/episodes/${episode.id}-01-${width}.jpg`, width })) }))
   for (const image of images) for (const source of image.sources) write(`site/public${source.src}`, 'fixture')
   const manifest = () => write('content/episode-illustrations.json', JSON.stringify({ version: 1, images }))
   manifest()
@@ -453,7 +532,7 @@ test('삽화 문단이 바뀌거나 파일이 빠지면 조용히 누락하지 �
   images[0].position = { start: true }
   images[0].sources[0].src = '/images/episodes/missing-360.jpg'; manifest()
   assert.throws(run, /안전하지 않은 삽화 파일 경로/)
-  images[0].sources[0].src = '/images/episodes/prologue-360.jpg'; manifest()
+  images[0].sources[0].src = '/images/episodes/prolog-01-360.jpg'; manifest()
   images.pop(); manifest()
   assert.throws(run, /대표 삽화가 없습니다/)
 })

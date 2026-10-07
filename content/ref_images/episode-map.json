@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "manuscript_sha256": "cf8727edced99075688d192fc11722574b5d6dcb11b2c30bc338b5a011b637c5",
+  "manuscript_sha256": "240f9943e3f536b600224b3efa89c0280fd08f880dc494327b482339da929b74",
   "episode_count": 26,
   "episodes": [
     {
-      "id": "prologue",
+      "id": "prolog",
       "number": null,
       "type": "프롤로그",
       "title": "프롤로그. 벼 한 톨의 무게",
@@ -25,10 +25,10 @@
       "historical_notes": "1990년대 공장 외관은 실제 사진 미확인. 현대 사일로·간판을 소급하지 않음."
     },
     {
-      "id": "josae",
+      "id": "ep01",
       "number": 1,
       "type": "본편",
-      "title": "어머니의 조새",
+      "title": "어머니의 쇠갈고리",
       "setting": "1930년대 · 안면도 중장리",
       "suggested_representative_scene": "찬 갯벌에서 조새로 굴을 채취하는 어머니",
       "reference_ids": [
@@ -44,7 +44,7 @@
       "historical_notes": "어머니 얼굴 직접 자료 없음. 조새를 호미로 바꾸지 않음; 관광객·현대 건물 제외."
     },
     {
-      "id": "jige",
+      "id": "ep02",
       "number": 2,
       "type": "본편",
       "title": "책보 대신 지게",
@@ -65,7 +65,7 @@
       "historical_notes": "소년 얼굴은 50대 사진의 골격을 참고한 재구성. 사진에 없는 유년 외형을 사실로 단정하지 않음."
     },
     {
-      "id": "serial-number",
+      "id": "ep03",
       "number": 3,
       "type": "본편",
       "title": "열두 자리 숫자",
@@ -86,7 +86,7 @@
       "historical_notes": "원고 중심은 후방 가족의 생계. 전투 장면·군복은 대표 장면에 추가하지 않음."
     },
     {
-      "id": "cheonsuman",
+      "id": "ep04",
       "number": 4,
       "type": "본편",
       "title": "천수만의 돌풍",
@@ -107,10 +107,10 @@
       "historical_notes": "원고에는 작은 무동력 목선. 대형 관광 배·현대 여객선·항만을 복제하지 않음."
     },
     {
-      "id": "kalguksu",
+      "id": "ep05",
       "number": 5,
       "type": "본편",
-      "title": "미꾸라지 칼국수",
+      "title": "가마솥 손칼국수",
       "setting": "1960년대 · 안면도 중장리",
       "suggested_representative_scene": "아궁이 앞 가마솥에서 일꾼과 가족의 칼국수를 끓이는 아내",
       "reference_ids": [
@@ -126,10 +126,10 @@
       "historical_notes": "아내의 얼굴 미확인. 현대 식당 인테리어·식기를 그대로 복제하지 않음."
     },
     {
-      "id": "laver",
+      "id": "ep06",
       "number": 6,
       "type": "본편",
-      "title": "한겨울의 김발",
+      "title": "겨울 갯벌의 김 양식",
       "setting": "1960년대 · 중장리 앞바다",
       "suggested_representative_scene": "겨울 갯벌의 김 말뚝과 마당에서 김발을 말리는 가족",
       "reference_ids": [
@@ -149,10 +149,10 @@
       "historical_notes": "현대 부유식 양식장으로 바꾸지 않음; 안면도 1960년대의 복장·주택으로 재구성."
     },
     {
-      "id": "anchovy",
+      "id": "ep07",
       "number": 7,
       "type": "본편",
-      "title": "바닷물로 삶은 멸치",
+      "title": "멸치 떼를 쫓는 청년",
       "setting": "1970년대 초 · 서해 갯가",
       "suggested_representative_scene": "자갈밭의 가마솥에서 바닷물로 멸치를 삶는 배병희",
       "reference_ids": [
@@ -170,10 +170,10 @@
       "historical_notes": "낭장망과 죽방렴을 혼동하지 않음. 현대 플라스틱 건조판 대신 원고의 그물·자갈밭을 사용."
     },
     {
-      "id": "bearing",
+      "id": "ep08",
       "number": 8,
       "type": "본편",
-      "title": "숟가락 위의 납",
+      "title": "멈춰 선 탈곡기를 돌려라",
       "setting": "1970년대 초 · 안면도 중장리",
       "suggested_representative_scene": "탈곡기 곁에서 숟가락 위 납으로 부품을 고치는 손",
       "reference_ids": [
@@ -189,10 +189,10 @@
       "historical_notes": "납 주조 베어링 실물 자료 미확보. 원고의 소형 발동기·별도 탈곡기 관계를 유지."
     },
     {
-      "id": "leaving",
+      "id": "ep09",
       "number": 9,
       "type": "본편",
-      "title": "이웃들이 따라나선 이유",
+      "title": "일곱 가구가 따라나선 길",
       "setting": "1977년 · 안면도에서 남양만으로",
       "suggested_representative_scene": "경운기와 바인더를 챙겨 새 터전으로 향하는 이주",
       "reference_ids": [
@@ -212,7 +212,7 @@
       "historical_notes": "1970년대 기종과 실제 이주행렬 사진 없음. 현대 콤바인·트랙터로 대체하지 않음."
     },
     {
-      "id": "reclaimed-land",
+      "id": "ep10",
       "number": 10,
       "type": "본편",
       "title": "소금기 밴 6만 평",
@@ -233,10 +233,10 @@
       "historical_notes": "현재의 풍요로운 논을 초기 염분 많은 논으로 재구성. 실제 18평 집 원형은 미확인."
     },
     {
-      "id": "bus-fare",
+      "id": "ep11",
       "number": 11,
       "type": "본편",
-      "title": "차비 잘 챙겨라",
+      "title": "손에 쥐여준 버스비",
       "setting": "1980년대 초 · 화성 독정리",
       "suggested_representative_scene": "반찬통을 든 딸에게 새벽 길에서 차비를 당부하는 아버지",
       "reference_ids": [
@@ -254,10 +254,10 @@
       "historical_notes": "가족 사진의 개별 얼굴 대응 미확인. 원고에 없는 학교·교복 표지를 추가하지 않음."
     },
     {
-      "id": "rice-mill",
+      "id": "ep12",
       "number": 12,
       "type": "본편",
-      "title": "가족은 반대했다",
+      "title": "망해가는 정미소를 사다",
       "setting": "1983년 · 독정 정미소",
       "suggested_representative_scene": "낡은 새마을정미소 앞에서 인수를 결심하는 배병희",
       "reference_ids": [
@@ -275,10 +275,10 @@
       "historical_notes": "보령 사진은 형태 참고용. 1983년 독정리 새마을정미소의 실제 외관 아님."
     },
     {
-      "id": "flashlight",
+      "id": "ep13",
       "number": 13,
       "type": "본편",
-      "title": "장대비와 손전등",
+      "title": "장대비 속 볏가마 사수작전",
       "setting": "1980년대 · 독정 정미소",
       "suggested_representative_scene": "장대비 속 손전등으로 야적 가마니의 방수포를 지키는 배병희",
       "reference_ids": [
@@ -296,7 +296,7 @@
       "historical_notes": "현대 톤백·사일로 대신 짚가마니와 초기 야적장. 비·손전등은 원고에 따른 연출."
     },
     {
-      "id": "power-line",
+      "id": "ep14",
       "number": 14,
       "type": "본편",
       "title": "들판을 가로지른 전봇대",
@@ -317,7 +317,7 @@
       "historical_notes": "들판 사진의 송전 철탑은 배전용 전봇대가 아님. 전봇대·50마력·7m 장축은 원고를 따라 재구성."
     },
     {
-      "id": "seed-rice",
+      "id": "ep15",
       "number": 15,
       "type": "본편",
       "title": "품삯으로 건넨 볍씨",
@@ -338,7 +338,7 @@
       "historical_notes": "이웃 얼굴은 미확인. 현대 자동 저장고가 아닌 헛간으로 구성."
     },
     {
-      "id": "kitchen",
+      "id": "ep16",
       "number": 16,
       "type": "본편",
       "title": "부엌을 지킨 사람",
@@ -357,7 +357,7 @@
       "historical_notes": "배선빈의 아내 김미혜나 배병희의 누이를 원고의 아내로 쓰지 않음."
     },
     {
-      "id": "bad-debt",
+      "id": "ep17",
       "number": 17,
       "type": "본편",
       "title": "떼인 3억",
@@ -378,7 +378,7 @@
       "historical_notes": "실제 수표·장부·도난 트럭 자료 미확인. 번호·거래처 이름은 가상화하거나 읽히지 않게 연출."
     },
     {
-      "id": "last-land",
+      "id": "ep18",
       "number": 18,
       "type": "본편",
       "title": "마지막 1만 2천 평",
@@ -399,10 +399,10 @@
       "historical_notes": "재산 계약서·개별 필지 경계 실물 미확인. 현대 농기계·시설을 1990년대에 소급하지 않음."
     },
     {
-      "id": "wet-rice",
+      "id": "ep19",
       "number": 19,
       "type": "본편",
-      "title": "물벼가 쏟아진다",
+      "title": "밀려드는 벼, 커지는 정미소",
       "setting": "1990년대 중후반 · 독정 정미소",
       "suggested_representative_scene": "수확기 물벼가 몰려드는 정미소와 건조·저장 시설",
       "reference_ids": [
@@ -422,10 +422,10 @@
       "historical_notes": "2000~2010년대 사진은 공정 형태 보조. 1990년대 설비 배치는 원형 미확인."
     },
     {
-      "id": "farewell",
+      "id": "ep20",
       "number": 20,
       "type": "본편",
-      "title": "빈자리",
+      "title": "아내의 빈자리",
       "setting": "1990년대 후반 · 독정 정미소",
       "suggested_representative_scene": "부엌의 빈자리와 배우자를 그리워하는 배병희",
       "reference_ids": [
@@ -441,10 +441,10 @@
       "historical_notes": "실제 아내의 얼굴·장례 장면 미확인. 빈 부엌의 정적인 장면을 사용."
     },
     {
-      "id": "four-sons",
+      "id": "ep21",
       "number": 21,
       "type": "본편",
-      "title": "아버지는 중심만 잡았다",
+      "title": "네 형제가 뭉쳤다",
       "setting": "2000년대 · 독정 정미소",
       "suggested_representative_scene": "아버지와 함께 공장을 지키는 가족과 네 아들의 역할",
       "reference_ids": [
@@ -464,7 +464,7 @@
       "historical_notes": "네 아들 얼굴의 개별 대응표 미확인. 홍보물 속 네 사람을 네 형제 전원으로 오인하지 않음."
     },
     {
-      "id": "promise",
+      "id": "ep22",
       "number": 22,
       "type": "본편",
       "title": "300만 평의 약속",
@@ -487,7 +487,7 @@
       "historical_notes": "2003년 이후 회차. 포장·건물의 연대는 각 이미지 메타데이터를 확인."
     },
     {
-      "id": "robot",
+      "id": "ep23",
       "number": 23,
       "type": "본편",
       "title": "지게 대신 로봇",
@@ -512,7 +512,7 @@
       "historical_notes": "일본 로봇 사진은 구조 보조; 독정RPC의 로봇 기종·배치 미확인. 실제 내부 사진을 공간 기준으로 사용."
     },
     {
-      "id": "epilogue",
+      "id": "epilog",
       "number": null,
       "type": "에필로그",
       "title": "에필로그. 다시 태어나도",
@@ -533,7 +533,7 @@
       "historical_notes": "노년 얼굴은 기존 80대 사진 우선. 동일 시점의 실제 마당·사일로 공간을 사용."
     },
     {
-      "id": "side-table",
+      "id": "side",
       "number": null,
       "type": "외전",
       "title": "외전. 아버지의 밥상",

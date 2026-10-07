@@ -1,4 +1,5 @@
 import { expect, test, type APIRequestContext, type Browser, type Page } from '@playwright/test'
+import { migrateReactionIds } from '../scripts/migrate-reaction-ids.mjs'
 
 const PROJECT = 'demo-family-library'
 const FIRESTORE = 'http://127.0.0.1:8080'
@@ -30,7 +31,7 @@ test.beforeEach(async ({ request }) => {
 })
 
 async function openReactions(page: Page) {
-  await page.goto('/read/josae.html#reactions')
+  await page.goto('/read/ep01.html#reactions')
   await page.locator('#reactions').scrollIntoViewIfNeeded()
   await expect(page.getByRole('button', { name: '응원해요', exact: true })).toBeEnabled()
   await expect(page.locator('.reaction-options button')).toHaveCount(4)
@@ -42,7 +43,7 @@ async function openReactions(page: Page) {
   await expect(page.locator('.story-end')).toHaveText('끝')
 }
 async function storedReactions(request: APIRequestContext) {
-  const response = await request.get(`${documentsBase}/pages/memoir-ep-josae/reactions`, { headers: { Authorization: 'Bearer owner' } })
+  const response = await request.get(`${documentsBase}/pages/memoir-ep01/reactions`, { headers: { Authorization: 'Bearer owner' } })
   expect(response.ok()).toBeTruthy()
   return (await response.json()).documents || []
 }
@@ -59,7 +60,7 @@ test('Firebase가 연결되어도 댓글 화면과 요청은 없고 회차 반�
   await expect(page.locator('#comments, .family-comments, .comment-composer')).toHaveCount(0)
   await expect(page.getByRole('textbox')).toHaveCount(0)
   await page.locator('.next-episode').click()
-  await expect(page).toHaveURL(/jige\.html$/)
+  await expect(page).toHaveURL(/ep02\.html$/)
   await page.locator('#reactions').scrollIntoViewIfNeeded()
   await expect(page.getByRole('button', { name: '좋아요', exact: true })).toBeEnabled()
   await expect(page.locator('#comments, .family-comments, .comment-composer')).toHaveCount(0)
@@ -102,8 +103,44 @@ test('episode reactions coalesce clicks, persist across browsers, switch, cancel
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     await page.screenshot({ path: 'test-results/reactions/reactions-320.png', fullPage: true })
     await page.locator('.next-episode').click()
-    await expect(page).toHaveURL(/jige\.html$/)
+    await expect(page).toHaveURL(/ep02\.html$/)
     await expect.poll(async () => (await storedReactions(request))[0]?.fields.wow.integerValue).toBe('1')
     expect((await storedReactions(request))[0].fields.remember.integerValue).toBe('0')
   } finally { await context.close() }
+})
+
+test('기존 반응을 UID·선택·시각 그대로 이관하고 재실행해도 최신 선택과 취소를 보존한다', async ({ page, request }) => {
+  await openReactions(page)
+  await page.getByRole('button', { name: '응원해요', exact: true }).click()
+  await expect.poll(async () => (await storedReactions(request)).length).toBe(1)
+  const own = (await storedReactions(request))[0]
+  const uid = own.name.split('/').at(-1)
+  expect((await request.delete(`${FIRESTORE}/v1/${own.name}`, { headers: { Authorization: 'Bearer owner' } })).ok()).toBeTruthy()
+  const older = new Date(Date.now() - 5000).toISOString()
+  const newer = new Date(Date.now() - 2000).toISOString()
+  const fields = (selected: string, time: string) => ({
+    ...Object.fromEntries(['heart', 'like', 'moved', 'wow', 'remember'].map(key => [key, { integerValue: key === selected ? '1' : '0' }])),
+    updatedAt: { timestampValue: time },
+  })
+  for (const [id, user, selected, time] of [
+    ['memoir-ep-josae', uid!, 'like', older],
+    ['memoir-ep-josae', 'other-reader', 'heart', older],
+    ['memoir-ep01', 'other-reader', 'wow', newer],
+  ]) {
+    const response = await request.patch(`${documentsBase}/pages/${id}/reactions/${user}`, { headers: { Authorization: 'Bearer owner' }, data: { fields: fields(selected, time) } })
+    expect(response.ok()).toBeTruthy()
+  }
+  const options = { project: PROJECT, emulator: true }
+  expect(await migrateReactionIds(options)).toMatchObject({ sourceDocuments: 2, plannedWrites: 1, copied: 0, alreadyCurrent: 1 })
+  expect(await storedReactions(request)).toHaveLength(1)
+  expect(await migrateReactionIds({ ...options, apply: true })).toMatchObject({ copied: 1, alreadyCurrent: 1 })
+  expect(await migrateReactionIds({ ...options, apply: true })).toMatchObject({ plannedWrites: 0, copied: 0, alreadyCurrent: 2 })
+  const migrated = (await storedReactions(request)).find((doc: { name: string }) => doc.name.endsWith(`/${uid}`))
+  expect(migrated.fields).toMatchObject(fields('like', older))
+  await page.reload(); await page.locator('#reactions').scrollIntoViewIfNeeded()
+  await expect(page.getByRole('button', { name: '좋아요 1', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.getByRole('button', { name: '대단해요 1', exact: true })).toHaveAttribute('aria-pressed', 'false')
+  await page.getByRole('button', { name: '좋아요 1', exact: true }).click()
+  await expect.poll(async () => (await storedReactions(request)).find((doc: { name: string }) => doc.name.endsWith(`/${uid}`))?.fields.like.integerValue).toBe('0')
+  expect(await migrateReactionIds({ ...options, apply: true })).toMatchObject({ copied: 0, alreadyCurrent: 2 })
 })

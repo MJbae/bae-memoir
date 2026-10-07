@@ -107,7 +107,7 @@ test('하나의 재생기로 홈과 모든 회차의 27곡을 3% 음량으로 �
 
 test('키보드로 설정과 음악 스위치를 조작한다', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('family-library:music', JSON.stringify({ enabled: false })))
-  await page.goto('read/josae.html')
+  await page.goto('read/ep01.html')
   await page.getByRole('button', { name: '설정', exact: true }).focus()
   await page.keyboard.press('Enter')
   const control = page.getByRole('switch', { name: '배경음악' })

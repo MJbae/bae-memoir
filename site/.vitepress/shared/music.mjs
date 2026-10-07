@@ -1,12 +1,12 @@
 import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from 'node:fs'
 import path from 'node:path'
 
-/** Index songs by episode number, then expose them under the published page IDs. */
+/** Every track uses the same ID as its episode and MP3 filename. */
 export function loadMusic(root, episodes) {
   const filename = path.join(root, 'content/music.json')
   if (!existsSync(filename)) return null
   const manifest = JSON.parse(readFileSync(filename, 'utf8'))
-  if (manifest.version !== 2 || !Array.isArray(manifest.tracks))
+  if (manifest.version !== 3 || !Array.isArray(manifest.tracks))
     throw new Error('배경 음악 목록의 형식을 확인하세요.')
   const publicRoot = path.join(root, 'site/public')
   const registered = new Set()
@@ -20,20 +20,21 @@ export function loadMusic(root, episodes) {
     registered.add(src)
     return src
   }
-  const home = { src: asset(manifest.intro), label: '작품 소개 음악' }
-  let sideNumber = 0
-  const byIndex = new Map(episodes.map(episode => {
-    const index = episode.kind === 'episode' ? episode.number : episode.kind === 'side'
-      ? (++sideNumber === 1 ? 'side' : `side-${sideNumber}`) : episode.kind
-    return [index, episode]
-  }))
+  const byId = new Map(episodes.map(episode => [episode.id, episode]))
+  let home
   const tracks = {}
   for (const track of manifest.tracks) {
-    const episode = byIndex.get(track.episode)
-    if (!episode || Object.hasOwn(tracks, episode.id))
-      throw new Error(`배경 음악의 회차가 잘못되었거나 중복되었습니다: ${track.episode}`)
-    tracks[episode.id] = { src: asset(track.src), label: `${episode.label} 음악` }
+    if (!track || typeof track.id !== 'string') throw new Error('배경 음악의 회차 ID를 확인하세요.')
+    const episode = byId.get(track.id)
+    if (track.id === 'intro' ? home : !episode || Object.hasOwn(tracks, track.id))
+      throw new Error(`배경 음악의 회차가 잘못되었거나 중복되었습니다: ${track.id}`)
+    if (track.src !== `/music/${track.id}.mp3`)
+      throw new Error(`배경 음악 ID와 파일명이 맞지 않습니다: ${track.id} → ${track.src}`)
+    const value = { id: track.id, src: asset(track.src), label: episode ? `${episode.label} 음악` : '작품 소개 음악' }
+    if (track.id === 'intro') home = value
+    else tracks[track.id] = value
   }
+  if (!home) throw new Error('작품 소개의 배경 음악이 없습니다: intro')
   for (const episode of episodes) {
     if (!Object.hasOwn(tracks, episode.id)) throw new Error(`회차의 배경 음악이 없습니다: ${episode.id}`)
   }

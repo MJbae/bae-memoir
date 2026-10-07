@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 import catalog from '../site/.vitepress/generated/catalog.json' with { type: 'json' }
+import { legacyEpisodes } from '../site/.vitepress/shared/episode-ids.mjs'
 
 const dist = new URL('../site/.vitepress/dist/', import.meta.url)
 const siteUrl = 'https://mjbae.github.io/bae-memoir/'
@@ -155,11 +156,14 @@ test('published image files and the mobile manifest use their declared sizes and
   }
 })
 
-test('legacy decade addresses contain a static refresh and canonical link to the moved episode', async () => {
-  const head = await staticHead('read/1930s.html')
-  assert.equal(head.link('canonical').href, `${siteUrl}read/josae.html`)
-  const html = await readFile(new URL('read/1930s.html', dist), 'utf8')
-  assert.match(html, /http-equiv="refresh" content="0;url=\/bae-memoir\/read\/josae.html"/)
+test('all legacy decade and heading addresses statically redirect to their numbered canonical episode', async () => {
+  for (const [old, id] of Object.entries(legacyEpisodes)) {
+    const head = await staticHead(`read/${old}.html`)
+    assert.equal(head.link('canonical').href, `${siteUrl}read/${id}.html`)
+    const html = await readFile(new URL(`read/${old}.html`, dist), 'utf8')
+    assert.ok(html.includes(`http-equiv="refresh" content="0;url=/bae-memoir/read/${id}.html"`))
+    assert.ok(html.includes('location.hash'))
+  }
 })
 
 test('the retired full-story address statically redirects to the work home', async () => {

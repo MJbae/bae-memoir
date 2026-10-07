@@ -1,8 +1,5 @@
-export const legacyEpisodes = {
-  '1930s': 'josae', '1940s': 'josae', '1950s': 'serial-number',
-  '1960s': 'kalguksu', '1970s': 'anchovy', '1980s': 'rice-mill',
-  '1990s': 'bad-debt', '2000s': 'four-sons', '2010s': 'robot', '2020s': 'side-table',
-}
+import { episodeId, legacyEpisodes } from './episode-ids.mjs'
+export { legacyEpisodes } from './episode-ids.mjs'
 
 export function parseEpisodeHeading(value) {
   const match = String(value).trim().match(/^(.+?)\s+\{#([a-z0-9][a-z0-9-]{0,39})\}$/u)
@@ -43,10 +40,9 @@ export function parseManuscript(markdown, warn = () => {}) {
       continue
     }
     const episode = parseEpisodeHeading(heading.text)
-    if (!episode) throw new Error(`회차 ID가 없거나 형식이 잘못되었습니다: ${heading.text}. {#영문-id}를 지정하세요(1~40자).`)
+    if (!episode) throw new Error(`회차 ID가 없거나 형식이 잘못되었습니다: ${heading.text}. 음악 파일명과 같은 {#ep01} 형식의 ID를 지정하세요.`)
     if (ids.has(episode.id)) throw new Error(`회차 ID 중복: ${episode.id}`)
-    if (episode.id === 'life-story' || Object.hasOwn(legacyEpisodes, episode.id)) throw new Error(`예약된 회차 ID: ${episode.id}`)
-    if ((episode.kind === 'prologue') !== (episode.id === 'prologue') || (episode.kind === 'epilogue') !== (episode.id === 'epilogue')) throw new Error('프롤로그·에필로그는 예약 ID prologue·epilogue를 사용하세요.')
+    if (['intro', 'life-story'].includes(episode.id) || Object.hasOwn(legacyEpisodes, episode.id)) throw new Error(`예약된 회차 ID: ${episode.id}`)
     if (episode.kind === 'episode' && !part) throw new Error(`본편 회차 앞에 부 제목을 넣으세요: ${heading.text}`)
     if (episode.kind === 'prologue' && episodes.length) throw new Error('프롤로그는 원고 맨 앞에 두세요.')
     if (episode.kind === 'episode' && episodes.some(e => ['epilogue', 'side'].includes(e.kind))) throw new Error('본편은 에필로그·외전 앞에 두세요.')
@@ -56,7 +52,10 @@ export function parseManuscript(markdown, warn = () => {}) {
     const body = content.slice(timeMatch[0].length).trim()
     if (!body) throw new Error(`회차 본문이 비어 있습니다: ${episode.title}`)
     const episodeNumber = episode.kind === 'episode' ? ++number : null
-    const label = episode.kind === 'episode' ? `${episodeNumber}화` : episode.kind === 'prologue' ? '프롤로그' : episode.kind === 'epilogue' ? '에필로그' : `외전 ${++sideNumber}화`
+    if (episode.kind === 'side') ++sideNumber
+    const expectedId = episodeId(episode.kind, episodeNumber ?? sideNumber)
+    if (episode.id !== expectedId) throw new Error(`회차 번호와 ID가 맞지 않습니다: ${episode.title}. 음악 파일명에 맞춰 {#${expectedId}}를 사용하세요.`)
+    const label = episode.kind === 'episode' ? `${episodeNumber}화` : episode.kind === 'prologue' ? '프롤로그' : episode.kind === 'epilogue' ? '에필로그' : `외전 ${sideNumber}화`
     episodes.push({ ...episode, number: episodeNumber, label, time: timeMatch[1], part: episode.kind === 'episode' ? part : null, body })
   }
   if (!number) throw new Error('본편 회차가 없습니다.')

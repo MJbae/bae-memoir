@@ -4,8 +4,8 @@
   "aspectRatio": "16:9",
   "images": [
     {
-      "id": "prologue",
-      "episodeId": "prologue",
+      "id": "prolog-01",
+      "episodeId": "prolog",
       "alt": "수채화로 그린 농민의 손에 담긴 벼 한 줌",
       "width": 1280,
       "height": 720,
@@ -14,29 +14,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/prologue-360.jpg",
+          "src": "/images/episodes/prolog-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/prologue-720.jpg",
+          "src": "/images/episodes/prolog-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/prologue-1280.jpg",
+          "src": "/images/episodes/prolog-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/prologue-360.webp",
+          "src": "/images/episodes/prolog-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/prologue-720.webp",
+          "src": "/images/episodes/prolog-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/prologue-1280.webp",
+          "src": "/images/episodes/prolog-01-1280.webp",
           "width": 1280
         }
       ],
@@ -47,8 +47,8 @@
       ]
     },
     {
-      "id": "josae",
-      "episodeId": "josae",
+      "id": "ep01-01",
+      "episodeId": "ep01",
       "alt": "수채화로 그린 갯벌에서 조새로 굴을 까는 어머니",
       "width": 1280,
       "height": 720,
@@ -57,29 +57,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/josae-360.jpg",
+          "src": "/images/episodes/ep01-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/josae-720.jpg",
+          "src": "/images/episodes/ep01-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/josae-1280.jpg",
+          "src": "/images/episodes/ep01-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/josae-360.webp",
+          "src": "/images/episodes/ep01-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/josae-720.webp",
+          "src": "/images/episodes/ep01-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/josae-1280.webp",
+          "src": "/images/episodes/ep01-01-1280.webp",
           "width": 1280
         }
       ],
@@ -89,8 +89,8 @@
       ]
     },
     {
-      "id": "jige",
-      "episodeId": "jige",
+      "id": "ep02-01",
+      "episodeId": "ep02",
       "alt": "수채화로 그린 책보 대신 지게를 지고 밭으로 향하는 소년",
       "width": 1280,
       "height": 720,
@@ -99,29 +99,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/jige-360.jpg",
+          "src": "/images/episodes/ep02-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/jige-720.jpg",
+          "src": "/images/episodes/ep02-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/jige-1280.jpg",
+          "src": "/images/episodes/ep02-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/jige-360.webp",
+          "src": "/images/episodes/ep02-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/jige-720.webp",
+          "src": "/images/episodes/ep02-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/jige-1280.webp",
+          "src": "/images/episodes/ep02-01-1280.webp",
           "width": 1280
         }
       ],
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "serial-number",
-      "episodeId": "serial-number",
+      "id": "ep03-01",
+      "episodeId": "ep03",
       "alt": "수채화로 그린 마당에서 홀로 도리깨로 보리를 타작하는 소년",
       "width": 1280,
       "height": 720,
@@ -142,29 +142,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/serial-number-360.jpg",
+          "src": "/images/episodes/ep03-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/serial-number-720.jpg",
+          "src": "/images/episodes/ep03-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/serial-number-1280.jpg",
+          "src": "/images/episodes/ep03-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/serial-number-360.webp",
+          "src": "/images/episodes/ep03-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/serial-number-720.webp",
+          "src": "/images/episodes/ep03-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/serial-number-1280.webp",
+          "src": "/images/episodes/ep03-01-1280.webp",
           "width": 1280
         }
       ],
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "id": "cheonsuman",
-      "episodeId": "cheonsuman",
+      "id": "ep04-01",
+      "episodeId": "ep04",
       "alt": "수채화로 그린 돌풍 속에서 땔나무를 실은 목선의 노를 젓는 청년",
       "width": 1280,
       "height": 720,
@@ -185,29 +185,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/cheonsuman-360.jpg",
+          "src": "/images/episodes/ep04-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/cheonsuman-720.jpg",
+          "src": "/images/episodes/ep04-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/cheonsuman-1280.jpg",
+          "src": "/images/episodes/ep04-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/cheonsuman-360.webp",
+          "src": "/images/episodes/ep04-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/cheonsuman-720.webp",
+          "src": "/images/episodes/ep04-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/cheonsuman-1280.webp",
+          "src": "/images/episodes/ep04-01-1280.webp",
           "width": 1280
         }
       ],
@@ -218,8 +218,8 @@
       ]
     },
     {
-      "id": "kalguksu",
-      "episodeId": "kalguksu",
+      "id": "ep05-01",
+      "episodeId": "ep05",
       "alt": "수채화로 그린 가마솥에 미꾸라지 칼국수를 끓이는 아내의 손",
       "width": 1280,
       "height": 720,
@@ -228,29 +228,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/kalguksu-360.jpg",
+          "src": "/images/episodes/ep05-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/kalguksu-720.jpg",
+          "src": "/images/episodes/ep05-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/kalguksu-1280.jpg",
+          "src": "/images/episodes/ep05-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/kalguksu-360.webp",
+          "src": "/images/episodes/ep05-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/kalguksu-720.webp",
+          "src": "/images/episodes/ep05-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/kalguksu-1280.webp",
+          "src": "/images/episodes/ep05-01-1280.webp",
           "width": 1280
         }
       ],
@@ -261,8 +261,8 @@
       ]
     },
     {
-      "id": "laver",
-      "episodeId": "laver",
+      "id": "ep06-01",
+      "episodeId": "ep06",
       "alt": "수채화로 그린 겨울 마당에서 김발을 함께 널어 말리는 가족",
       "width": 1280,
       "height": 720,
@@ -271,29 +271,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/laver-360.jpg",
+          "src": "/images/episodes/ep06-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/laver-720.jpg",
+          "src": "/images/episodes/ep06-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/laver-1280.jpg",
+          "src": "/images/episodes/ep06-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/laver-360.webp",
+          "src": "/images/episodes/ep06-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/laver-720.webp",
+          "src": "/images/episodes/ep06-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/laver-1280.webp",
+          "src": "/images/episodes/ep06-01-1280.webp",
           "width": 1280
         }
       ],
@@ -305,8 +305,8 @@
       ]
     },
     {
-      "id": "anchovy",
-      "episodeId": "anchovy",
+      "id": "ep07-01",
+      "episodeId": "ep07",
       "alt": "수채화로 그린 갯가 자갈밭의 가마솥에서 멸치를 삶는 배병희",
       "width": 1280,
       "height": 720,
@@ -315,29 +315,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/anchovy-360.jpg",
+          "src": "/images/episodes/ep07-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/anchovy-720.jpg",
+          "src": "/images/episodes/ep07-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/anchovy-1280.jpg",
+          "src": "/images/episodes/ep07-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/anchovy-360.webp",
+          "src": "/images/episodes/ep07-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/anchovy-720.webp",
+          "src": "/images/episodes/ep07-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/anchovy-1280.webp",
+          "src": "/images/episodes/ep07-01-1280.webp",
           "width": 1280
         }
       ],
@@ -349,8 +349,8 @@
       ]
     },
     {
-      "id": "bearing",
-      "episodeId": "bearing",
+      "id": "ep08-01",
+      "episodeId": "ep08",
       "alt": "수채화로 그린 발동기 곁에서 숟가락의 납으로 베어링을 고치는 손",
       "width": 1280,
       "height": 720,
@@ -359,29 +359,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/bearing-360.jpg",
+          "src": "/images/episodes/ep08-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/bearing-720.jpg",
+          "src": "/images/episodes/ep08-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/bearing-1280.jpg",
+          "src": "/images/episodes/ep08-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/bearing-360.webp",
+          "src": "/images/episodes/ep08-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/bearing-720.webp",
+          "src": "/images/episodes/ep08-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/bearing-1280.webp",
+          "src": "/images/episodes/ep08-01-1280.webp",
           "width": 1280
         }
       ],
@@ -392,8 +392,8 @@
       ]
     },
     {
-      "id": "leaving",
-      "episodeId": "leaving",
+      "id": "ep09-01",
+      "episodeId": "ep09",
       "alt": "수채화로 그린 안면도 논에서 정면을 향한 보행형 바인더로 벼를 베어 묶는 배병희",
       "width": 1280,
       "height": 720,
@@ -402,29 +402,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/leaving-360.jpg",
+          "src": "/images/episodes/ep09-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/leaving-720.jpg",
+          "src": "/images/episodes/ep09-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/leaving-1280.jpg",
+          "src": "/images/episodes/ep09-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/leaving-360.webp",
+          "src": "/images/episodes/ep09-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/leaving-720.webp",
+          "src": "/images/episodes/ep09-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/leaving-1280.webp",
+          "src": "/images/episodes/ep09-01-1280.webp",
           "width": 1280
         }
       ],
@@ -436,8 +436,8 @@
       ]
     },
     {
-      "id": "leaving-road",
-      "episodeId": "leaving",
+      "id": "ep09-02",
+      "episodeId": "ep09",
       "alt": "수채화로 그린 이웃들과 짐을 싣고 남양만으로 향하는 이주 행렬",
       "width": 1280,
       "height": 720,
@@ -446,29 +446,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/leaving-road-360.jpg",
+          "src": "/images/episodes/ep09-02-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/leaving-road-720.jpg",
+          "src": "/images/episodes/ep09-02-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/leaving-road-1280.jpg",
+          "src": "/images/episodes/ep09-02-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/leaving-road-360.webp",
+          "src": "/images/episodes/ep09-02-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/leaving-road-720.webp",
+          "src": "/images/episodes/ep09-02-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/leaving-road-1280.webp",
+          "src": "/images/episodes/ep09-02-1280.webp",
           "width": 1280
         }
       ],
@@ -480,8 +480,8 @@
       ]
     },
     {
-      "id": "reclaimed-land",
-      "episodeId": "reclaimed-land",
+      "id": "ep10-01",
+      "episodeId": "ep10",
       "alt": "수채화로 그린 간척지 물길을 돌보며 소금기를 빼는 배병희",
       "width": 1280,
       "height": 720,
@@ -490,29 +490,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/reclaimed-land-360.jpg",
+          "src": "/images/episodes/ep10-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/reclaimed-land-720.jpg",
+          "src": "/images/episodes/ep10-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/reclaimed-land-1280.jpg",
+          "src": "/images/episodes/ep10-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/reclaimed-land-360.webp",
+          "src": "/images/episodes/ep10-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/reclaimed-land-720.webp",
+          "src": "/images/episodes/ep10-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/reclaimed-land-1280.webp",
+          "src": "/images/episodes/ep10-01-1280.webp",
           "width": 1280
         }
       ],
@@ -523,8 +523,8 @@
       ]
     },
     {
-      "id": "bus-fare",
-      "episodeId": "bus-fare",
+      "id": "ep11-01",
+      "episodeId": "ep11",
       "alt": "수채화로 그린 수원으로 떠나는 딸을 배웅하는 아버지",
       "width": 1280,
       "height": 720,
@@ -533,29 +533,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/bus-fare-360.jpg",
+          "src": "/images/episodes/ep11-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/bus-fare-720.jpg",
+          "src": "/images/episodes/ep11-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/bus-fare-1280.jpg",
+          "src": "/images/episodes/ep11-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/bus-fare-360.webp",
+          "src": "/images/episodes/ep11-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/bus-fare-720.webp",
+          "src": "/images/episodes/ep11-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/bus-fare-1280.webp",
+          "src": "/images/episodes/ep11-01-1280.webp",
           "width": 1280
         }
       ],
@@ -565,8 +565,8 @@
       ]
     },
     {
-      "id": "rice-mill",
-      "episodeId": "rice-mill",
+      "id": "ep12-01",
+      "episodeId": "ep12",
       "alt": "수채화로 그린 낡은 정미소 앞에 선 배병희",
       "width": 1280,
       "height": 720,
@@ -575,29 +575,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/rice-mill-360.jpg",
+          "src": "/images/episodes/ep12-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/rice-mill-720.jpg",
+          "src": "/images/episodes/ep12-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/rice-mill-1280.jpg",
+          "src": "/images/episodes/ep12-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/rice-mill-360.webp",
+          "src": "/images/episodes/ep12-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/rice-mill-720.webp",
+          "src": "/images/episodes/ep12-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/rice-mill-1280.webp",
+          "src": "/images/episodes/ep12-01-1280.webp",
           "width": 1280
         }
       ],
@@ -608,8 +608,8 @@
       ]
     },
     {
-      "id": "flashlight",
-      "episodeId": "flashlight",
+      "id": "ep13-01",
+      "episodeId": "ep13",
       "alt": "수채화로 그린 장대비 속에서 손전등으로 야적 가마니를 살피는 배병희",
       "width": 1280,
       "height": 720,
@@ -618,29 +618,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/flashlight-360.jpg",
+          "src": "/images/episodes/ep13-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/flashlight-720.jpg",
+          "src": "/images/episodes/ep13-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/flashlight-1280.jpg",
+          "src": "/images/episodes/ep13-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/flashlight-360.webp",
+          "src": "/images/episodes/ep13-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/flashlight-720.webp",
+          "src": "/images/episodes/ep13-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/flashlight-1280.webp",
+          "src": "/images/episodes/ep13-01-1280.webp",
           "width": 1280
         }
       ],
@@ -651,8 +651,8 @@
       ]
     },
     {
-      "id": "power-line",
-      "episodeId": "power-line",
+      "id": "ep14-01",
+      "episodeId": "ep14",
       "alt": "수채화로 그린 장축과 평벨트로 기계를 돌리던 정미소 내부",
       "width": 1280,
       "height": 720,
@@ -661,29 +661,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/power-line-360.jpg",
+          "src": "/images/episodes/ep14-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/power-line-720.jpg",
+          "src": "/images/episodes/ep14-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/power-line-1280.jpg",
+          "src": "/images/episodes/ep14-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/power-line-360.webp",
+          "src": "/images/episodes/ep14-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/power-line-720.webp",
+          "src": "/images/episodes/ep14-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/power-line-1280.webp",
+          "src": "/images/episodes/ep14-01-1280.webp",
           "width": 1280
         }
       ],
@@ -694,8 +694,8 @@
       ]
     },
     {
-      "id": "power-line-poles",
-      "episodeId": "power-line",
+      "id": "ep14-02",
+      "episodeId": "ep14",
       "alt": "수채화로 그린 들판을 가로질러 정미소로 이어지는 배전 전봇대",
       "width": 1280,
       "height": 720,
@@ -704,29 +704,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/power-line-poles-360.jpg",
+          "src": "/images/episodes/ep14-02-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/power-line-poles-720.jpg",
+          "src": "/images/episodes/ep14-02-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/power-line-poles-1280.jpg",
+          "src": "/images/episodes/ep14-02-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/power-line-poles-360.webp",
+          "src": "/images/episodes/ep14-02-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/power-line-poles-720.webp",
+          "src": "/images/episodes/ep14-02-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/power-line-poles-1280.webp",
+          "src": "/images/episodes/ep14-02-1280.webp",
           "width": 1280
         }
       ],
@@ -736,8 +736,8 @@
       ]
     },
     {
-      "id": "seed-rice",
-      "episodeId": "seed-rice",
+      "id": "ep15-01",
+      "episodeId": "ep15",
       "alt": "수채화로 그린 볍씨를 가져가는 이웃을 보고 조용히 돌아서는 배병희",
       "width": 1280,
       "height": 720,
@@ -746,29 +746,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/seed-rice-360.jpg",
+          "src": "/images/episodes/ep15-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/seed-rice-720.jpg",
+          "src": "/images/episodes/ep15-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/seed-rice-1280.jpg",
+          "src": "/images/episodes/ep15-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/seed-rice-360.webp",
+          "src": "/images/episodes/ep15-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/seed-rice-720.webp",
+          "src": "/images/episodes/ep15-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/seed-rice-1280.webp",
+          "src": "/images/episodes/ep15-01-1280.webp",
           "width": 1280
         }
       ],
@@ -779,8 +779,8 @@
       ]
     },
     {
-      "id": "kitchen",
-      "episodeId": "kitchen",
+      "id": "ep16-01",
+      "episodeId": "ep16",
       "alt": "수채화로 그린 가마솥 밥을 떠서 일꾼들의 그릇에 담는 아내의 손",
       "width": 1280,
       "height": 720,
@@ -789,29 +789,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/kitchen-360.jpg",
+          "src": "/images/episodes/ep16-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/kitchen-720.jpg",
+          "src": "/images/episodes/ep16-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/kitchen-1280.jpg",
+          "src": "/images/episodes/ep16-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/kitchen-360.webp",
+          "src": "/images/episodes/ep16-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/kitchen-720.webp",
+          "src": "/images/episodes/ep16-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/kitchen-1280.webp",
+          "src": "/images/episodes/ep16-01-1280.webp",
           "width": 1280
         }
       ],
@@ -821,8 +821,8 @@
       ]
     },
     {
-      "id": "bad-debt",
-      "episodeId": "bad-debt",
+      "id": "ep17-01",
+      "episodeId": "ep17",
       "alt": "수채화로 그린 텅 빈 창고와 부도 수표 앞에 앉은 배병희",
       "width": 1280,
       "height": 720,
@@ -831,29 +831,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/bad-debt-360.jpg",
+          "src": "/images/episodes/ep17-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/bad-debt-720.jpg",
+          "src": "/images/episodes/ep17-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/bad-debt-1280.jpg",
+          "src": "/images/episodes/ep17-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/bad-debt-360.webp",
+          "src": "/images/episodes/ep17-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/bad-debt-720.webp",
+          "src": "/images/episodes/ep17-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/bad-debt-1280.webp",
+          "src": "/images/episodes/ep17-01-1280.webp",
           "width": 1280
         }
       ],
@@ -864,8 +864,8 @@
       ]
     },
     {
-      "id": "last-land",
-      "episodeId": "last-land",
+      "id": "ep18-01",
+      "episodeId": "ep18",
       "alt": "수채화로 그린 논을 팔아 마련한 볏값을 농민에게 건네는 배병희",
       "width": 1280,
       "height": 720,
@@ -874,29 +874,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/last-land-360.jpg",
+          "src": "/images/episodes/ep18-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/last-land-720.jpg",
+          "src": "/images/episodes/ep18-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/last-land-1280.jpg",
+          "src": "/images/episodes/ep18-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/last-land-360.webp",
+          "src": "/images/episodes/ep18-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/last-land-720.webp",
+          "src": "/images/episodes/ep18-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/last-land-1280.webp",
+          "src": "/images/episodes/ep18-01-1280.webp",
           "width": 1280
         }
       ],
@@ -907,8 +907,8 @@
       ]
     },
     {
-      "id": "wet-rice",
-      "episodeId": "wet-rice",
+      "id": "ep19-01",
+      "episodeId": "ep19",
       "alt": "수채화로 그린 수확한 물벼가 반입구로 쏟아지는 정미소",
       "width": 1280,
       "height": 720,
@@ -917,29 +917,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/wet-rice-360.jpg",
+          "src": "/images/episodes/ep19-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/wet-rice-720.jpg",
+          "src": "/images/episodes/ep19-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/wet-rice-1280.jpg",
+          "src": "/images/episodes/ep19-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/wet-rice-360.webp",
+          "src": "/images/episodes/ep19-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/wet-rice-720.webp",
+          "src": "/images/episodes/ep19-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/wet-rice-1280.webp",
+          "src": "/images/episodes/ep19-01-1280.webp",
           "width": 1280
         }
       ],
@@ -950,8 +950,8 @@
       ]
     },
     {
-      "id": "farewell",
-      "episodeId": "farewell",
+      "id": "ep20-01",
+      "episodeId": "ep20",
       "alt": "수채화로 그린 오랜 세월 밥을 짓던 부엌의 빈자리",
       "width": 1280,
       "height": 720,
@@ -960,29 +960,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/farewell-360.jpg",
+          "src": "/images/episodes/ep20-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/farewell-720.jpg",
+          "src": "/images/episodes/ep20-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/farewell-1280.jpg",
+          "src": "/images/episodes/ep20-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/farewell-360.webp",
+          "src": "/images/episodes/ep20-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/farewell-720.webp",
+          "src": "/images/episodes/ep20-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/farewell-1280.webp",
+          "src": "/images/episodes/ep20-01-1280.webp",
           "width": 1280
         }
       ],
@@ -992,8 +992,8 @@
       ]
     },
     {
-      "id": "four-sons",
-      "episodeId": "four-sons",
+      "id": "ep21-01",
+      "episodeId": "ep21",
       "alt": "수채화로 그린 공장 앞에서 아들들과 들녘을 바라보는 아버지",
       "width": 1280,
       "height": 720,
@@ -1002,29 +1002,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/four-sons-360.jpg",
+          "src": "/images/episodes/ep21-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/four-sons-720.jpg",
+          "src": "/images/episodes/ep21-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/four-sons-1280.jpg",
+          "src": "/images/episodes/ep21-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/four-sons-360.webp",
+          "src": "/images/episodes/ep21-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/four-sons-720.webp",
+          "src": "/images/episodes/ep21-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/four-sons-1280.webp",
+          "src": "/images/episodes/ep21-01-1280.webp",
           "width": 1280
         }
       ],
@@ -1035,8 +1035,8 @@
       ]
     },
     {
-      "id": "four-sons-study",
-      "episodeId": "four-sons",
+      "id": "ep21-02",
+      "episodeId": "ep21",
       "alt": "수채화로 그린 공장 일을 마친 뒤 책을 펴고 공부하는 맏아들",
       "width": 1280,
       "height": 720,
@@ -1045,29 +1045,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/four-sons-study-360.jpg",
+          "src": "/images/episodes/ep21-02-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/four-sons-study-720.jpg",
+          "src": "/images/episodes/ep21-02-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/four-sons-study-1280.jpg",
+          "src": "/images/episodes/ep21-02-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/four-sons-study-360.webp",
+          "src": "/images/episodes/ep21-02-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/four-sons-study-720.webp",
+          "src": "/images/episodes/ep21-02-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/four-sons-study-1280.webp",
+          "src": "/images/episodes/ep21-02-1280.webp",
           "width": 1280
         }
       ],
@@ -1077,8 +1077,8 @@
       ]
     },
     {
-      "id": "promise",
-      "episodeId": "promise",
+      "id": "ep22-01",
+      "episodeId": "ep22",
       "alt": "수채화로 그린 계약재배 들판에서 익은 벼를 함께 살피는 농민들",
       "width": 1280,
       "height": 720,
@@ -1087,29 +1087,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/promise-360.jpg",
+          "src": "/images/episodes/ep22-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/promise-720.jpg",
+          "src": "/images/episodes/ep22-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/promise-1280.jpg",
+          "src": "/images/episodes/ep22-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/promise-360.webp",
+          "src": "/images/episodes/ep22-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/promise-720.webp",
+          "src": "/images/episodes/ep22-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/promise-1280.webp",
+          "src": "/images/episodes/ep22-01-1280.webp",
           "width": 1280
         }
       ],
@@ -1120,8 +1120,8 @@
       ]
     },
     {
-      "id": "promise-export",
-      "episodeId": "promise",
+      "id": "ep22-02",
+      "episodeId": "ep22",
       "alt": "수채화로 그린 독정RPC에서 출하를 기다리는 포장 쌀과 팔레트",
       "width": 1280,
       "height": 720,
@@ -1130,29 +1130,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/promise-export-360.jpg",
+          "src": "/images/episodes/ep22-02-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/promise-export-720.jpg",
+          "src": "/images/episodes/ep22-02-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/promise-export-1280.jpg",
+          "src": "/images/episodes/ep22-02-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/promise-export-360.webp",
+          "src": "/images/episodes/ep22-02-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/promise-export-720.webp",
+          "src": "/images/episodes/ep22-02-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/promise-export-1280.webp",
+          "src": "/images/episodes/ep22-02-1280.webp",
           "width": 1280
         }
       ],
@@ -1163,8 +1163,8 @@
       ]
     },
     {
-      "id": "robot",
-      "episodeId": "robot",
+      "id": "ep23-01",
+      "episodeId": "ep23",
       "alt": "수채화로 그린 도정공장에서 쌀포대를 팔레트에 쌓는 적재 로봇",
       "width": 1280,
       "height": 720,
@@ -1173,29 +1173,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/robot-360.jpg",
+          "src": "/images/episodes/ep23-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/robot-720.jpg",
+          "src": "/images/episodes/ep23-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/robot-1280.jpg",
+          "src": "/images/episodes/ep23-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/robot-360.webp",
+          "src": "/images/episodes/ep23-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/robot-720.webp",
+          "src": "/images/episodes/ep23-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/robot-1280.webp",
+          "src": "/images/episodes/ep23-01-1280.webp",
           "width": 1280
         }
       ],
@@ -1207,8 +1207,8 @@
       ]
     },
     {
-      "id": "epilogue",
-      "episodeId": "epilogue",
+      "id": "epilog-01",
+      "episodeId": "epilog",
       "alt": "수채화로 그린 해 질 무렵 남양만 들녘을 바라보는 노년의 배병희",
       "width": 1280,
       "height": 720,
@@ -1217,29 +1217,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/epilogue-360.jpg",
+          "src": "/images/episodes/epilog-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/epilogue-720.jpg",
+          "src": "/images/episodes/epilog-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/epilogue-1280.jpg",
+          "src": "/images/episodes/epilog-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/epilogue-360.webp",
+          "src": "/images/episodes/epilog-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/epilogue-720.webp",
+          "src": "/images/episodes/epilog-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/epilogue-1280.webp",
+          "src": "/images/episodes/epilog-01-1280.webp",
           "width": 1280
         }
       ],
@@ -1250,8 +1250,8 @@
       ]
     },
     {
-      "id": "side-table",
-      "episodeId": "side-table",
+      "id": "side-01",
+      "episodeId": "side",
       "alt": "수채화로 그린 밤늦게 돌아온 아들에게 젓가락을 건네는 아버지와 수육 밥상",
       "width": 1280,
       "height": 720,
@@ -1260,29 +1260,29 @@
       },
       "sources": [
         {
-          "src": "/images/episodes/side-table-360.jpg",
+          "src": "/images/episodes/side-01-360.jpg",
           "width": 360
         },
         {
-          "src": "/images/episodes/side-table-720.jpg",
+          "src": "/images/episodes/side-01-720.jpg",
           "width": 720
         },
         {
-          "src": "/images/episodes/side-table-1280.jpg",
+          "src": "/images/episodes/side-01-1280.jpg",
           "width": 1280
         }
       ],
       "webpSources": [
         {
-          "src": "/images/episodes/side-table-360.webp",
+          "src": "/images/episodes/side-01-360.webp",
           "width": 360
         },
         {
-          "src": "/images/episodes/side-table-720.webp",
+          "src": "/images/episodes/side-01-720.webp",
           "width": 720
         },
         {
-          "src": "/images/episodes/side-table-1280.webp",
+          "src": "/images/episodes/side-01-1280.webp",
           "width": 1280
         }
       ],

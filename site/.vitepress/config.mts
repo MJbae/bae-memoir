@@ -81,7 +81,13 @@ export default defineConfig({
     pageData.description = description
     pageData.frontmatter.description = description
     pageData.frontmatter.head ??= []
-    if (pageData.frontmatter.redirect) pageData.frontmatter.head.push(['meta', { 'http-equiv': 'refresh', content: `0;url=${base}${String(pageData.frontmatter.redirect).replace(/^\//, '')}` }])
+    if (pageData.frontmatter.redirect) {
+      const destination = `${base}${String(pageData.frontmatter.redirect).replace(/^\//, '')}`
+      pageData.frontmatter.head.push(
+        ['script', {}, `location.replace(${JSON.stringify(destination)}+location.hash)`],
+        ['meta', { 'http-equiv': 'refresh', content: `0;url=${destination}` }]
+      )
+    }
     pageData.frontmatter.head.push(
       ['link', { rel: 'canonical', href: url }],
       ['meta', { property: 'og:title', content: title }],

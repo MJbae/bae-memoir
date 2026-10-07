@@ -15,12 +15,14 @@ export function loadEpisodeIllustrations(root, episodes) {
     const episode = byEpisode[image.episodeId]
     if (!episode || !/^[a-z0-9][a-z0-9-]*$/.test(image.id) || seen.has(image.id))
       throw new Error(`삽화의 회차 또는 ID가 잘못되었습니다: ${image.id}`)
+    const expectedId = `${episode.id}-${String((images[episode.id]?.length ?? 0) + 1).padStart(2, '0')}`
+    if (image.id !== expectedId) throw new Error(`삽화 ID는 회차 ID와 장 번호를 사용하세요: ${image.id} → ${expectedId}`)
     seen.add(image.id)
     if (!image.alt?.trim() || image.width !== 1280 || image.height !== 720)
       throw new Error(`삽화 설명 또는 16:9 크기를 확인하세요: ${image.id}`)
     const position = image.position
     if (position?.start === true) {
-      if (position.beforeParagraph || images[episode.id]?.some(i => i.position.start))
+      if (position.beforeParagraph || image.id !== `${episode.id}-01` || images[episode.id]?.some(i => i.position.start))
         throw new Error(`회차 첫 삽화가 중복되었습니다: ${image.id}`)
     } else {
       const paragraphs = episode.body.split(/\n\s*\n/)

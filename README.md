@@ -36,4 +36,10 @@
   </tr>
 </table>
 
-음원은 `site/public/music/`에 두고 `content/music.json`에서 연결합니다. 본편은 회차 번호에 따라 `ep01.mp3`~`ep23.mp3`를 사용하며, 소개곡은 `intro.mp3`, 프롤로그는 `prolog.mp3`, 에필로그는 `epilog.mp3`, 외전은 `side.mp3`입니다. 원고에서 본편 순서를 바꾸면 음악도 새 회차 번호를 따릅니다.
+원고·목차·주소·음악·삽화는 음악 파일명과 같은 회차 ID를 사용합니다. 본편은 `ep01`~`ep23`, 소개는 `intro`, 프롤로그는 `prolog`, 에필로그는 `epilog`, 외전은 `side`입니다. 예를 들어 원고 `{#ep01}`, 주소 `/read/ep01.html`, 음악 `/music/ep01.mp3`, 반응 저장 경로 `pages/memoir-ep01`이 같은 1화를 가리킵니다.
+
+음원은 `site/public/music/`에 두고 `content/music.json`의 `tracks[].id`로 연결합니다. 삽화는 `ep09-01`, `ep09-02`처럼 회차 ID에 장 번호를 붙이고 `content/episode-illustrations.json`에서 연결합니다. 두 번째 외전부터는 `side-02`, `side-03`을 사용합니다. 원고 순서를 바꾸면 회차 ID와 관련 음악·삽화도 함께 정리해야 하며, 번호나 파일명이 어긋나면 빌드가 중단됩니다.
+
+콘텐츠 준비 단계에서 참고 이미지 인덱스와 참고 목록 화면의 회차 번호·제목·원고 해시도 자동 갱신합니다. 옛 제목·연대 주소는 새 번호 주소로 이동하고, 브라우저의 읽던 위치와 완독 기록도 자동 변환합니다.
+
+운영 반응 데이터를 옮길 때는 `node scripts/migrate-reaction-ids.mjs --project=<프로젝트 ID>`로 대상 건수를 먼저 확인한 다음 `--apply`를 붙여 실행합니다. 작성자 UID와 선택값·시각을 보존하며, 이미 옮긴 데이터보다 오래된 값은 덮어쓰지 않습니다. 기존 경로의 데이터는 보관합니다.

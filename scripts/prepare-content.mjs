@@ -15,6 +15,7 @@ import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import matter from 'gray-matter'
 import { parseManuscript, legacyEpisodes } from '../site/.vitepress/shared/episode-heading.mjs'
+import { legacyReadingIds, legacyScrollResetIds } from '../site/.vitepress/shared/episode-ids.mjs'
 import { loadEpisodeIllustrations } from '../site/.vitepress/shared/episode-illustrations.mjs'
 import { loadMusic } from '../site/.vitepress/shared/music.mjs'
 
@@ -145,6 +146,36 @@ function firstParagraph(markdown) {
   )
 }
 
+function syncReferenceIndex(root, episodes) {
+  const filename = path.join(root, 'content/ref_images/episode-map.json')
+  if (!existsSync(filename)) return
+  const index = JSON.parse(readFileSync(filename, 'utf8'))
+  const existing = new Map(index.episodes.map(row => [legacyEpisodes[row.id] || row.id, row]))
+  index.episodes = episodes.map(episode => {
+    const row = existing.get(episode.id)
+    if (!row) throw new Error(`회차의 참고 이미지 인덱스가 없습니다: ${episode.id}`)
+    const prefix = { prologue: '프롤로그', epilogue: '에필로그', side: '외전' }[episode.kind]
+    return { ...row, id: episode.id, number: episode.number, title: prefix ? `${prefix}. ${episode.title}` : episode.title }
+  })
+  index.episode_count = episodes.length
+  index.manuscript_sha256 = digest(readFileSync(path.join(root, mainFilename)))
+  const json = `${JSON.stringify(index, null, 2)}\n`
+  const viewerFile = path.join(root, 'content/ref_images/catalog.html')
+  let viewer
+  if (existsSync(viewerFile)) {
+    viewer = readFileSync(viewerFile, 'utf8').replace(
+      /(<script[^>]*id="data"[^>]*>)([\s\S]*?)(<\/script>)/,
+      (_, start, data, end) => {
+        const embedded = JSON.parse(data)
+        embedded.episodeMap = index
+        return start + JSON.stringify(embedded).replace(/</g, '\\u003c') + end
+      }
+    )
+  }
+  if (readFileSync(filename, 'utf8') !== json) writeFileSync(filename, json)
+  if (viewer !== undefined && readFileSync(viewerFile, 'utf8') !== viewer) writeFileSync(viewerFile, viewer)
+}
+
 export function prepareContent({ root = projectRoot, logger = console } = {}) {
   root = path.resolve(root)
   const outputDir = path.join(root, 'site/read')
@@ -206,7 +237,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
 
   const readingOrder = structure.episodes.map((episode) => {
     const chapter = {
-      id: ['prologue', 'epilogue'].includes(episode.kind) ? `life-${episode.id}` : `ep-${episode.id}`,
+      id: episode.id,
       episodeId: episode.id,
       title: episode.title,
       label: episode.label,
@@ -221,13 +252,16 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
   })
   const chapters = readingOrder.filter(e => e.number !== null)
   const episodeUrls = new Map(readingOrder.map(episode => [episode.episodeId, episode.url]))
+  for (const [old, id] of Object.entries(legacyEpisodes)) {
+    if (episodeUrls.has(id)) episodeUrls.set(old, episodeUrls.get(id))
+  }
   const redirects = Object.entries(legacyEpisodes).filter(([, id]) => readingOrder.some(e => e.episodeId === id)).map(([old, id]) => {
     const target = readingOrder.find(e => e.episodeId === id)
     return register({ id: `legacy-${old}`, filename: `${old}.md`, title: '이 이야기의 주소가 바뀌었습니다',
       body: `이 이야기는 [${target.label} ${target.title}](${target.url})에서 읽으실 수 있습니다.`,
       description: `${target.label} ${target.title}`, kind: 'redirect', redirect: target.url, source: mainFilename })
   })
-  const legacyIds = Object.fromEntries(redirects.map(p => [`life-${p.filename.replace('.md', '')}`, readingOrder.find(e => e.url === p.redirect).id]))
+  const legacyIds = Object.fromEntries(Object.entries(legacyReadingIds).filter(([, id]) => readingOrder.some(e => e.id === id)))
   register({ id: 'life-story', filename: 'life-story.md', title: work.title,
     body: '[작품 소개와 회차 목록으로 이동하기](/)',
     kind: 'redirect', redirect: '/', source: mainFilename, description: work.subtitle })
@@ -360,7 +394,9 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
       return [page.filename, frontmatter(metadata, rewriteLinks(page.body, page.source))]
     })
   )
-  const catalog = { title: work.title, work, parts: structure.parts, chapters, readingOrder, legacyIds, documents, illustrations, music }
+  const catalog = { title: work.title, work, parts: structure.parts, chapters, readingOrder, legacyIds, legacyScrollResetIds, documents, illustrations, music }
+
+  syncReferenceIndex(root, structure.episodes)
 
   let previousFiles = []
   if (existsSync(manifestFile)) {

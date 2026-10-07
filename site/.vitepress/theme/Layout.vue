@@ -8,7 +8,7 @@ import MusicToggle from './components/MusicToggle.vue'
 import SettingsButton from './components/SettingsButton.vue'
 import { useBackgroundMusic } from './lib/background-music'
 import { catalog, type Episode } from './lib/catalog'
-type SavedReading = { id: string; scroll: number; title: string; url: string; finished?: boolean }
+import { migrateReading, migrateCompleted, type SavedReading } from '../shared/reading-history.mjs'
 const { frontmatter, page } = useData()
 const route = useRoute()
 const router = useRouter()
@@ -38,6 +38,14 @@ let saveTimer: ReturnType<typeof setTimeout> | undefined
 let mounted = false
 function readStorage(key: string) { try { return localStorage.getItem(key) } catch { return null } }
 function writeStorage(key: string, value: string) { try { localStorage.setItem(key, value) } catch { /* optional */ } }
+function readJson(key: string) { try { return JSON.parse(readStorage(key) || 'null') } catch { return null } }
+function restoreReading(key: string) {
+  const migrated = migrateReading(catalog, readJson(key))
+  if (!migrated) return null
+  const saved = { ...migrated, url: withBase(migrated.url) }
+  writeStorage(key, JSON.stringify(saved))
+  return saved
+}
 function saveReading() {
   if (!activeEpisode) return
   const saved = { id: activeEpisode.id, title: activeEpisode.title, url: withBase(activeEpisode.url), scroll: Math.max(0, activeScroll), finished: activeFinished }
@@ -83,7 +91,7 @@ async function setupPage() {
   activeScroll = 0
   activeFinished = false
   try {
-    const saved = JSON.parse(readStorage('family-library:resume') || 'null')
+    const saved = restoreReading('family-library:resume')
     if (saved?.id === activeEpisode.id && Number.isFinite(saved.scroll)) {
       await new Promise<void>(resolve => requestAnimationFrame(() => resolve()))
       if (current !== version) return
@@ -103,16 +111,17 @@ onMounted(() => {
   if ([0, 1, 2, 3].includes(preferred)) fontSize.value = preferred
   const mode = readStorage('family-library:theme')
   setMode(modes.some(m => m.value === mode) ? mode! : 'auto')
-  try {
-    const read = JSON.parse(readStorage('family-library:completed') || '[]')
-    if (Array.isArray(read)) completed.value = read.filter(id => typeof id === 'string' && catalog.readingOrder.some(e => e.id === id))
-    const saved = JSON.parse(readStorage(storageKey) || 'null')
-    if (saved && typeof saved.id === 'string' && Number.isFinite(saved.scroll)) {
-      const id = catalog.legacyIds[saved.id] || saved.id
-      const entry = catalog.readingOrder.find(e => e.id === id)
-      if (entry) lastRead.value = { id, title: entry.title, url: withBase(entry.url), scroll: id === saved.id ? Math.max(0, saved.scroll) : 0, finished: typeof saved.finished === 'boolean' ? saved.finished : undefined }
-    }
-  } catch { /* optional */ }
+  completed.value = migrateCompleted(catalog, readJson('family-library:completed'))
+  lastRead.value = restoreReading(storageKey)
+  if (lastRead.value?.finished && !completed.value.includes(lastRead.value.id)) completed.value.push(lastRead.value.id)
+  writeStorage('family-library:completed', JSON.stringify(completed.value))
+  restoreReading('family-library:resume')
+  const oldAnchor = window.location.hash.match(/^#episode-([a-z0-9-]+)$/)?.[1]
+  const anchorId = oldAnchor && catalog.legacyIds[oldAnchor]
+  if (anchorId && catalog.readingOrder.some(episode => episode.id === anchorId)) {
+    window.history.replaceState(window.history.state, '', `#episode-${anchorId}`)
+    void nextTick(() => document.getElementById(`episode-${anchorId}`)?.scrollIntoView())
+  }
   window.addEventListener('scroll', onScroll, { passive: true })
   window.addEventListener('pagehide', pagehide)
   void setupPage()
