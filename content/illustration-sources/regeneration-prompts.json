@@ -162,42 +162,30 @@
       "sceneHeading": "외전. 아버지의 밥상 {#side}",
       "sceneExcerpt": "정미소 일을 돕던 자식이 온몸에 뽀얀 쌀겨와 먼지를 뒤집어쓴 채 밤늦게 돌아왔을 때의 일이다. 아버지는 먼저 저녁을 들지 않고, 김이 모락모락 피어오르는 갓 삶은 수육 한 상을 정갈하게 차려놓은 채 자식을 우두커니 기다리고 있었다. “아버지, 왜 먼저 진지 안 드시고 기다리셨어요?”라는 물음에, 아버지는 그저 “식기 전에 어서 먹어라” 하며 젓가락을 쥐여줄 뿐이었다.",
       "corrections": [
-        "Show the complete, believable arm and wrist connection of both participants.",
-        "Hand over exactly two straight, equal-length chopsticks together in parallel, with distinct natural fingers and a palm-up receiving hand.",
-        "Give the son visible rice-bran dust on work clothes and show a modest steaming meal.",
-        "Correct protagonist likeness from the actual age-specific Bae Byung-hee photographs, preserving facial geometry.",
-        "Use multiple existing series illustrations to strengthen transparent watercolor washes, visible brushwork, and paper texture while preserving the corrected composition."
+        "Use the user-provided IMG_3307.PNG photograph as the mandatory identity reference for the eating son, including his adult age, head shape, short dark hair and visible face contours.",
+        "Turn the son farther away from the camera so mostly the back of his head and near shoulder are seen, with only a small glimpse of his side profile.",
+        "Keep the son actively enjoying a spoonful of rice, with natural connected hands and arms and a readable spoon-to-mouth action.",
+        "Preserve the existing white-haired father's likeness, glasses, relaxed hands and gentle gaze toward his eating son.",
+        "Preserve the two-person nighttime supper, modest sliced-pork meal, room, framing and established watercolor style."
       ],
       "references": [
         {
-          "path": "content/ref_images/배병희_본인/80대의_백발의_배병희_정장_옆면.png",
-          "role": "Highest-priority actual elderly protagonist face: use this exact Bae Byung-hee likeness, white hair, glasses and facial geometry.",
-          "sha256": "5714f4b48633dcccdcee427f24ec6894ddbd9be4a34ddc60ce63ffa132ed3b3c"
+          "path": "content/ref_images/배병희_자녀들/IMG_3307.PNG",
+          "role": "Input image 1: user-provided actual son photograph; mandatory reference for adult identity, age, hair, head shape and the slightly visible profile, without copying the red floral shirt or frontal smile.",
+          "sha256": "ca5187665e8a5f299e484d62711be72573066312cc0b6f9c5329a972274ce08c"
         },
         {
-          "path": "site/public/images/episodes/epilog-01-1280.jpg",
-          "role": "Existing elderly protagonist painting: same familiar identity, profile, glasses and series watercolor treatment.",
-          "sha256": "067b42b69e32103c1c60b6f288e973c923ff021f95fd28cb1c36f1c0ac362b2e"
-        },
-        {
-          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
-          "role": "Existing approved portrait: underlying protagonist identity continuity and watercolor brushwork; do not copy the younger age or suit.",
-          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
-        },
-        {
-          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
-          "role": "Underlying same-person facial structure and identity across age, not a younger age target.",
-          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
-        },
-        {
-          "path": "content/illustration-sources/side-01.png",
-          "role": "Edit target: keep the clear father/son arm anatomy, two-chopstick handoff, supper and layout; replace father's generic elderly face and repaint the surface.",
-          "sha256": "f47d06d6741e9ebeea6f4bd457273949b1428dd55bafcc4e455e7645b6525565"
+          "path": "content/illustration-sources/archive/side-eating-before-son-reference.png",
+          "role": "Input image 2: edit target; preserve the established elderly father, supper, room and watercolor treatment while changing only the son likeness and visibility of his side profile.",
+          "sha256": "b82b0faa0a6e3e1c12745a7306dccb006f19148e598dd87c3a97c90b1334e79b"
         }
       ],
-      "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor family-autobiography illustration. Correct the elderly father's FACIAL IDENTITY and strengthen the WATERCOLOR STYLE of input image 5, keeping its good scene, action and anatomy. Reference roles: image 1 is the actual elderly Bae Byung-hee and is the mandatory highest-priority face source. Image 2 is his EXISTING epilogue watercolor, showing the same familiar elderly face and style. Image 3 is the existing approved watercolor portrait of the same person at a younger age, used for identity continuity and watercolor brushwork only, not its age or suit. Image 4 is the same person's actual younger photograph, underlying facial geometry only. Image 5 is the EDIT TARGET: layout, two-chopstick handoff, son, food and clothing; its present generic elderly face must be replaced.\nIdentity: make the father recognizably the EXACT elderly man in image 1 and the established elder in image 2. Preserve his actual eye/brow spacing and hooded eyelids, forehead shape, white hairline, cheek and jaw volume, broad nose with the actual tip and nostril proportions, characteristic restrained lip shape, chin and ears. Keep the same understated glasses shape and temple placement as the portrait. Keep an ordinary reserved expression; do not invent a smiling stock grandfather, beautify him, narrow his face, enlarge his eyes, or redesign the nose. Match the elderly age of image 1; do not borrow the younger age from images 3 or 4. Paint the likeness as watercolor, with no pasted photographic cutout. Only the father gets this identity; his adult son remains a different person.\nWatercolor: repaint the ENTIRE image in the existing series' hand-painted watercolor language, taking clear translucent washes and layered brush marks from images 2 and 3. Warm cold-pressed paper showing through light passages, softly bleeding amber lamplight and cool window blue, controlled pigment blooms and granulation, broad brush-shaped marks in clothes and walls, softened and lost edges alternating with a few crisp defining strokes. Keep the face recognizable with selective painted landmarks and hands legible; do not cover photographic skin with a noisy paint filter. Reduce excessive tiny surface detail in the room, cardigan and food. Avoid glossy skin, photorealistic sharpness, oil texture, cartoon simplification and uniform stippling.\nInvariants: keep the current medium two-person 16:9 layout, father seated across a modest wooden table, son in dusty work clothes at the near side, warm night lighting, father gently giving exactly TWO closed parallel equal-length chopsticks, son's palm-up receiving hand, natural connected shoulders/elbows/wrists and the father's other hand beside his bowl. Preserve all finger connections and separation, the modest steaming sliced-pork supper, rice bowls and dish positions. Change only the father's likeness and the paint treatment across the scene. Do not alter poses, multiply or cross sticks, hide hands, add people, copy portrait suits, add writing, logo or watermark.",
-      "previousIllustrationSha256": "216ca82bfcb7af98e9963610ed2f2ec400efc3ed35bd56aa44a1b51521a79242",
-      "previousMasterSha256": "f47d06d6741e9ebeea6f4bd457273949b1428dd55bafcc4e455e7645b6525565"
+      "prompt": "Use case: identity-preserve.\nAsset type: edited 16:9 watercolor autobiography illustration for '아버지의 밥상'.\nInput images: Image 1 is the user's ACTUAL ADULT SON PHOTO, the mandatory reference for the son's identity, age, short dark hair, head shape and visible facial contours. Image 2 is the EDIT TARGET: preserve its elderly father, supper, room, lighting and watercolor style. The photographed son is a different person from the white-haired father.\nPrimary request: Make the eating son resemble the man in image 1, but show ONLY A SMALL GLIMPSE OF HIS SIDE PROFILE while he continues enjoying his meal. Keep the white-haired father quietly and affectionately watching him.\nSon identity: Replace the generic young man's head with the actual adult man in image 1, at his photographed adult age. Carry through his naturally broad, softly rounded head and cheeks, subtly receding hairline, short dark side-parted hair, familiar forehead/ear relationship, actual nose and lip contours, rounded jaw/chin and natural lines around the visible eye. Do not beautify, slim his face, make him a boy, or borrow the elderly father's features. Translate his likeness coherently into the target's watercolor paint. Do not copy his photograph's big camera-facing grin or red floral shirt: keep ordinary rice-bran-dusted blue work clothes and a calm, satisfied eating expression.\nSon view and pose: Turn his head and upper body farther AWAY FROM THE CAMERA, toward the father and supper at the right. The camera looks mostly over his rear/near shoulder; the back of his head, dark hair, ear and shoulder dominate his appearance. Reveal only a NARROW SLIVER of cheek, nose tip and lips at the right outline of his head, with at most a small partly obscured glimpse of one eye. His full face must NOT be shown, and he must NOT appear in a camera-facing or front three-quarter view. Keep him at the left foreground. His head stays naturally inclined toward his spoon and meal, not making eye contact with the father or camera.\nEating must remain obvious: He is taking a bite of white rice with ONE ordinary spoon held naturally in his right hand, the spoon bowl with a small mouthful of rice right at his partly visible lips. His other hand holds his rice bowl naturally near his torso. Keep a readable connected arm, elbow, wrist, fingers and spoon; the slight profile and spoon should make the eating action apparent even though most of his face is hidden. No idle son, no unused spoon pose, no chopstick exchange, no oversized open mouth. He enjoys the food through relaxed posture and understated contentment.\nStrict invariants: Change only the son identity and the amount/angle of his visible profile, with the minimum arm/bowl adjustment needed for natural eating. Preserve image 2's SAME white-haired Bae Byung-hee father: facial features, actual elderly likeness, white hair, glasses, head position, navy cardigan, checked shirt, seated posture, both hands resting near his bowl, and gentle gaze directed at his eating son. Do not replace or redesign the father's face. Preserve the wooden table, steaming sliced-pork dish, kimchi, soup, father's rice bowl and cup, warm amber lamp, blue night window, wall picture, room, the same two-person medium 16:9 landscape composition and established painterly watercolor/paper texture. No additional people or objects, no red patterned shirt, no photographic face pasted onto a painting, no extra hands, no frontal son portrait, no text, logos or watermark.",
+      "previousIllustrationSha256": "e5bfd5ff7201ee0faaf37194510b901505192b6624a0315ed17e0788f719e5b2",
+      "previousMasterSha256": "b82b0faa0a6e3e1c12745a7306dccb006f19148e598dd87c3a97c90b1334e79b",
+      "masterSha256": "9c4629f0d8cca2ced35c5b7076b9eb896d771dc955a5d8d744024bf670330cd7",
+      "scene": "사진 속 아들이 옆얼굴만 살짝 드러낸 채 밥을 맛있게 먹고, 백발의 아버지는 그 모습을 지그시 바라보는 수육 밥상",
+      "revisionReason": "사용자 요청: 아들 얼굴에 IMG_3307.PNG 레퍼런스를 적용하고 옆모습만 살짝 보이도록 조정"
     },
     {
       "id": "ep03-01",
@@ -723,7 +711,7 @@
       "master": "content/illustration-sources/side-02.png",
       "masterSha256": "454393a5471620fe9bd1270344ed56fb63e238f5e47a992ffd9000c626126fa3",
       "sceneHeading": "외전. 아버지의 밥상 {#side}",
-      "sceneExcerpt": "손주들을 향한 내리사랑 또한 각별했다. 손주가 태어났다는 소식에 수화기 너머로는 담담했다. 안부만 물었을 뿐이었다. 그러나 이튿날 날이 밝기도 전에 새벽 첫차를 타고 서울 병원으로 한달음에 달려왔다. 갓 태어난 핏줄을 조심스레 품에 안고는 말없이 눈시울을 붉혔다. 손주가 아파 입원했다는 소식이 들리면 하던 일도 팽개쳤다. 곧장 병원으로 달려가 제 눈으로 확인하고서야 비로소 가슴을 쓸어내렸다.",
+      "sceneExcerpt": "손주들이 태어났을 때도 그랬다. 소식을 듣고는 전화로 그저 “그래, 고생했다” 하고 덤덤하게 끊었지만, 다음 날 새벽 첫차를 타고 서울 병원으로 불쑥 올라왔다. 갓난아이를 물끄러미 들여다보던 그 무뚝뚝한 얼굴을 가족들은 잊지 못한다. 손주가 아파 입원했다는 소식이 들리면 바쁜 일손을 멈추고 병원으로 달려와, 제 눈으로 괜찮은 것을 확인하고서야 안심하고 돌아섰다.",
       "placementRole": "body",
       "scene": "손주가 태어난 병원에서 갓난아이를 물끄러미 바라보는 아버지",
       "references": [
@@ -830,6 +818,6 @@
     ],
     "representativeCount": 26,
     "bodyCount": 20,
-    "manuscriptSha256": "240f9943e3f536b600224b3efa89c0280fd08f880dc494327b482339da929b74"
+    "manuscriptSha256": "9457b8b59ad0283db721eb1a64db15aa564fd8263d20f06fa94358968cce4c7f"
   }
 }
