@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { emptyCounts, fetchReactions, reactionOptions, saveReaction, type Reaction } from '../lib/reactions'
+import Icon from './Icon.vue'
 const props = defineProps<{ pageId: string }>()
 const counts = ref(emptyCounts()), selected = ref<Reaction | null>(null)
 const loading = ref(true), error = ref(''), status = ref('')
@@ -46,7 +47,7 @@ onBeforeUnmount(() => { alive = false })
 <template>
   <div class="reaction-bar">
     <div class="reaction-options" role="group" aria-label="회차 반응">
-      <button v-for="option in reactionOptions" :key="option.key" type="button" :aria-pressed="selected === option.key" :aria-label="`${option.label}${counts[option.key] ? ` ${counts[option.key]}` : ''}`" :disabled="loading" @click="choose(option.key)"><span class="reaction-emoji" aria-hidden="true">{{ option.emoji }}</span><span>{{ option.label }}</span><span class="reaction-count" aria-hidden="true">{{ counts[option.key] || '' }}</span></button>
+      <button v-for="option in reactionOptions" :key="option.key" type="button" :aria-pressed="selected === option.key" :aria-label="`${option.label}${counts[option.key] ? ` ${counts[option.key]}` : ''}`" :disabled="loading" @click="choose(option.key)"><span class="reaction-symbol"><Icon :name="option.icon" :size="22" :filled="selected === option.key" /><span v-if="counts[option.key]" class="reaction-count" aria-hidden="true">{{ counts[option.key] }}</span></span><span class="reaction-label">{{ option.label }}</span></button>
     </div>
     <p v-if="error" class="reaction-error" role="alert">{{ error }} <button type="button" class="text-link" @click="load">다시 불러오기</button></p>
     <p v-else class="reaction-status" role="status">{{ loading ? '반응을 불러오는 중…' : status }}</p>

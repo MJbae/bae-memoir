@@ -36,6 +36,10 @@ async function openReactions(page: Page) {
   await expect(page.locator('.reaction-options button')).toHaveCount(4)
   await expect(page.getByRole('button', { name: '기억나요', exact: true })).toHaveCount(0)
   await expect(page.locator('.reaction-error')).toHaveCount(0)
+  // Line icons match the rest of the interface; emoji vary by device.
+  await expect(page.locator('.reaction-options button svg')).toHaveCount(4)
+  expect(await page.locator('.reaction-options').innerText()).not.toMatch(/\p{Extended_Pictographic}/u)
+  await expect(page.locator('.story-end')).toHaveText('끝')
 }
 async function storedReactions(request: APIRequestContext) {
   const response = await request.get(`${documentsBase}/pages/memoir-ep-josae/reactions`, { headers: { Authorization: 'Bearer owner' } })
@@ -51,6 +55,7 @@ test('Firebase가 연결되어도 댓글 화면과 요청은 없고 회차 반�
   await page.goto('/')
   await expect(page.getByRole('link', { name: '한 번에 읽기', exact: true })).toHaveCount(0)
   await openReactions(page)
+  await page.locator('.episode-end').screenshot({ path: 'test-results/reactions/reactions-390.png' })
   await expect(page.locator('#comments, .family-comments, .comment-composer')).toHaveCount(0)
   await expect(page.getByRole('textbox')).toHaveCount(0)
   await page.locator('.next-episode').click()
@@ -91,6 +96,9 @@ test('episode reactions coalesce clicks, persist across browsers, switch, cancel
     await expect(page.locator('.reaction-options button[aria-pressed="true"]')).toHaveCount(0)
     await expect(page.locator('.remember-hint')).toHaveCount(0)
     await page.getByRole('button', { name: '대단해요', exact: true }).click()
+    // A chosen reaction fills its icon, so the state does not rely on color alone.
+    await expect(page.locator('.reaction-options button[aria-pressed="true"] svg')).toHaveAttribute('fill', 'currentColor')
+    await expect(page.locator('.reaction-options button[aria-pressed="false"] svg[fill="currentColor"]')).toHaveCount(0)
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     await page.screenshot({ path: 'test-results/reactions/reactions-320.png', fullPage: true })
     await page.locator('.next-episode').click()

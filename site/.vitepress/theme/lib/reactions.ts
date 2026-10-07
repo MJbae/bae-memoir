@@ -1,10 +1,10 @@
 import { collection, doc, getAggregateFromServer, getDocFromServer, serverTimestamp, setDoc, sum } from 'firebase/firestore'
 import { ensureAnonymousUser, getClients, storedPageId, validatePageId } from './firebase'
 export const reactionOptions = [
-  { key: 'heart', emoji: '❤️', label: '응원해요' },
-  { key: 'like', emoji: '👍', label: '좋아요' },
-  { key: 'moved', emoji: '😢', label: '뭉클해요' },
-  { key: 'wow', emoji: '👏', label: '대단해요' },
+  { key: 'heart', icon: 'heart', label: '응원해요' },
+  { key: 'like', icon: 'thumb', label: '좋아요' },
+  { key: 'moved', icon: 'drop', label: '뭉클해요' },
+  { key: 'wow', icon: 'sparkle', label: '대단해요' },
 ] as const
 export type Reaction = typeof reactionOptions[number]['key']
 export type Counts = Record<Reaction, number>

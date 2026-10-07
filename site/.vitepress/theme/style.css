@@ -31,6 +31,10 @@
   --nav-primary-border: #315e7d;
   --nav-secondary-border: #c5cfd6;
   --nav-primary-shadow: rgb(31 53 64 / 8%);
+  --sheet-edge: transparent;
+  /* Screen-mode swatches always show both themes, so they do not follow the active theme. */
+  --swatch-light: #ffffff;
+  --swatch-dark: #1c2024;
 }
 * {
   box-sizing: border-box;
@@ -139,19 +143,32 @@ html:has(dialog[open]) {
 .home-main {
   max-width: 680px;
   margin: auto;
-  padding: max(24px, env(safe-area-inset-top)) 24px max(52px, env(safe-area-inset-bottom));
+  /* The cover meets the top edge on phones; desktop restores the top padding. */
+  padding: 0 24px max(52px, env(safe-area-inset-bottom));
 }
 .home-intro {
   display: flex;
   flex-direction: column;
   margin-bottom: 32px;
 }
+/* On phones the watercolor cover runs edge to edge, past the column padding. */
+.home-cover {
+  display: block;
+  margin: 0 -24px;
+}
+.home-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
 .home-heading {
   margin-bottom: 24px;
 }
 .home-heading h1 {
   max-width: 6.5em;
-  margin-bottom: 18px;
+  margin-bottom: 0;
   color: var(--ink);
   font-size: 2.25rem;
   font-weight: 650;
@@ -167,22 +184,30 @@ html:has(dialog[open]) {
   word-break: keep-all;
 }
 .home-heading .home-note {
-  margin-top: 6px;
+  margin-top: 12px;
   color: var(--muted);
   font-size: var(--font-meta);
   line-height: 1.7;
 }
+/* The rail cell spans the whole row so the reading line stays continuous between rows. */
 .chapter-row {
+  --node-top: calc(20px + (var(--font-item) * 1.55 - 24px) / 2);
+  --rail-before: var(--nav-secondary-border);
+  --rail-after: var(--nav-secondary-border);
   display: flex;
+  align-items: stretch;
+  gap: 14px;
+  min-height: 84px;
+}
+.chapter-body {
+  display: flex;
+  flex: 1;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 12px;
+  min-width: 0;
   padding: 20px 0;
   border-bottom: 1px solid var(--line);
-  min-height: 94px;
-}
-.chapter-row:first-child {
-  border-top: 1px solid var(--line);
 }
 .chapter-copy {
   display: flex;
@@ -204,7 +229,6 @@ html:has(dialog[open]) {
   overflow-wrap: anywhere;
   letter-spacing: -0.45px;
 }
-.chapter-row > svg,
 .document-row > svg {
   color: var(--muted);
 }
@@ -475,18 +499,19 @@ dialog {
   overscroll-behavior: contain;
   box-shadow: 0 8px 50px #0000001a;
 }
+/* A light veil keeps the page text readable behind the sheet, so the text itself is the preview. */
 dialog::backdrop {
-  background: rgb(0 0 0 / 26%);
+  background: rgb(0 0 0 / 8%);
 }
 .dialog-body {
-  padding: 8px 24px 28px;
+  padding: 8px 24px 24px;
 }
 .dialog-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
 .dialog-heading h2 {
   font-size: var(--font-section);
@@ -505,16 +530,31 @@ dialog::backdrop {
 .size-options {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 6px;
+  gap: 8px;
 }
 .size-options button {
-  min-height: 48px;
-  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  min-height: 72px;
+  padding: 8px 2px;
   background: var(--soft);
   border: 1px solid transparent;
-  border-radius: 10px;
-  font-size: var(--font-ui);
-  white-space: normal;
+  border-radius: 12px;
+  font-size: var(--font-meta);
+  line-height: 1.4;
+  word-break: keep-all;
+}
+.size-sample {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 32px;
+  font-weight: 600;
+  line-height: 1;
 }
 .size-options button.selected {
   color: var(--link);
@@ -531,6 +571,12 @@ dialog::backdrop {
     padding-right: 48px;
     padding-top: 64px;
     padding-bottom: 72px;
+  }
+  .home-cover {
+    margin: 0;
+  }
+  .home-cover img {
+    border-radius: 12px;
   }
   .reader-main {
     padding-top: 48px;
@@ -552,9 +598,10 @@ dialog::backdrop {
     width: 100%;
     margin: auto 0 0;
     border-radius: 22px 22px 0 0;
+    box-shadow: 0 -6px 30px rgb(0 0 0 / 12%), 0 0 0 1px var(--sheet-edge);
   }
   .dialog-body {
-    padding-bottom: max(28px, env(safe-area-inset-bottom));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
   }
 }
 @media (max-width: 360px) {
@@ -562,6 +609,9 @@ dialog::backdrop {
   .reader-main {
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .home-cover {
+    margin: 0 -20px;
   }
   .reader-toolbar > nav {
     padding-left: 12px;
@@ -590,8 +640,10 @@ dialog::backdrop {
     --line: #424c55; --soft: #29323a; --selected: #273d4d; --field-border: #81818a;
     --error: #ff9a91; --button-ink: #172631; --nav-primary-hover: #b2d2e7;
     --nav-primary-border: #9ec5df; --nav-secondary-border: #667580;
-    --nav-primary-shadow: rgb(0 0 0 / 12%);
+    --nav-primary-shadow: rgb(0 0 0 / 12%); --sheet-edge: #424c55;
 }
+/* ::backdrop does not reliably inherit custom properties, so each theme sets it directly. */
+:root[data-theme='dark'] dialog::backdrop { background: rgb(0 0 0 / 36%); }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     color-scheme: dark;
@@ -599,20 +651,23 @@ dialog::backdrop {
     --line: #424c55; --soft: #29323a; --selected: #273d4d; --field-border: #81818a;
     --error: #ff9a91; --button-ink: #172631; --nav-primary-hover: #b2d2e7;
     --nav-primary-border: #9ec5df; --nav-secondary-border: #667580;
-    --nav-primary-shadow: rgb(0 0 0 / 12%);
+    --nav-primary-shadow: rgb(0 0 0 / 12%); --sheet-edge: #424c55;
   }
+  :root:not([data-theme='light']) dialog::backdrop { background: rgb(0 0 0 / 36%); }
 }
 .work-synopsis { margin-bottom: 0; }
 .work-synopsis p { margin-bottom: 14px; font-size: var(--font-item); line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
 .work-synopsis p:last-child { margin-bottom: 0; }
 .part-heading-block { margin: 32px 0 10px; }
+.part-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 5px; }
 .part-heading {
-  margin: 0 0 5px;
+  margin: 0;
   font-size: var(--font-section);
   line-height: 1.6;
   scroll-margin-top: 24px;
 }
 .part-heading:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.part-done { display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0; padding: 3px 11px 3px 8px; border-radius: 999px; background: var(--selected); color: var(--link); font-size: var(--font-meta); font-weight: 600; line-height: 1.6; }
 .part-description {
   margin: 0;
   color: var(--muted);
@@ -622,68 +677,100 @@ dialog::backdrop {
   overflow-wrap: anywhere;
 }
 .episode-label { color: var(--muted); font-size: var(--font-meta); font-weight: 400; }
-.episode-time, .article-time { font-size: var(--font-meta); color: var(--muted); line-height: 1.7; }
+.episode-time, .article-time { font-size: var(--font-meta); color: var(--muted); line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
 .article-time { margin: 12px 0 0; }
 .background-audio { display: none; }
-.home-heading-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-}
-.home-heading-title h1 { min-width: 0; margin-bottom: 0; flex: 1; }
-.chapter-row { gap: 12px; min-height: 84px; }
 .chapter-copy { min-width: 0; }
 
+/* Reading state reads from the left rail: a check when read, a ring for a first read in progress, an open dot when unread. */
+.chapter-rail { position: relative; flex: 0 0 24px; order: -1; }
+.chapter-rail::before, .chapter-rail::after { content: ''; position: absolute; left: 11px; width: 2px; }
+.chapter-rail::before { top: 0; height: var(--node-top); background: var(--rail-before); }
+.chapter-rail::after { top: calc(var(--node-top) + 24px); bottom: 0; background: var(--rail-after); }
+.rail-start .chapter-rail::before, .rail-end .chapter-rail::after { display: none; }
+.rail-before-done { --rail-before: var(--link); }
+.rail-after-done { --rail-after: var(--link); }
+.chapter-node { position: absolute; top: var(--node-top); left: 0; display: grid; place-items: center; width: 24px; height: 24px; box-sizing: border-box; border-radius: 50%; }
+.node-read { background: var(--link); color: var(--button-ink); }
+.node-current { border: 3px solid var(--link); background: var(--surface); }
+.node-current::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--link); }
+.node-unread::after { content: ''; width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--field-border); border-radius: 50%; background: var(--surface); }
 .reading-status {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   flex-shrink: 0;
-  gap: 4px;
+  gap: 6px;
   color: var(--muted);
   font-size: var(--font-meta);
   line-height: 1.6;
 }
-.read-label { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; color: var(--link); font-size: 1.125rem; }
 .current-label { color: var(--link); font-weight: 600; }
 .chapter-row.is-current {
   margin-right: -12px;
   margin-left: -12px;
   padding-right: 12px;
   padding-left: 12px;
+  border-radius: 12px;
   background: var(--selected);
-  box-shadow: inset 3px 0 0 var(--link);
 }
+.chapter-row.is-current .chapter-body,
+.chapter-row:has(+ .chapter-row.is-current) .chapter-body { border-bottom-color: transparent; }
 .chapter-row.is-current .chapter-title { color: var(--ink); font-weight: 600; }
 .story-content hr { border: 0; text-align: center; margin: 40px 0; color: var(--muted); }
 .story-content hr::after { content: '⁂'; }
-.story-end { margin: 24px 0; text-align: center; color: var(--muted); }
+/* The episode closes with a word, so its end is never mistaken for a ⁂ scene break. */
+.story-end { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 16px 0 0; color: var(--muted); font-size: calc(var(--font-meta) + 0.0625rem); line-height: 1.5; }
+.story-end::before, .story-end::after { content: ''; width: 28px; height: 1px; background: var(--nav-secondary-border); }
 .reactions-anchor { scroll-margin-top: 84px; min-height: 1px; }
-.reaction-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 20px 0 24px; }
-.reaction-options button { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 5px; min-width: 0; min-height: 100px; padding: 8px 2px; border: 1px solid transparent; border-radius: 10px; font-size: var(--font-reaction); line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+/* Reactions reuse the settings' option buttons and the interface's line icons instead of device-specific emoji. */
+.reaction-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 24px 0 0; }
+.reaction-options button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; min-height: 68px; padding: 10px 2px; border: 1px solid transparent; border-radius: 10px; background: var(--soft); color: var(--ink); font-size: var(--font-reaction); line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
 .reaction-options button[aria-pressed='true'] { border-color: var(--link); background: var(--selected); color: var(--link); }
-.reaction-emoji { font-size: 1.375rem; line-height: 1.3; }
-.reaction-count { min-height: 1.5em; font-variant-numeric: tabular-nums; }
-.reaction-status { color: var(--muted); font-size: var(--font-meta); }
+.reaction-symbol { display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 24px; color: var(--muted); }
+.reaction-options button[aria-pressed='true'] .reaction-symbol { color: var(--link); }
+.reaction-count { font-size: var(--font-meta); font-weight: 600; font-variant-numeric: tabular-nums; }
+@media (hover: hover) {
+  .reaction-options button:not(:disabled):hover { border-color: var(--nav-secondary-border); }
+  .reaction-options button[aria-pressed='true']:hover { border-color: var(--link); }
+}
+.reaction-status { min-height: 1.7em; margin: 10px 0 0; color: var(--muted); font-size: var(--font-meta); line-height: 1.7; }
 .reaction-error { color: var(--error); line-height: 1.7; font-size: var(--font-ui); }
 .episode-navigation { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 24px 0 0; }
 .episode-navigation.has-previous { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.settings-label { margin: 22px 0 12px; font-weight: 600; font-size: var(--font-ui); }
-.screen-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-.screen-options button { min-height: 48px; padding: 8px 4px; background: var(--soft); border: 1px solid transparent; border-radius: 10px; font-size: var(--font-ui); line-height: 1.5; }
+.settings-label { margin: 18px 0 10px; font-weight: 600; font-size: var(--font-ui); line-height: 1.5; }
+.dialog-heading + .settings-label { margin-top: 4px; }
+.screen-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.screen-options button { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 0; min-height: 52px; padding: 8px 6px; background: var(--soft); border: 1px solid transparent; border-radius: 12px; font-size: var(--font-ui); line-height: 1.4; word-break: keep-all; }
 .screen-options button.selected { color: var(--link); border-color: var(--link); background: var(--selected); }
+.mode-swatch { flex-shrink: 0; width: 16px; height: 16px; box-sizing: border-box; border: 1px solid var(--field-border); border-radius: 50%; }
+.mode-swatch-auto { background: linear-gradient(90deg, var(--swatch-light) 50%, var(--swatch-dark) 50%); }
+.mode-swatch-light { background: var(--swatch-light); }
+.mode-swatch-dark { background: var(--swatch-dark); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-@media (max-width: 374px) { .reaction-options { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 500px) { .size-options { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+/* Narrow screens and large text put two reactions per row, each with its icon, name and count on one line. */
+@media (max-width: 374px) {
+  .reaction-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reaction-options button { flex-direction: row; gap: 6px; min-height: 56px; padding: 8px; }
+  .reaction-symbol { display: contents; }
+  .reaction-label { order: 1; white-space: nowrap; }
+  .reaction-count { order: 2; }
+}
+@media (max-width: 499px) {
+  .font-2 .reaction-options, .font-3 .reaction-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .font-2 .reaction-options button, .font-3 .reaction-options button { flex-direction: row; gap: 6px; min-height: 56px; padding: 8px; }
+  .font-2 .reaction-symbol, .font-3 .reaction-symbol { display: contents; }
+  .font-2 .reaction-label, .font-3 .reaction-label { order: 1; white-space: nowrap; }
+  .font-2 .reaction-count, .font-3 .reaction-count { order: 2; }
+}
 @media print { .reader-toolbar, .episode-end, .skip-link, .settings-button, .synopsis-disclosure, dialog { display: none; } :root { --surface: white; --ink: black; --muted: #333; } .reader-main { max-width: none; } }
 
 /* The home and reader share the same quiet controls and centered reading width. */
-.home-heading-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; margin-bottom: 20px; }
-.home-portrait { display: block; width: 84px; height: 100px; object-fit: cover; object-position: center; flex-shrink: 0; border-radius: 8px; }
-.settings-button, .reader-actions .settings-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 11px; background: var(--soft); color: var(--muted); font-size: var(--font-ui); }
-.settings-button:hover { color: var(--link); }
-.settings-button:active { background: var(--selected); }
+.home-heading-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; margin: 16px 0 4px; }
+.home-heading-tools .settings-button { margin-right: -8px; }
+/* Settings is a quiet text button with a sliders icon, the same on the home byline and in the reader toolbar. */
+.settings-button, .reader-actions .settings-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 8px; border: 0; border-radius: 10px; background: none; color: var(--link); font-size: var(--font-ui); }
+.settings-button:active { background: var(--soft); }
+@media (hover: hover) { .settings-button:hover { background: var(--soft); } }
 .back-link { color: var(--ink); }
 .synopsis-toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0; color: var(--link); font-size: var(--font-ui); }
 .synopsis-toggle[aria-expanded='true'] svg { transform: rotate(90deg); }
@@ -692,30 +779,31 @@ dialog::backdrop {
 .chapter-list-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
 .chapter-list-heading h2 { font-size: var(--font-section); margin: 0; }
 .chapter-list-heading span { font-size: var(--font-meta); color: var(--muted); }
-.chapter-row.is-current { border-radius: 10px; }
-.music-setting { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0 24px; border-bottom: 1px solid var(--line); }
-.music-setting-copy { min-width: 0; }
-.music-setting h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: var(--font-ui); }
-.music-setting p { font-size: var(--font-meta); color: var(--muted); margin: 5px 0 0; line-height: 1.7; }
+/* Music closes the sheet as one line; a status that needs an action wraps under the title. */
+.music-setting { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line); }
+.music-setting-copy { display: flex; flex-wrap: wrap; align-items: center; column-gap: 10px; row-gap: 2px; min-width: 0; }
+.music-setting h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: var(--font-ui); font-weight: 600; }
+.music-setting p { margin: 0; color: var(--muted); font-size: var(--font-meta); line-height: 1.6; }
 .music-toggle { flex-shrink: 0; min-width: 52px; min-height: 44px; padding: 0; display: grid; place-items: center; border-radius: 10px; }
 .switch-track { display: block; width: 44px; height: 26px; padding: 3px; border-radius: 14px; background: #788691; }
 .switch-track > span { display: block; width: 20px; height: 20px; border-radius: 50%; background: white; box-shadow: 0 1px 2px rgb(23 38 49 / 14%); }
 .music-toggle[aria-checked='true'] .switch-track { background: var(--link); }
 .music-toggle[aria-checked='true'] .switch-track > span { transform: translateX(18px); }
 .dialog-handle { width: 32px; height: 4px; background: var(--field-border); border-radius: 8px; margin: 2px auto 8px; }
-.reading-preview { margin: 14px 0 0; padding: 16px; background: var(--soft); border-radius: 12px; font-size: var(--reading-size); line-height: 1.8; word-break: keep-all; }
-.settings-note { color: var(--muted); font-size: var(--font-meta); line-height: 1.7; margin: 18px 0 0; }
-.settings-done { display: block; width: 100%; min-height: 44px; margin-top: 18px; border-radius: 12px; background: var(--link); color: var(--button-ink); font-size: var(--font-ui); font-weight: 600; }
-.reaction-options { margin-bottom: 0; }
-.reaction-status { min-height: 1.7em; line-height: 1.7; margin: 10px 0 0; }
-.font-2 .size-options, .font-3 .size-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (max-width: 499px) { .font-2 .reaction-options, .font-3 .reaction-options { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 700px) { .home-portrait { width: 96px; height: 112px; } }
+.settings-done { display: block; width: 100%; min-height: 52px; margin-top: 16px; border-radius: 12px; background: var(--link); color: var(--button-ink); font-size: var(--font-ui); font-weight: 600; }
 @media (max-width: 360px) {
-  .home-main { padding-top: max(20px, env(safe-area-inset-top)); }
-  .home-heading-title { gap: 12px; }
   .home-heading h1 { font-size: 2rem; }
-  .home-portrait { width: 64px; height: 86px; }
   .dialog-body { padding-left: 20px; padding-right: 20px; }
 }
 @media print { .work-synopsis[hidden] { display: block; } }
+/* Short screens such as small phones in Safari tighten the sheet so the largest text still fits. */
+@media (max-height: 600px) {
+  .dialog-body { padding-top: 4px; padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+  .dialog-handle { margin-bottom: 4px; }
+  .settings-label { margin: 14px 0 8px; }
+  .size-options button { min-height: 64px; padding: 6px 2px; }
+  .size-sample { height: 28px; }
+  .screen-options button { min-height: 48px; padding: 6px; }
+  .music-setting { margin-top: 14px; padding-top: 10px; }
+  .settings-done { min-height: 48px; margin-top: 12px; }
+}

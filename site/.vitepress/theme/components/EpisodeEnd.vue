@@ -30,7 +30,7 @@ onBeforeUnmount(() => { loadObserver?.disconnect(); readObserver?.disconnect() }
 </script>
 <template>
   <div class="episode-end">
-    <div ref="end" class="story-end" aria-label="회차 끝">⁂</div>
+    <p ref="end" class="story-end">끝</p>
     <section v-if="enabled && episode" id="reactions" class="reactions-anchor" aria-label="이 회차에 반응 남기기">
       <ClientOnly><ReactionBar v-if="ready" :page-id="pageId" /></ClientOnly>
     </section>

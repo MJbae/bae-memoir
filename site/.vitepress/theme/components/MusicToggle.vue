@@ -5,13 +5,14 @@ import Icon from './Icon.vue'
 
 const props = defineProps<{ enabled: boolean; status: MusicStatus }>()
 const emit = defineEmits<{ change: [enabled: boolean]; retry: [] }>()
+// Steady states stay short beside the title; states that need an action keep a full sentence.
 const message = computed(() => {
-  if (!props.enabled) return '현재 꺼져 있어요'
-  if (props.status === 'playing') return '현재 재생 중이에요'
-  if (props.status === 'loading') return '음악을 준비하고 있어요'
+  if (!props.enabled) return '꺼짐'
+  if (props.status === 'playing') return '재생 중'
+  if (props.status === 'loading') return '준비 중'
   if (props.status === 'error') return '음악을 불러오지 못했어요'
   if (props.status === 'blocked') return '재생을 눌러 음악을 시작해 주세요'
-  return '현재 일시정지되어 있어요'
+  return '일시정지'
 })
 </script>
 

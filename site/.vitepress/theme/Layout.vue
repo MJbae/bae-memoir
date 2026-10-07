@@ -24,7 +24,8 @@ const pageId = computed(() => String(frontmatter.value.pageId || ''))
 const title = computed(() => String(frontmatter.value.title || '이야기'))
 const homeHref = computed(() => withBase('/') + (frontmatter.value.episodeId ? `#episode-${frontmatter.value.episodeId}` : ''))
 const fontSize = ref(1)
-const sizeLabels = ['작게', '기본', '크게', '아주 크게']
+// Each choice previews its real reading size, matching --reading-size for .font-0 to .font-3.
+const sizeOptions = [{ label: '작게', sample: '1.125rem' }, { label: '기본', sample: '1.25rem' }, { label: '크게', sample: '1.4375rem' }, { label: '아주 크게', sample: '1.625rem' }]
 const screenMode = ref('auto')
 const modes = [{ value: 'auto', label: '기기 설정' }, { value: 'light', label: '밝게' }, { value: 'dark', label: '어둡게' }]
 const lastRead = ref<SavedReading | null>(null)
@@ -138,11 +139,9 @@ onBeforeUnmount(() => { router.onBeforePageLoad = previousBeforeLoad; ++version;
     </template>
     <dialog ref="settingsDialog" class="reading-settings" aria-labelledby="settings-title" @click="closeOnBackdrop">
       <div class="dialog-body"><div class="dialog-handle" aria-hidden="true" /><header class="dialog-heading"><h2 id="settings-title">설정</h2><button class="close-button" aria-label="설정 닫기" @click="closeDialogs"><Icon name="close" :size="21" /></button></header>
+        <p class="settings-label">글자 크기</p><div class="size-options" role="group" aria-label="글자 크기 선택"><button v-for="(option, size) in sizeOptions" :key="option.label" type="button" :class="{ selected: fontSize === size }" :aria-pressed="fontSize === size" @click="setFont(size)"><span class="size-sample" :style="{ fontSize: option.sample }" aria-hidden="true">가</span><span>{{ option.label }}</span></button></div>
+        <p class="settings-label">화면</p><div class="screen-options" role="group" aria-label="화면 모드 선택"><button v-for="mode in modes" :key="mode.value" type="button" :class="{ selected: screenMode === mode.value }" :aria-pressed="screenMode === mode.value" @click="setMode(mode.value)"><span class="mode-swatch" :class="`mode-swatch-${mode.value}`" aria-hidden="true" /><span>{{ mode.label }}</span></button></div>
         <MusicToggle v-if="musicTrack" :enabled="musicEnabled" :status="musicStatus" @change="setMusicEnabled" @retry="retryMusic" />
-        <p class="settings-label">글자 크기</p><div class="size-options" role="group" aria-label="글자 크기 선택"><button v-for="(label, size) in sizeLabels" :key="size" :class="{ selected: fontSize === size }" :aria-pressed="fontSize === size" @click="setFont(size)">{{ label }}</button></div>
-        <p class="reading-preview">농사지은 사람 볏값은<br />밀려선 안 된다.</p>
-        <p class="settings-label">화면</p><div class="screen-options" role="group" aria-label="화면 모드 선택"><button v-for="mode in modes" :key="mode.value" :class="{ selected: screenMode === mode.value }" :aria-pressed="screenMode === mode.value" @click="setMode(mode.value)">{{ mode.label }}</button></div>
-        <p class="settings-note">선택한 설정은 바로 적용돼요.</p>
         <button type="button" class="settings-done" @click="closeDialogs">설정 마치기</button>
       </div>
     </dialog>

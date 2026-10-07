@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { withBase } from 'vitepress'
-import { catalog } from '../lib/catalog'
+import { catalog, type Episode } from '../lib/catalog'
+import { portraitAlt } from '../../shared/portrait.mjs'
 import Icon from './Icon.vue'
 import ReadingLink from './ReadingLink.vue'
 
+type NodeState = 'read' | 'current' | 'unread'
 const props = defineProps<{ lastId: string | null; lastFinished: boolean; completed: string[] }>()
 const emit = defineEmits<{ resume: [] }>()
 const synopsisOpen = ref(false)
@@ -17,6 +19,10 @@ const partDescriptions: Record<string, string> = {
   볏값: '부도와 도난에도 땅을 팔아 볏값을 치렀다. 오랜 세월 함께한 아내를 떠나보냈다.',
   들녘: '네 아들이 힘을 보태며 정미소와 쌀농사를 키워 갔다.',
 }
+// The cover reuses the shared watercolor, so the link preview and the home open on the same painting.
+const coverSizes = '(min-width: 700px) 632px, 100vw'
+const coverSrcset = (format: 'webp' | 'jpg') =>
+  [360, 720, 1280].map(width => `${withBase(`/images/home-cover-${width}.${format}`)} ${width}w`).join(', ')
 
 const groups = computed(() => {
   const rows: {
@@ -48,17 +54,49 @@ const action = computed(() => {
   return { label: unread ? '아직 읽지 않은 이야기' : '처음부터 다시 읽기', episode: unread || catalog.readingOrder[0], resume: false }
 })
 
+// A reread keeps its check; the ring marks only an episode being read for the first time.
+// A finished last read counts as read even when a legacy ID kept it out of the completed list.
+function nodeState(id: string): NodeState {
+  if (props.completed.includes(id)) return 'read'
+  if (id !== props.lastId) return 'unread'
+  return props.lastFinished ? 'read' : 'current'
+}
+
+// The rail is filled between read episodes and up to the one in progress, without a percentage.
+function railClasses(episodes: Episode[], index: number) {
+  const state = nodeState(episodes[index].id)
+  const previous = episodes[index - 1]
+  const next = episodes[index + 1]
+  return {
+    'rail-start': !previous,
+    'rail-end': !next,
+    'rail-before-done': Boolean(previous) && nodeState(previous.id) === 'read' && state !== 'unread',
+    'rail-after-done': Boolean(next) && state === 'read' && nodeState(next.id) !== 'unread',
+  }
+}
+
+const partRead = (episodes: Episode[]) => episodes.every(episode => props.completed.includes(episode.id))
 </script>
 
 <template>
   <main id="main" tabindex="-1" class="home-main">
     <section class="home-intro" aria-label="작품 소개">
+      <picture class="home-cover">
+        <source type="image/webp" :srcset="coverSrcset('webp')" :sizes="coverSizes" />
+        <img
+          :src="withBase('/images/home-cover-1280.jpg')"
+          :srcset="coverSrcset('jpg')"
+          :sizes="coverSizes"
+          width="1280"
+          height="720"
+          :alt="portraitAlt"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
       <header class="home-heading">
         <div class="home-heading-tools"><p class="home-subtitle">{{ catalog.work.subtitle }}</p><slot name="settings" /></div>
-        <div class="home-heading-title">
-          <h1>{{ catalog.work.title }}</h1>
-          <img class="home-portrait" :src="withBase('/images/bae-byunghee-portrait-512.jpg')" alt="배병희의 수채화 초상" width="512" height="288" />
-        </div>
+        <h1>{{ catalog.work.title }}</h1>
         <p v-if="catalog.work.schedule" class="home-note">{{ catalog.work.schedule }}</p>
       </header>
 
@@ -84,42 +122,47 @@ const action = computed(() => {
       <div class="chapter-list-heading"><h2>목차</h2><span>전체 {{ catalog.readingOrder.length }}편</span></div>
       <section v-for="(group, index) in groups" :key="index">
         <div v-if="group.part" class="part-heading-block">
-          <h2 :id="`part-${group.part.number}`" class="part-heading" tabindex="-1">
-            {{ group.part.label }}
-          </h2>
+          <div class="part-heading-row">
+            <h2 :id="`part-${group.part.number}`" class="part-heading" tabindex="-1">
+              {{ group.part.label }}
+            </h2>
+            <span v-if="partRead(group.episodes)" class="part-done"><Icon name="check" :size="15" :stroke="2.4" />다 읽음</span>
+          </div>
           <p v-if="partDescriptions[group.part.title]" class="part-description">
             {{ partDescriptions[group.part.title] }}
           </p>
         </div>
         <a
-          v-for="episode in group.episodes"
+          v-for="(episode, position) in group.episodes"
           :id="`episode-${episode.episodeId}`"
           :key="episode.id"
           class="chapter-row"
-          :class="{
-            'is-read': completed.includes(episode.id),
-            'is-current': episode.id === lastId,
-          }"
+          :class="[
+            { 'is-read': completed.includes(episode.id), 'is-current': episode.id === lastId },
+            railClasses(group.episodes, position),
+          ]"
           :href="withBase(episode.url)"
           :aria-current="episode.id === lastId ? 'location' : undefined"
           @click="episode.id === lastId && !lastFinished && emit('resume')"
         >
-          <span class="chapter-copy">
-            <span class="chapter-title">
-              <span class="episode-label">{{ episode.label }}</span> {{ episode.title }}
+          <span class="chapter-body">
+            <span class="chapter-copy">
+              <span class="chapter-title">
+                <span class="episode-label">{{ episode.label }}</span> {{ episode.title }}
+              </span>
+              <span class="episode-time">{{ episode.time }}</span>
             </span>
-            <span class="episode-time">{{ episode.time }}</span>
+            <span class="reading-status">
+              <span v-if="episode.id === lastId" class="current-label">{{ lastFinished ? '최근 본 화' : '읽는 중' }}</span>
+              <Icon class="chapter-chevron" name="chevron" :size="16" />
+            </span>
           </span>
-          <span class="reading-status">
-            <span v-if="episode.id === lastId" class="current-label">{{ lastFinished ? '최근 본 화' : '읽는 중' }}</span>
-            <span v-if="completed.includes(episode.id)" class="read-label" role="img" aria-label="읽은 회차">
-              <span aria-hidden="true">✓</span>
+          <!-- The rail is drawn first but read last, so link names still start with the title. -->
+          <span class="chapter-rail">
+            <span v-if="nodeState(episode.id) === 'read'" class="chapter-node node-read read-label" role="img" aria-label="읽은 회차">
+              <Icon name="check" :size="14" :stroke="3" />
             </span>
-            <Icon
-              v-if="episode.id !== lastId && !completed.includes(episode.id)"
-              name="chevron"
-              :size="16"
-            />
+            <span v-else class="chapter-node" :class="`node-${nodeState(episode.id)}`" aria-hidden="true" />
           </span>
         </a>
       </section>

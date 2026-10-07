@@ -8,6 +8,19 @@ test('작품 홈의 26편 목록과 처음부터 읽기에서 원고를 읽는�
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message))
   await page.goto('./')
   await expect(page.getByRole('heading', { name: '내 논을 파는 한이 있어도', exact: true })).toBeVisible()
+  const cover = page.locator('.home-cover img')
+  await expect(cover).toHaveAttribute('alt', '가을 논을 배경으로 정장을 입은 배병희의 수채화 초상')
+  await expect.poll(() => cover.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true)
+  expect(await cover.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/\/images\/home-cover-\d+\.webp$/)
+  const coverBox = (await cover.boundingBox())!
+  expect(Math.abs(coverBox.width / coverBox.height - 16 / 9)).toBeLessThan(0.01)
+  expect(coverBox.y).toBeLessThan(80)
+  if (info.project.name !== 'desktop') expect(coverBox.width).toBe(page.viewportSize()!.width)
+  // Settings sits on the byline under the cover, never on top of the portrait.
+  const settings = page.getByRole('button', { name: '설정', exact: true })
+  expect((await settings.boundingBox())!.y).toBeGreaterThanOrEqual(coverBox.y + coverBox.height)
+  expect(await settings.evaluate(element => getComputedStyle(element).backgroundColor)).toBe('rgba(0, 0, 0, 0)')
+  await expect(page.locator('.home-portrait')).toHaveCount(0)
   await expect(page.locator('.chapter-row')).toHaveCount(26)
   await expect(page.locator('.part-heading')).toHaveCount(6)
   await expect(page.getByRole('navigation', { name: '부별 바로가기' })).toHaveCount(0)
@@ -63,7 +76,7 @@ test('다음 화·읽음·읽던 화를 연결하고 목록의 해당 줄로 돌
   await page.locator('.back-link').click()
   await expect(page).toHaveURL(/#episode-josae$/)
   await expect(page.locator('#episode-josae')).toContainText('최근 본 화')
-  await expect(page.locator('#episode-josae .read-label')).toHaveText('✓')
+  await expect(page.locator('#episode-josae .chapter-node')).toHaveClass(/node-read/)
   await expect(page.locator('#episode-josae').getByRole('img', { name: '읽은 회차' })).toBeVisible()
   await expect(page.locator('#episode-josae')).not.toContainText('읽음')
   await expect(page.locator('.resume-link')).toContainText('다음 화 읽기')
@@ -78,6 +91,9 @@ test('다음 화·읽음·읽던 화를 연결하고 목록의 해당 줄로 돌
 test('긴 회차 제목과 모든 글자 크기에서도 이전·다음 버튼은 한 줄 문구와 56px 높이를 유지한다', async ({ page }, info) => {
   // This episode's next title caused the old button to reach four title lines at 320px.
   await page.goto('read/bearing.html')
+  // The episode ends with a word, while ⁂ stays reserved for scene breaks.
+  await expect(page.locator('.story-end')).toHaveText('끝')
+  expect(await page.locator('.story-content hr').first().evaluate(element => getComputedStyle(element, '::after').content)).toBe('"⁂"')
   for (const label of ['작게', '기본', '크게', '아주 크게']) {
     await page.getByRole('button', { name: '설정', exact: true }).click()
     await page.getByRole('dialog').getByRole('button', { name: label, exact: true }).click()
@@ -149,6 +165,16 @@ test('옛 연대 읽기 기록을 새 회차의 제목과 주소로 읽는다', 
   await expect(page.locator('.article-header h1')).toHaveText('가족은 반대했다')
 })
 
+test('끝까지 읽은 옛 연대 기록은 목차에서도 읽은 회차로 표시한다', async ({ page }) => {
+  // The legacy ID is dropped from the completed list, so the finished flag alone must mark the row as read.
+  await page.addInitScript(() => localStorage.setItem('family-library:reading', JSON.stringify({ id: 'life-1980s', title: '옛 제목', url: '/read/1980s.html', scroll: 1800, finished: true })))
+  await page.goto('./')
+  await expect(page.locator('.resume-link .reading-link-label')).toHaveText('다음 화 읽기')
+  await expect(page.locator('#episode-rice-mill')).toContainText('최근 본 화')
+  await expect(page.locator('#episode-rice-mill .chapter-node')).toHaveClass(/node-read/)
+  await expect(page.locator('.chapter-node.node-current')).toHaveCount(0)
+})
+
 for (const [episodeId, oldTitle] of [['kalguksu', '미꾸라지 칼국수'], ['bus-fare', '차비 잘 챙겨라']]) {
   test(`살림 회차 ${episodeId}는 바뀐 제목으로 목차·본문·이어 읽기를 연결한다`, async ({ page }) => {
     const episode = rawCatalog.readingOrder.find(episode => episode.episodeId === episodeId)!
@@ -163,7 +189,7 @@ for (const [episodeId, oldTitle] of [['kalguksu', '미꾸라지 칼국수'], ['b
     await expect(row.locator('.chapter-title')).toHaveText(`${episode.label} ${episode.title}`)
     await expect(row).toHaveAttribute('href', `/bae-memoir${episode.url}`)
     await expect(row).toHaveAttribute('aria-current', 'location')
-    await expect(row.locator('.read-label')).toHaveText('✓')
+    await expect(row.locator('.read-label')).toBeVisible()
     await expect(page.locator('.resume-link .reading-link-subtitle')).toHaveText(`${episode.label} ${episode.title}`)
     await expect(page.locator('.resume-link')).toHaveAttribute('href', `/bae-memoir${episode.url}`)
     await page.locator('.resume-link').click()
@@ -288,15 +314,16 @@ test('삽화는 자바스크립트 없이 회차에서 표시된다', async ({ b
   } finally { await context.close() }
 })
 
-test('B안 홈의 설정과 초상을 표시하고 재방문 소개는 전체 단위로 펼치고 접는다', async ({ page }, info) => {
+test('표지형 홈의 표지와 설정을 표시하고 재방문 소개는 전체 단위로 펼치고 접는다', async ({ page }, info) => {
   await page.goto('./')
-  await expect(page.locator('.home-portrait')).toBeVisible()
+  await expect(page.locator('.home-cover img')).toBeVisible()
   await expect(page.locator('.home-heading')).not.toContainText('완결')
   await expect(page.locator('.home-heading .music-toggle')).toHaveCount(0)
   await page.getByRole('button', { name: '설정', exact: true }).click()
   await expect(page.getByRole('dialog', { name: '설정', exact: true })).toBeVisible()
   await page.getByRole('button', { name: '아주 크게', exact: true }).click()
-  await expect(page.locator('.reading-preview')).toHaveCSS('font-size', '26px')
+  await expect(page.locator('.library')).toHaveClass(/font-3/)
+  await expect(page.locator('.reading-preview, .settings-note')).toHaveCount(0)
   await page.getByRole('button', { name: '설정 마치기' }).click()
   await noOverflow(page)
   await page.locator('.resume-link').click()
@@ -335,4 +362,70 @@ test('목차의 읽는 중 회차도 저장 위치로 돌아가고 재독의 진
   await page.mouse.click(toolbar.x + toolbar.width / 2, toolbar.y + toolbar.height / 2)
   await expect(page.locator('.resume-link')).toContainText('이어서 읽기')
   await expect(page.locator('#episode-josae .read-label')).toBeVisible()
+})
+
+test('목차 왼쪽 줄은 읽음·읽는 중·안 읽음을 모양으로 구분하고 모두 읽은 부에 다 읽음을 붙인다', async ({ page }, info) => {
+  const read = rawCatalog.readingOrder.slice(0, 12).map(episode => episode.id)
+  await page.addInitScript(({ read }) => {
+    localStorage.setItem('family-library:completed', JSON.stringify(read))
+    localStorage.setItem('family-library:reading', JSON.stringify({ id: 'ep-rice-mill', title: '가족은 반대했다', url: '/bae-memoir/read/rice-mill.html', scroll: 300, finished: false }))
+    localStorage.setItem('family-library:music', JSON.stringify({ enabled: false }))
+  }, { read })
+  await page.goto('./')
+  await expect(page.locator('.chapter-node.node-read')).toHaveCount(12)
+  await expect(page.locator('.chapter-node.node-current')).toHaveCount(1)
+  await expect(page.locator('.chapter-node.node-unread')).toHaveCount(13)
+  await expect(page.locator('#episode-rice-mill .chapter-node')).toHaveClass(/node-current/)
+  await expect(page.locator('#episode-rice-mill')).toContainText('읽는 중')
+  await expect(page.getByRole('img', { name: '읽은 회차' })).toHaveCount(12)
+  // Screen readers hear the title first and the reading state last, as before the rail.
+  await expect(page.locator('#episode-josae')).toHaveAccessibleName(/^1화 어머니의 조새.*읽은 회차$/)
+  // Every row keeps the same tap cue, whatever its reading state.
+  await expect(page.locator('.chapter-row .chapter-chevron')).toHaveCount(26)
+  await expect(page.locator('.part-done')).toHaveCount(3)
+  await expect(page.locator('.part-heading-block').filter({ has: page.locator('#part-3') })).toContainText('다 읽음')
+  await expect(page.locator('.part-heading-block').filter({ has: page.locator('#part-4') })).not.toContainText('다 읽음')
+  await expect(page.locator('#episode-bus-fare')).toHaveClass(/rail-before-done/)
+  await expect(page.locator('#episode-rice-mill')).toHaveClass(/rail-start/)
+  await expect(page.locator('#episode-flashlight')).not.toHaveClass(/rail-before-done/)
+  await noOverflow(page)
+  await page.locator('#episode-rice-mill').scrollIntoViewIfNeeded()
+  await page.screenshot({ path: `test-results/reading/${info.project.name}-toc-rail.png` })
+})
+
+test('설정은 글자 크기·화면·배경음악 순서이며 아주 크게에서도 마치기 단추까지 한 화면에 들어간다', async ({ page }, info) => {
+  await page.goto('read/flashlight.html')
+  for (const viewport of [page.viewportSize()!, { width: 375, height: 548 }, { width: 320, height: 568 }]) {
+    await page.setViewportSize(viewport)
+    await page.getByRole('button', { name: '설정', exact: true }).click()
+    const dialog = page.getByRole('dialog', { name: '설정', exact: true })
+    await dialog.getByRole('button', { name: '아주 크게', exact: true }).click()
+    await expect(page.locator('.library')).toHaveClass(/font-3/)
+    const tops = await dialog.evaluate(element => ['.size-options', '.screen-options', '.music-setting', '.settings-done']
+      .map(selector => element.querySelector(selector)!.getBoundingClientRect().top))
+    expect(tops).toEqual([...tops].sort((a, b) => a - b))
+    await expect(dialog.locator('.reading-preview, .settings-note')).toHaveCount(0)
+    expect(await dialog.locator('.size-sample').evaluateAll(samples => samples.map(sample => getComputedStyle(sample).fontSize)))
+      .toEqual(['18px', '20px', '23px', '26px'])
+    expect(await dialog.evaluate(element => element.scrollHeight <= element.clientHeight + 1)).toBe(true)
+    const done = (await dialog.getByRole('button', { name: '설정 마치기' }).boundingBox())!
+    expect(done.y + done.height).toBeLessThanOrEqual(viewport.height)
+    await noOverflow(page)
+    await page.screenshot({ path: `test-results/reading/${info.project.name}-settings-${viewport.width}x${viewport.height}.png` })
+    await dialog.getByRole('button', { name: '설정 마치기' }).click()
+    await expect(dialog).not.toBeVisible()
+  }
+})
+
+test('음악 오류 안내가 붙어도 아주 크게 설정 시트는 마치기 단추까지 한 화면에 들어간다', async ({ page }) => {
+  await page.route('**/music/*.mp3', route => route.abort())
+  await page.goto('read/flashlight.html')
+  await page.getByRole('button', { name: '설정', exact: true }).click()
+  const dialog = page.getByRole('dialog', { name: '설정', exact: true })
+  await dialog.getByRole('button', { name: '아주 크게', exact: true }).click()
+  await expect(dialog.locator('#music-setting-status')).toHaveText('음악을 불러오지 못했어요')
+  await expect(dialog.getByRole('button', { name: '음악 다시 재생' })).toBeVisible()
+  expect(await dialog.evaluate(element => element.scrollHeight <= element.clientHeight + 1)).toBe(true)
+  const done = (await dialog.getByRole('button', { name: '설정 마치기' }).boundingBox())!
+  expect(done.y + done.height).toBeLessThanOrEqual(page.viewportSize()!.height)
 })

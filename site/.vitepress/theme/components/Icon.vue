@@ -1,5 +1,5 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ name: string; size?: number }>(), { size: 20 })
+withDefaults(defineProps<{ name: string; size?: number; filled?: boolean; stroke?: number }>(), { size: 20, filled: false, stroke: 1.8 })
 const paths: Record<string, string> = {
   arrow: 'M5 12h14m-6-6 6 6-6 6',
   back: 'M19 12H5m6 6-6-6 6-6',
@@ -10,14 +10,12 @@ const paths: Record<string, string> = {
   music: 'M9 17V6l10-2v11M9 9l10-2M9 17a3 2 0 1 1-6 0 3 2 0 1 1 6 0m10-2a3 2 0 1 1-6 0 3 2 0 1 1 6 0',
   contents: 'M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01',
   check: 'm5 12 4 4L19 6',
+  sliders: 'M4 8h9M17 8h3M4 16h3M11 16h9M17 8a2 2 0 1 1-4 0 2 2 0 1 1 4 0M11 16a2 2 0 1 1-4 0 2 2 0 1 1 4 0',
+  heart: 'M12 19.5s-7.5-4.6-7.5-10A4.25 4.25 0 0 1 12 6.9a4.25 4.25 0 0 1 7.5 2.6c0 5.4-7.5 10-7.5 10Z',
+  thumb: 'M7 10.5v9.5M7 10.5 10.3 4a1.7 1.7 0 0 1 3.2 1.1l-.7 4.4h5.4a2 2 0 0 1 2 2.3l-1.2 6.5A2 2 0 0 1 17 20H4.5A1.5 1.5 0 0 1 3 18.5v-6.5A1.5 1.5 0 0 1 4.5 10.5H7Z',
+  drop: 'M12 3.8c-2.9 3.6-6 7.4-6 10.5a6 6 0 0 0 12 0c0-3.1-3.1-6.9-6-10.5Z',
+  sparkle: 'M11 5.5c.6 4 2 5.6 6 6.2-4 .6-5.4 2.2-6 6.2-.6-4-2-5.6-6-6.2 4-.6 5.4-2.2 6-6.2ZM18.5 3.5v3.4M16.8 5.2h3.4',
 }
-const gear = Array.from({ length: 8 }, (_, tooth) =>
-  [[0, 7.4], [8, 7.4], [12, 9.6], [30, 9.6], [34, 7.4], [45, 7.4]]
-    .map(([angle, radius]) => {
-      const radians = (tooth * 45 + angle) * Math.PI / 180
-      return `${(12 + Math.cos(radians) * radius).toFixed(2)},${(12 + Math.sin(radians) * radius).toFixed(2)}`
-    }).join(' ')
-).join(' ')
 </script>
 
 <template>
@@ -25,14 +23,13 @@ const gear = Array.from({ length: 8 }, (_, tooth) =>
     :width="size"
     :height="size"
     viewBox="0 0 24 24"
-    fill="none"
+    :fill="filled ? 'currentColor' : 'none'"
     stroke="currentColor"
-    stroke-width="1.8"
+    :stroke-width="stroke"
     stroke-linecap="round"
     stroke-linejoin="round"
     aria-hidden="true"
   >
-    <template v-if="name === 'settings'"><polygon :points="gear" /><circle cx="12" cy="12" r="3.1" /></template>
-    <path v-else :d="paths[name] || paths.chevron" />
+    <path :d="paths[name] || paths.chevron" />
   </svg>
 </template>

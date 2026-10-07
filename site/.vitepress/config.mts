@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import { loadEnv } from 'vite'
 import { fileURLToPath } from 'node:url'
 import { episodeIllustrations } from './markdown/episode-illustrations'
+import { portraitAlt } from './shared/portrait.mjs'
 import catalog from './generated/catalog.json'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
@@ -12,7 +13,7 @@ const siteName = workTitle
 const siteDescription = '배병희 자전소설 · 갯벌에서 들녘까지, 가족과 이웃을 위해 살아온 한평생.'
 const siteOrigin = 'https://mjbae.github.io'
 const shareImage = new URL(`${base}images/bae-byunghee-hero-watercolor.png`, siteOrigin).href
-const shareImageAlt = '가을 논을 배경으로 정장을 입은 배병희의 수채화 초상'
+const shareImageAlt = portraitAlt
 
 export default defineConfig({
   lang: 'ko-KR',
