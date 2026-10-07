@@ -35,3 +35,5 @@
     </td>
   </tr>
 </table>
+
+음원은 `site/public/music/`에 두고 `content/music.json`에서 연결합니다. 본편은 회차 번호에 따라 `ep01.mp3`~`ep23.mp3`를 사용하며, 소개곡은 `intro.mp3`, 프롤로그는 `prolog.mp3`, 에필로그는 `epilog.mp3`, 외전은 `side.mp3`입니다. 원고에서 본편 순서를 바꾸면 음악도 새 회차 번호를 따릅니다.

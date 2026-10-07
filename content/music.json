@@ -1,110 +1,110 @@
 {
-  "version": 1,
-  "home": "/music/home.mp3",
+  "version": 2,
+  "intro": "/music/intro.mp3",
   "tracks": [
     {
-      "episodeId": "prologue",
-      "src": "/music/prologue.mp3"
+      "episode": "prologue",
+      "src": "/music/prolog.mp3"
     },
     {
-      "episodeId": "josae",
-      "src": "/music/josae.mp3"
+      "episode": 1,
+      "src": "/music/ep01.mp3"
     },
     {
-      "episodeId": "jige",
-      "src": "/music/jige.mp3"
+      "episode": 2,
+      "src": "/music/ep02.mp3"
     },
     {
-      "episodeId": "serial-number",
-      "src": "/music/serial-number.mp3"
+      "episode": 3,
+      "src": "/music/ep03.mp3"
     },
     {
-      "episodeId": "cheonsuman",
-      "src": "/music/cheonsuman.mp3"
+      "episode": 4,
+      "src": "/music/ep04.mp3"
     },
     {
-      "episodeId": "kalguksu",
-      "src": "/music/kalguksu.mp3"
+      "episode": 5,
+      "src": "/music/ep05.mp3"
     },
     {
-      "episodeId": "laver",
-      "src": "/music/laver.mp3"
+      "episode": 6,
+      "src": "/music/ep06.mp3"
     },
     {
-      "episodeId": "anchovy",
-      "src": "/music/anchovy.mp3"
+      "episode": 7,
+      "src": "/music/ep07.mp3"
     },
     {
-      "episodeId": "bearing",
-      "src": "/music/bearing.mp3"
+      "episode": 8,
+      "src": "/music/ep08.mp3"
     },
     {
-      "episodeId": "leaving",
-      "src": "/music/leaving.mp3"
+      "episode": 9,
+      "src": "/music/ep09.mp3"
     },
     {
-      "episodeId": "reclaimed-land",
-      "src": "/music/reclaimed-land.mp3"
+      "episode": 10,
+      "src": "/music/ep10.mp3"
     },
     {
-      "episodeId": "bus-fare",
-      "src": "/music/bus-fare.mp3"
+      "episode": 11,
+      "src": "/music/ep11.mp3"
     },
     {
-      "episodeId": "rice-mill",
-      "src": "/music/rice-mill.mp3"
+      "episode": 12,
+      "src": "/music/ep12.mp3"
     },
     {
-      "episodeId": "flashlight",
-      "src": "/music/flashlight.mp3"
+      "episode": 13,
+      "src": "/music/ep13.mp3"
     },
     {
-      "episodeId": "power-line",
-      "src": "/music/power-line.mp3"
+      "episode": 14,
+      "src": "/music/ep14.mp3"
     },
     {
-      "episodeId": "seed-rice",
-      "src": "/music/seed-rice.mp3"
+      "episode": 15,
+      "src": "/music/ep15.mp3"
     },
     {
-      "episodeId": "kitchen",
-      "src": "/music/kitchen.mp3"
+      "episode": 16,
+      "src": "/music/ep16.mp3"
     },
     {
-      "episodeId": "bad-debt",
-      "src": "/music/bad-debt.mp3"
+      "episode": 17,
+      "src": "/music/ep17.mp3"
     },
     {
-      "episodeId": "last-land",
-      "src": "/music/last-land.mp3"
+      "episode": 18,
+      "src": "/music/ep18.mp3"
     },
     {
-      "episodeId": "wet-rice",
-      "src": "/music/wet-rice.mp3"
+      "episode": 19,
+      "src": "/music/ep19.mp3"
     },
     {
-      "episodeId": "farewell",
-      "src": "/music/farewell.mp3"
+      "episode": 20,
+      "src": "/music/ep20.mp3"
     },
     {
-      "episodeId": "four-sons",
-      "src": "/music/four-sons.mp3"
+      "episode": 21,
+      "src": "/music/ep21.mp3"
     },
     {
-      "episodeId": "promise",
-      "src": "/music/promise.mp3"
+      "episode": 22,
+      "src": "/music/ep22.mp3"
     },
     {
-      "episodeId": "robot",
-      "src": "/music/robot.mp3"
+      "episode": 23,
+      "src": "/music/ep23.mp3"
     },
     {
-      "episodeId": "epilogue",
-      "src": "/music/epilogue.mp3"
+      "episode": "epilogue",
+      "src": "/music/epilog.mp3"
     },
     {
-      "episodeId": "side-table",
-      "src": "/music/side-table.mp3"
+      "episode": "side",
+      "src": "/music/side.mp3"
     }
   ]
 }

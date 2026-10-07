@@ -25,42 +25,63 @@ const mainFilename = '배병희_자서전.md'
 const original = readFileSync(path.join(repo, mainFilename), 'utf8')
 const silent = { log() {}, warn() {} }
 
-test('27개 음악 파일을 작품 홈과 26개 회차에 빠짐없이 연결한다', () => {
+test('27개 음악 파일을 소개·특별 회차·본편 번호로 빠짐없이 연결한다', () => {
   const episodes = parseManuscript(matter(original).content).episodes
   const music = loadMusic(repo, episodes)
-  assert.equal(music.home.src, '/music/home.mp3')
+  assert.equal(music.home.src, '/music/intro.mp3')
+  assert.equal(music.episodes.prologue.src, '/music/prolog.mp3')
+  assert.equal(music.episodes.epilogue.src, '/music/epilog.mp3')
+  assert.equal(music.episodes['side-table'].src, '/music/side.mp3')
   assert.equal(Object.keys(music.episodes).length, 26)
   const allSources = [music.home.src, ...Object.values(music.episodes).map(track => track.src)]
   assert.equal(new Set(allSources).size, 27)
   for (const episode of episodes) {
     assert.equal(music.episodes[episode.id].label, `${episode.label} 음악`)
     assert.ok(existsSync(path.join(repo, 'site/public', music.episodes[episode.id].src)))
+    if (episode.kind === 'episode')
+      assert.equal(music.episodes[episode.id].src, `/music/ep${String(episode.number).padStart(2, '0')}.mp3`)
   }
-  const reordered = loadMusic(repo, episodes.map(episode => ({ ...episode, label: `새 순서 ${episode.label}` })).reverse())
-  assert.equal(reordered.episodes.josae.src, music.episodes.josae.src)
-  assert.equal(reordered.episodes.josae.label, '새 순서 1화 음악')
+  const reordered = loadMusic(repo, episodes.map(episode => episode.number === 1
+    ? { ...episode, number: 2, label: '2화' } : episode.number === 2
+      ? { ...episode, number: 1, label: '1화' } : episode).reverse())
+  assert.equal(reordered.episodes.josae.src, '/music/ep02.mp3')
+  assert.equal(reordered.episodes.josae.label, '2화 음악')
+  assert.equal(reordered.episodes.jige.src, '/music/ep01.mp3')
+  for (const id of ['prologue', 'epilogue', 'side-table'])
+    assert.deepEqual(reordered.episodes[id], music.episodes[id])
 })
 
 test('누락·중복·잘못된 회차·미등록 음악 파일을 준비 단계에서 거절한다', t => {
   const { root, write } = fixture(t)
-  const episodes = [{ id: 'prologue', label: '프롤로그' }]
-  const base = { version: 1, home: '/music/home.mp3', tracks: [{ episodeId: 'prologue', src: '/music/prologue.mp3' }] }
+  const episodes = [
+    { id: 'prologue', label: '프롤로그', kind: 'prologue', number: null },
+    { id: 'first', label: '1화', kind: 'episode', number: 1 },
+  ]
+  const base = { version: 2, intro: '/music/intro.mp3', tracks: [
+    { episode: 'prologue', src: '/music/prolog.mp3' },
+    { episode: 1, src: '/music/ep01.mp3' },
+  ] }
   const manifest = value => write('content/music.json', JSON.stringify(value))
-  write('site/public/music/home.mp3', 'test-home')
-  write('site/public/music/prologue.mp3', 'test-prologue')
+  write('site/public/music/intro.mp3', 'test-intro')
+  write('site/public/music/prolog.mp3', 'test-prologue')
+  write('site/public/music/ep01.mp3', 'test-episode')
   manifest(base)
   assert.ok(loadMusic(root, episodes))
-  manifest({ ...base, home: '/music/missing.mp3' })
+  manifest({ ...base, version: 1 })
+  assert.throws(() => loadMusic(root, episodes), /형식/)
+  manifest({ ...base, intro: '/music/missing.mp3' })
   assert.throws(() => loadMusic(root, episodes), /파일이 없습니다/)
-  manifest({ ...base, home: '/music/../home.mp3' })
+  manifest({ ...base, intro: '/music/../intro.mp3' })
   assert.throws(() => loadMusic(root, episodes), /경로/)
   manifest({ ...base, tracks: [] })
   assert.throws(() => loadMusic(root, episodes), /회차의 배경 음악이 없습니다/)
   manifest({ ...base, tracks: [...base.tracks, ...base.tracks] })
   assert.throws(() => loadMusic(root, episodes), /회차.*중복/)
-  manifest({ ...base, tracks: [{ episodeId: 'unknown', src: '/music/prologue.mp3' }] })
+  manifest({ ...base, tracks: [{ episode: 'unknown', src: '/music/prolog.mp3' }] })
   assert.throws(() => loadMusic(root, episodes), /회차.*잘못/)
-  manifest({ ...base, tracks: [{ episodeId: 'prologue', src: base.home }] })
+  manifest({ ...base, tracks: [{ episode: '1', src: '/music/ep01.mp3' }] })
+  assert.throws(() => loadMusic(root, episodes), /회차.*잘못/)
+  manifest({ ...base, tracks: [{ episode: 'prologue', src: base.intro }] })
   assert.throws(() => loadMusic(root, episodes), /파일 경로.*중복/)
   manifest(base)
   write('site/public/music/extra.mp3', 'unassigned')

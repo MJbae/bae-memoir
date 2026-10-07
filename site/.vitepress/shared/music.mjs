@@ -1,12 +1,12 @@
 import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from 'node:fs'
 import path from 'node:path'
 
-/** Bind music to published episode IDs so manuscript reordering keeps the right song. */
+/** Index songs by episode number, then expose them under the published page IDs. */
 export function loadMusic(root, episodes) {
   const filename = path.join(root, 'content/music.json')
   if (!existsSync(filename)) return null
   const manifest = JSON.parse(readFileSync(filename, 'utf8'))
-  if (manifest.version !== 1 || !Array.isArray(manifest.tracks))
+  if (manifest.version !== 2 || !Array.isArray(manifest.tracks))
     throw new Error('배경 음악 목록의 형식을 확인하세요.')
   const publicRoot = path.join(root, 'site/public')
   const registered = new Set()
@@ -20,13 +20,18 @@ export function loadMusic(root, episodes) {
     registered.add(src)
     return src
   }
-  const home = { src: asset(manifest.home), label: '작품 소개 음악' }
-  const byId = new Map(episodes.map(episode => [episode.id, episode]))
+  const home = { src: asset(manifest.intro), label: '작품 소개 음악' }
+  let sideNumber = 0
+  const byIndex = new Map(episodes.map(episode => {
+    const index = episode.kind === 'episode' ? episode.number : episode.kind === 'side'
+      ? (++sideNumber === 1 ? 'side' : `side-${sideNumber}`) : episode.kind
+    return [index, episode]
+  }))
   const tracks = {}
   for (const track of manifest.tracks) {
-    const episode = byId.get(track.episodeId)
-    if (!episode || Object.hasOwn(tracks, track.episodeId))
-      throw new Error(`배경 음악의 회차가 잘못되었거나 중복되었습니다: ${track.episodeId}`)
+    const episode = byIndex.get(track.episode)
+    if (!episode || Object.hasOwn(tracks, episode.id))
+      throw new Error(`배경 음악의 회차가 잘못되었거나 중복되었습니다: ${track.episode}`)
     tracks[episode.id] = { src: asset(track.src), label: `${episode.label} 음악` }
   }
   for (const episode of episodes) {
