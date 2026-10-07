@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "date": "2026-10-07",
+  "mode": "built-in image_gen",
+  "manuscript": "배병희_자서전.md",
+  "styleGuide": "content/ref_images/generation-guide.json",
+  "episodeMap": "content/ref_images/episode-map.json",
+  "originalPrompts": "Individual original generation prompts were not saved in the repository. These replacement prompts were reconstructed from the manuscript, the shared style guide, the existing illustrations, and the indexed reference photographs.",
+  "aspectRatio": "16:9",
+  "widths": [
+    360,
+    720,
+    1280
+  ],
+  "formats": [
+    "jpg",
+    "webp"
+  ],
+  "images": [
+    {
+      "id": "laver",
+      "episodeId": "laver",
+      "master": "content/illustration-sources/laver.png",
+      "sceneHeading": "겨울 갯벌의 김 양식 {#laver}",
+      "sceneExcerpt": "네모난 나무틀로 물에 풀린 김을 알맞게 떠올려 물기를 뺀 뒤, 볏짚으로 엮은 발 위에 한 장씩 얇고 가지런하게 펴 얹었다. 두께가 너무 두껍지도 않고 구멍이 숭숭 뚫리지도 않게 매끄러운 사각형을 빚어내는 데는 오랜 눈썰미가 필요했다. 방학을 맞은 아이들도 손이 시리고 트는 고생을 마다하지 않고 마당 가득 김발을 나르고 너는 일을 도왔다.",
+      "corrections": [
+        "Make individual seaweed drying screens and their support structure legible.",
+        "Show hands holding the screen edges rather than touching or painting seaweed directly onto a wall.",
+        "Keep winter clothing, natural body proportions, and the distinction between cultivation frames and drying screens.",
+        "Correct protagonist likeness from the actual age-specific Bae Byung-hee photographs, preserving facial geometry.",
+        "Use multiple existing series illustrations to strengthen transparent watercolor washes, visible brushwork, and paper texture while preserving the corrected composition."
+      ],
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "Highest-priority actual face identity: Bae Byung-hee, the adult man in the center; not the child or suit.",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "Existing approved portrait: the same protagonist's recognizable face and established watercolor style.",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/bus-fare-1280.jpg",
+          "role": "Existing series scene: familiar protagonist face and watercolor treatment of a family scene.",
+          "sha256": "eb0117a9d77c06085d4e8a96be6c77c955590e5913b77428eb12215b7166d693"
+        },
+        {
+          "path": "content/illustration-sources/leaving.png",
+          "role": "New corrected binder scene: maintain the same protagonist identity and stronger watercolor treatment across the replacement set.",
+          "sha256": "ab90d206645bdb63d28d53d4506d3dbec10ff946ba931570901bbe10634d17c7"
+        },
+        {
+          "path": "content/illustration-sources/laver.png",
+          "role": "Edit target: keep the seaweed drying composition and correct screen handling, but replace the generic father's face and repaint the surface.",
+          "sha256": "72e869c6f552805783d2313c7444b5a411a0e5905f32d019f34f0684b794b6eb"
+        }
+      ],
+      "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor autobiography illustration. Correct FACE IDENTITY and WATERCOLOR STYLE in input image 5 while keeping its successful scene, composition and physical actions. Reference roles: image 1 is the actual protagonist's face, the adult man in the center of the photograph, with the highest identity priority. Image 2 is the existing approved portrait of the same man. Image 3 is another existing watercolor scene, the father giving his daughter bus fare. Image 4 is the newly corrected binder illustration, an additional face and paint-style continuity anchor. Image 5 is the EDIT TARGET; take its layout and actions, not the current father's generic face or photographic surface.\nThe protagonist MUST be unmistakably the actual adult man in image 1 and the SAME person as the existing portrait in image 2 and father in image 3. Preserve his face width-to-height, broad midface and full cheeks, softly hooded narrow eyes and familiar brows, broad rounded nose, characteristic lip shape, rounded jaw and chin, ears and forehead-to-hairline relationship. Use age adjustments only for wrinkles and hair; do not redesign facial structure or substitute a generic rural man. No pasted photographic face: paint his real likeness coherently in watercolor. Only the main father's identity is corrected; do not give his face to other family members or neighbors.\nDepict the same father in his thirties in this 1960s Anmyeondo scene: modestly soften age lines and keep black hair, but preserve recognizability over aggressive rejuvenation. Keep his head's current three-quarter angle, natural focused expression, padded grey-blue cotton work clothes, and both hands holding the edges of one small straw seaweed drying screen. Keep his wife beside the wooden water tub and mould, the child carrying one screen at waist height, the sloping wooden drying rack with supported separate screens, the coastal courtyard, winter clothes, snow patches and distant tidal flats. Preserve their body positions and natural grounded feet. His wife and child keep their current distinct identities. Maintain credible screen size and continuous fingers/wrists, no hand touching the seaweed itself.\nPaint the ENTIRE scene as hand-painted watercolor in the same series as the existing painted references: warm cold-pressed paper, clearly visible translucent washes, soft wet-on-wet transitions, pigment blooms and granulation, broken brush-shaped marks, light paper left in highlights, and lost edges with selective crisp strokes for essential faces, hands and objects. Use broader painted color masses in clothing and background instead of photographic microdetail. The visible texture should come from watercolor pigment and paper, not a uniform noisy filter on a photograph. Keep the series' muted ochre, straw and grey-blue palette and legible realistic anatomy. Avoid glossy rendered skin, sharp photorealism, uniformly stippled digital texture, oil impasto, flat cartoons and hard outlines.\nInvariants: 16:9 landscape, same framing, same people and number of hands, same coast, same physically supported rack and sensible screen-handling corrections. Change only the protagonist's likeness and the painting treatment throughout the image. Do not add objects, change body proportions, reintroduce a giant seaweed wall, enlarge the screens, copy the suits or child from the portrait, or add text, logo or watermark.",
+      "previousIllustrationSha256": "cc9dbbb5e3d24c9c7061092e815a043a2e5f712b00a33aa94785f305a0671d3e",
+      "previousMasterSha256": "72e869c6f552805783d2313c7444b5a411a0e5905f32d019f34f0684b794b6eb"
+    },
+    {
+      "id": "leaving",
+      "episodeId": "leaving",
+      "master": "content/illustration-sources/leaving.png",
+      "sceneHeading": "일곱 가구가 따라나선 길 {#leaving}",
+      "sceneExcerpt": "이어 1970년대 중반에는 충남 광천 시장에서 벼를 베어 묶는 보행형 수확기인 ‘바인더(Binder)’를 보고 과감히 구입했다. 당시 안면도에서는 낯선 기계였다. 낫으로 며칠씩 베어야 할 논을 바인더로 밀고 나가면 밑동을 벤 벼를 노끈으로 묶어 논둑에 가지런히 내려놓았다.",
+      "corrections": [
+        "Show the binder from the front, with the operator standing behind it.",
+        "Use a coherent walk-behind reaper-binder structure with front crop dividers, a low cutting mechanism, wheels, and rear handlebars.",
+        "Separate cutting and tying sheaves from threshing; do not depict a combine harvester.",
+        "Correct protagonist likeness from the actual age-specific Bae Byung-hee photographs, preserving facial geometry.",
+        "Use multiple existing series illustrations to strengthen transparent watercolor washes, visible brushwork, and paper texture while preserving the corrected composition."
+      ],
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "Highest-priority actual facial identity of Bae Byung-hee: the adult man in the center; omit the child and suit.",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "Existing approved watercolor portrait: the same facial identity and the established painted washes.",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/bus-fare-1280.jpg",
+          "role": "Existing series illustration: protagonist's familiar face in a scene and watercolor brushwork.",
+          "sha256": "eb0117a9d77c06085d4e8a96be6c77c955590e5913b77428eb12215b7166d693"
+        },
+        {
+          "path": "site/public/images/episodes/rice-mill-1280.jpg",
+          "role": "Existing series illustration: watercolor treatment of countryside, paper, workwear, and objects.",
+          "sha256": "62b433f45948c865eeea955e6324af9ee1f08f021bd6af6af0e8510c42d713fd"
+        },
+        {
+          "path": "content/illustration-sources/leaving.png",
+          "role": "Edit target: preserve this front-view binder composition and correct machine/hand relationships; replace the generic face and repaint its surface.",
+          "sha256": "0199475e9471b99d3d5369ca74178d74561e681cc1e6e5e21849892ade89571a"
+        }
+      ],
+      "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor episode illustration for Bae Byung-hee's autobiography. This is a FACE IDENTITY correction and a WATERCOLOR STYLE correction of input image 5. Keep its good composition and all the already-corrected farming actions.\nReference priority: image 1 is the actual person and is the mandatory face identity source: use the adult man's face in the center of the photograph, never the child. Image 2 is the existing approved watercolor portrait of that SAME man. Image 3 is an existing series scene of him with his daughter; study his familiar facial proportions and hand-painted style. Image 4 is another existing series painting, the style source for the rural environment, clothing, and paper texture. Image 5 is the EDIT TARGET, used only for scene layout, body pose, binder geometry, and object positions. Its current generic man's face must be replaced, not preserved.\nIdentity: repaint the farmer so that he is unmistakably the adult man in image 1 and the portrait in image 2. Retain the actual width-to-height of his face, broad midface and full cheeks, softly hooded narrow eyes, familiar brow shape, broad rounded nose, characteristic lips, jaw and chin, ear shape, and forehead-to-hairline relationship. Do not substitute another smiling farmer or idealize his features. For the mid-1970s scene, depict the same man at about 40-45: modestly reduce age lines and retain black hair, but do not redesign the bone structure, nose, eye spacing, or mouth. Keep an understated closed-mouth expression. Keep the cap, ordinary work clothes, gloves and boots of image 5. The face must remain recognizably his even at this small scene scale.\nWatercolor: paint the ENTIRE scene in the established watercolor language of images 2, 3 and 4, with stronger visible transparent washes than the edit target. Hand-painted watercolor on warm cold-pressed paper, broad wet-on-wet color transitions, pigment blooms and granulation, visible brush-shaped marks, softly lost edges alternating with a few crisp defining strokes, and light paper showing through highlights. Group rice, foliage and clothing into painterly color masses; retain readable face, hands and machine using selective strokes. The texture must come from paint and paper, not a uniformly speckled photo filter. Aim for the same watercolor family as the reference illustrations, with ochre rice, restrained grey-blue clothes and hazy blue hills. Avoid photographic microdetail, glossy rendered skin, a sharp digital painting covered with noise, oil impasto, cartoon abstraction and hard outlines.\nInvariants: keep the image-5 frontal walk-behind reaper-binder, crop dividers pointing toward the viewer, operator behind it with both hands on rear handle grips, coherent wheels and chassis, cut strip, tied sheaves and golden rice field. Preserve framing, scale, rural era, 16:9 landscape, and anatomical connections. Do not move objects, add people, revert to a side view, or change the machinery. No text, logos, watermark, or pasted photographic face: integrate his likeness fully into the watercolor.",
+      "previousIllustrationSha256": "8221330c290806eb49e01f9c594ca5effdc29ad9bac7bf5314fc4584c509977a",
+      "previousMasterSha256": "0199475e9471b99d3d5369ca74178d74561e681cc1e6e5e21849892ade89571a"
+    },
+    {
+      "id": "leaving-road",
+      "episodeId": "leaving",
+      "master": "content/illustration-sources/leaving-road.png",
+      "sceneHeading": "일곱 가구가 따라나선 길 {#leaving}",
+      "sceneExcerpt": "배병희의 이주 소식을 들은 고향 이웃 일곱 가구도 그를 믿고 동행을 결정했다. 낯선 곳으로의 이주였지만 수십 년간 보여준 그의 성실함과 리더십을 신뢰했기 때문이다. 1977년 무렵 배병희 일가와 이웃들은 안면도를 떠나 남양만으로 이주했다.",
+      "corrections": [
+        "Connect the walking tractor and two-wheel load trailer with a visible, plausible drawbar.",
+        "Seat the driver securely at the front of the trailer, within reach of the handlebars, with feet supported.",
+        "Keep pedestrians beside the road and clear of wheels; show modest newly reclaimed land instead of a steep panoramic descent.",
+        "Correct protagonist likeness from the actual age-specific Bae Byung-hee photographs, preserving facial geometry.",
+        "Use multiple existing series illustrations to strengthen transparent watercolor washes, visible brushwork, and paper texture while preserving the corrected composition."
+      ],
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "Highest-priority actual face identity: Bae Byung-hee, the adult man in the center; not the child or suit.",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "Existing approved portrait: the same protagonist's face and series watercolor style.",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "site/public/images/episodes/bus-fare-1280.jpg",
+          "role": "Existing series scene: familiar protagonist likeness and painterly family-scene rendering.",
+          "sha256": "eb0117a9d77c06085d4e8a96be6c77c955590e5913b77428eb12215b7166d693"
+        },
+        {
+          "path": "content/illustration-sources/leaving.png",
+          "role": "New corrected binder scene: the same 1970s protagonist and stronger watercolor style.",
+          "sha256": "ab90d206645bdb63d28d53d4506d3dbec10ff946ba931570901bbe10634d17c7"
+        },
+        {
+          "path": "content/illustration-sources/leaving-road.png",
+          "role": "Edit target: keep the sensible tractor/trailer, seated driver and walking family layout; replace generic driver likeness and repaint the surface.",
+          "sha256": "60f5d828d3cf24999630736153c9599fe456dca1f5eef0245be6a26d5cbd2722"
+        }
+      ],
+      "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor autobiography illustration. Correct FACE IDENTITY and WATERCOLOR STYLE in input image 5. Preserve its successfully corrected 1977 migration composition and vehicle connections. Reference roles: image 1 is the actual protagonist's face, the adult man in the center, mandatory identity reference. Image 2 is the existing approved watercolor portrait of the SAME man. Image 3 is another existing series painting of him with his daughter, an identity and watercolor reference. Image 4 is the newly corrected front-view binder scene, fixing how the same 1970s man is rendered in this replacement set. Image 5 is the EDIT TARGET, its scene and vehicle geometry only, not its generic driver face.\nThe protagonist MUST be unmistakably the actual adult man in image 1 and the SAME person as the existing portrait in image 2 and father in image 3. Preserve his face width-to-height, broad midface and full cheeks, softly hooded narrow eyes and familiar brows, broad rounded nose, characteristic lip shape, rounded jaw and chin, ears and forehead-to-hairline relationship. Use age adjustments only for wrinkles and hair; do not redesign facial structure or substitute a generic rural man. No pasted photographic face: paint his real likeness coherently in watercolor. Only the main father's identity is corrected; do not give his face to other family members or neighbors.\nThe seated driver is Bae Byung-hee at about 45: use the same face as the photograph and corrected binder, slightly fewer age lines, black hair and the existing cap. In his existing three-quarter head angle, preserve the recognizable nose profile, eye position, cheek volume, mouth and chin. Keep natural scale and ordinary calm expression. Keep him securely seated at the front of the wooden load trailer with both hands on the rear-facing tractor grips and both feet on the footboard. Retain the visible coherent drawbar, wheels, load chassis, tied bedding bundles and compact threshing machine. Keep his elderly mother, wife and children walking clear of the wheels at the roadside, and neighbors farther along the road, all with their own distinct faces. Retain the low coastal landscape and dirt-road grade.\nPaint the ENTIRE scene as hand-painted watercolor in the same series as the existing painted references: warm cold-pressed paper, clearly visible translucent washes, soft wet-on-wet transitions, pigment blooms and granulation, broken brush-shaped marks, light paper left in highlights, and lost edges with selective crisp strokes for essential faces, hands and objects. Use broader painted color masses in clothing and background instead of photographic microdetail. The visible texture should come from watercolor pigment and paper, not a uniform noisy filter on a photograph. Keep the series' muted ochre, straw and grey-blue palette and legible realistic anatomy. Avoid glossy rendered skin, sharp photorealism, uniformly stippled digital texture, oil impasto, flat cartoons and hard outlines.\nInvariants: same 16:9 landscape composition, vehicle proportions and safe driver placement, same body/hand relationships and pedestrians, same load and scene. Change only the main driver's identity and global paint treatment. Do not copy portrait suits, introduce modern vehicles or machinery, disconnect the tractor and trailer, put people in wheel paths, change the driver to walking, or add text, logo or watermark.",
+      "previousIllustrationSha256": "6f238659f840b2a745b6ed9990a351420533125888e74807243dc3bb58a86efc",
+      "previousMasterSha256": "60f5d828d3cf24999630736153c9599fe456dca1f5eef0245be6a26d5cbd2722"
+    },
+    {
+      "id": "side-table",
+      "episodeId": "side-table",
+      "master": "content/illustration-sources/side-table.png",
+      "sceneHeading": "외전. 아버지의 밥상 {#side-table}",
+      "sceneExcerpt": "정미소 일을 돕던 자식이 온몸에 뽀얀 쌀겨와 먼지를 뒤집어쓴 채 밤늦게 돌아왔을 때의 일이다. 아버지는 먼저 저녁을 들지 않고, 김이 모락모락 피어오르는 갓 삶은 수육 한 상을 정갈하게 차려놓은 채 자식을 우두커니 기다리고 있었다. “아버지, 왜 먼저 진지 안 드시고 기다리셨어요?”라는 물음에, 아버지는 그저 “식기 전에 어서 먹어라” 하며 젓가락을 쥐여줄 뿐이었다.",
+      "corrections": [
+        "Show the complete, believable arm and wrist connection of both participants.",
+        "Hand over exactly two straight, equal-length chopsticks together in parallel, with distinct natural fingers and a palm-up receiving hand.",
+        "Give the son visible rice-bran dust on work clothes and show a modest steaming meal.",
+        "Correct protagonist likeness from the actual age-specific Bae Byung-hee photographs, preserving facial geometry.",
+        "Use multiple existing series illustrations to strengthen transparent watercolor washes, visible brushwork, and paper texture while preserving the corrected composition."
+      ],
+      "references": [
+        {
+          "path": "content/ref_images/배병희_본인/80대의_백발의_배병희_정장_옆면.png",
+          "role": "Highest-priority actual elderly protagonist face: use this exact Bae Byung-hee likeness, white hair, glasses and facial geometry.",
+          "sha256": "5714f4b48633dcccdcee427f24ec6894ddbd9be4a34ddc60ce63ffa132ed3b3c"
+        },
+        {
+          "path": "site/public/images/episodes/epilogue-1280.jpg",
+          "role": "Existing elderly protagonist painting: same familiar identity, profile, glasses and series watercolor treatment.",
+          "sha256": "067b42b69e32103c1c60b6f288e973c923ff021f95fd28cb1c36f1c0ac362b2e"
+        },
+        {
+          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+          "role": "Existing approved portrait: underlying protagonist identity continuity and watercolor brushwork; do not copy the younger age or suit.",
+          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+        },
+        {
+          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+          "role": "Underlying same-person facial structure and identity across age, not a younger age target.",
+          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+        },
+        {
+          "path": "content/illustration-sources/side-table.png",
+          "role": "Edit target: keep the clear father/son arm anatomy, two-chopstick handoff, supper and layout; replace father's generic elderly face and repaint the surface.",
+          "sha256": "f47d06d6741e9ebeea6f4bd457273949b1428dd55bafcc4e455e7645b6525565"
+        }
+      ],
+      "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor family-autobiography illustration. Correct the elderly father's FACIAL IDENTITY and strengthen the WATERCOLOR STYLE of input image 5, keeping its good scene, action and anatomy. Reference roles: image 1 is the actual elderly Bae Byung-hee and is the mandatory highest-priority face source. Image 2 is his EXISTING epilogue watercolor, showing the same familiar elderly face and style. Image 3 is the existing approved watercolor portrait of the same person at a younger age, used for identity continuity and watercolor brushwork only, not its age or suit. Image 4 is the same person's actual younger photograph, underlying facial geometry only. Image 5 is the EDIT TARGET: layout, two-chopstick handoff, son, food and clothing; its present generic elderly face must be replaced.\nIdentity: make the father recognizably the EXACT elderly man in image 1 and the established elder in image 2. Preserve his actual eye/brow spacing and hooded eyelids, forehead shape, white hairline, cheek and jaw volume, broad nose with the actual tip and nostril proportions, characteristic restrained lip shape, chin and ears. Keep the same understated glasses shape and temple placement as the portrait. Keep an ordinary reserved expression; do not invent a smiling stock grandfather, beautify him, narrow his face, enlarge his eyes, or redesign the nose. Match the elderly age of image 1; do not borrow the younger age from images 3 or 4. Paint the likeness as watercolor, with no pasted photographic cutout. Only the father gets this identity; his adult son remains a different person.\nWatercolor: repaint the ENTIRE image in the existing series' hand-painted watercolor language, taking clear translucent washes and layered brush marks from images 2 and 3. Warm cold-pressed paper showing through light passages, softly bleeding amber lamplight and cool window blue, controlled pigment blooms and granulation, broad brush-shaped marks in clothes and walls, softened and lost edges alternating with a few crisp defining strokes. Keep the face recognizable with selective painted landmarks and hands legible; do not cover photographic skin with a noisy paint filter. Reduce excessive tiny surface detail in the room, cardigan and food. Avoid glossy skin, photorealistic sharpness, oil texture, cartoon simplification and uniform stippling.\nInvariants: keep the current medium two-person 16:9 layout, father seated across a modest wooden table, son in dusty work clothes at the near side, warm night lighting, father gently giving exactly TWO closed parallel equal-length chopsticks, son's palm-up receiving hand, natural connected shoulders/elbows/wrists and the father's other hand beside his bowl. Preserve all finger connections and separation, the modest steaming sliced-pork supper, rice bowls and dish positions. Change only the father's likeness and the paint treatment across the scene. Do not alter poses, multiply or cross sticks, hide hands, add people, copy portrait suits, add writing, logo or watermark.",
+      "previousIllustrationSha256": "216ca82bfcb7af98e9963610ed2f2ec400efc3ed35bd56aa44a1b51521a79242",
+      "previousMasterSha256": "f47d06d6741e9ebeea6f4bd457273949b1428dd55bafcc4e455e7645b6525565"
+    }
+  ],
+  "revision": 2,
+  "revisionReason": "사용자 피드백에 따라 배병희의 실제 얼굴과 기존 다른 삽화의 수채화 화풍을 우선하여 재보정. 장면 구도와 동작은 유지."
+}

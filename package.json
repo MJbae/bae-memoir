@@ -18,6 +18,7 @@
     "test:sharing": "node --test tests/sharing.test.mjs",
     "assets:share": "node scripts/generate-share-assets.mjs",
     "assets:cover": "node scripts/generate-home-cover.mjs",
+    "assets:episodes": "node scripts/generate-episode-assets.mjs",
     "test:rules": "firebase emulators:exec --only firestore --project demo-family-library \"node --test tests/firestore.rules.test.mjs\"",
     "test:e2e": "playwright test",
     "test:reactions": "firebase emulators:exec --only auth,firestore --project demo-family-library \"playwright test --config playwright.reactions.config.ts\""

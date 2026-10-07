@@ -300,7 +300,8 @@
       "referenceIds": [
         "sup-002",
         "sup-011",
-        "sup-012"
+        "sup-012",
+        "local-01"
       ]
     },
     {
@@ -393,7 +394,7 @@
     {
       "id": "leaving",
       "episodeId": "leaving",
-      "alt": "수채화로 그린 안면도 논에서 보행형 바인더로 벼를 베어 묶는 모습",
+      "alt": "수채화로 그린 안면도 논에서 정면을 향한 보행형 바인더로 벼를 베어 묶는 배병희",
       "width": 1280,
       "height": 720,
       "position": {
@@ -430,7 +431,8 @@
       "referenceIds": [
         "sup-006",
         "extra-03",
-        "local-09"
+        "local-09",
+        "local-01"
       ]
     },
     {
@@ -473,7 +475,8 @@
       "referenceIds": [
         "sup-006",
         "local-09",
-        "sup-027"
+        "sup-027",
+        "local-01"
       ]
     },
     {
@@ -1249,7 +1252,7 @@
     {
       "id": "side-table",
       "episodeId": "side-table",
-      "alt": "수채화로 그린 늦게 돌아올 자식을 기다리며 수육 밥상을 차린 아버지",
+      "alt": "수채화로 그린 밤늦게 돌아온 아들에게 젓가락을 건네는 아버지와 수육 밥상",
       "width": 1280,
       "height": 720,
       "position": {
