@@ -295,7 +295,7 @@ test('모든 회차의 삽화를 불러오며 16:9 전체 그림을 화면 폭�
   test.setTimeout(90000)
   const images = rawCatalog.illustrations as Record<string, Illustration[]>
   expect(Object.keys(images)).toHaveLength(26)
-  expect(Object.values(images).flat()).toHaveLength(37)
+  expect(Object.values(images).flat()).toHaveLength(46)
   const broken: string[] = []
   page.on('response', response => {
     if (response.url().includes('/images/episodes/') && !response.ok()) broken.push(response.url())
@@ -307,7 +307,7 @@ test('모든 회차의 삽화를 불러오며 16:9 전체 그림을 화면 폭�
     if (episodeId === 'ep08') expect(body).toContain("'메다르(메탈 베어링)'가")
     const figures = page.locator('.episode-illustration')
     await expect(figures).toHaveCount(illustrations.length)
-    if (episodeId === 'ep01') await expect(figures).toHaveCount(1)
+    if (episodeId === 'ep01') await expect(figures).toHaveCount(2)
     if (episodeId === 'ep05') await expect(figures).toHaveCount(2)
     for (const illustration of illustrations) {
       const image = page.locator(`[data-illustration="${illustration.id}"] img`)
@@ -340,7 +340,7 @@ test('삽화는 자바스크립트 없이 회차에서 표시된다', async ({ b
   const page = await context.newPage()
   try {
     await page.goto('http://127.0.0.1:4183/bae-memoir/read/ep01.html')
-    await expect(page.locator('.episode-illustration')).toHaveCount(1)
+    await expect(page.locator('.episode-illustration')).toHaveCount(2)
     const first = page.locator('.episode-illustration img').first()
     await expect.poll(() => first.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true)
     await page.goto('http://127.0.0.1:4183/bae-memoir/read/ep05.html')

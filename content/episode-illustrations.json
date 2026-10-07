@@ -89,6 +89,44 @@
       ]
     },
     {
+      "id": "ep01-02",
+      "episodeId": "ep01",
+      "alt": "수채화로 그린 황토 비탈밭에서 감자와 고구마를 거두는 안면도의 식구들",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "비탈밭 작물과 갯벌에서 거둔 해산물 덕분에 대식구는 굶주림을 면할 수 있었다. 쌀밥 한 그릇 배불리 먹기 어려웠던 시절이었으나, 어린 배병희는 흙과 바다를 터전 삼아 건강하게 자라났다. 어머니의 시린 손끝과 부지런히 땀 흘리는 아버지와 형들의 모습을 날마다 마주하며 정직한 노동의 참된 가치를 자연스럽게 가슴에 새겼다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep01-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep01-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep01-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep01-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep01-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep01-02-1280.webp",
+          "width": 1280
+        }
+      ]
+    },
+    {
       "id": "ep02-01",
       "episodeId": "ep02",
       "alt": "수채화로 그린 책보 대신 지게를 지고 밭으로 향하는 소년",
@@ -256,6 +294,44 @@
         "sup-013",
         "sup-014",
         "sup-015"
+      ]
+    },
+    {
+      "id": "ep04-02",
+      "episodeId": "ep04",
+      "alt": "수채화로 그린 죽도 갯바위에 닿아 젖은 목선을 묶고 숨을 고르는 청년 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "성난 파도와 사투를 벌인 끝에, 배는 천수만 한가운데 외로이 떠 있던 작은 섬 죽도(竹島)의 갯바위에 가까스로 닿았다. 뱃머리가 덜컥 바위에 부딪히며 멈추어 서자, 그는 갯바위를 끌어안고 거친 숨을 토해냈다. 가까스로 목선과 젖은 나무를 바위틈에 묶어둔 뒤, 살을 에는 바닷바람 속에서 뜬눈으로 밤을 지새우며 조난의 두려움을 버텨냈다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep04-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep04-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep04-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep04-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep04-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep04-02-1280.webp",
+          "width": 1280
+        }
       ]
     },
     {
@@ -731,6 +807,44 @@
       ]
     },
     {
+      "id": "ep10-02",
+      "episodeId": "ep10",
+      "alt": "수채화로 그린 독정리 논둑에서 일꾼들에게 따뜻한 밥을 나누는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "6만 평이나 되는 너른 논은 일가족의 손만으로는 감당할 수 없는 거대한 대지였다. 모내기철이면 온 동네 일손이 다 나와도 모자랄 지경이었다. 배병희는 마을 주민들과 품앗이를 나누는 데 그치지 않고, 품삯을 주고 이웃들의 일손을 널리 모았다. 그는 형편이 어렵거나 갓 이주해 생계가 막막한 농가를 먼저 찾아가 일을 청했다. 품삯은 그날그날 현금이나 쌀로 넉넉하게 셈해 주었고, 일을 시작하기 전에는 늘 따뜻한 밥을 배불리 먹이며 일꾼들을 가족처럼 살뜰히 대했다. 낯선 타향살이에 서먹했던 이웃들의 마음도 논두렁에서 함께 나눈 밥상과 거짓 없는 품삯을 통해 차츰 깊은 신뢰로 바뀌어 갔다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep10-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep10-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep10-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep10-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep10-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep10-02-1280.webp",
+          "width": 1280
+        }
+      ]
+    },
+    {
       "id": "ep11-01",
       "episodeId": "ep11",
       "alt": "수채화로 그린 수원으로 떠나는 딸을 배웅하는 아버지",
@@ -816,6 +930,44 @@
       ]
     },
     {
+      "id": "ep12-02",
+      "episodeId": "ep12",
+      "alt": "수채화로 그린 밀린 볏값을 걱정하는 농민들이 배병희에게 정미소 인수를 부탁하는 순간",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "절박해진 독정리 농민들이 모여 상의 끝에 찾아간 사람이 바로 배병희였다.\n“배 사장, 배 사장이 이 정미소를 맡아주지 않으면 우리 농민들은 다 길바닥에 나앉게 생겼소. 제발 이 정미소 좀 맡아 살려주시오. 배 사장이 맡아준다면 우리가 두말없이 벼를 다 맡기고 앞장서서 돕겠소.”"
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep12-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep12-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep12-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep12-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep12-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep12-02-1280.webp",
+          "width": 1280
+        }
+      ]
+    },
+    {
       "id": "ep13-01",
       "episodeId": "ep13",
       "alt": "수채화로 그린 장대비 속에서 손전등으로 야적 가마니를 살피는 배병희",
@@ -856,6 +1008,44 @@
         "local-01",
         "sup-018",
         "sup-036"
+      ]
+    },
+    {
+      "id": "ep13-02",
+      "episodeId": "ep13",
+      "alt": "수채화로 그린 벼를 맡기러 몰려드는 농민과 볏가마가 쌓이는 초기 정미소 마당",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "정미소가 정상 가동되고 약속한 날에 볏값을 꼬박꼬박 내준다는 소문이 돌자, 독정리는 물론 인근 장안면 들판의 농가들까지 벼를 싣고 몰려들었다. 그러나 당시 정미소에는 쏟아져 들어오는 곡식을 다 들여놓을 만한 번듯한 창고가 없었다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep13-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep13-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep13-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep13-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep13-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep13-02-1280.webp",
+          "width": 1280
+        }
       ]
     },
     {
@@ -1030,6 +1220,44 @@
       ]
     },
     {
+      "id": "ep15-03",
+      "episodeId": "ep15",
+      "alt": "수채화로 그린 트럭에서 내려 길섶의 어르신에게 허리를 숙여 인사하는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "트럭을 몰고 신작로를 달리다가도 길섶을 걸어가는 동네 어르신이나 이웃이 보이면, 흙먼지가 날릴세라 저만치서 차를 멈추고 시동부터 껐다. 그러고는 차 문을 열고 내려 허리를 깊숙이 숙여 인사를 건넸다. 차창만 내리고 고개만 까딱하는 법이 결코 없었다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep15-03-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep15-03-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep15-03-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep15-03-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep15-03-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep15-03-1280.webp",
+          "width": 1280
+        }
+      ]
+    },
+    {
       "id": "ep16-01",
       "episodeId": "ep16",
       "alt": "수채화로 그린 가마솥 밥을 떠서 일꾼들의 그릇에 담는 아내의 손",
@@ -1069,6 +1297,44 @@
       "referenceIds": [
         "sup-009",
         "sup-010"
+      ]
+    },
+    {
+      "id": "ep16-02",
+      "episodeId": "ep16",
+      "alt": "수채화로 그린 비좁은 집에서 병든 시어머니의 이불을 여미며 돌보는 아내",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "당시 독정리의 열여덟 평 남짓한 슬레이트집은 식솔이 많아 늘 비좁았다. 아내는 고향 안면도에서 모시고 온 시어머니를 지극정성으로 돌보았다. 기력이 쇠해 자리에 누운 시어머니의 대소변을 받아내며 병구완을 도맡았고, 안면도에서 의지할 곳 없어 함께 건너온 이웃 어르신의 밥상과 잠자리까지 한 식구처럼 살뜰히 챙겼다. 거기에 줄줄이 자라나는 일곱 남매의 끼니와 빨래까지 도맡았으니, 아내의 하루는 동트기 전부터 밤이 깊을 때까지 잠시도 쉴 틈이 없었다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep16-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep16-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep16-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep16-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep16-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep16-02-1280.webp",
+          "width": 1280
+        }
       ]
     },
     {
@@ -1112,6 +1378,44 @@
         "local-01",
         "sup-036",
         "extra-05"
+      ]
+    },
+    {
+      "id": "ep17-02",
+      "episodeId": "ep17",
+      "alt": "수채화로 그린 도난 뒤 벽이 뚫리고 쌀이 사라진 창고를 마주한 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "어느 캄캄한 밤, 도둑들이 정미소 뒤편 곡식 창고 벽을 뚫고 침입했다. 창고 가득 쌓아두었던 쌀 수백 가마를 마당에 세워둔 화물 트럭에 몽땅 싣고 어둠 속으로 달아나 버렸다. 이튿날 아침 뻥 뚫린 창고 벽과 트럭마저 사라진 빈 마당을 마주한 배병희는 하늘이 무너져 내리는 듯 눈앞이 아득해졌다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/ep17-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep17-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep17-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/ep17-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/ep17-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/ep17-02-1280.webp",
+          "width": 1280
+        }
       ]
     },
     {
@@ -1581,6 +1885,44 @@
       "referenceIds": [
         "local-02",
         "extra-06"
+      ]
+    },
+    {
+      "id": "side-02",
+      "episodeId": "side",
+      "alt": "수채화로 그린 손주가 태어난 병원에서 갓난아이를 물끄러미 바라보는 배병희",
+      "width": 1280,
+      "height": 720,
+      "position": {
+        "beforeParagraph": "손주들을 향한 내리사랑 또한 각별했다. 손주가 태어났다는 소식에 수화기 너머로는 담담했다. 안부만 물었을 뿐이었다. 그러나 이튿날 날이 밝기도 전에 새벽 첫차를 타고 서울 병원으로 한달음에 달려왔다. 갓 태어난 핏줄을 조심스레 품에 안고는 말없이 눈시울을 붉혔다. 손주가 아파 입원했다는 소식이 들리면 하던 일도 팽개쳤다. 곧장 병원으로 달려가 제 눈으로 확인하고서야 비로소 가슴을 쓸어내렸다."
+      },
+      "sources": [
+        {
+          "src": "/images/episodes/side-02-360.jpg",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/side-02-720.jpg",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/side-02-1280.jpg",
+          "width": 1280
+        }
+      ],
+      "webpSources": [
+        {
+          "src": "/images/episodes/side-02-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/episodes/side-02-720.webp",
+          "width": 720
+        },
+        {
+          "src": "/images/episodes/side-02-1280.webp",
+          "width": 1280
+        }
       ]
     }
   ]
