@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
+import Icon from './Icon.vue'
 
 const props = withDefaults(defineProps<{
   src: string
@@ -48,7 +49,7 @@ onMounted(() => {
 
 <template>
   <div class="responsive-image" :class="{ 'image-failed': failed }" :style="{ aspectRatio: `${width} / ${height}` }">
-    <span v-if="!loaded && !failed" class="image-placeholder" aria-hidden="true">그림을 불러오는 중입니다</span>
+    <span v-if="!loaded && !failed" class="image-placeholder" aria-hidden="true"><Icon name="image" :size="24" /></span>
     <picture :key="attempt">
       <source v-if="useWebp" type="image/webp" :srcset="retrySrcset(webpSrcset!)" :sizes="sizes" />
       <img ref="image" :src="retryUrl(src)" :srcset="jpegFallback ? undefined : retrySrcset(srcset)" :sizes="sizes"

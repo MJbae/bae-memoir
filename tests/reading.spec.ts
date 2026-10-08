@@ -319,6 +319,10 @@ test('모든 회차의 삽화를 불러오며 16:9 전체 그림을 화면 폭�
       await expect(image).toHaveAttribute('height', '720')
       if (!illustration.position.start) {
         const figure = page.locator(`[data-illustration="${illustration.id}"]`)
+        const sceneBreak = figure.locator('xpath=preceding-sibling::*[1]')
+        await expect(sceneBreak).toHaveJSProperty('tagName', 'HR')
+        expect(await sceneBreak.evaluate(element => getComputedStyle(element, '::after').content)).toBe('"⁂"')
+        await expect(sceneBreak.locator('xpath=preceding-sibling::*[1]')).not.toHaveJSProperty('tagName', 'HR')
         const paragraph = figure.locator('xpath=following-sibling::p[1]')
         await expect(paragraph).toHaveText(illustration.position.beforeParagraph!)
       }
@@ -366,6 +370,9 @@ test('첫 삽화는 화면에 맞는 파일 하나를 사전 로딩하고 기다
     expect(await preload.getAttribute('imagesrcset')).toBe(await figure.locator('source').getAttribute('srcset'))
     expect(await preload.getAttribute('imagesizes')).toBe(await figure.locator('img').getAttribute('sizes'))
     await expect(figure.locator('.image-placeholder')).toBeVisible()
+    await expect(figure.locator('.image-placeholder svg')).toBeVisible()
+    await expect(figure.locator('.image-placeholder')).toHaveText('')
+    await expect(page.locator('body')).not.toContainText('그림을 불러오는 중입니다')
     await expect(page.locator('.story-content p').first()).toBeVisible()
     release()
     await expect.poll(() => figure.locator('img').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)

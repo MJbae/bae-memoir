@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { defineAsyncComponent, onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
 import { isFirebaseConfigured } from '../lib/firebase-config'
 import type { Neighbor } from '../lib/catalog'
 import ReadingLink from './ReadingLink.vue'
+import ReactionBar from './ReactionBar.vue'
 const props = defineProps<{ pageId: string; prev?: Neighbor | null; next?: Neighbor | null; homeHref: string; episode: boolean }>()
 const emit = defineEmits<{ complete: [] }>()
-const ReactionBar = defineAsyncComponent(() => import('./ReactionBar.vue'))
 const enabled = isFirebaseConfigured()
 const ready = ref(false)
 const end = ref<HTMLElement>()

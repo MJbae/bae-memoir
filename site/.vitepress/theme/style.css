@@ -464,6 +464,12 @@ html:has(dialog[open]) {
 .image-failed img {
   visibility: hidden;
 }
+.image-placeholder {
+  pointer-events: none;
+}
+.image-placeholder svg {
+  opacity: 0.45;
+}
 .image-error p,
 .story-content .image-error p {
   margin: 0 0 8px;
@@ -774,7 +780,6 @@ dialog::backdrop {
   .reaction-options button:not(:disabled):hover { border-color: var(--nav-secondary-border); }
   .reaction-options button[aria-pressed='true']:hover { border-color: var(--link); }
 }
-.reaction-status { min-height: 1.7em; margin: 10px 0 0; color: var(--muted); font-size: var(--font-meta); line-height: 1.7; }
 .reaction-error { color: var(--error); line-height: 1.7; font-size: var(--font-ui); }
 .episode-navigation { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 24px 0 0; }
 .episode-navigation.has-previous { grid-template-columns: repeat(2, minmax(0, 1fr)); }

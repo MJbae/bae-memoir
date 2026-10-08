@@ -37,6 +37,7 @@ async function openReactions(page: Page) {
   await expect(page.locator('.reaction-options button')).toHaveCount(4)
   await expect(page.getByRole('button', { name: '기억나요', exact: true })).toHaveCount(0)
   await expect(page.locator('.reaction-error')).toHaveCount(0)
+  await expect(page.locator('.reaction-status')).toHaveCount(0)
   // Line icons match the rest of the interface; emoji vary by device.
   await expect(page.locator('.reaction-options button svg')).toHaveCount(4)
   expect(await page.locator('.reaction-options').innerText()).not.toMatch(/\p{Extended_Pictographic}/u)
@@ -107,6 +108,82 @@ test('episode reactions coalesce clicks, persist across browsers, switch, cancel
     await expect.poll(async () => (await storedReactions(request))[0]?.fields.wow.integerValue).toBe('1')
     expect((await storedReactions(request))[0].fields.remember.integerValue).toBe('0')
   } finally { await context.close() }
+})
+
+test('초기 서버 연결이 늦어도 반응을 즉시 선택하고 늦은 조회가 선택을 덮어쓰지 않는다', async ({ page, request }) => {
+  let release!: () => void, requested = false
+  const pending = new Promise<void>(resolve => { release = resolve })
+  await page.route(/\/reaction-backend\.ts(?:\?|$)/, async route => {
+    requested = true
+    await pending
+    await route.continue()
+  })
+  try {
+    await openReactions(page)
+    await expect.poll(() => requested).toBe(true)
+    const heart = page.locator('.reaction-options button').nth(0)
+    const like = page.locator('.reaction-options button').nth(1)
+    await heart.click()
+    await expect(heart).toHaveAttribute('aria-pressed', 'true', { timeout: 250 })
+    await like.click()
+    await expect(like).toHaveAttribute('aria-pressed', 'true', { timeout: 250 })
+    await expect(heart).toHaveAttribute('aria-pressed', 'false')
+    await expect(page.locator('.reaction-bar')).not.toContainText(/저장 중|반응을 불러오는 중|반응을 남겼어요/)
+    expect(await storedReactions(request)).toHaveLength(0)
+    release()
+    await expect.poll(async () => (await storedReactions(request))[0]?.fields.like.integerValue).toBe('1')
+    await expect(like).toHaveAttribute('aria-pressed', 'true')
+    await expect(page.locator('.reaction-error')).toHaveCount(0)
+  } finally { release() }
+})
+
+test('저장 요청 중에도 선택을 바꾸고 마지막 선택만 순서대로 저장한다', async ({ page, request }) => {
+  let release!: () => void, blocked = false
+  const pending = new Promise<void>(resolve => { release = resolve })
+  await page.route(/\/Write\/channel/, async route => {
+    blocked = true
+    await pending
+    await route.continue()
+  })
+  try {
+    await openReactions(page)
+    const heart = page.locator('.reaction-options button').nth(0)
+    const like = page.locator('.reaction-options button').nth(1)
+    await heart.click()
+    await expect.poll(() => blocked).toBe(true)
+    expect(await storedReactions(request)).toHaveLength(0)
+    await like.click()
+    await expect(like).toHaveAttribute('aria-pressed', 'true', { timeout: 250 })
+    await expect(heart).toHaveAttribute('aria-pressed', 'false')
+    await expect(page.locator('.reaction-status')).toHaveCount(0)
+    release()
+    await expect.poll(async () => (await storedReactions(request))[0]?.fields.like.integerValue).toBe('1')
+    expect((await storedReactions(request))[0].fields.heart.integerValue).toBe('0')
+    await expect(like).toHaveAttribute('aria-pressed', 'true')
+    await expect(page.locator('.reaction-error')).toHaveCount(0)
+  } finally { release() }
+})
+
+test('미전송 선택을 보관하고 다른 화에서 새로고침해도 이어서 저장한다', async ({ page, request }) => {
+  await page.route(/\/reaction-backend\.ts(?:\?|$)/, async route => {
+    await new Promise(resolve => setTimeout(resolve, 1800))
+    await route.continue().catch(() => { /* The old document's request is cancelled on navigation. */ })
+  })
+  await openReactions(page)
+  await page.locator('.reaction-options button').first().click()
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('family-library:reaction:ep01')!)))
+    .toMatchObject({ selected: 'heart', pending: true })
+  await page.locator('.next-episode').click()
+  await expect(page).toHaveURL(/ep02\.html$/)
+  await page.reload()
+  await page.locator('#reactions').scrollIntoViewIfNeeded()
+  await expect(page.locator('.reaction-options button')).toHaveCount(4)
+  await expect(page.locator('.reaction-options button[aria-pressed="true"]')).toHaveCount(0)
+  await expect.poll(async () => (await storedReactions(request))[0]?.fields.heart.integerValue).toBe('1')
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('family-library:reaction:ep01')!).pending)).toBe(false)
+  await page.goto('/read/ep01.html#reactions')
+  await page.locator('#reactions').scrollIntoViewIfNeeded()
+  await expect(page.locator('.reaction-options button').first()).toHaveAttribute('aria-pressed', 'true')
 })
 
 test('기존 반응을 UID·선택·시각 그대로 이관하고 재실행해도 최신 선택과 취소를 보존한다', async ({ page, request }) => {
