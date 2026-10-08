@@ -91,8 +91,8 @@ test('다음 화·읽음·읽던 화를 연결하고 목록의 해당 줄로 돌
 test('긴 회차 제목과 모든 글자 크기에서도 이전·다음 버튼은 한 줄 문구와 56px 높이를 유지한다', async ({ page }, info) => {
   // This episode's next title caused the old button to reach four title lines at 320px.
   await page.goto('read/ep08.html')
-  // The episode ends with a word, while ⁂ stays reserved for scene breaks.
-  await expect(page.locator('.story-end')).toHaveText('끝')
+  // Continuing episodes have no end mark; ⁂ remains reserved for scene breaks.
+  await expect(page.locator('.story-end')).toHaveCount(0)
   expect(await page.locator('.story-content hr').first().evaluate(element => getComputedStyle(element, '::after').content)).toBe('"⁂"')
   for (const label of ['작게', '기본', '크게', '아주 크게']) {
     await page.getByRole('button', { name: '설정', exact: true }).click()
@@ -244,6 +244,42 @@ test('기기 화면 모드와 직접 고른 화면 모드를 적용하고 기억
   await page.screenshot({ path: `test-results/reading/${info.project.name}-dark-reader.png`, fullPage: true })
 })
 
+test('본문 문단은 글자 크기에 비례한 간격과 균형 잡힌 줄바꿈을 쓴다', async ({ page }) => {
+  await page.goto('read/ep05.html')
+  const paragraph = page.locator('.story-content p').first()
+  await expect(paragraph).toHaveCSS('line-height', '37px')
+  await expect(paragraph).toHaveCSS('margin-bottom', '30px')
+  expect(await paragraph.evaluate(element => getComputedStyle(element).getPropertyValue('text-wrap-style') || getComputedStyle(element).getPropertyValue('text-wrap'))).toContain('pretty')
+  await page.getByRole('button', { name: '설정', exact: true }).click()
+  await page.getByRole('dialog').getByRole('button', { name: '아주 크게', exact: true }).click()
+  await expect(paragraph).toHaveCSS('margin-bottom', '39px')
+})
+
+test('줄 간격과 서체를 고르면 본문에만 적용하고 다시 열어도 기억한다', async ({ page }) => {
+  await page.goto('read/ep05.html')
+  const paragraph = page.locator('.story-content p').first()
+  await expect(page.locator('#serif-font')).toHaveCount(0)
+  await page.getByRole('button', { name: '설정', exact: true }).click()
+  const dialog = page.getByRole('dialog', { name: '설정', exact: true })
+  await expect(dialog.getByRole('button', { name: '보통', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await expect(dialog.getByRole('button', { name: '고딕', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await dialog.getByRole('button', { name: '넓게', exact: true }).click()
+  await dialog.getByRole('button', { name: '명조', exact: true }).click()
+  await expect(dialog.getByRole('button', { name: '넓게', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await expect(paragraph).toHaveCSS('line-height', '42px')
+  expect(await paragraph.evaluate(element => getComputedStyle(element).fontFamily)).toContain('Gowun Batang')
+  await expect(page.locator('#serif-font')).toHaveCount(1)
+  // The serif face belongs to the story, so the toolbar and settings keep the interface font.
+  expect(await page.locator('.reader-toolbar').evaluate(element => getComputedStyle(element).fontFamily)).not.toContain('Gowun Batang')
+  await page.keyboard.press('Escape')
+  await page.reload()
+  await expect(page.locator('.library')).toHaveClass(/leading-wide/)
+  await expect(page.locator('.library')).toHaveClass(/face-serif/)
+  await expect(paragraph).toHaveCSS('line-height', '42px')
+  await expect(page.locator('#serif-font')).toHaveCount(1)
+  await noOverflow(page)
+})
+
 test('키보드로 보기 설정을 열고 닫는다', async ({ page }) => {
   await page.goto('read/ep01.html')
   const trigger = page.getByRole('button', { name: '설정', exact: true })
@@ -258,10 +294,13 @@ test('키보드로 보기 설정을 열고 닫는다', async ({ page }) => {
 
 test('23화에서 에필로그·외전·목록까지 이어진다', async ({ page }) => {
   await page.goto('read/ep23.html')
+  await expect(page.locator('.story-end')).toHaveCount(0)
   await page.locator('.next-episode').click()
   await expect(page).toHaveURL(/read\/epilog\.html$/)
+  await expect(page.locator('.story-end')).toHaveCount(0)
   await page.locator('.next-episode').click()
   await expect(page).toHaveURL(/read\/side\.html$/)
+  await expect(page.locator('.story-end')).toHaveText('끝')
   await expect(page.locator('.next-episode')).toHaveText('목차')
   await expect(page.locator('.next-episode')).toHaveAccessibleName('전체 회차 보기')
   await expect(page.locator('.next-episode-title')).toHaveCount(0)
@@ -481,7 +520,7 @@ test('목차 왼쪽 줄은 읽음·읽는 중·안 읽음을 모양으로 구분
   await page.screenshot({ path: `test-results/reading/${info.project.name}-toc-rail.png` })
 })
 
-test('설정은 글자 크기·화면·배경음악 순서이며 아주 크게에서도 마치기 단추까지 한 화면에 들어간다', async ({ page }, info) => {
+test('설정은 글자 크기·줄 간격과 서체·화면·배경음악 순서이며 아주 크게에서도 마치기 단추까지 한 화면에 들어간다', async ({ page }, info) => {
   await page.goto('read/ep13.html')
   for (const viewport of [page.viewportSize()!, { width: 375, height: 548 }, { width: 320, height: 568 }]) {
     await page.setViewportSize(viewport)
@@ -489,9 +528,13 @@ test('설정은 글자 크기·화면·배경음악 순서이며 아주 크게�
     const dialog = page.getByRole('dialog', { name: '설정', exact: true })
     await dialog.getByRole('button', { name: '아주 크게', exact: true }).click()
     await expect(page.locator('.library')).toHaveClass(/font-3/)
-    const tops = await dialog.evaluate(element => ['.size-options', '.screen-options', '.music-setting', '.settings-done']
+    const tops = await dialog.evaluate(element => ['.size-options', '.text-options', '.screen-options', '.music-setting', '.settings-done']
       .map(selector => element.querySelector(selector)!.getBoundingClientRect().top))
     expect(tops).toEqual([...tops].sort((a, b) => a - b))
+    // Line spacing and typeface sit side by side, and every label keeps the same gap to its options.
+    expect(new Set(await dialog.locator('.pair-options').evaluateAll(groups => groups.map(group => Math.round(group.getBoundingClientRect().top)))).size).toBe(1)
+    expect(new Set(await dialog.locator('.settings-label').evaluateAll(labels => labels.map(label =>
+      Math.round(label.nextElementSibling!.getBoundingClientRect().top - label.getBoundingClientRect().bottom)))).size).toBe(1)
     await expect(dialog.locator('.reading-preview, .settings-note')).toHaveCount(0)
     expect(await dialog.locator('.size-sample').evaluateAll(samples => samples.map(sample => getComputedStyle(sample).fontSize)))
       .toEqual(['18px', '20px', '23px', '26px'])

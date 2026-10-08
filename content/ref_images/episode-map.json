@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript_sha256": "f115e2d621abf04d70e18727e913e24a0bfb962dd2f54aa59e6bd924f2b3d655",
+  "manuscript_sha256": "43fecfe1effc3272748db0294dfdd3fbc48214cbf9ed3b4e04b7d9c56a47fbe0",
   "episode_count": 26,
   "episodes": [
     {
@@ -428,7 +428,7 @@
       "id": "ep18",
       "number": 18,
       "type": "본편",
-      "title": "마지막 1만 2천 평",
+      "title": "5분의 1만 남은 들판",
       "setting": "1990년대 초 · 독정 정미소",
       "suggested_representative_scene": "마지막 1만 2천 평만 남기기로 결단하며 장롱에서 땅문서 봉투를 꺼내는 배병희",
       "reference_ids": [

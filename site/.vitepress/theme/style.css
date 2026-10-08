@@ -27,6 +27,7 @@
   --font-section: 1.25rem;
   --font-reaction: 1rem;
   --reading-size: 1.25rem;
+  --reading-leading: 1.85;
   --nav-primary-hover: #294f6a;
   --nav-primary-border: #315e7d;
   --nav-secondary-border: #c5cfd6;
@@ -117,6 +118,16 @@ html:has(dialog[open]) {
 }
 .font-3 {
   --reading-size: 1.625rem;
+}
+.leading-wide {
+  --reading-leading: 2.1;
+}
+.library {
+  --reading-face: 'Gowun Batang', AppleMyungjo, 'Noto Serif KR', serif;
+}
+.face-serif .story-content,
+.face-serif .article-header h1 {
+  font-family: var(--reading-face);
 }
 .font-2,
 .font-3 {
@@ -357,9 +368,11 @@ html:has(dialog[open]) {
 }
 .story-content p {
   font-size: var(--reading-size);
-  line-height: 1.85;
+  line-height: var(--reading-leading);
   letter-spacing: -0.3px;
-  margin: 0 0 24px;
+  /* Paragraph gaps scale with the text so breaks stay clearer than the line gap at every size. */
+  margin: 0 0 1.5em;
+  text-wrap: pretty;
 }
 .story-content strong {
   font-weight: 600;
@@ -376,7 +389,7 @@ html:has(dialog[open]) {
 .story-content ol {
   padding-left: 1.3em;
   font-size: var(--reading-size);
-  line-height: 1.85;
+  line-height: var(--reading-leading);
 }
 .story-content li {
   margin: 10px 0;
@@ -765,7 +778,7 @@ dialog::backdrop {
 .chapter-row.is-current .chapter-title { color: var(--ink); font-weight: 600; }
 .story-content hr { border: 0; text-align: center; margin: 40px 0; color: var(--muted); }
 .story-content hr::after { content: '⁂'; }
-/* The episode closes with a word, so its end is never mistaken for a ⁂ scene break. */
+/* Only the final episode keeps the original end mark; earlier episodes lead into navigation. */
 .story-end { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 16px 0 0; color: var(--muted); font-size: calc(var(--font-meta) + 0.0625rem); line-height: 1.5; }
 .story-end::before, .story-end::after { content: ''; width: 28px; height: 1px; background: var(--nav-secondary-border); }
 .reactions-anchor { scroll-margin-top: 84px; min-height: 1px; }
@@ -783,11 +796,14 @@ dialog::backdrop {
 .reaction-error { color: var(--error); line-height: 1.7; font-size: var(--font-ui); }
 .episode-navigation { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 24px 0 0; }
 .episode-navigation.has-previous { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.settings-label { margin: 18px 0 10px; font-weight: 600; font-size: var(--font-ui); line-height: 1.5; }
+.settings-label { margin: 16px 0 8px; font-weight: 600; font-size: var(--font-ui); line-height: 1.5; }
 .dialog-heading + .settings-label { margin-top: 4px; }
 .screen-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.screen-options button { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 0; min-height: 52px; padding: 8px 6px; background: var(--soft); border: 1px solid transparent; border-radius: 12px; font-size: var(--font-ui); line-height: 1.4; word-break: keep-all; }
-.screen-options button.selected { color: var(--link); border-color: var(--link); background: var(--selected); }
+.text-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
+.pair-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.face-sample-serif { font-family: var(--reading-face); }
+.screen-options button, .pair-options button { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 0; min-height: 52px; padding: 8px 6px; background: var(--soft); border: 1px solid transparent; border-radius: 12px; font-size: var(--font-ui); line-height: 1.4; word-break: keep-all; }
+.screen-options button.selected, .pair-options button.selected { color: var(--link); border-color: var(--link); background: var(--selected); }
 .mode-swatch { flex-shrink: 0; width: 16px; height: 16px; box-sizing: border-box; border: 1px solid var(--field-border); border-radius: 50%; }
 .mode-swatch-auto { background: linear-gradient(90deg, var(--swatch-light) 50%, var(--swatch-dark) 50%); }
 .mode-swatch-light { background: var(--swatch-light); }
@@ -844,12 +860,14 @@ dialog::backdrop {
 @media print { .work-synopsis[hidden] { display: block; } }
 /* Short screens such as small phones in Safari tighten the sheet so the largest text still fits. */
 @media (max-height: 600px) {
-  .dialog-body { padding-top: 4px; padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+  dialog { max-height: 94dvh; }
+  .dialog-heading { margin-bottom: 2px; }
+  .dialog-body { padding-top: 4px; padding-bottom: max(14px, env(safe-area-inset-bottom)); }
   .dialog-handle { margin-bottom: 4px; }
-  .settings-label { margin: 14px 0 8px; }
-  .size-options button { min-height: 64px; padding: 6px 2px; }
-  .size-sample { height: 28px; }
-  .screen-options button { min-height: 48px; padding: 6px; }
-  .music-setting { margin-top: 14px; padding-top: 10px; }
-  .settings-done { min-height: 48px; margin-top: 12px; }
+  .settings-label { margin: 10px 0 6px; }
+  .size-options button { min-height: 58px; padding: 4px 2px; }
+  .size-sample { height: 26px; }
+  .screen-options button, .pair-options button { min-height: 44px; padding: 4px 6px; }
+  .music-setting { margin-top: 12px; padding-top: 8px; }
+  .settings-done { min-height: 46px; margin-top: 10px; }
 }

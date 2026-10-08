@@ -41,7 +41,7 @@ async function openReactions(page: Page) {
   // Line icons match the rest of the interface; emoji vary by device.
   await expect(page.locator('.reaction-options button svg')).toHaveCount(4)
   expect(await page.locator('.reaction-options').innerText()).not.toMatch(/\p{Extended_Pictographic}/u)
-  await expect(page.locator('.story-end')).toHaveText('끝')
+  await expect(page.locator('.story-end')).toHaveCount(0)
 }
 async function storedReactions(request: APIRequestContext) {
   const response = await request.get(`${documentsBase}/pages/memoir-ep01/reactions`, { headers: { Authorization: 'Bearer owner' } })

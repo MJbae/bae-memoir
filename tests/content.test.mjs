@@ -129,6 +129,18 @@ test('6부 23화와 앞뒤 회차를 생성하고 정본의 모든 본문을 한
   assert.equal(readPage('ep01.md').data.pageId, 'ep01')
 })
 
+test('휴대폰에서 한 덩어리로 읽히지 않도록 회차 본문 문단은 150자를 넘지 않는다', () => {
+  const { episodes } = parseManuscript(matter(original).content)
+  assert.equal(episodes.length, 26)
+  // Scene lines, images, lists and spoken lines keep their own shape; only narration is measured.
+  const isNarration = paragraph => !/^(\*|!|>|\[|#|-|\d+\.)/.test(paragraph) && !/^[“"].*[”"]$/s.test(paragraph)
+  const long = episodes.flatMap(episode => episode.body.split(/\n\s*\n/)
+    .map(paragraph => paragraph.trim())
+    .filter(paragraph => paragraph && isNarration(paragraph) && paragraph.length > 150)
+    .map(paragraph => `${episode.id} ${paragraph.length}자: ${paragraph.slice(0, 30)}`))
+  assert.deepEqual(long, [])
+})
+
 test('제목을 바꾸어도 ID를 유지하고 원고 순서와 번호가 어긋나면 생성을 거절한다', (t) => {
   const { write, run } = fixture(t)
   const before = run().catalog.readingOrder

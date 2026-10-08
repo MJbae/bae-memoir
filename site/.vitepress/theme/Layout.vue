@@ -26,6 +26,11 @@ const homeHref = computed(() => withBase('/') + (frontmatter.value.episodeId ? `
 const fontSize = ref(1)
 // Each choice previews its real reading size, matching --reading-size for .font-0 to .font-3.
 const sizeOptions = [{ label: '작게', sample: '1.125rem' }, { label: '기본', sample: '1.25rem' }, { label: '크게', sample: '1.4375rem' }, { label: '아주 크게', sample: '1.625rem' }]
+const leading = ref('normal')
+const leadingOptions = [{ value: 'normal', label: '보통' }, { value: 'wide', label: '넓게' }]
+const face = ref('sans')
+const faceOptions = [{ value: 'sans', label: '고딕' }, { value: 'serif', label: '명조' }]
+const serifFontHref = 'https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap'
 const screenMode = ref('auto')
 const modes = [{ value: 'auto', label: '기기 설정' }, { value: 'light', label: '밝게' }, { value: 'dark', label: '어둡게' }]
 const lastRead = ref<SavedReading | null>(null)
@@ -68,6 +73,18 @@ function complete() {
 }
 function resumeReading() { if (lastRead.value) writeStorage('family-library:resume', JSON.stringify(lastRead.value)) }
 function setFont(size: number) { fontSize.value = size; writeStorage('family-library:font', String(size)) }
+function setLeading(value: string) { leading.value = value; writeStorage('family-library:leading', value) }
+// The serif face is optional, so its web font loads only once a reader picks it.
+function loadSerifFont() {
+  if (document.getElementById('serif-font')) return
+  const link = Object.assign(document.createElement('link'), { id: 'serif-font', rel: 'stylesheet', href: serifFontHref })
+  document.head.append(link)
+}
+function setFace(value: string) {
+  face.value = value
+  if (value === 'serif') loadSerifFont()
+  writeStorage('family-library:face', value)
+}
 function setMode(mode: string) {
   screenMode.value = mode
   document.documentElement.dataset.theme = mode
@@ -109,6 +126,10 @@ onMounted(() => {
   }
   const preferred = Number(readStorage('family-library:font') ?? 1)
   if ([0, 1, 2, 3].includes(preferred)) fontSize.value = preferred
+  const savedLeading = readStorage('family-library:leading')
+  if (leadingOptions.some(option => option.value === savedLeading)) leading.value = savedLeading!
+  const savedFace = readStorage('family-library:face')
+  if (faceOptions.some(option => option.value === savedFace)) setFace(savedFace!)
   const mode = readStorage('family-library:theme')
   setMode(modes.some(m => m.value === mode) ? mode! : 'auto')
   completed.value = migrateCompleted(catalog, readJson('family-library:completed'))
@@ -130,7 +151,7 @@ watch(() => route.path, () => { if (mounted) void setupPage() })
 onBeforeUnmount(() => { router.onBeforePageLoad = previousBeforeLoad; ++version; clearTimeout(saveTimer); saveReading(); window.removeEventListener('scroll', onScroll); window.removeEventListener('pagehide', pagehide) })
 </script>
 <template>
-  <div class="library" :class="`font-${fontSize}`">
+  <div class="library" :class="[`font-${fontSize}`, `leading-${leading}`, `face-${face}`]">
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
     <audio ref="musicAudio" class="background-audio" loop preload="none" aria-hidden="true" />
     <WorkHome v-if="isHome" :last-id="lastRead?.id || null" :last-finished="lastFinished" :completed="completed" @resume="resumeReading">
@@ -149,6 +170,10 @@ onBeforeUnmount(() => { router.onBeforePageLoad = previousBeforeLoad; ++version;
     <dialog ref="settingsDialog" class="reading-settings" aria-labelledby="settings-title" @click="closeOnBackdrop">
       <div class="dialog-body"><div class="dialog-handle" aria-hidden="true" /><header class="dialog-heading"><h2 id="settings-title">설정</h2><button class="close-button" aria-label="설정 닫기" @click="closeDialogs"><Icon name="close" :size="21" /></button></header>
         <p class="settings-label">글자 크기</p><div class="size-options" role="group" aria-label="글자 크기 선택"><button v-for="(option, size) in sizeOptions" :key="option.label" type="button" :class="{ selected: fontSize === size }" :aria-pressed="fontSize === size" @click="setFont(size)"><span class="size-sample" :style="{ fontSize: option.sample }" aria-hidden="true">가</span><span>{{ option.label }}</span></button></div>
+        <div class="text-options">
+          <div><p class="settings-label">줄 간격</p><div class="pair-options" role="group" aria-label="줄 간격 선택"><button v-for="option in leadingOptions" :key="option.value" type="button" :class="{ selected: leading === option.value }" :aria-pressed="leading === option.value" @click="setLeading(option.value)">{{ option.label }}</button></div></div>
+          <div><p class="settings-label">서체</p><div class="pair-options" role="group" aria-label="서체 선택"><button v-for="option in faceOptions" :key="option.value" type="button" :class="[`face-sample-${option.value}`, { selected: face === option.value }]" :aria-pressed="face === option.value" @click="setFace(option.value)">{{ option.label }}</button></div></div>
+        </div>
         <p class="settings-label">화면</p><div class="screen-options" role="group" aria-label="화면 모드 선택"><button v-for="mode in modes" :key="mode.value" type="button" :class="{ selected: screenMode === mode.value }" :aria-pressed="screenMode === mode.value" @click="setMode(mode.value)"><span class="mode-swatch" :class="`mode-swatch-${mode.value}`" aria-hidden="true" /><span>{{ mode.label }}</span></button></div>
         <MusicToggle v-if="musicTrack" :enabled="musicEnabled" :status="musicStatus" @change="setMusicEnabled" @retry="retryMusic" />
         <button type="button" class="settings-done" @click="closeDialogs">설정 마치기</button>
