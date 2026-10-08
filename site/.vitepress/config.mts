@@ -11,7 +11,7 @@ const root = fileURLToPath(new URL('../../', import.meta.url))
 const env = loadEnv(process.env.NODE_ENV || 'production', root, '')
 const base = process.env.SITE_BASE || env.SITE_BASE || '/bae-memoir/'
 const workTitle = catalog.work.title
-const siteName = workTitle
+const siteName = base === '/novels/' ? 'ToldLife Novels' : workTitle
 const siteDescription = '배병희 자전소설 · 갯벌에서 들녘까지, 가족과 이웃을 위해 살아온 한평생.'
 const siteOrigin = process.env.SITE_ORIGIN || env.SITE_ORIGIN || 'https://mjbae.github.io'
 const shareImage = new URL(`${base}images/bae-byunghee-hero-watercolor.png`, siteOrigin).href

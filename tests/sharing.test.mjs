@@ -80,6 +80,7 @@ test('home sharing uses the short life description while the visible synopsis st
   assert.equal(head.title, title)
   assert.equal(head.meta('description'), description)
   assert.equal(head.meta('og:title'), title)
+  assert.equal(head.meta('og:site_name'), base === '/novels/' ? 'ToldLife Novels' : title)
   assert.equal(head.meta('og:description'), description)
   assert.equal(head.meta('twitter:title'), title)
   assert.equal(head.meta('twitter:description'), description)
