@@ -779,12 +779,17 @@ dialog::backdrop {
 .story-content hr { border: 0; text-align: center; margin: 40px 0; color: var(--muted); }
 .story-content hr::after { content: '⁂'; }
 /* Only the final episode keeps the original end mark; earlier episodes lead into navigation. */
-.story-end { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 16px 0 0; color: var(--muted); font-size: calc(var(--font-meta) + 0.0625rem); line-height: 1.5; }
-.story-end::before, .story-end::after { content: ''; width: 28px; height: 1px; background: var(--nav-secondary-border); }
+/* The episode end steps away from the story by more than a paragraph gap at every text size. */
+.episode-end { margin-top: max(64px, calc(var(--reading-size) * 3)); }
+.story-end { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0; color: var(--muted); font-size: calc(var(--font-meta) + 0.0625rem); line-height: 1.5; }
+.story-end::before, .story-end::after, .story-break::before, .story-break::after { content: ''; width: 28px; height: 1px; background: var(--nav-secondary-border); }
+.story-break { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.story-break span { width: 4px; height: 4px; border-radius: 50%; background: var(--field-border); }
+.reaction-title { margin: 32px 0 12px; text-align: center; color: var(--muted); font-size: var(--font-meta); font-weight: 400; line-height: 1.5; }
 .reactions-anchor { scroll-margin-top: 84px; min-height: 1px; }
 /* Reactions reuse the settings' option buttons and the interface's line icons instead of device-specific emoji. */
-.reaction-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 24px 0 0; }
-.reaction-options button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; min-height: 68px; padding: 10px 2px; border: 1px solid transparent; border-radius: 10px; background: var(--soft); color: var(--ink); font-size: var(--font-reaction); line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+.reaction-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0; }
+.reaction-options button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 0; min-height: 64px; padding: 6px 2px; border: 1px solid transparent; border-radius: 10px; background: var(--soft); color: var(--ink); font-size: var(--font-reaction); line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
 .reaction-options button[aria-pressed='true'] { border-color: var(--link); background: var(--selected); color: var(--link); }
 .reaction-symbol { display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 24px; color: var(--muted); }
 .reaction-options button[aria-pressed='true'] .reaction-symbol { color: var(--link); }
@@ -794,7 +799,9 @@ dialog::backdrop {
   .reaction-options button[aria-pressed='true']:hover { border-color: var(--link); }
 }
 .reaction-error { color: var(--error); line-height: 1.7; font-size: var(--font-ui); }
-.episode-navigation { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 24px 0 0; }
+.episode-navigation { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin: 40px 0 0; }
+/* Only the next episode is filled, so the pair never reads as more reaction tiles. */
+.episode-navigation .reading-link.previous-episode { background: transparent; }
 .episode-navigation.has-previous { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .settings-label { margin: 16px 0 8px; font-weight: 600; font-size: var(--font-ui); line-height: 1.5; }
 .dialog-heading + .settings-label { margin-top: 4px; }

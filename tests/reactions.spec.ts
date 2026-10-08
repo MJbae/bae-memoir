@@ -42,6 +42,12 @@ async function openReactions(page: Page) {
   await expect(page.locator('.reaction-options button svg')).toHaveCount(4)
   expect(await page.locator('.reaction-options').innerText()).not.toMatch(/\p{Extended_Pictographic}/u)
   await expect(page.locator('.story-end')).toHaveCount(0)
+  await expect(page.getByRole('heading', { name: '이 이야기, 어떠셨나요?' })).toBeVisible()
+  // Title, reactions and episode navigation keep the 32 / 12 / 40px rhythm from the break.
+  expect(await page.evaluate(() => {
+    const box = (selector: string) => document.querySelector(selector)!.getBoundingClientRect()
+    return [box('.reaction-title').top - box('.story-break').bottom, box('.reaction-options').top - box('.reaction-title').bottom, box('.episode-navigation').top - box('.reaction-options').bottom].map(Math.round)
+  })).toEqual([32, 12, 40])
 }
 async function storedReactions(request: APIRequestContext) {
   const response = await request.get(`${documentsBase}/pages/memoir-ep01/reactions`, { headers: { Authorization: 'Bearer owner' } })

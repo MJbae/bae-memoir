@@ -34,6 +34,10 @@ export default defineConfig({
       'meta',
       { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
     ],
+    // The serif face is the default reading font, so it loads with the page instead of on demand.
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    ['link', { id: 'serif-font', rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap' }],
     ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}favicon.svg` }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${base}favicon-32.png` }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `${base}apple-touch-icon.png` }],

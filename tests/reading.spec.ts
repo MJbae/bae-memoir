@@ -247,7 +247,6 @@ test('기기 화면 모드와 직접 고른 화면 모드를 적용하고 기억
 test('본문 문단은 글자 크기에 비례한 간격과 균형 잡힌 줄바꿈을 쓴다', async ({ page }) => {
   await page.goto('read/ep05.html')
   const paragraph = page.locator('.story-content p').first()
-  await expect(paragraph).toHaveCSS('line-height', '37px')
   await expect(paragraph).toHaveCSS('margin-bottom', '30px')
   expect(await paragraph.evaluate(element => getComputedStyle(element).getPropertyValue('text-wrap-style') || getComputedStyle(element).getPropertyValue('text-wrap'))).toContain('pretty')
   await page.getByRole('button', { name: '설정', exact: true }).click()
@@ -255,29 +254,60 @@ test('본문 문단은 글자 크기에 비례한 간격과 균형 잡힌 줄바
   await expect(paragraph).toHaveCSS('margin-bottom', '39px')
 })
 
-test('줄 간격과 서체를 고르면 본문에만 적용하고 다시 열어도 기억한다', async ({ page }) => {
+test('처음 읽을 때는 기본 글자 크기·넓은 줄 간격·명조로 본문을 보여 준다', async ({ page }) => {
   await page.goto('read/ep05.html')
   const paragraph = page.locator('.story-content p').first()
-  await expect(page.locator('#serif-font')).toHaveCount(0)
-  await page.getByRole('button', { name: '설정', exact: true }).click()
-  const dialog = page.getByRole('dialog', { name: '설정', exact: true })
-  await expect(dialog.getByRole('button', { name: '보통', exact: true })).toHaveAttribute('aria-pressed', 'true')
-  await expect(dialog.getByRole('button', { name: '고딕', exact: true })).toHaveAttribute('aria-pressed', 'true')
-  await dialog.getByRole('button', { name: '넓게', exact: true }).click()
-  await dialog.getByRole('button', { name: '명조', exact: true }).click()
-  await expect(dialog.getByRole('button', { name: '넓게', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('.library')).toHaveClass(/font-1/)
+  await expect(paragraph).toHaveCSS('font-size', '20px')
   await expect(paragraph).toHaveCSS('line-height', '42px')
   expect(await paragraph.evaluate(element => getComputedStyle(element).fontFamily)).toContain('Gowun Batang')
-  await expect(page.locator('#serif-font')).toHaveCount(1)
+  await expect.poll(() => paragraph.evaluate(() => document.fonts.check('20px "Gowun Batang"', '가'))).toBe(true)
   // The serif face belongs to the story, so the toolbar and settings keep the interface font.
   expect(await page.locator('.reader-toolbar').evaluate(element => getComputedStyle(element).fontFamily)).not.toContain('Gowun Batang')
+  await page.getByRole('button', { name: '설정', exact: true }).click()
+  const dialog = page.getByRole('dialog', { name: '설정', exact: true })
+  for (const name of ['기본', '넓게', '명조']) await expect(dialog.getByRole('button', { name, exact: true })).toHaveAttribute('aria-pressed', 'true')
+})
+
+test('줄 간격과 서체를 바꾸면 본문에만 적용하고 다시 열어도 기억한다', async ({ page }) => {
+  await page.goto('read/ep05.html')
+  const paragraph = page.locator('.story-content p').first()
+  await page.getByRole('button', { name: '설정', exact: true }).click()
+  const dialog = page.getByRole('dialog', { name: '설정', exact: true })
+  await dialog.getByRole('button', { name: '보통', exact: true }).click()
+  await dialog.getByRole('button', { name: '고딕', exact: true }).click()
+  await expect(dialog.getByRole('button', { name: '보통', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await expect(paragraph).toHaveCSS('line-height', '37px')
+  expect(await paragraph.evaluate(element => getComputedStyle(element).fontFamily)).not.toContain('Gowun Batang')
   await page.keyboard.press('Escape')
   await page.reload()
-  await expect(page.locator('.library')).toHaveClass(/leading-wide/)
-  await expect(page.locator('.library')).toHaveClass(/face-serif/)
-  await expect(paragraph).toHaveCSS('line-height', '42px')
-  await expect(page.locator('#serif-font')).toHaveCount(1)
+  await expect(page.locator('.library')).toHaveClass(/leading-normal/)
+  await expect(page.locator('.library')).toHaveClass(/face-sans/)
+  await expect(paragraph).toHaveCSS('line-height', '37px')
   await noOverflow(page)
+})
+
+test('회차 끝은 본문과 넓게 떨어진 구분 표시 뒤에 회차 이동을 한 쌍으로 둔다', async ({ page }) => {
+  for (const [url, size, gap] of [['read/ep05.html', '기본', 64], ['read/ep05.html', '아주 크게', 78], ['read/side.html', '기본', 64]] as const) {
+    await page.goto(url)
+    await page.getByRole('button', { name: '설정', exact: true }).click()
+    await page.getByRole('dialog').getByRole('button', { name: size, exact: true }).click()
+    await page.keyboard.press('Escape')
+    const gaps = await page.evaluate(() => {
+      const box = (element: Element | null) => element!.getBoundingClientRect()
+      const mark = document.querySelector('.story-break, .story-end')
+      const [previous, next] = [...document.querySelectorAll('.episode-navigation a')].map(box)
+      return {
+        mark: mark!.className,
+        story: Math.round(box(mark).top - box([...document.querySelectorAll('.story-content p')].at(-1)!).bottom),
+        navigation: Math.round(box(document.querySelector('.episode-navigation')).top - box(mark).bottom),
+        pair: Math.round(next.left - previous.right),
+      }
+    })
+    // Continuing episodes get a quiet break; only the last story says 끝.
+    expect(gaps).toEqual({ mark: url.includes('side') ? 'story-end' : 'story-break', story: gap, navigation: 40, pair: 8 })
+    expect(await page.locator('.previous-episode').evaluate(element => getComputedStyle(element).backgroundColor)).toBe('rgba(0, 0, 0, 0)')
+  }
 })
 
 test('키보드로 보기 설정을 열고 닫는다', async ({ page }) => {

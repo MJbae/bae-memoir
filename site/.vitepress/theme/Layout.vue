@@ -26,11 +26,10 @@ const homeHref = computed(() => withBase('/') + (frontmatter.value.episodeId ? `
 const fontSize = ref(1)
 // Each choice previews its real reading size, matching --reading-size for .font-0 to .font-3.
 const sizeOptions = [{ label: '작게', sample: '1.125rem' }, { label: '기본', sample: '1.25rem' }, { label: '크게', sample: '1.4375rem' }, { label: '아주 크게', sample: '1.625rem' }]
-const leading = ref('normal')
+const leading = ref('wide')
 const leadingOptions = [{ value: 'normal', label: '보통' }, { value: 'wide', label: '넓게' }]
-const face = ref('sans')
+const face = ref('serif')
 const faceOptions = [{ value: 'sans', label: '고딕' }, { value: 'serif', label: '명조' }]
-const serifFontHref = 'https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap'
 const screenMode = ref('auto')
 const modes = [{ value: 'auto', label: '기기 설정' }, { value: 'light', label: '밝게' }, { value: 'dark', label: '어둡게' }]
 const lastRead = ref<SavedReading | null>(null)
@@ -74,17 +73,7 @@ function complete() {
 function resumeReading() { if (lastRead.value) writeStorage('family-library:resume', JSON.stringify(lastRead.value)) }
 function setFont(size: number) { fontSize.value = size; writeStorage('family-library:font', String(size)) }
 function setLeading(value: string) { leading.value = value; writeStorage('family-library:leading', value) }
-// The serif face is optional, so its web font loads only once a reader picks it.
-function loadSerifFont() {
-  if (document.getElementById('serif-font')) return
-  const link = Object.assign(document.createElement('link'), { id: 'serif-font', rel: 'stylesheet', href: serifFontHref })
-  document.head.append(link)
-}
-function setFace(value: string) {
-  face.value = value
-  if (value === 'serif') loadSerifFont()
-  writeStorage('family-library:face', value)
-}
+function setFace(value: string) { face.value = value; writeStorage('family-library:face', value) }
 function setMode(mode: string) {
   screenMode.value = mode
   document.documentElement.dataset.theme = mode
@@ -129,7 +118,7 @@ onMounted(() => {
   const savedLeading = readStorage('family-library:leading')
   if (leadingOptions.some(option => option.value === savedLeading)) leading.value = savedLeading!
   const savedFace = readStorage('family-library:face')
-  if (faceOptions.some(option => option.value === savedFace)) setFace(savedFace!)
+  if (faceOptions.some(option => option.value === savedFace)) face.value = savedFace!
   const mode = readStorage('family-library:theme')
   setMode(modes.some(m => m.value === mode) ? mode! : 'auto')
   completed.value = migrateCompleted(catalog, readJson('family-library:completed'))

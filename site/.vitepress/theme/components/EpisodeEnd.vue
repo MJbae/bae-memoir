@@ -31,6 +31,7 @@ onBeforeUnmount(() => { loadObserver?.disconnect(); readObserver?.disconnect() }
 <template>
   <div ref="end" class="episode-end">
     <p v-if="!next" class="story-end">끝</p>
+    <div v-else class="story-break" aria-hidden="true"><span /></div>
     <section v-if="enabled && episode" id="reactions" class="reactions-anchor" aria-label="이 회차에 반응 남기기">
       <ClientOnly><ReactionBar v-if="ready" :page-id="pageId" /></ClientOnly>
     </section>
