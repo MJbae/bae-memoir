@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript_sha256": "d7a2fdc63831fecf4b5fbe8d7ad785e2b23ff4e4dbb03ddb88b7176059a004ae",
+  "manuscript_sha256": "c31ca4c88b22ca598bf0907a402e08995dec5e723e17d6017cefd132d5b2c70c",
   "episode_count": 26,
   "episodes": [
     {
@@ -222,7 +222,7 @@
       "type": "본편",
       "title": "일곱 가구가 따라나선 길",
       "setting": "1977년 · 안면도에서 남양만으로",
-      "suggested_representative_scene": "이웃 일곱 가구와 짐을 싣고 남양만으로 향하는 이주 행렬",
+      "suggested_representative_scene": "이삿짐 트럭으로 안면도에서 화성으로 이동하는 가족과 이웃들",
       "reference_ids": [
         "local-01",
         "sup-006",
@@ -235,7 +235,7 @@
         "안면도/IMG_3327.JPG",
         "시대_참고/남양만_지형/sup-027_남양호와_방조제.webp"
       ],
-      "historical_notes": "1970년대 기종과 실제 이주행렬 사진 없음. 현대 콤바인·트랙터로 대체하지 않음.",
+      "historical_notes": "이주 차량은 트럭이다. 경운기 사진 sup-006은 옮겨 간 농기계의 형태 참고용으로만 사용한다. 현재 등록된 자료에 실제 이주행렬 사진은 없다. 현대 콤바인·트랙터를 이주 차량으로 대체하지 않는다.",
       "suggested_body_scenes": []
     },
     {
@@ -266,7 +266,7 @@
       "id": "ep11",
       "number": 11,
       "type": "본편",
-      "title": "손에 쥐여준 버스비",
+      "title": "수원 가는 버스",
       "setting": "1980년대 초 · 화성 독정리",
       "suggested_representative_scene": "반찬통을 든 딸에게 새벽 길에서 차비를 당부하는 아버지",
       "reference_ids": [
@@ -494,9 +494,9 @@
       "id": "ep21",
       "number": 21,
       "type": "본편",
-      "title": "네 형제가 뭉쳤다",
-      "setting": "2000년대 · 독정 정미소",
-      "suggested_representative_scene": "아버지와 함께 공장을 지키는 가족과 네 아들의 역할",
+      "title": "다섯 형제가 뭉쳤다",
+      "setting": "2000년대 이후 · 독정 정미소",
+      "suggested_representative_scene": "공장 앞에서 다섯 아들과 들녘을 바라보는 아버지",
       "reference_ids": [
         "local-02",
         "local-03",
@@ -507,7 +507,7 @@
         "배병희_자녀들/자녀들과_배우자들.jpeg",
         "독정RPC/인물_가족/inucom-01_배선빈_김미혜_현장.jpg"
       ],
-      "historical_notes": "네 아들 얼굴의 개별 대응표 미확인. 홍보물 속 네 사람을 네 형제 전원으로 오인하지 않음."
+      "historical_notes": "다섯 아들의 얼굴 개별 대응은 미확인이다. 홍보물 속 인물들을 다섯 형제 전원으로 간주하지 않는다. 대표 삽화는 특정 연도의 전원 합류 장면을 뜻하지 않는다."
     },
     {
       "id": "ep22",

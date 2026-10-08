@@ -113,47 +113,236 @@
       "episodeId": "ep09",
       "master": "content/illustration-sources/ep09-02.png",
       "sceneHeading": "일곱 가구가 따라나선 길 {#ep09}",
-      "sceneExcerpt": "배병희의 이주 소식을 들은 고향 이웃 일곱 가구도 그를 믿고 동행을 결정했다. 낯선 곳으로의 이주였지만 수십 년간 보여준 그의 성실함과 리더십을 신뢰했기 때문이다. 1977년 무렵 배병희 일가와 이웃들은 안면도를 떠나 남양만으로 이주했다.",
+      "sceneExcerpt": "1977년 무렵, 마침내 고향을 떠나는 날이 밝았다. 화성으로 이동하는 일은 ‘오산 큰아버지’로 불리던 친족이 주도했다. 안면도 들판에서 함께 땀 흘리며 다루었던 10마력 경운기와 탈곡기, 바인더 같은 농기계와 손때 묻은 살림살이를 이삿짐 트럭에 실었다.",
       "corrections": [
-        "Connect the walking tractor and two-wheel load trailer with a visible, plausible drawbar.",
-        "Seat the driver securely at the front of the trailer, within reach of the handlebars, with feet supported.",
-        "Keep pedestrians beside the road and clear of wheels; show modest newly reclaimed land instead of a steep panoramic descent.",
-        "Correct protagonist likeness from the actual age-specific Bae Byung-hee photographs, preserving facial geometry.",
-        "Use multiple existing series illustrations to strengthen transparent watercolor washes, visible brushwork, and paper texture while preserving the corrected composition."
+        "Remove flat caps and head wraps; use bare heads and plain period work clothes.",
+        "Use 1970s Korean-market flat-front truck shape reference, restrained household belongings and ordinary Korean rural setting.",
+        "Preserve coherent front-facing truck and straight road/cargo/wheel travel axis.",
+        "Repaint the entire image with broad transparent watercolor washes, blooms, large brushwork and clean paper margins; remove uniform mosaic/filter texture."
       ],
       "references": [
         {
-          "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
-          "role": "Highest-priority actual face identity: Bae Byung-hee, the adult man in the center; not the child or suit.",
-          "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
-        },
-        {
-          "path": "site/public/images/bae-byunghee-hero-watercolor.png",
-          "role": "Existing approved portrait: the same protagonist's face and series watercolor style.",
-          "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
-        },
-        {
-          "path": "site/public/images/episodes/ep11-01-1280.jpg",
-          "role": "Existing series scene: familiar protagonist likeness and painterly family-scene rendering.",
-          "sha256": "eb0117a9d77c06085d4e8a96be6c77c955590e5913b77428eb12215b7166d693"
-        },
-        {
-          "path": "content/illustration-sources/ep09-01.png",
-          "role": "New corrected binder scene: the same 1970s protagonist and stronger watercolor style.",
-          "sha256": "ab90d206645bdb63d28d53d4506d3dbec10ff946ba931570901bbe10634d17c7"
-        },
-        {
-          "path": "content/illustration-sources/ep09-02.png",
-          "role": "Edit target: keep the sensible tractor/trailer, seated driver and walking family layout; replace generic driver likeness and repaint the surface.",
-          "sha256": "60f5d828d3cf24999630736153c9599fe456dca1f5eef0245be6a26d5cbd2722"
+          "path": "content/illustration-sources/archive/9화_한국농촌_화풍_수정전/ep09-korean-layout.png",
+          "role": "Layout and subject reference ONLY; repaint all surfaces from blank paper with broad transparent watercolor washes",
+          "sha256": "578f629a30dfe61b5325461e518c1f599ab815c8a1fb3da448d6d58a59a408bb"
         }
       ],
-      "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor autobiography illustration. Correct FACE IDENTITY and WATERCOLOR STYLE in input image 5. Preserve its successfully corrected 1977 migration composition and vehicle connections. Reference roles: image 1 is the actual protagonist's face, the adult man in the center, mandatory identity reference. Image 2 is the existing approved watercolor portrait of the SAME man. Image 3 is another existing series painting of him with his daughter, an identity and watercolor reference. Image 4 is the newly corrected front-view binder scene, fixing how the same 1970s man is rendered in this replacement set. Image 5 is the EDIT TARGET, its scene and vehicle geometry only, not its generic driver face.\nThe protagonist MUST be unmistakably the actual adult man in image 1 and the SAME person as the existing portrait in image 2 and father in image 3. Preserve his face width-to-height, broad midface and full cheeks, softly hooded narrow eyes and familiar brows, broad rounded nose, characteristic lip shape, rounded jaw and chin, ears and forehead-to-hairline relationship. Use age adjustments only for wrinkles and hair; do not redesign facial structure or substitute a generic rural man. No pasted photographic face: paint his real likeness coherently in watercolor. Only the main father's identity is corrected; do not give his face to other family members or neighbors.\nThe seated driver is Bae Byung-hee at about 45: use the same face as the photograph and corrected binder, slightly fewer age lines, black hair and the existing cap. In his existing three-quarter head angle, preserve the recognizable nose profile, eye position, cheek volume, mouth and chin. Keep natural scale and ordinary calm expression. Keep him securely seated at the front of the wooden load trailer with both hands on the rear-facing tractor grips and both feet on the footboard. Retain the visible coherent drawbar, wheels, load chassis, tied bedding bundles and compact threshing machine. Keep his elderly mother, wife and children walking clear of the wheels at the roadside, and neighbors farther along the road, all with their own distinct faces. Retain the low coastal landscape and dirt-road grade.\nPaint the ENTIRE scene as hand-painted watercolor in the same series as the existing painted references: warm cold-pressed paper, clearly visible translucent washes, soft wet-on-wet transitions, pigment blooms and granulation, broken brush-shaped marks, light paper left in highlights, and lost edges with selective crisp strokes for essential faces, hands and objects. Use broader painted color masses in clothing and background instead of photographic microdetail. The visible texture should come from watercolor pigment and paper, not a uniform noisy filter on a photograph. Keep the series' muted ochre, straw and grey-blue palette and legible realistic anatomy. Avoid glossy rendered skin, sharp photorealism, uniformly stippled digital texture, oil impasto, flat cartoons and hard outlines.\nInvariants: same 16:9 landscape composition, vehicle proportions and safe driver placement, same body/hand relationships and pedestrians, same load and scene. Change only the main driver's identity and global paint treatment. Do not copy portrait suits, introduce modern vehicles or machinery, disconnect the tractor and trailer, put people in wheel paths, change the driver to walking, or add text, logo or watermark.",
-      "previousIllustrationSha256": "6f238659f840b2a745b6ed9990a351420533125888e74807243dc3bb58a86efc",
-      "previousMasterSha256": "60f5d828d3cf24999630736153c9599fe456dca1f5eef0245be6a26d5cbd2722",
+      "prompt": "Use case: style-transfer.\nCreate a NEW watercolor painting from blank smooth watercolor paper. Input 1 is ONLY a layout/subject reference. Do NOT copy or retain its painted texture, mosaic marks, shading or pixel detail. Repaint from scratch using large water-loaded brushes.\n\nScene to preserve: a humble late-1970s Korean family move. A small unbranded blue Korean-period flat-front cargo truck comes straight toward the viewer on a farm road, its cab, bed, grille and wheels coherently centered. The elderly mother, wife and two children sit in the bed behind the cab among tied cotton bedding bundles and a few household boxes. Bae is the bare-headed middle-aged man inside the cab, in a plain collared work shirt. No caps, head wraps or matching flower-print costumes. Preserve these same people and their recognizable appearance, but render them in the same watercolor medium as everything else. Low ordinary Korean tiled/metal-roof farmhouses, irregular rice fields, modest utility poles and low wooded hills; two small companion trucks behind face forward.\n\nMAKE THE WATERCOLOR RADICALLY STRONGER AND LOOSER:\nPaint each major form with ONLY a few broad translucent color washes, leaving large areas of white paper. Sky is two or three continuous wet-on-wet pale-blue washes with soft feathered cloud edges and clean white negative space. Hills are broad bleeding blue/green masses. Fields are several large ochre/green wet washes, not hundreds of individual rice strokes. Road is a single broad warm wash with a few sparse dry-brush accents. Truck cab is several large blue-grey water washes with softened edges, pooled pigment and white-paper highlights; add only enough selected dark brush lines for windows, grille and tires. Faces use a few warm transparent washes and selective facial strokes, not smooth photo-like rendering.\nUse free flowing pigment, visible water blooms, backruns, soft color bleeding and deliberate lost-and-found edges. The broad washes and uncovered paper must dominate the image. Simplify distant detail drastically. Let the outer landscape dissolve softly into clean warm-white paper near the sides.\n\nABSOLUTELY NO small angular patchwork, triangular dabs, tiled cracks, embossed/crumpled paper, scribble mesh, evenly scattered flecks, uniform noise overlay, pointillism, colored-pencil shading, precise tiny rice marks, painted-photo filter or hyper-detailed digital faces. Use smooth paper with only subtle natural fiber, not an all-over texture pattern. This should read instantly as a confident painter's loose transparent watercolor sketch, still anatomically clear and mechanically coherent.\n\nKeep the truck front-on and all tires/bumper in frame; retain the Korean ordinary clothing, bare heads, restrained everyday belongings and blue/ochre palette. No modern vehicle, writing, logo, watermark, new people, costume or sideways cargo bed. Wide 16:9, at least 1280 pixels wide. Opaque warm white paper background.",
+      "previousIllustrationSha256": "6ea7252e7e485d68cfc789eba73d1179aa2046894ae65f61f0029deebf49258a",
+      "previousMasterSha256": "832a63bb3d8e10f65368cf7efc5ba9c41ed79132033f7020a903516afcf9bad2",
       "previousIllustrationId": "ep09-02",
       "placementRole": "representative",
-      "placementReason": "이주 행렬을 제목 아래로 올리고 바인더 장면은 해당 작업 문단으로 이동"
+      "placementReason": "4차 가족 피드백에 맞춰 대표 삽화의 사실관계와 본문을 일치시킴",
+      "history": [
+        {
+          "id": "ep09-01",
+          "episodeId": "ep09",
+          "master": "content/illustration-sources/archive/4차_피드백_이전/ep09-02.png",
+          "sceneHeading": "일곱 가구가 따라나선 길 {#ep09}",
+          "sceneExcerpt": "배병희의 이주 소식을 들은 고향 이웃 일곱 가구도 그를 믿고 동행을 결정했다. 낯선 곳으로의 이주였지만 수십 년간 보여준 그의 성실함과 리더십을 신뢰했기 때문이다. 1977년 무렵 배병희 일가와 이웃들은 안면도를 떠나 남양만으로 이주했다.",
+          "corrections": [
+            "Connect the walking tractor and two-wheel load trailer with a visible, plausible drawbar.",
+            "Seat the driver securely at the front of the trailer, within reach of the handlebars, with feet supported.",
+            "Keep pedestrians beside the road and clear of wheels; show modest newly reclaimed land instead of a steep panoramic descent.",
+            "Correct protagonist likeness from the actual age-specific Bae Byung-hee photographs, preserving facial geometry.",
+            "Use multiple existing series illustrations to strengthen transparent watercolor washes, visible brushwork, and paper texture while preserving the corrected composition."
+          ],
+          "references": [
+            {
+              "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+              "role": "Highest-priority actual face identity: Bae Byung-hee, the adult man in the center; not the child or suit.",
+              "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+            },
+            {
+              "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+              "role": "Existing approved portrait: the same protagonist's face and series watercolor style.",
+              "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+            },
+            {
+              "path": "site/public/images/episodes/ep11-01-1280.jpg",
+              "role": "Existing series scene: familiar protagonist likeness and painterly family-scene rendering.",
+              "sha256": "eb0117a9d77c06085d4e8a96be6c77c955590e5913b77428eb12215b7166d693"
+            },
+            {
+              "path": "content/illustration-sources/ep09-01.png",
+              "role": "New corrected binder scene: the same 1970s protagonist and stronger watercolor style.",
+              "sha256": "ab90d206645bdb63d28d53d4506d3dbec10ff946ba931570901bbe10634d17c7"
+            },
+            {
+              "path": "content/illustration-sources/archive/4차_피드백_이전/ep09-02.png",
+              "role": "Edit target: keep the sensible tractor/trailer, seated driver and walking family layout; replace generic driver likeness and repaint the surface.",
+              "sha256": "ab1947e03410e75fdb915da24d51d9bac18ef15452bcfdf1037513f59bebbc0c"
+            }
+          ],
+          "prompt": "Use case: identity-preserve. Asset type: corrected 16:9 watercolor autobiography illustration. Correct FACE IDENTITY and WATERCOLOR STYLE in input image 5. Preserve its successfully corrected 1977 migration composition and vehicle connections. Reference roles: image 1 is the actual protagonist's face, the adult man in the center, mandatory identity reference. Image 2 is the existing approved watercolor portrait of the SAME man. Image 3 is another existing series painting of him with his daughter, an identity and watercolor reference. Image 4 is the newly corrected front-view binder scene, fixing how the same 1970s man is rendered in this replacement set. Image 5 is the EDIT TARGET, its scene and vehicle geometry only, not its generic driver face.\nThe protagonist MUST be unmistakably the actual adult man in image 1 and the SAME person as the existing portrait in image 2 and father in image 3. Preserve his face width-to-height, broad midface and full cheeks, softly hooded narrow eyes and familiar brows, broad rounded nose, characteristic lip shape, rounded jaw and chin, ears and forehead-to-hairline relationship. Use age adjustments only for wrinkles and hair; do not redesign facial structure or substitute a generic rural man. No pasted photographic face: paint his real likeness coherently in watercolor. Only the main father's identity is corrected; do not give his face to other family members or neighbors.\nThe seated driver is Bae Byung-hee at about 45: use the same face as the photograph and corrected binder, slightly fewer age lines, black hair and the existing cap. In his existing three-quarter head angle, preserve the recognizable nose profile, eye position, cheek volume, mouth and chin. Keep natural scale and ordinary calm expression. Keep him securely seated at the front of the wooden load trailer with both hands on the rear-facing tractor grips and both feet on the footboard. Retain the visible coherent drawbar, wheels, load chassis, tied bedding bundles and compact threshing machine. Keep his elderly mother, wife and children walking clear of the wheels at the roadside, and neighbors farther along the road, all with their own distinct faces. Retain the low coastal landscape and dirt-road grade.\nPaint the ENTIRE scene as hand-painted watercolor in the same series as the existing painted references: warm cold-pressed paper, clearly visible translucent washes, soft wet-on-wet transitions, pigment blooms and granulation, broken brush-shaped marks, light paper left in highlights, and lost edges with selective crisp strokes for essential faces, hands and objects. Use broader painted color masses in clothing and background instead of photographic microdetail. The visible texture should come from watercolor pigment and paper, not a uniform noisy filter on a photograph. Keep the series' muted ochre, straw and grey-blue palette and legible realistic anatomy. Avoid glossy rendered skin, sharp photorealism, uniformly stippled digital texture, oil impasto, flat cartoons and hard outlines.\nInvariants: same 16:9 landscape composition, vehicle proportions and safe driver placement, same body/hand relationships and pedestrians, same load and scene. Change only the main driver's identity and global paint treatment. Do not copy portrait suits, introduce modern vehicles or machinery, disconnect the tractor and trailer, put people in wheel paths, change the driver to walking, or add text, logo or watermark.",
+          "previousIllustrationSha256": "6f238659f840b2a745b6ed9990a351420533125888e74807243dc3bb58a86efc",
+          "previousMasterSha256": "60f5d828d3cf24999630736153c9599fe456dca1f5eef0245be6a26d5cbd2722",
+          "previousIllustrationId": "ep09-02",
+          "placementRole": "representative",
+          "placementReason": "이주 행렬을 제목 아래로 올리고 바인더 장면은 해당 작업 문단으로 이동",
+          "masterSha256": "ab1947e03410e75fdb915da24d51d9bac18ef15452bcfdf1037513f59bebbc0c",
+          "preservedIllustration": "content/illustration-sources/archive/4차_피드백_이전/ep09-01-1280.jpg",
+          "reason": "4차 피드백 반영 전 경운기 이주 삽화 제작 기록"
+        },
+        {
+          "sceneExcerpt": "1977년 무렵, 마침내 고향을 떠나는 날이 밝았다. 화성으로 이동하는 일은 ‘오산 큰아버지’로 불리던 친족이 주도했다. 안면도 들판에서 함께 땀 흘리며 다루었던 10마력 경운기와 탈곡기, 바인더 같은 농기계와 손때 묻은 살림살이를 이삿짐 트럭에 실었다.",
+          "prompt": "Use case: precise-object-edit.\nAsset type: corrected landscape 16:9 watercolor TITLE illustration for episode ep09 of a Korean autobiography; long edge at least 1280 pixels.\nPrimary request: edit image 1 to correct the migration vehicle from a walking tractor with a wooden trailer to a historically plausible, anonymous 1977-era Korean moving truck. The manuscript scene is Bae Byung-hee's family and neighboring households moving from Anmyeondo to Hwaseong around 1977, with household belongings and farming equipment transported by truck. Keep the original rural migration story and the coherent watercolor series.\n\nInput roles:\nImage 1 is the EDIT TARGET: preserve its warm coastal rice-field setting, people’s modest 1970s rural clothes, family character identities, muted ochre and grey-blue colors, and watercolor texture. Its tractor/trailer migration vehicle is factually wrong and must be fully replaced, and its walking family should now be shown taking the truck.\nImage 2 is mandatory face identity only: Bae Byung-hee is the ADULT MAN IN THE CENTER, not the child or suit.\nImage 3 is the approved watercolor portrait of that same man, for face geometry and painted style.\nImage 4 is another existing 1970s watercolor scene, for the same protagonist around age 45, work clothes and restrained watercolor treatment; do not copy its reaper-binder or fieldwork.\n\nScene and composition: one wide complete painting, a departure pause on a level rural road in a low coastal farming landscape. The MAIN moving truck is stationary while the family is settled for the journey, with all wheels grounded and natural perspective. Use a simple late-1960s/1970s style modest bonneted cargo truck, round headlights, weathered grey-blue body, dark tires and an ordinary high-sided wooden or metal cargo bed, no identifiable brand or precise model. View it at three-quarter side angle so its cab, loaded cargo bed and family remain clearly readable. Bae, wearing his established cap and ordinary grey-blue work jacket, is a PASSENGER at the camera-side cab window, visible head and upper body. He is not touching a steering wheel. Do not identify or feature the driver; the far-side driver area is naturally obscured. His expression is calm, thoughtful, quietly resolute. Preserve his real broad midface and cheeks, softly hooded narrow eyes, familiar brows, broad rounded nose, lip shape, rounded jaw, ears and black hairline, with slightly fewer age lines for age about 45. Integrate the face into the painting; never paste a photograph or substitute a generic farmer.\nThe elderly mother, wife and two children from the original scene retain their distinct appearances and clothes and are shown seated low inside the enclosed high-sided rear cargo bed, safely away from the truck's edges and wheels, visibly associated with the move. There is a clear low seated passenger area separate from secured household bundles; no one standing or sitting on the rim, climbing, dangling limbs, or walking in wheel paths. The truck is paused, with no dust plume or speed effect. Tie modest bedding bundles, household baskets and compact farming equipment down securely below the rail. Farm equipment, if visible, is cargo only, never the towing vehicle. Behind the main truck, softly painted smaller moving trucks with household bundles suggest the neighboring seven-household migration, without making a factual claim about an exact number of vehicles. No crowds added to the foreground. Preserve low fields, distant blue coastal water and hazy hills as soft contextual washes, without claiming a specific route or landmark.\n\nStyle: paint EVERY surface in the existing series' hand-painted watercolor on warm cold-pressed paper, transparent ochre and restrained grey-blue washes, visible pigment blooms and granulation, broad brush-shaped marks, soft wet-on-wet transitions, light paper highlights and lost edges with selective clear strokes for faces and essential truck details. No photograph with a uniform speckled paint filter, pasted face, glossy skin, hyper-detailed digital rendering, oil impasto, cartoon or hard outlines.\nFraming: landscape, preferably exact 16:9, essential truck, Bae's face and family within a generous central safe area so a centered 16:9 crop preserves them. Leave some rural landscape margin around the scene; truck and family must be large enough to read on a phone.\nAvoid: the old walking tractor or tow trailer as transport, boats, people walking as the principal means of the journey, a smiling advertisement, unsafe riding or traffic action, modern trucks or cars, luxury factory, exact branded truck identity, readable license plate, signage, lettering, text, caption, logo, watermark, decorative border, panels or collage. Opaque background.",
+          "corrections": [
+            "Replace walking-tractor migration vehicle with an anonymous 1977-era moving truck.",
+            "Keep protagonist identity, rural family, watercolor style and neighboring-household context.",
+            "Farm equipment is cargo; do not identify the driver or assert an exact route."
+          ],
+          "references": [
+            {
+              "path": "content/illustration-sources/archive/4차_피드백_이전/ep09-02.png",
+              "role": "Edit target before 4th-feedback replacement; migration composition, family, watercolor style; wrong tractor transport.",
+              "sha256": "ab1947e03410e75fdb915da24d51d9bac18ef15452bcfdf1037513f59bebbc0c"
+            },
+            {
+              "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+              "role": "Mandatory protagonist identity: adult man in center, not child or suit.",
+              "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+            },
+            {
+              "path": "site/public/images/bae-byunghee-hero-watercolor.png",
+              "role": "Approved face geometry and watercolor portrait style.",
+              "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
+            },
+            {
+              "path": "content/illustration-sources/ep09-01.png",
+              "role": "1970s same protagonist identity, age, clothes and watercolor only; binder composition excluded.",
+              "sha256": "ab90d206645bdb63d28d53d4506d3dbec10ff946ba931570901bbe10634d17c7"
+            }
+          ],
+          "visualReview": {
+            "approved": true,
+            "checks": [
+              "1970s anonymous bonneted moving truck replaces tractor transportation",
+              "Bae in near passenger cab window; steering not touched and driver obscured",
+              "original mother, wife and two children seated low within high-sided cargo bed",
+              "tied household bundles and compact threshing equipment as cargo",
+              "two background moving trucks imply neighboring-household accompaniment",
+              "painted coastal-field context and original warm watercolor treatment preserved",
+              "no legible words, logo, modern vehicle or dangerous traffic action",
+              "main family and truck inside center crop; long edge exceeds 1280"
+            ],
+            "note": "1672×941 is within 1 pixel of 16:9 crop at this width; center crop preserves subjects."
+          },
+          "generationTool": "builtin image_gen__imagegen",
+          "generatedSize": {
+            "width": 1672,
+            "height": 941
+          },
+          "manuscriptSha256AtGeneration": "adf134f46b4edbeaa1748c95b7d44cdcca9dd766d28965c56d7e9641d5a18bd2",
+          "reason": "9화 트럭 방향 수정 전 제작 기록",
+          "master": "content/illustration-sources/archive/9화_트럭_방향_수정전/ep09-02.png",
+          "masterSha256": "abc18af4a90a2bf99bed6b12524ae956cfd2e88fc4032402ba78241d5f940f03",
+          "preservedIllustration": "content/illustration-sources/archive/9화_트럭_방향_수정전/ep09-01-1280.jpg"
+        },
+        {
+          "sceneExcerpt": "1977년 무렵, 마침내 고향을 떠나는 날이 밝았다. 화성으로 이동하는 일은 ‘오산 큰아버지’로 불리던 친족이 주도했다. 안면도 들판에서 함께 땀 흘리며 다루었던 10마력 경운기와 탈곡기, 바인더 같은 농기계와 손때 묻은 살림살이를 이삿짐 트럭에 실었다.",
+          "prompt": "Use case: precise-object-edit\nAsset type: final 16:9 watercolor chapter illustration.\nImage 1 is the edit target. Fix ONLY the remaining vehicle/road perspective inconsistency while retaining the original people, household belongings, 1970s rural moving-truck design, warm watercolor technique, coastal fields, hills and migration story.\n\nCritical correction: the hood/cab looks frontal, but the cargo bed sticks out far to the LEFT and the road goes to the RIGHT, so the truck is still twisted. Reconstruct the ENTIRE MAIN TRUCK and ROAD around ONE STRAIGHT CENTER AXIS. Use a genuinely STRAIGHT-ON FRONTAL VIEW, not a three-quarter view.\n\nThe truck is traveling straight toward the camera:\n- Place the center of the cargo bed, center of the cab roof, windshield divider, hood, grille and front bumper on the SAME VERTICAL CENTERLINE in the image.\n- The bed is DIRECTLY BEHIND the cab, centered and foreshortened away from the viewer. It must NOT swing or project sideways left. Do not expose a long sideboard panel on either side. The front cab naturally occludes the lower cargo bed. Allow only narrow symmetrical outer edges of the bed beside the cab, and tied bedding, baskets and furniture visible ABOVE and BEHIND the cab roof.\n- The main truck is mechanically rigid: cab, bed, chassis and axles share one forward direction. Both front headlights and front wheel contact points are balanced left and right. Tires are upright and pointing straight; rear wheels are directly behind the fronts, largely occluded.\n- Rebuild the road as a straight path whose two edges recede behind the main truck toward one vanishing point centered above the truck, rather than curving off toward the right. The road leads naturally from the bottom foreground under the front axle to the truck's centered rear direction. Keep the surrounding fields, water and hills, but change the dirt-road edges as needed to establish this single coherent geometry.\n- Both smaller companion trucks must also show their FRONT faces and face TOWARD the camera, following behind on this same road. Do not show their tailgates/rear faces driving away. Reduce them by distance without changing the direction.\n\nPeople: preserve the elderly mother, wife, two children, and middle-aged Bae's established likeness and rural clothing, but move or partially occlude them to respect a true frontal vehicle. Do not keep a sideways cargo bed merely to show people. Family passengers are seated low in the cargo bed behind the cab; faces may be partially visible above or just beside the cab as the actual perspective permits, never sitting on top of the cab roof or dangling at the edge. Bae remains a passenger: put his cap-wearing figure in the passenger portion of the windshield, on the VIEWER'S LEFT (vehicle's right), with no hand on a steering wheel. The opposite driver portion is indistinct and must not use Bae's face.\n\nKeep a quiet natural historical illustration, anonymous weathered grey-blue bonneted truck and round lights, secured humble household loads, transparent ochre/grey-blue watercolor washes, paper granulation and soft painted edges. No text, logo, license number, modern model, added foreground people, floating passengers, pasted face, bent truck, sideways cargo bed, diagonal turning pose or long exposed side panel. Wide 16:9, at least 1280 pixels wide; generous margins around front wheels and bumper, opaque background.",
+          "corrections": [
+            "Use a straight-on frontal truck view aligned with the road travel axis.",
+            "Center the cargo bed behind the cab with coherent chassis, axles and wheels; remove the leftward bed projection.",
+            "Companion trucks face the same forward direction; preserve the family, load and watercolor treatment."
+          ],
+          "references": [
+            {
+              "path": "content/illustration-sources/archive/9화_트럭_방향_수정전/ep09-front-draft.png",
+              "role": "Intermediate frontal edit target: correct remaining off-center cargo bed, road axis and opposing companion trucks.",
+              "sha256": "887ca8432fbdc342982dc8383a7472ccaf1ce2a0126898d2bc119492eefe8515"
+            }
+          ],
+          "visualReview": {
+            "approved": true,
+            "checks": [
+              "Frontal cab, grille and cargo bed share a coherent centered travel axis.",
+              "Cargo bed recedes behind the cab instead of projecting sideways.",
+              "Front wheels point straight and tire contact is grounded.",
+              "The road and companion trucks follow the same forward direction.",
+              "Family, household loads and watercolor style are preserved."
+            ],
+            "independentReview": "Second geometry review confirmed the main truck reads as traveling straight toward the viewer."
+          },
+          "generationTool": "builtin image_gen__imagegen",
+          "generatedSize": {
+            "width": 1672,
+            "height": 941
+          },
+          "manuscriptSha256AtGeneration": "adf134f46b4edbeaa1748c95b7d44cdcca9dd766d28965c56d7e9641d5a18bd2",
+          "reason": "한국 농촌 복장과 강한 수채화 수정 전 제작 기록",
+          "master": "content/illustration-sources/archive/9화_한국농촌_화풍_수정전/ep09-02.png",
+          "masterSha256": "832a63bb3d8e10f65368cf7efc5ba9c41ed79132033f7020a903516afcf9bad2",
+          "preservedIllustration": "content/illustration-sources/archive/9화_한국농촌_화풍_수정전/ep09-01-1280.jpg"
+        }
+      ],
+      "masterSha256": "d307c3e825d0d0dfd91170273962fcbf30cd8115160244a528dc64560c42c46c",
+      "generationTool": "builtin image_gen__imagegen",
+      "generatedSize": {
+        "width": 1672,
+        "height": 941
+      },
+      "visualReview": {
+        "approved": true,
+        "checks": [
+          "No flat caps or matching head wraps; ordinary plain clothes and natural hairstyles.",
+          "Frontal cab, cargo bed, grille and front wheels retain a coherent shared axis.",
+          "Simple low farmhouses, utility poles and household load suit the Korean rural reference material.",
+          "Broad sky washes, large field and road brushwork, blue pigment blooms on the cab and paper margins are substantially stronger.",
+          "Uniform mosaic marks no longer dominate the overall image."
+        ],
+        "independentReview": "Third repaint accepted after independent visual review of rural clothing, frontal geometry and watercolor treatment."
+      },
+      "manuscriptSha256AtGeneration": "adf134f46b4edbeaa1748c95b7d44cdcca9dd766d28965c56d7e9641d5a18bd2",
+      "directionCorrection": {
+        "date": "2026-10-08",
+        "editCount": 2,
+        "reason": "사용자 피드백에 따라 트럭의 정면 방향·차체와 적재함·도로 원근을 정리함"
+      },
+      "inputPreparation": {
+        "reason": "한국 농촌 복장·차형을 정리한 중간 결과를 최종 수채화의 배치 참고로 사용",
+        "master": "content/illustration-sources/archive/9화_한국농촌_화풍_수정전/ep09-korean-layout.png",
+        "masterSha256": "578f629a30dfe61b5325461e518c1f599ab815c8a1fb3da448d6d58a59a408bb",
+        "prompt": "Use case: style-transfer and precise-object-edit.\nAsset type: a strongly hand-painted watercolor illustration for chapter 9 of a Korean family autobiography, set around 1977 in rural Anmyeondo and Hwaseong.\nInput roles:\n1. EDIT TARGET: the existing front-facing migration truck. Preserve its corrected straight travel axis, centered frontal composition, coherent cargo-bed/chassis/wheel perspective, family migration and household cargo.\n2. FACE IDENTITY ONLY: Bae Byung-hee is the adult man in the CENTER of the real photograph. Preserve his broad face, cheeks, narrow eyes, brow shape, nose, mouth and jaw, adjusting age slightly to around forty. Do not copy the child, suit or necktie.\n3. PERIOD TRUCK SHAPE ONLY: official 1971 Korean-market Titan reference. Use the modest flat-front cab-over proportions, simple windshield, straight grille and period headlights. Do not copy the black studio background, brand letters, logo, model-name plate, glossy finish or exact paint color. This is a shape reference, not a claim about the family's exact vehicle.\n4. 1973 KOREAN FARM PHOTO: simple collared cotton work clothes, low farmland, modest farm houses and restrained everyday rural appearance; do not add its tractor.\n5. 1972 KOREAN RURAL HOUSE PHOTO: humble walls, subdued tile/metal roof and ordinary work shirts. Do not copy the demolition activity or introduce more people.\n\nPrimary correction: replace the stylized flat cap and generalized costume village treatment with a grounded late-1970s Korean rural family move, and repaint the ENTIRE image as unmistakable, expressive, hand-painted watercolor. Keep the truck coming straight toward the viewer on the road.\n\nPeople and clothing:\n- Remove the man's beige flat/newsboy cap completely. Give Bae his own short, dark, simply combed hair, no hat of any kind. Preserve his recognizable face from input 2, integrated into the watercolor with a few controlled strokes. Plain faded grey-blue collared cotton shirt or modest everyday work jacket, no stand collar or ornamental fastenings.\n- Elderly mother with grey hair gathered naturally in a small low bun, a plain off-white cotton top and dark skirt. Wife with unadorned dark hair tied back or a simple short hairstyle, a quiet pale-grey or off-white cotton blouse and dark everyday trousers. No matching orange flower-print outfits, large head wraps, turbans, flat caps, ornate costume, stylized theatrical rural dress or elaborate embroidery.\n- Keep the same four family members behind the cab: mother, wife and two children. Children have simple ordinary shirts, natural black hair, no hats. Seat them low within the bed and allow realistic occlusion; no one perches on the roof or cargo-bed edge. Bae is visible in the passenger area of the windshield, not touching a steering wheel. Do not turn him into an advertisement model or paste a photographic face.\n\nTruck and belongings:\nUse a weathered, unbranded, modest 1970s Korean-market flat-front cab-over cargo truck informed by input 3, replacing the heavy bonneted design. Preserve the straight frontal geometry: bed centered behind cab, left/right front tires grounded and parallel, windshield, grille and bumper sharing the same center axis. Road edges recede behind it along the same travel direction. The smaller accompanying trucks also face forward in that same direction.\nSimplify the decorative repeated load into believable humble moving belongings: faded Korean cotton bedding tied in plain cloth bundles, a small wooden household chest and simple storage boxes, a modest straw basket and secured farm equipment. No tower of identical floral rolls, giant ornamental circular basket display or lavish furniture. Keep the essentials of the move, not extra props.\n\nKorean rural setting:\nLow irregular rice fields separated by humble earthen ridges, a dirt farm road, a few unobtrusive utility poles, a SMALL cluster of low whitewashed or earth-toned farm houses with subdued grey tile or simple metal roofs, low wooded hills. Keep the coastal context as a restrained distant wash; simplify the vast blue water and repetitive red-roof settlement so they do not dominate. This should feel like a modest Korean countryside in the late 1970s, not an ornamental village panorama. No flags, banners, decorative script or tourism symbols.\n\nSTRONG WATERCOLOR, not a photo filter:\nRepaint all surfaces, including faces, truck, sky and fields, in broad, confidently handled transparent watercolor washes on warm white cold-pressed paper. Large wet-on-wet sky and distant-field washes, soft pigment blooms and water backruns, pooling pigment at selected edges, locally varied granulation, visible sweeping brush-shaped marks, dry-brush accents only where needed, and areas of clean paper showing through. Merge distant houses and rice into simplified painted masses; omit tiny repeated tiles, rice grains and exhaustive surface scratches. Keep a few purposeful crisp strokes for the main face, windshield, wheel contact and grille, while losing other edges into the surrounding washes. The paint must show variation in wash density and edge softness. NO uniform mosaic texture, scribble/net overlay, evenly speckled noise filter, photorealistic microdetail, glossy rendering, pasted faces, heavy outlines, oil impasto or digital airbrush. Watercolor should be much clearer and stronger than input 1 while preserving readable anatomy and vehicle structure.\n\nFraming: wide 16:9, at least 1280 pixels wide, centered main truck with side margins and full front wheels/bumper. Opaque warm-paper background. No captions, logos, watermark, readable license number, modern truck, tilted vehicle, sideways cargo bed, extra foreground people, or renewed flat cap.",
+        "references": [
+          {
+            "path": "content/illustration-sources/archive/9화_한국농촌_화풍_수정전/ep09-02.png",
+            "role": "Layout edit target before Korean rural styling",
+            "sha256": "832a63bb3d8e10f65368cf7efc5ba9c41ed79132033f7020a903516afcf9bad2"
+          },
+          {
+            "path": "content/ref_images/배병희_본인/50대의_배병희_정장.png",
+            "role": "Bae identity and bare-headed hair: adult man in center; not child or suit",
+            "sha256": "0975b11331ca1e4e79f7443319575255f2c95011a5a3cbccb9095145dedc8c64"
+          },
+          {
+            "path": "content/illustration-sources/references/kia-titan-1971-front.webp",
+            "role": "Period Korean-market flat-front truck proportions only; not the family exact vehicle",
+            "sha256": "a13264dcb84a969087a0fd85a1b4872c511e3f4821c39d4840c9f097f9df23bc",
+            "sourcePage": "https://worldwide.kia.com/en/brand/our-brand/heritage/vehicles/titan",
+            "sourceImage": "https://worldwide.kia.com/ko/brand/our-brand/heritage/desktop/images/vehicle/titan/kia-brandweb-movement-titan-front-1920x1080.webp"
+          },
+          {
+            "path": "content/ref_images/시대_참고/농기구_생활/sup-006_1973_경운기_영농.jpg",
+            "role": "1973 Korean rural work clothes and farmland reference; tractor not included",
+            "sha256": "6d6962c1bdb075447930df5454a201e898ee1ddb3bb5cd9af63d4038d53d2324"
+          },
+          {
+            "path": "content/ref_images/시대_참고/농기구_생활/sup-007_1972_농촌_주택개량.jpg",
+            "role": "1972 rural house surfaces and simple work shirts; demolition not included",
+            "sha256": "c9be2c0c25469c78973388365634e70b0d559dafa8bd3fc956f5b1119d223e08"
+          }
+        ],
+        "watercolorAcceptedAtThisStage": false
+      },
+      "ruralStyleCorrection": {
+        "date": "2026-10-08",
+        "editCount": 3,
+        "reason": "사용자 요청에 따라 빵모자·두건을 없애고 한국 농촌 복장·차형과 강한 수채화로 재페인팅",
+        "periodVehicleSource": "https://worldwide.kia.com/en/brand/our-brand/heritage/vehicles/titan",
+        "sourceUse": "차형 참고이며 가족이 사용한 실제 차종을 확정하지 않음"
+      }
     },
     {
       "id": "side-01",
@@ -648,9 +837,9 @@
       "master": "content/illustration-sources/ep16-02.png",
       "masterSha256": "45518f39c2e0143172f0d7f3d1a5d92186d2ccd1b1c35af4a40d9a50ecb997b0",
       "sceneHeading": "부엌을 지킨 사람 {#ep16}",
-      "sceneExcerpt": "당시 독정리의 열여덟 평 남짓한 슬레이트집은 식솔이 많아 늘 비좁았다. 아내는 고향 안면도에서 모시고 온 시어머니를 지극정성으로 돌보았다. 기력이 쇠해 자리에 누운 시어머니의 대소변을 받아내며 병구완을 도맡았고, 안면도에서 의지할 곳 없어 함께 건너온 이웃 어르신의 밥상과 잠자리까지 한 식구처럼 살뜰히 챙겼다. 거기에 줄줄이 자라나는 일곱 남매의 끼니와 빨래까지 도맡았으니, 아내의 하루는 동트기 전부터 밤이 깊을 때까지 잠시도 쉴 틈이 없었다.",
+      "sceneExcerpt": "정미소를 시작하기 전, 독정리의 열여덟 평 시멘트 기와집은 식솔들로 늘 비좁았다. 아내는 고향 안면도에서 함께 모시고 온 시어머니를 지극정성으로 봉양했다. 기력이 쇠해 자리에 누운 시어머니의 대소변을 받아내며 병구완을 도맡았다.",
       "placementRole": "body",
-      "scene": "비좁은 슬레이트집에서 병든 시어머니의 이불을 여미며 돌보는 아내",
+      "scene": "정미소를 시작하기 전 비좁은 시멘트 기와집에서 병든 시어머니의 이불을 여미며 돌보는 아내",
       "references": [
         {
           "path": "site/public/images/episodes/ep16-01-1280.jpg",
@@ -668,8 +857,17 @@
           "sha256": "bdf901a59dfaee8a457529f848a536e2b36f57be564c2367c715ad3f61e5ebb9"
         }
       ],
-      "prompt": "Use case: historical-scene. Asset type: one new complete landscape 16:9 BODY illustration for the existing Korean autobiography website. These inputs are REFERENCES, not edit targets. Illustrate only the specified manuscript scene, as a new composition.\nStyle: match the existing series' hand-painted watercolor on warm cold-pressed paper: translucent ochre and restrained grey-blue washes, broad brush-shaped marks, visible watercolor blooms and granulation, softly lost edges alternating with selective crisp strokes for hands, faces and essential objects, light paper left in highlights. Paint every surface coherently. No photo with a paint filter, pasted photographic face, glossy skin, uniform artificial speckling, oil impasto, cartoon or hyper-detailed digital rendering.\nComposition: single wide 16:9 scene, no panels or collage. Make the action instantly readable on a phone; keep essential people, hands and objects inside the central framing. Natural anatomy, continuous connected limbs, believable grounded feet and object support. Use period-appropriate modest clothes, buildings and hand tools. No captions, text, legible lettering, logos, watermark or decorative border.\nManuscript scene: Bae's wife quietly cares for his bedridden elderly mother in the cramped eighteen-pyeong slate-roof home. This reveals her family caregiving beyond the cooking in the title image.\nReference roles: image 1 supplies the wife's off-white patterned cotton blouse, modest blue-grey apron, natural hands and watercolor; her actual face is not documented, so do not invent an identifiable portrait. Image 2 supplies worn rural house surfaces and simple interior light only. Image 3 is PAINT STYLE ONLY; no man is present and its face must not be assigned to either woman.\nScene: early 1980s modest Korean rural room, low floor bedding and an old folded quilt. The wife is seen from a three-quarter BACK angle, kneeling naturally beside the bedding and gently tucking the blanket around her elderly mother-in-law's shoulders. Show two distinct female figures: middle-aged wife in her familiar work clothes, older grey-haired woman resting fully clothed under bedding, her face small and softly rendered. Quiet restrained care, soft window light, close readable hands and supported blanket, plain papered wall and humble furnishings. No kitchen stove, food serving, hospital equipment, clinical procedures, luxurious bedroom, male character, nude body, distressed bodily exposure or a generic glamour portrait.",
-      "manuscriptSha256AtGeneration": "240f9943e3f536b600224b3efa89c0280fd08f880dc494327b482339da929b74"
+      "prompt": "Use case: historical-scene. Asset type: one new complete landscape 16:9 BODY illustration for the existing Korean autobiography website. These inputs are REFERENCES, not edit targets. Illustrate only the specified manuscript scene, as a new composition.\nStyle: match the existing series' hand-painted watercolor on warm cold-pressed paper: translucent ochre and restrained grey-blue washes, broad brush-shaped marks, visible watercolor blooms and granulation, softly lost edges alternating with selective crisp strokes for hands, faces and essential objects, light paper left in highlights. Paint every surface coherently. No photo with a paint filter, pasted photographic face, glossy skin, uniform artificial speckling, oil impasto, cartoon or hyper-detailed digital rendering.\nComposition: single wide 16:9 scene, no panels or collage. Make the action instantly readable on a phone; keep essential people, hands and objects inside the central framing. Natural anatomy, continuous connected limbs, believable grounded feet and object support. Use period-appropriate modest clothes, buildings and hand tools. No captions, text, legible lettering, logos, watermark or decorative border.\nManuscript scene: Bae's wife quietly cares for his bedridden elderly mother in the cramped eighteen-pyeong cement-tile-roof home before the rice mill operation. This reveals her family caregiving beyond the cooking in the title image.\nReference roles: image 1 supplies the wife's off-white patterned cotton blouse, modest blue-grey apron, natural hands and watercolor; her actual face is not documented, so do not invent an identifiable portrait. Image 2 supplies worn rural house surfaces and simple interior light only. Image 3 is PAINT STYLE ONLY; no man is present and its face must not be assigned to either woman.\nScene: modest Korean rural room in Dokjeongri before the rice mill operation, low floor bedding and an old folded quilt. The wife is seen from a three-quarter BACK angle, kneeling naturally beside the bedding and gently tucking the blanket around her elderly mother-in-law's shoulders. Show two distinct female figures: middle-aged wife in her familiar work clothes, older grey-haired woman resting fully clothed under bedding, her face small and softly rendered. Quiet restrained care, soft window light, close readable hands and supported blanket, plain papered wall and humble furnishings. No kitchen stove, food serving, hospital equipment, clinical procedures, luxurious bedroom, male character, nude body, distressed bodily exposure or a generic glamour portrait.",
+      "manuscriptSha256AtGeneration": "240f9943e3f536b600224b3efa89c0280fd08f880dc494327b482339da929b74",
+      "history": [
+        {
+          "reason": "4차 피드백 반영 전 제작 당시의 장면과 프롬프트",
+          "scene": "비좁은 슬레이트집에서 병든 시어머니의 이불을 여미며 돌보는 아내",
+          "sceneExcerpt": "당시 독정리의 열여덟 평 남짓한 슬레이트집은 식솔이 많아 늘 비좁았다. 아내는 고향 안면도에서 모시고 온 시어머니를 지극정성으로 돌보았다. 기력이 쇠해 자리에 누운 시어머니의 대소변을 받아내며 병구완을 도맡았고, 안면도에서 의지할 곳 없어 함께 건너온 이웃 어르신의 밥상과 잠자리까지 한 식구처럼 살뜰히 챙겼다. 거기에 줄줄이 자라나는 일곱 남매의 끼니와 빨래까지 도맡았으니, 아내의 하루는 동트기 전부터 밤이 깊을 때까지 잠시도 쉴 틈이 없었다.",
+          "prompt": "Use case: historical-scene. Asset type: one new complete landscape 16:9 BODY illustration for the existing Korean autobiography website. These inputs are REFERENCES, not edit targets. Illustrate only the specified manuscript scene, as a new composition.\nStyle: match the existing series' hand-painted watercolor on warm cold-pressed paper: translucent ochre and restrained grey-blue washes, broad brush-shaped marks, visible watercolor blooms and granulation, softly lost edges alternating with selective crisp strokes for hands, faces and essential objects, light paper left in highlights. Paint every surface coherently. No photo with a paint filter, pasted photographic face, glossy skin, uniform artificial speckling, oil impasto, cartoon or hyper-detailed digital rendering.\nComposition: single wide 16:9 scene, no panels or collage. Make the action instantly readable on a phone; keep essential people, hands and objects inside the central framing. Natural anatomy, continuous connected limbs, believable grounded feet and object support. Use period-appropriate modest clothes, buildings and hand tools. No captions, text, legible lettering, logos, watermark or decorative border.\nManuscript scene: Bae's wife quietly cares for his bedridden elderly mother in the cramped eighteen-pyeong slate-roof home. This reveals her family caregiving beyond the cooking in the title image.\nReference roles: image 1 supplies the wife's off-white patterned cotton blouse, modest blue-grey apron, natural hands and watercolor; her actual face is not documented, so do not invent an identifiable portrait. Image 2 supplies worn rural house surfaces and simple interior light only. Image 3 is PAINT STYLE ONLY; no man is present and its face must not be assigned to either woman.\nScene: early 1980s modest Korean rural room, low floor bedding and an old folded quilt. The wife is seen from a three-quarter BACK angle, kneeling naturally beside the bedding and gently tucking the blanket around her elderly mother-in-law's shoulders. Show two distinct female figures: middle-aged wife in her familiar work clothes, older grey-haired woman resting fully clothed under bedding, her face small and softly rendered. Quiet restrained care, soft window light, close readable hands and supported blanket, plain papered wall and humble furnishings. No kitchen stove, food serving, hospital equipment, clinical procedures, luxurious bedroom, male character, nude body, distressed bodily exposure or a generic glamour portrait."
+        }
+      ],
+      "manuscriptSha256AtSceneUpdate": "adf134f46b4edbeaa1748c95b7d44cdcca9dd766d28965c56d7e9641d5a18bd2"
     },
     {
       "id": "ep17-02",
@@ -794,10 +992,53 @@
         ],
         "method": "Pillow Lanczos export of built-in image_gen result"
       }
+    },
+    {
+      "id": "ep21-01",
+      "episodeId": "ep21",
+      "master": "content/illustration-sources/ep21-01.png",
+      "masterSha256": "ef25e2d9eef9746039fefc7842ca0e6e0a3c145dc80d9139e8588d13f9f5df88",
+      "sceneHeading": "다섯 형제가 뭉쳤다 {#ep21}",
+      "sceneExcerpt": "현재는 막내아들도 쇼핑몰을 운영하며 라이브커머스로 독정리 쌀을 홍보하고 있다. 도심의 소비자들에게 쌀을 알리며 고객층과 유통망을 넓히는 데 힘을 보태고 있다.",
+      "corrections": [
+        "Add exactly one adult son: one white-haired father and five adult sons, six people total.",
+        "Preserve the existing five people, rice mill, fields and watercolor style.",
+        "Keep all six people inside a centered 16:9 crop; do not imply all five joined in a specific year."
+      ],
+      "references": [
+        {
+          "path": "content/illustration-sources/archive/4차_피드백_이전/ep21-01-1280.jpg",
+          "role": "Edit target before fourth feedback: preserve existing father and four sons; add one son.",
+          "sha256": "348cfefbf78b4dfb8a17711c35290447cddf66d7e4d2e1f9de36577b0d116bd7"
+        },
+        {
+          "path": "content/ref_images/배병희_자녀들/자녀들과_배우자들.jpeg",
+          "role": "Supporting family-photo reference for mature Korean adults and everyday clothing; individual identities not assigned.",
+          "sha256": "fb337de25a490fd25d69da0c71c7731e6df819a6c964edd3fc152d9469f7ff35"
+        }
+      ],
+      "prompt": "Use case: precise-object-edit\nAsset type: Korean family autobiography chapter 21 watercolor illustration, replacing a website image.\nInput images: Image 1 is the EDIT TARGET: the existing watercolor of a white-haired father with four adult sons beside a rice mill. Image 2 is only a supporting family-photo reference for the general appearance of mature Korean adults and everyday clothing; it does NOT establish which person is the youngest son. Do not copy the group or gestures from Image 2.\nPrimary request: Add exactly ONE adult Korean son to Image 1, so the final scene has exactly SIX people: one white-haired elderly father plus five adult black-haired sons. Preserve the existing five people, their appearance, clothing, poses, and spacing as closely as possible. The white-haired father remains third from the left, gesturing toward the landscape with his right hand. Preserve the original leftmost gray-jacket son, blue-jacket son, olive-green-jacket son with hands behind his back, and rightmost charcoal-jacket son with hands on his hips.\nComposition/framing: The original open yard immediately to the right of the charcoal-jacket son is the natural insertion area. Add the new son there as a separate clearly visible sixth figure, standing alongside the family and facing the same rice fields with his back or three-quarter back to the viewer. He has short dark hair and a simple muted taupe-gray everyday work jacket and dark trousers, consistent with the mature men in the reference photo. He must remain distinct from the charcoal-jacket son, with no overlapping heads or merged bodies. Keep the elderly father plus all FIVE adult sons clearly countable. Wide 16:9 landscape composition; preferred resolution 2048 x 1152, at least 1280 pixels wide. Leave enough side margins so a centered 16:9 website crop preserves all six people; include full heads, bodies, and feet in frame with a little ground below the shoes.\nScene/backdrop and style: Preserve the original rice mill building, pale corrugated metal siding, blue roof edges, silo, conveyor, grain sacks, small forklift, golden rice paddies, distant wooded hills, sky, warm evening light, watercolor paper texture, soft edges, and blue-gold palette. Keep the existing landscape and family grouping; make only the one-person addition and the minimal framing adjustment needed for full figures.\nConstraints: Exactly six human figures total. Exactly one white-haired father and five adult sons. No other human figures anywhere. Keep existing people's identities visually unchanged. Do not invent a historically exact date or documentary claim. No text, logo, watermark, cartoon exaggeration, duplicated bodies, extra arms, or removed people.",
+      "placementRole": "representative",
+      "placementReason": "4차 가족 피드백에 맞춰 대표 삽화의 사실관계와 본문을 일치시킴",
+      "generationTool": "builtin image_gen__imagegen",
+      "generatedSize": {
+        "width": 1672,
+        "height": 941
+      },
+      "visualReview": {
+        "approved": true,
+        "checks": [
+          "one white-haired father and five adult sons",
+          "existing people and background preserved",
+          "all six heads bodies and feet within frame",
+          "centered 16:9 crop retains all six people"
+        ]
+      },
+      "manuscriptSha256AtGeneration": "adf134f46b4edbeaa1748c95b7d44cdcca9dd766d28965c56d7e9641d5a18bd2"
     }
   ],
-  "revision": 3,
-  "revisionReason": "제목과 대표 이미지의 일치, 본문 문단과 삽화의 일치를 기준으로 재배치. 대표 4장과 본문 3장을 built-in image_gen으로 제작.",
+  "revision": 6,
+  "revisionReason": "9화 한국 농촌 복장·트럭 차형과 넓은 워시·종이 여백 중심의 수채화 강화",
   "placementRefresh": {
     "date": "2026-10-07",
     "representativeCount": 26,
@@ -882,5 +1123,15 @@
       "mode": "built-in image_gen",
       "reason": "본문과 참조 사진을 재검토하여 주인공 얼굴 식별성과 모바일 가시성 개선"
     }
-  ]
+  ],
+  "feedbackRevision": {
+    "source": "원자료/4차_피드백.md",
+    "plan": "docs/4차_피드백_반영_작업계획서.md",
+    "date": "2026-10-08",
+    "manuscriptSha256": "adf134f46b4edbeaa1748c95b7d44cdcca9dd766d28965c56d7e9641d5a18bd2",
+    "imageIds": [
+      "ep09-01",
+      "ep21-01"
+    ]
+  }
 }
