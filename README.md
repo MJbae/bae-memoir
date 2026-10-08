@@ -6,7 +6,7 @@
 
 <p align="center">
   배병희 자전소설 · 가족이 휴대폰으로 함께 읽는 서재<br>
-  <sub>프롤로그 · 6부 23화 · 에필로그 · 외전</sub>
+  <sub>프롤로그 · 23화 · 에필로그 · 외전</sub>
 </p>
 
 <p align="center">
@@ -26,17 +26,19 @@
       <sub><b>표지</b><br>다시 오면 소개를 접고 이어서 읽기</sub>
     </td>
     <td align="center" width="33%">
-      <img src="docs/readme/reader.jpg" alt="1화 어머니의 조새의 수채화 삽화와 본문" width="240"><br>
+      <img src="docs/readme/reader.jpg" alt="1화 어머니의 쇠갈고리의 수채화 삽화와 본문" width="240"><br>
       <sub><b>회차</b><br>수채화 삽화와 넉넉한 글씨</sub>
     </td>
     <td align="center" width="33%">
-      <img src="docs/readme/contents.jpg" alt="읽은 회차와 읽는 중인 회차가 왼쪽 줄에 표시된 목차" width="240"><br>
+      <img src="docs/readme/contents.jpg" alt="읽은 회차와 읽는 중인 회차가 왼쪽 줄에 표시되고 1983 독정 정미소 이정표가 보이는 목차" width="240"><br>
       <sub><b>목차</b><br>읽은 곳·읽는 곳·남은 곳이 한 줄에</sub>
     </td>
   </tr>
 </table>
 
 원고·목차·주소·음악·삽화는 음악 파일명과 같은 회차 ID를 사용합니다. 본편은 `ep01`~`ep23`, 소개는 `intro`, 프롤로그는 `prolog`, 에필로그는 `epilog`, 외전은 `side`입니다. 예를 들어 원고 `{#ep01}`, 주소 `/read/ep01.html`, 음악 `/music/ep01.mp3`, 반응 저장 경로 `pages/memoir-ep01`이 같은 1화를 가리킵니다.
+
+원고의 `# 1977. 남양만 간척지` 같은 1단계 제목은 목차의 터전 이정표입니다. 네 자리 연도와 1~20자 장소를 적고, 연도는 앞 터전보다 뒤여야 합니다. 그 아래 본편 회차가 목차에서 이 이정표 뒤에 놓입니다. 형식이 틀리거나 회차가 없는 터전이 있으면 빌드가 중단됩니다.
 
 음원은 `site/public/music/`에 두고 `content/music.json`의 `tracks[].id`로 연결합니다. 삽화는 `ep08-01`, `ep08-02`처럼 회차 ID에 장 번호를 붙이고 `content/episode-illustrations.json`에서 연결합니다. 두 번째 외전부터는 `side-02`, `side-03`을 사용합니다. 원고 순서를 바꾸면 회차 ID와 관련 음악·삽화도 함께 정리해야 하며, 번호나 파일명이 어긋나면 빌드가 중단됩니다.
 

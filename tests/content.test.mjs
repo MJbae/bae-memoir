@@ -108,11 +108,16 @@ function fixture(t) {
   return { root, write, run, readPage }
 }
 
-test('6부 23화와 앞뒤 회차를 생성하고 정본의 모든 본문을 한 번씩 보존한다', (t) => {
+test('터전 4개와 23화, 앞뒤 회차를 생성하고 정본의 모든 본문을 한 번씩 보존한다', (t) => {
   const { root, run, readPage } = fixture(t)
   const { catalog } = run()
   const structure = parseManuscript(matter(original).content)
-  assert.equal(catalog.parts.length, 6)
+  assert.deepEqual(catalog.places.map(place => place.label), ['1936 안면도', '1977 남양만 간척지', '1983 독정 정미소', '2003 독정 RPC'])
+  // Each main episode sits under the place heading before it; special episodes belong to none.
+  const placeYear = Object.fromEntries(catalog.readingOrder.map(episode => [episode.id, episode.place?.year ?? null]))
+  for (const [first, last, year] of [[1, 8, 1936], [9, 11, 1977], [12, 21, 1983], [22, 23, 2003]])
+    for (let number = first; number <= last; number++) assert.equal(placeYear[`ep${String(number).padStart(2, '0')}`], year)
+  for (const id of ['prolog', 'epilog', 'side']) assert.equal(placeYear[id], null)
   assert.equal(catalog.chapters.length, 23)
   assert.equal(catalog.readingOrder.length, 26)
   assert.equal(readFileSync(path.join(root, mainFilename), 'utf8'), original)
@@ -121,6 +126,7 @@ test('6부 23화와 앞뒤 회차를 생성하고 정본의 모든 본문을 한
     assert.equal(page.content.trim(), `# ${episode.title}\n\n${episode.body}`.trim())
     assert.equal(page.data.time, episode.time)
     assert.equal(page.data.label, episode.label)
+    assert.equal('partLabel' in page.data, false)
     assert.equal(page.data.prev?.url ?? null, catalog.readingOrder[i-1]?.url ?? null)
     assert.equal(page.data.next?.url ?? null, catalog.readingOrder[i+1]?.url ?? null)
   }
@@ -239,7 +245,7 @@ id: family
   assert.deepEqual(warnings, [])
 })
 
-test('누락·잘못된·중복 ID, 부 번호, 시점 줄, 예약 ID, 본문 누락을 거절한다', (t) => {
+test('누락·잘못된·중복 ID, 터전 제목, 시점 줄, 예약 ID, 본문 누락을 거절한다', (t) => {
   const { write, run } = fixture(t)
   for (const [from, to, error] of [
     [' {#ep01}', '', /회차 ID/],
@@ -250,11 +256,27 @@ test('누락·잘못된·중복 ID, 부 번호, 시점 줄, 예약 ID, 본문 �
     ['{#ep01}', '{#ep99}', /회차 번호와 ID/],
     ['{#prolog}', '{#intro}', /예약된/],
     ['{#side}', '{#side-02}', /회차 번호와 ID/],
-    ['# 2부. 가마솥', '# 3부. 가마솥', /부 번호/],
+    ['# 1977. 남양만 간척지', '# 3부. 소금기', /부 제목은 더 쓰지 않습니다/],
+    ['# 1983. 독정 정미소', '# 1970. 독정 정미소', /앞 터전보다 뒤/],
+    ['# 1983. 독정 정미소', '# 1977. 독정 정미소', /앞 터전보다 뒤/],
+    ['# 1977. 남양만 간척지', '# 1977 남양만 간척지', /네 자리 연도, 마침표, 장소/],
+    ['# 1977. 남양만 간척지', '# 1977-08. 남양만 간척지', /네 자리 연도, 마침표, 장소/],
+    ['# 1936. 안면도\n\n', '# 1936. 안면도\n\n본문\n\n', /터전 제목 아래에는 회차 제목/],
+    ['# 1936. 안면도\n\n', '', /본편 회차 앞에 터전 제목/],
+    ['# 2003. 독정 RPC', '# 2000. 빈 터전\n\n# 2003. 독정 RPC', /비어 있는 터전: 2000 빈 터전/],
+    ['# 1936. 안면도', '# 1936.', /터전 장소는 1~20자/],
+    ['# 1936. 안면도', `# 1936. ${'가'.repeat(21)}`, /터전 장소는 1~20자/],
     ['*1940년대 · 안면도 중장리*', '시점 없음', /시점 줄/],
     ['*1940년대 · 안면도 중장리*', `*${'가'.repeat(41)}*`, /시점 줄/],
-  ]) { write(mainFilename, original.replace(from, to)); assert.throws(run, error) }
-  write(mainFilename, '# 1부. 갯벌\n\n## 제목 {#ep01}\n\n*1940년*\n')
+  ]) {
+    const changed = original.replace(from, to)
+    assert.notEqual(changed, original, `원고에 없는 문구: ${from}`)
+    write(mainFilename, changed); assert.throws(run, error)
+  }
+  // Twenty syllables is still a place name, even when they arrive decomposed.
+  write(mainFilename, original.replace('# 1936. 안면도', `# 1936. ${'가'.repeat(20).normalize('NFD')}`))
+  assert.equal(run().catalog.places[0].name, '가'.repeat(20))
+  write(mainFilename, '# 1936. 안면도\n\n## 제목 {#ep01}\n\n*1940년*\n')
   assert.throws(run, /본문이 비어/)
 })
 

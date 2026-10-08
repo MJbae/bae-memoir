@@ -718,24 +718,6 @@ dialog::backdrop {
 .work-synopsis { margin-bottom: 0; }
 .work-synopsis p { margin-bottom: 14px; font-size: var(--font-item); line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
 .work-synopsis p:last-child { margin-bottom: 0; }
-.part-heading-block { margin: 32px 0 10px; }
-.part-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 5px; }
-.part-heading {
-  margin: 0;
-  font-size: var(--font-section);
-  line-height: 1.6;
-  scroll-margin-top: 24px;
-}
-.part-heading:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
-.part-done { display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0; padding: 3px 11px 3px 8px; border-radius: 999px; background: var(--selected); color: var(--link); font-size: var(--font-meta); font-weight: 600; line-height: 1.6; }
-.part-description {
-  margin: 0;
-  color: var(--muted);
-  font-size: var(--font-meta);
-  line-height: 1.7;
-  word-break: keep-all;
-  overflow-wrap: anywhere;
-}
 .episode-label { color: var(--muted); font-size: var(--font-meta); font-weight: 400; }
 .episode-time, .article-time { font-size: var(--font-meta); color: var(--muted); line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
 .article-time { margin: 12px 0 0; }
@@ -755,6 +737,19 @@ dialog::backdrop {
 .node-current { border: 3px solid var(--link); background: var(--surface); }
 .node-current::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--link); }
 .node-unread::after { content: ''; width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--field-border); border-radius: 50%; background: var(--surface); }
+/* A signpost marks where the story moves to; the rail runs through it unbroken. */
+.place-sign { display: flex; align-items: stretch; gap: 14px; min-height: 52px; }
+.place-rail { position: relative; flex: 0 0 24px; }
+.place-rail::before { content: ''; position: absolute; left: 11px; top: 0; bottom: 0; width: 2px; background: var(--nav-secondary-border); }
+.place-rail-done .place-rail::before { background: var(--link); }
+/* The diamond centers on the first line of the place name at every text size. */
+.place-mark { position: absolute; top: calc(14px + (1.45 * (var(--font-ui) + 0.0625rem) - 11px) / 2); left: 6.5px; width: 11px; height: 11px; box-sizing: border-box; border: 2px solid var(--field-border); border-radius: 2px; background: var(--surface); transform: rotate(45deg); }
+.place-reached .place-mark { border-color: var(--link); background: var(--link); }
+.place-heading { flex: 1; min-width: 0; margin: 0; padding: 14px 0; color: var(--ink); font-size: calc(var(--font-ui) + 0.0625rem); font-weight: 700; line-height: 1.45; letter-spacing: -0.3px; }
+.place-year { margin-right: 6px; color: var(--link); font-size: calc(var(--font-meta) + 0.0625rem); font-variant-numeric: tabular-nums; letter-spacing: 0; }
+/* Without a prologue the list opens on a signpost: its line starts at the diamond and runs on into the first episode. */
+.chapter-list-heading + .place-sign .place-rail::before { top: calc(14px + 1.45 * (var(--font-ui) + 0.0625rem) / 2); }
+.place-sign + .rail-start .chapter-rail::before { display: block; }
 .reading-status {
   display: flex;
   align-items: center;

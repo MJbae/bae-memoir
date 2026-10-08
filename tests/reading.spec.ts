@@ -22,8 +22,12 @@ test('작품 홈의 26편 목록과 처음부터 읽기에서 원고를 읽는�
   expect(await settings.evaluate(element => getComputedStyle(element).backgroundColor)).toBe('rgba(0, 0, 0, 0)')
   await expect(page.locator('.home-portrait')).toHaveCount(0)
   await expect(page.locator('.chapter-row')).toHaveCount(26)
-  await expect(page.locator('.part-heading')).toHaveCount(6)
-  await expect(page.getByRole('navigation', { name: '부별 바로가기' })).toHaveCount(0)
+  const places = page.locator('.place-sign')
+  await expect(places).toHaveText(['1936 안면도', '1977 남양만 간척지', '1983 독정 정미소', '2003 독정 RPC'])
+  // Four signposts take about a third of the 664px the six part headings used on a phone.
+  expect(await places.evaluateAll(signs => signs.reduce((sum, sign) => sum + sign.getBoundingClientRect().height, 0))).toBeLessThanOrEqual(220)
+  // A first visit leaves every diamond open and every rail piece grey.
+  await expect(page.locator('.place-reached, .place-rail-done')).toHaveCount(0)
   expect(await page.locator('.work-synopsis p').allTextContents()).toEqual(rawCatalog.work.synopsis)
   await expect(page.locator('.resume-link')).toHaveText('처음부터 읽기')
   await expect(page.getByRole('link', { name: '한 번에 읽기', exact: true })).toHaveCount(0)
@@ -66,7 +70,7 @@ test('다음 화·읽음·읽던 화를 연결하고 목록의 해당 줄로 돌
   await page.locator('.next-episode').scrollIntoViewIfNeeded()
   await page.locator('.next-episode').click()
   await expect(page).toHaveURL(/read\/ep01\.html$/)
-  await expect(page.locator('.article-label')).toHaveText('1부 갯벌 · 1화')
+  await expect(page.locator('.article-label')).toHaveText('1화')
   await expect(page.locator('.article-time')).toContainText('안면도 중장리')
   await expect(page.locator('.previous-episode')).toHaveCount(1)
   await expect(page.locator('.previous-episode')).toHaveAttribute('href', '/bae-memoir/read/prolog.html')
@@ -521,7 +525,7 @@ test('목차의 읽는 중 회차도 저장 위치로 돌아가고 재독의 진
   await expect(page.locator('#episode-ep01 .read-label')).toBeVisible()
 })
 
-test('목차 왼쪽 줄은 읽음·읽는 중·안 읽음을 모양으로 구분하고 모두 읽은 부에 다 읽음을 붙인다', async ({ page }, info) => {
+test('목차 왼쪽 줄은 읽음·읽는 중·안 읽음을 모양으로 구분하고 터전 이정표를 지나도 끊기지 않는다', async ({ page }, info) => {
   const read = rawCatalog.readingOrder.slice(0, 12).map(episode => episode.id)
   await page.addInitScript(({ read }) => {
     localStorage.setItem('family-library:completed', JSON.stringify(read))
@@ -539,15 +543,73 @@ test('목차 왼쪽 줄은 읽음·읽는 중·안 읽음을 모양으로 구분
   await expect(page.locator('#episode-ep01')).toHaveAccessibleName(/^1화 어머니의 쇠갈고리.*읽은 회차$/)
   // Every row keeps the same tap cue, whatever its reading state.
   await expect(page.locator('.chapter-row .chapter-chevron')).toHaveCount(26)
-  await expect(page.locator('.part-done')).toHaveCount(3)
-  await expect(page.locator('.part-heading-block').filter({ has: page.locator('#part-3') })).toContainText('다 읽음')
-  await expect(page.locator('.part-heading-block').filter({ has: page.locator('#part-4') })).not.toContainText('다 읽음')
+  // One rail runs from the prologue to the side story, through every signpost.
   await expect(page.locator('#episode-ep11')).toHaveClass(/rail-before-done/)
-  await expect(page.locator('#episode-ep12')).toHaveClass(/rail-start/)
+  await expect(page.locator('#episode-ep11')).toHaveClass(/rail-after-done/)
+  await expect(page.locator('#episode-ep12')).toHaveClass(/rail-before-done/)
   await expect(page.locator('#episode-ep13')).not.toHaveClass(/rail-before-done/)
+  await expect(page.locator('.chapter-row.rail-start')).toHaveCount(1)
+  await expect(page.locator('#episode-prolog')).toHaveClass(/rail-start/)
+  await expect(page.locator('.chapter-row.rail-end')).toHaveCount(1)
+  await expect(page.locator('#episode-side')).toHaveClass(/rail-end/)
+  // A signpost fills once its first episode is read or in progress.
+  const place = (year: number) => page.locator(`.place-sign:has(#place-${year})`)
+  for (const year of [1936, 1977, 1983]) await expect(place(year)).toHaveClass(/place-reached/)
+  await expect(place(1983)).toHaveClass(/place-rail-done/)
+  await expect(place(2003)).not.toHaveClass(/place-reached/)
+  await expect(place(2003)).not.toHaveClass(/place-rail-done/)
+  await expect(page.locator('.chapter-list').getByRole('heading', { level: 3 })).toHaveText(['1936 안면도', '1977 남양만 간척지', '1983 독정 정미소', '2003 독정 RPC'])
   await noOverflow(page)
   await page.locator('#episode-ep12').scrollIntoViewIfNeeded()
   await page.screenshot({ path: `test-results/reading/${info.project.name}-toc-rail.png` })
+})
+
+test('건너뛰어 읽으면 이정표 마름모는 채우되 앞 회차를 읽지 않은 줄은 비워 둔다', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('family-library:completed', JSON.stringify(['prolog', 'ep09']))
+    localStorage.setItem('family-library:music', JSON.stringify({ enabled: false }))
+  })
+  await page.goto('./')
+  const place = (year: number) => page.locator(`.place-sign:has(#place-${year})`)
+  await expect(place(1977)).toHaveClass(/place-reached/)
+  await expect(place(1977)).not.toHaveClass(/place-rail-done/)
+  await expect(place(1936)).not.toHaveClass(/place-reached/)
+  await expect(place(1936)).not.toHaveClass(/place-rail-done/)
+})
+
+test('터전 이정표는 320px 화면의 기본·아주 큰 글자에서 넘치지 않고 마름모가 장소 첫 줄 가운데에 온다', async ({ page }, info) => {
+  await page.addInitScript(() => localStorage.setItem('family-library:music', JSON.stringify({ enabled: false })))
+  await page.setViewportSize({ width: 320, height: 568 })
+  await page.goto('./')
+  const places = page.locator('.place-sign')
+  for (const font of ['1', '3']) {
+    await page.evaluate(size => localStorage.setItem('family-library:font', size), font)
+    await page.reload()
+    await expect(page.locator('.library')).toHaveClass(new RegExp(`font-${font}`))
+    await expect(places).toHaveCount(4)
+    // Measure the rendered text: the place name's first line, and the whole heading's right edge.
+    const layout = await places.evaluateAll(signs => signs.map(sign => {
+      const heading = sign.querySelector('.place-heading')!
+      const text = document.createRange()
+      text.selectNodeContents(heading)
+      const name = document.createRange()
+      name.selectNodeContents(heading.lastChild!)
+      const firstLine = name.getClientRects()[0]
+      const mark = sign.querySelector('.place-mark')!.getBoundingClientRect()
+      return {
+        overflow: text.getBoundingClientRect().right - heading.getBoundingClientRect().right,
+        offset: Math.abs(mark.top + mark.height / 2 - (firstLine.top + firstLine.height / 2)),
+      }
+    }))
+    for (const { overflow, offset } of layout) {
+      expect(overflow).toBeLessThanOrEqual(0.5)
+      expect(offset).toBeLessThanOrEqual(1.5)
+    }
+    await noOverflow(page)
+  }
+  await page.emulateMedia({ colorScheme: 'dark' })
+  await places.nth(1).scrollIntoViewIfNeeded()
+  await page.screenshot({ path: `test-results/reading/${info.project.name}-toc-places-dark.png` })
 })
 
 test('설정은 글자 크기·줄 간격과 서체·화면·배경음악 순서이며 아주 크게에서도 마치기 단추까지 한 화면에 들어간다', async ({ page }, info) => {

@@ -151,7 +151,7 @@ onBeforeUnmount(() => { router.onBeforePageLoad = previousBeforeLoad; ++version;
     <template v-else>
       <header class="reader-toolbar"><nav aria-label="읽기 도구"><a class="back-link" :href="homeHref"><Icon name="back" :size="20" /><span>목차</span></a><div class="reader-actions"><SettingsButton @open="settingsDialog?.showModal()" /></div></nav></header>
       <main id="main" tabindex="-1" class="reader-main">
-        <header class="article-header"><p v-if="frontmatter.label" class="article-label">{{ frontmatter.partLabel ? `${frontmatter.partLabel} · ` : '' }}{{ frontmatter.label }}</p><h1>{{ title }}</h1><p v-if="frontmatter.time" class="article-time">{{ frontmatter.time }}</p></header>
+        <header class="article-header"><p v-if="frontmatter.label" class="article-label">{{ frontmatter.label }}</p><h1>{{ title }}</h1><p v-if="frontmatter.time" class="article-time">{{ frontmatter.time }}</p></header>
         <article class="story-content"><Content /></article>
         <EpisodeEnd v-if="frontmatter.kind === 'episode'" :key="pageId" :page-id="pageId" :episode="true" :prev="frontmatter.prev" :next="frontmatter.next" :home-href="homeHref" @complete="complete" />
       </main>

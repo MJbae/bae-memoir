@@ -243,7 +243,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
       label: episode.label,
       number: episode.number,
       time: episode.time,
-      part: episode.part,
+      place: episode.place,
       description: episode.time,
       url: `/read/${episode.id}.html`,
     }
@@ -383,7 +383,6 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
         kind: page.kind,
         label: page.label || '',
         time: page.time || '',
-        partLabel: page.part?.label || '',
         shareTitle: page.kind === 'episode' ? `${page.label} ${page.title} · ${work.title}` : `${page.title} · ${work.title}`,
         prev: page.kind === 'episode' ? neighbor(readingOrder[index - 1]) : null,
         next: page.kind === 'episode' ? neighbor(readingOrder[index + 1]) : null,
@@ -394,7 +393,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
       return [page.filename, frontmatter(metadata, rewriteLinks(page.body, page.source))]
     })
   )
-  const catalog = { title: work.title, work, parts: structure.parts, chapters, readingOrder, legacyIds, legacyScrollResetIds, documents, illustrations, music }
+  const catalog = { title: work.title, work, places: structure.places, chapters, readingOrder, legacyIds, legacyScrollResetIds, documents, illustrations, music }
 
   syncReferenceIndex(root, structure.episodes)
 
@@ -444,7 +443,7 @@ export function prepareContent({ root = projectRoot, logger = console } = {}) {
     renameSync(`${target}.tmp`, target)
   }
   logger.log?.(
-    `[content] ${structure.parts.length}개 부 · ${chapters.length}개 본편 회차 · ${documents.length}개 자료 준비 완료`
+    `[content] ${structure.places.length}개 터전 · ${chapters.length}개 본편 회차 · ${documents.length}개 자료 준비 완료`
   )
   return { catalog, manifest, warnings }
 }
